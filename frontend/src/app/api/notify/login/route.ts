@@ -35,10 +35,10 @@ export async function POST(req: NextRequest) {
           <style>
             body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #fbf9f4; color: #1c2a1f; margin: 0; padding: 40px 20px; }
             .container { max-width: 540px; margin: 0 auto; background: #ffffff; border: 1px solid #e3dfd5; border-radius: 8px; padding: 32px; }
-            .brand { font-family: Georgia, serif; font-size: 22px; font-weight: bold; letter-spacing: 0.15em; color: #284431; text-transform: uppercase; margin-bottom: 24px; }
+            .brand { font-family: Georgia, serif; font-size: 22px; font-weight: bold; letter-spacing: 0.15em; color: #1d3122; text-transform: uppercase; margin-bottom: 24px; }
             h2 { font-family: Georgia, serif; font-size: 24px; margin-top: 0; color: #1c2a1f; font-weight: 400; }
             p { font-size: 14px; line-height: 1.6; color: #405545; margin: 12px 0; }
-            .details { background-color: #f6f3eb; border-left: 3px solid #6e9271; padding: 16px; margin: 24px 0; font-family: monospace; font-size: 13px; color: #284431; }
+            .details { background-color: #f6f3eb; border-left: 3px solid #7ca982; padding: 16px; margin: 24px 0; font-family: monospace; font-size: 13px; color: #1d3122; }
             .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e3dfd5; font-size: 12px; color: #76877b; }
           </style>
         </head>

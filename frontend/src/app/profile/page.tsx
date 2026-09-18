@@ -68,7 +68,7 @@ export default function ProfilePage() {
         
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative">
           <div className="flex items-center gap-5">
-            <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-[#284431] to-[#6E9271] text-white flex items-center justify-center text-2xl font-serif font-bold shadow-md shadow-[#284431]/20">
+            <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-[#7ca982] to-[#57875d] text-white flex items-center justify-center text-2xl font-serif font-bold shadow-md shadow-[#7ca982]/20">
               {initials}
             </div>
             <div>
@@ -77,8 +77,8 @@ export default function ProfilePage() {
                 <StatusBadge tone="ok">Verified Member</StatusBadge>
               </div>
               <p className="text-sm text-ink-muted mt-1">{user.email}</p>
-              <div className="mt-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#6E9271] dark:text-[#A3B899]">
-                <span className="h-2 w-2 rounded-full bg-[#6E9271]" />
+              <div className="mt-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#7ca982] dark:text-[#a3caa6]">
+                <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
                 <span>F_Society {user.role === "owner" ? "Property Owner" : "Tenant Member"}</span>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function ProfilePage() {
         <div className="p-5 rounded-2xl bg-card border border-line shadow-card">
           <span className="text-xs uppercase tracking-wider text-ink-muted font-medium">Saved Homes</span>
           <p className="font-serif text-2xl sm:text-3xl font-bold text-ink mt-1">{savedIds.length}</p>
-          <Link href="/homes" className="text-xs text-[#6E9271] hover:underline mt-2 inline-block font-medium">
+          <Link href="/homes" className="text-xs text-[#7ca982] hover:underline mt-2 inline-block font-medium">
             Browse directory &rarr;
           </Link>
         </div>
@@ -126,20 +126,20 @@ export default function ProfilePage() {
         <div className="p-5 rounded-2xl bg-card border border-line shadow-card">
           <span className="text-xs uppercase tracking-wider text-ink-muted font-medium">Inquiries Sent</span>
           <p className="font-serif text-2xl sm:text-3xl font-bold text-ink mt-1">{enquiries.length}</p>
-          <Link href={user.role === "owner" ? "/owner/dashboard" : "/tenant/dashboard"} className="text-xs text-[#6E9271] hover:underline mt-2 inline-block font-medium">
+          <Link href={user.role === "owner" ? "/owner/dashboard" : "/tenant/dashboard"} className="text-xs text-[#7ca982] hover:underline mt-2 inline-block font-medium">
             View messages &rarr;
           </Link>
         </div>
 
         <div className="p-5 rounded-2xl bg-card border border-line shadow-card">
           <span className="text-xs uppercase tracking-wider text-ink-muted font-medium">KYC Clearance</span>
-          <p className="font-serif text-xl sm:text-2xl font-bold text-[#6E9271] mt-1">Tier 1 Verified</p>
+          <p className="font-serif text-xl sm:text-2xl font-bold text-[#7ca982] mt-1">Tier 1 Verified</p>
           <span className="text-xs text-ink-muted mt-2 inline-block">Aadhaar + PAN match</span>
         </div>
 
         <div className="p-5 rounded-2xl bg-card border border-line shadow-card">
           <span className="text-xs uppercase tracking-wider text-ink-muted font-medium">Trust Score</span>
-          <p className="font-serif text-2xl sm:text-3xl font-bold text-[#284431] dark:text-[#A3B899] mt-1">94<span className="text-sm font-normal text-ink-muted">/100</span></p>
+          <p className="font-serif text-2xl sm:text-3xl font-bold text-[#57875d] dark:text-[#a3caa6] mt-1">94<span className="text-sm font-normal text-ink-muted">/100</span></p>
           <span className="text-xs text-ink-muted mt-2 inline-block">RentTruth Index</span>
         </div>
       </div>

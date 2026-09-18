@@ -10,7 +10,7 @@ import {
 
 type Theme = "dark" | "light";
 
-const KEY = "nivasa-theme";
+const KEY = "fsociety-theme-v2";
 const listeners = new Set<() => void>();
 
 function emit() {

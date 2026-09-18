@@ -26,7 +26,7 @@ export function PropertyCard({ property }: { property: Property }) {
       layout
       whileHover={{ y: -4 }}
       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col rounded-3xl border border-line bg-card overflow-hidden shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-[#6E9271]/50"
+      className="group relative flex flex-col rounded-3xl border border-line bg-card overflow-hidden shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-[#7ca982]/50"
     >
       {/* Visual Image Banner with Floating Pills */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-paper">
@@ -44,8 +44,8 @@ export function PropertyCard({ property }: { property: Property }) {
         {/* Top Left: Provenance & Verification Badges */}
         <div className="absolute left-3.5 top-3.5 z-10 flex flex-col gap-1.5 items-start">
           {isDataset ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#284431]/90 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-[#D8E6D3] border border-[#6E9271]/40 shadow-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271] animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#faf7f0]/95 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-[#1d3122] border border-[#7ca982]/50 shadow-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982] animate-pulse" />
               Dataset 2025–2026
             </span>
           ) : (
@@ -97,7 +97,7 @@ export function PropertyCard({ property }: { property: Property }) {
         {/* Locality & City Chip on image bottom-left */}
         <div className="absolute bottom-3 left-3.5 z-10">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md">
-            <svg className="h-3 w-3 text-[#A3B899]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg className="h-3 w-3 text-[#7ca982]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
@@ -110,7 +110,7 @@ export function PropertyCard({ property }: { property: Property }) {
       <div className="flex flex-1 flex-col justify-between p-5">
         <div>
           <Link href={detailHref} className="group/title block">
-            <h3 className="font-serif text-lg font-bold tracking-tight text-ink transition-colors group-hover/title:text-[#284431] dark:group-hover/title:text-[#A3B899] line-clamp-1">
+            <h3 className="font-serif text-lg font-bold tracking-tight text-ink transition-colors group-hover/title:text-[#57875d] dark:group-hover/title:text-[#a3caa6] line-clamp-1">
               {property.title}
             </h3>
           </Link>
@@ -130,7 +130,7 @@ export function PropertyCard({ property }: { property: Property }) {
               {property.furnishingStatus || property.furnishing}
             </span>
             {property.tenantPreferred && (
-              <span className="rounded-lg bg-[#6E9271]/10 border border-[#6E9271]/20 px-2 py-0.5 text-[11px] font-medium text-[#284431] dark:text-[#A3B899]">
+              <span className="rounded-lg bg-[#7ca982]/12 border border-[#7ca982]/25 px-2 py-0.5 text-[11px] font-medium text-[#1d3122] dark:text-[#a3caa6]">
                 {property.tenantPreferred}
               </span>
             )}
@@ -162,15 +162,15 @@ export function PropertyCard({ property }: { property: Property }) {
               </span>
               <span className="text-xs text-ink-muted font-medium">/ month</span>
             </div>
-            <p className="mt-0.5 text-[11px] text-[#284431] dark:text-[#A3B899] font-medium flex items-center gap-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271]" />
+            <p className="mt-0.5 text-[11px] text-[#4e6853] dark:text-[#a3caa6] font-medium flex items-center gap-1">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
               All-in est. {formatInr(monthlyEstimate(property))} · RentTruth™
             </p>
           </div>
 
           <Link
             href={detailHref}
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#284431] dark:bg-[#6E9271] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:opacity-95 transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:shadow-md transition-all cursor-pointer"
           >
             <span>Explore</span>
             <svg className="h-3 w-3 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

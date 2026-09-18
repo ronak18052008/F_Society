@@ -27,9 +27,9 @@ export default function DashboardPage() {
     <SiteShell>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         {/* Guest Banner */}
-        <div className="mb-10 rounded-3xl border border-[#6E9271]/30 bg-gradient-to-r from-[#6E9271]/15 via-[#8FA89B]/10 to-transparent p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-card">
+        <div className="mb-10 rounded-3xl border border-[#7ca982]/30 bg-gradient-to-r from-[#7ca982]/15 via-[#96bd9b]/10 to-transparent p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-card">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#284431] dark:bg-[#6E9271] px-3.5 py-1 text-xs font-semibold text-white">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982] px-3.5 py-1 text-xs font-semibold text-white">
               F_Society Workspace Hub
             </div>
             <h1 className="mt-3 text-2xl sm:text-3xl font-serif font-bold text-ink tracking-tight">
@@ -43,13 +43,13 @@ export default function DashboardPage() {
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Link
               href="/login?next=/dashboard"
-              className="rounded-full bg-[#284431] dark:bg-[#6E9271] px-5 py-2.5 text-xs font-semibold text-white shadow-card hover:opacity-95 transition"
+              className="rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:shadow-md transition cursor-pointer"
             >
               Sign In to Workspace
             </Link>
             <Link
               href="/register"
-              className="rounded-full border border-line bg-card px-5 py-2.5 text-xs font-semibold text-ink hover:border-[#6E9271] transition shadow-xs"
+              className="rounded-full border border-line bg-card px-5 py-2.5 text-xs font-semibold text-ink hover:border-[#7ca982] transition shadow-xs"
             >
               Create Free Account
             </Link>

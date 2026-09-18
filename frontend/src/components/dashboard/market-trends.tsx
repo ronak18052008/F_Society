@@ -46,8 +46,8 @@ export function MarketTrends({ analytics = DEFAULT_ANALYTICS }: MarketTrendsProp
       {/* Top Header & Context */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#6E9271]/15 px-3 py-1 text-xs font-semibold text-[#284431] dark:text-[#A3B899] border border-[#6E9271]/30">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271] animate-pulse" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982] animate-pulse" />
             Live Dataset Intelligence
           </div>
           <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-ink tracking-tight">
@@ -60,7 +60,7 @@ export function MarketTrends({ analytics = DEFAULT_ANALYTICS }: MarketTrendsProp
 
         <Link
           href="/properties"
-          className="inline-flex items-center gap-1.5 rounded-full bg-[#284431] dark:bg-[#6E9271] px-4 py-2 text-xs font-semibold text-white shadow-xs hover:opacity-95 transition"
+          className="inline-flex items-center gap-1.5 rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-4 py-2 text-xs font-semibold text-white shadow-xs hover:shadow-md transition cursor-pointer"
         >
           <span>Query Full Dataset</span>
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,7 +78,7 @@ export function MarketTrends({ analytics = DEFAULT_ANALYTICS }: MarketTrendsProp
           <strong className="text-2xl sm:text-3xl font-serif font-bold text-ink block mt-1 font-tabular">
             {analytics.totalProperties.toLocaleString()}
           </strong>
-          <span className="text-[11px] text-[#6E9271] dark:text-[#A3B899] font-medium mt-0.5 block">
+          <span className="text-[11px] text-[#57875d] dark:text-[#a3caa6] font-medium mt-0.5 block">
             100% Ingested & Indexed
           </span>
         </div>
@@ -114,7 +114,7 @@ export function MarketTrends({ analytics = DEFAULT_ANALYTICS }: MarketTrendsProp
           <strong className="text-2xl sm:text-3xl font-serif font-bold text-ink block mt-1 font-tabular">
             {analytics.citiesCount} Metros
           </strong>
-          <span className="text-[11px] text-[#6E9271] dark:text-[#A3B899] font-medium mt-0.5 block">
+          <span className="text-[11px] text-[#57875d] dark:text-[#a3caa6] font-medium mt-0.5 block">
             Tier-1 Urban Corridors
           </span>
         </div>
@@ -142,7 +142,7 @@ export function MarketTrends({ analytics = DEFAULT_ANALYTICS }: MarketTrendsProp
                   <div className="flex items-center justify-between text-xs mb-1">
                     <Link
                       href={`/properties?city=${encodeURIComponent(item.city)}`}
-                      className="font-semibold text-ink group-hover:text-[#6E9271] transition flex items-center gap-1.5"
+                      className="font-semibold text-ink group-hover:text-[#57875d] transition flex items-center gap-1.5"
                     >
                       <span>{item.city}</span>
                       <span className="text-[10px] text-ink-muted font-normal">
@@ -155,7 +155,7 @@ export function MarketTrends({ analytics = DEFAULT_ANALYTICS }: MarketTrendsProp
                   </div>
                   <div className="h-2.5 w-full rounded-full bg-paper border border-line/40 overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#284431] to-[#6E9271] dark:from-[#6E9271] dark:to-[#A3B899] transition-all duration-500"
+                      className="h-full rounded-full bg-gradient-to-r from-[#7ca982] to-[#57875d] dark:from-[#7ca982] dark:to-[#a3caa6] transition-all duration-500"
                       style={{ width: `${pct}%` }}
                     />
                   </div>

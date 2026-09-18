@@ -135,8 +135,8 @@ export function EditorialVideo({
                   type="button"
                   onClick={togglePlay}
                   className={cn(
-                    "pointer-events-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-white/40 bg-[#284431]/90 text-white backdrop-blur-md shadow-xl transition-all duration-300",
-                    "hover:scale-110 hover:bg-[#284431] hover:shadow-[#284431]/30 focus-visible:ring-2 focus-visible:ring-[#6E9271] focus-visible:outline-none cursor-pointer",
+                    "pointer-events-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-white/40 bg-[#7ca982]/95 text-white backdrop-blur-md shadow-xl transition-all duration-300",
+                    "hover:scale-110 hover:bg-[#6b9a71] hover:shadow-[#7ca982]/35 focus-visible:ring-2 focus-visible:ring-[#7ca982] focus-visible:outline-none cursor-pointer",
                     isPlaying && "opacity-0 group-hover:opacity-100",
                   )}
                   aria-label={isPlaying ? "Pause video walkthrough" : "Play video walkthrough"}

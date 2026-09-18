@@ -22,7 +22,7 @@ export default function HowItWorksPage() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#6E9271]/30 bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#284431] dark:text-[#A3B899]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#7ca982]/30 bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#23452b] dark:text-[#a3caa6]">
             Platform Protocol
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-serif font-bold tracking-tight text-ink">
@@ -39,7 +39,7 @@ export default function HowItWorksPage() {
           {/* Tenant Journey Card */}
           <Reveal className="rounded-3xl border border-line bg-card p-8 shadow-card">
             <div className="flex items-center justify-between">
-              <span className="rounded-full bg-[#6E9271]/15 border border-[#6E9271]/30 px-3 py-1 text-xs font-bold text-[#6E9271] dark:text-[#A3B899]">
+              <span className="rounded-full bg-[#7ca982]/15 border border-[#7ca982]/30 px-3 py-1 text-xs font-bold text-[#1d3122] dark:text-[#a3caa6]">
                 Resident Protocol
               </span>
               <span className="text-xs text-ink-muted">For Tenants</span>
@@ -48,7 +48,7 @@ export default function HowItWorksPage() {
             <ol className="mt-6 space-y-4">
               {tenant.map((step, index) => (
                 <li key={step} className="flex items-start gap-3.5 text-sm text-ink-muted">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#6E9271]/15 border border-[#6E9271]/30 text-xs font-bold text-[#284431] dark:text-[#A3B899]">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/15 border border-[#7ca982]/30 text-xs font-bold text-[#1d3122] dark:text-[#a3caa6]">
                     0{index + 1}
                   </span>
                   <span className="leading-relaxed mt-0.5 text-ink">{step}</span>
@@ -65,7 +65,7 @@ export default function HowItWorksPage() {
           {/* Owner Journey Card */}
           <Reveal delay={0.1} className="rounded-3xl border border-line bg-card p-8 shadow-card">
             <div className="flex items-center justify-between">
-              <span className="rounded-full bg-[#8FA89B]/20 border border-[#8FA89B]/30 px-3 py-1 text-xs font-bold text-[#284431] dark:text-[#A3B899]">
+              <span className="rounded-full bg-[#96bd9b]/20 border border-[#96bd9b]/30 px-3 py-1 text-xs font-bold text-[#1d3122] dark:text-[#a3caa6]">
                 Host Protocol
               </span>
               <span className="text-xs text-ink-muted">For Property Owners</span>
@@ -74,7 +74,7 @@ export default function HowItWorksPage() {
             <ol className="mt-6 space-y-4">
               {owner.map((step, index) => (
                 <li key={step} className="flex items-start gap-3.5 text-sm text-ink-muted">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#8FA89B]/20 border border-[#8FA89B]/30 text-xs font-bold text-[#284431] dark:text-[#A3B899]">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#96bd9b]/20 border border-[#96bd9b]/30 text-xs font-bold text-[#1d3122] dark:text-[#a3caa6]">
                     0{index + 1}
                   </span>
                   <span className="leading-relaxed mt-0.5 text-ink">{step}</span>

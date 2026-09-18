@@ -28,12 +28,12 @@ export default function HomePage() {
           {/* Top Pill / Platform Status */}
           <div className="flex justify-center">
             <Reveal>
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-[#6E9271]/30 bg-[#6E9271]/10 px-4 py-1.5 backdrop-blur-md shadow-xs">
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-[#7ca982]/30 bg-[#7ca982]/10 px-4 py-1.5 backdrop-blur-md shadow-xs">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6E9271] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#284431] dark:bg-[#A3B899]"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7ca982] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7ca982] dark:bg-[#a3caa6]"></span>
                 </span>
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#284431] dark:text-[#A3B899]">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#23452b] dark:text-[#a3caa6]">
                   F_Society Residential Network · v2.4
                 </span>
               </div>
@@ -45,7 +45,7 @@ export default function HomePage() {
             <Reveal delay={0.1}>
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold tracking-tight text-ink leading-[1.08]">
                 Living,{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#284431] via-[#6E9271] to-[#8FA89B] dark:from-[#A3B899] dark:via-[#6E9271] dark:to-[#8FA89B]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#57875d] via-[#7ca982] to-[#96bd9b] dark:from-[#a3caa6] dark:via-[#7ca982] dark:to-[#96bd9b]">
                   Harmonized.
                 </span>
               </h1>
@@ -114,7 +114,7 @@ export default function HomePage() {
                   {/* Search Button */}
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl sm:rounded-full bg-[#284431] dark:bg-[#6E9271] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-[#284431]/20 hover:opacity-95 active:scale-95 transition-all cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl sm:rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-[#7ca982]/20 hover:opacity-95 active:scale-95 transition-all cursor-pointer"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -129,13 +129,13 @@ export default function HomePage() {
           {/* Quick Filter Tags */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-ink-muted">
             <span className="font-medium">Popular:</span>
-            <Link href="/homes?city=Ahmedabad" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#6E9271]/50 hover:text-ink transition">
+            <Link href="/homes?city=Ahmedabad" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
               Ahmedabad
             </Link>
-            <Link href="/homes?city=Bengaluru" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#6E9271]/50 hover:text-ink transition">
+            <Link href="/homes?city=Bengaluru" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
               Bengaluru
             </Link>
-            <Link href="/homes?verified=true" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#6E9271]/50 hover:text-ink transition">
+            <Link href="/homes?verified=true" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
               RentTruth™ Verified Only
             </Link>
           </div>
@@ -155,22 +155,22 @@ export default function HomePage() {
           <div className="mt-14 border-y border-line py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div>
-                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#284431] dark:text-[#A3B899]">₹0</p>
+                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#57875d] dark:text-[#a3caa6]">₹0</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">Brokerage Overhead</p>
                 <p className="text-[11px] text-ink-muted/80 mt-0.5">Direct tenant-owner contracts</p>
               </div>
               <div>
-                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#6E9271]">100%</p>
+                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#7ca982]">100%</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">Itemized RentTruth™</p>
                 <p className="text-[11px] text-ink-muted/80 mt-0.5">Every rupee unbundled upfront</p>
               </div>
               <div>
-                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#8FA89B]">Day 0</p>
+                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#96bd9b]">Day 0</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">Condition Passport</p>
                 <p className="text-[11px] text-ink-muted/80 mt-0.5">Dispute-proof move-in logs</p>
               </div>
               <div>
-                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#284431] dark:text-[#A3B899]">Gemini 2.5</p>
+                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#57875d] dark:text-[#a3caa6]">Gemini 2.5</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">AI Lease Audit</p>
                 <p className="text-[11px] text-ink-muted/80 mt-0.5">Automated clause risk analysis</p>
               </div>
@@ -219,8 +219,8 @@ export default function HomePage() {
             </Reveal>
 
             {/* Bento Card 2: Condition Passport */}
-            <Reveal delay={0.1} className="group relative rounded-3xl border border-line bg-card p-8 shadow-card hover:shadow-card-hover hover:border-[#6E9271]/50 transition-all duration-300">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#8FA89B]/20 text-[#284431] dark:text-[#A3B899] group-hover:scale-110 transition-transform">
+            <Reveal delay={0.1} className="group relative rounded-3xl border border-line bg-card p-8 shadow-card hover:shadow-card-hover hover:border-[#7ca982]/50 transition-all duration-300">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#96bd9b]/20 text-[#1d3122] dark:text-[#a3caa6] group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -231,7 +231,7 @@ export default function HomePage() {
                 Cryptographically signed move-in condition photos. Pre-existing wall scuffs, appliance status, and key handover verified mutually on day zero.
               </p>
               <div className="mt-6 pt-4 border-t border-line">
-                <span className="text-xs font-semibold text-[#284431] dark:text-[#A3B899] group-hover:underline">
+                <span className="text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] group-hover:underline">
                   Protect security deposit →
                 </span>
               </div>
@@ -324,7 +324,7 @@ export default function HomePage() {
         <div className="wrap">
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#6E9271]/30 bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#284431] dark:text-[#A3B899]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#7ca982]/30 bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#23452b] dark:text-[#a3caa6]">
                 Join the Network
               </div>
               <h2 className="mt-4 text-4xl sm:text-5xl font-serif font-bold text-ink tracking-tight">

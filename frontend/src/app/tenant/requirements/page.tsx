@@ -90,7 +90,7 @@ export default function RequirementsPage() {
                     onClick={() => setType(item.id)}
                     className={`flex flex-col items-center gap-1.5 rounded-2xl border p-4 text-center transition-all cursor-pointer ${
                       type === item.id
-                        ? "border-[#6E9271] bg-[#6E9271]/10 text-[#284431] dark:text-[#A3B899] ring-2 ring-[#6E9271]/20 font-semibold"
+                        ? "border-[#7ca982] bg-[#7ca982]/10 text-[#1d3122] dark:text-[#a3caa6] ring-2 ring-[#7ca982]/20 font-semibold"
                         : "border-line bg-paper text-ink-muted hover:bg-black/5 dark:hover:bg-white/5 hover:text-ink"
                     }`}
                   >

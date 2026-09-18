@@ -144,13 +144,13 @@ export default function ManagePropertyPage() {
       </div>
 
       {/* Linked Workspace */}
-      <div className="mt-10 rounded-2xl border border-[#6E9271]/30 bg-[#6E9271]/10 p-5">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-[#284431] dark:text-[#A3B899]">
+      <div className="mt-10 rounded-2xl border border-[#7ca982]/30 bg-[#7ca982]/10 p-5">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-[#23452b] dark:text-[#a3caa6]">
           Connected Tenancy Workspace
         </span>
         <p className="mt-1 text-sm font-semibold text-ink">
           Shared Tenancy Ledger:{" "}
-          <Link className="text-[#6E9271] hover:underline" href="/rental/rent-navrang">
+          <Link className="text-[#7ca982] hover:underline" href="/rental/rent-navrang">
             Navrangpura Courtyard Workspace →
           </Link>
         </p>

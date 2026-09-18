@@ -158,7 +158,7 @@ export function LifecycleSection() {
                   <div className="mt-6 pt-2">
                     <Link
                       href={step.href}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#284431] dark:text-[#A3B899] hover:underline transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#57875d] dark:text-[#A3B899] hover:underline transition-colors"
                     >
                       <span>{step.ctaText ?? "Learn more"}</span>
                       <span className="text-sm">→</span>

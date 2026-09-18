@@ -50,7 +50,7 @@ export function FeatureTeasers() {
                 </div>
                 <div className="flex items-center justify-between pt-1 text-sm font-semibold">
                   <span className="text-ink">True Estimated Monthly Outflow</span>
-                  <span className="text-[#284431] dark:text-[#A3B899] font-serif font-bold font-tabular text-lg">₹34,600</span>
+                  <span className="text-[#57875d] dark:text-[#a3caa6] font-serif font-bold font-tabular text-lg">₹34,600</span>
                 </div>
               </div>
             </div>
@@ -61,7 +61,7 @@ export function FeatureTeasers() {
               </Button>
               <Link
                 href="/homes"
-                className="text-xs font-semibold text-ink-muted hover:text-[#6E9271] transition-colors"
+                className="text-xs font-semibold text-ink-muted hover:text-[#7ca982] transition-colors"
               >
                 Compare verified listings →
               </Link>
@@ -76,7 +76,7 @@ export function FeatureTeasers() {
           <Reveal delay={0.15}>
             <div>
               <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#8FA89B]/20 px-3 py-1 text-xs font-semibold text-[#284431] dark:text-[#A3B899] border border-[#8FA89B]/30">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#96bd9b]/20 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#96bd9b]/30">
                   Move-In Protection
                 </span>
                 <span className="rounded-full bg-paper border border-line px-3 py-1 text-xs font-bold text-ink-muted">

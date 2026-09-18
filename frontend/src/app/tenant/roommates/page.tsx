@@ -109,7 +109,7 @@ export default function RoommatesPage() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#284431] to-[#6E9271] text-white font-serif font-bold text-lg shadow-sm">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7ca982] to-[#57875d] text-white font-serif font-bold text-lg shadow-sm">
                         {person.displayName[0]}
                       </div>
                       <div>
@@ -121,7 +121,7 @@ export default function RoommatesPage() {
                         </p>
                       </div>
                     </div>
-                    <span className="rounded-full bg-[#6E9271]/15 px-2.5 py-0.5 text-[10px] font-bold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
+                    <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
                       Verified
                     </span>
                   </div>
@@ -138,7 +138,7 @@ export default function RoommatesPage() {
                       overlap.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-[#6E9271]/30 bg-[#6E9271]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#284431] dark:text-[#A3B899]"
+                          className="rounded-full border border-[#7ca982]/30 bg-[#7ca982]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6]"
                         >
                           {tag}
                         </span>

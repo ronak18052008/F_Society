@@ -11,7 +11,7 @@ export default async function CitiesPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         {/* Editorial Header */}
         <div className="max-w-3xl pb-8 border-b border-line">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#284431] dark:text-[#A3B899] border border-[#6E9271]/30">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
             India Metropolitan Housing Telemetry · 2025–2026
           </div>
           <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-ink">
@@ -24,13 +24,13 @@ export default async function CitiesPage() {
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <Link
               href="/properties"
-              className="rounded-full bg-[#284431] dark:bg-[#6E9271] px-5 py-2.5 text-xs font-semibold text-white shadow-card hover:opacity-95 transition"
+              className="rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:shadow-md transition cursor-pointer"
             >
               Browse All Listings →
             </Link>
             <Link
               href="/dashboard"
-              className="rounded-full border border-line bg-card px-5 py-2.5 text-xs font-semibold text-ink hover:border-[#6E9271] transition shadow-xs"
+              className="rounded-full border border-line bg-card px-5 py-2.5 text-xs font-semibold text-ink hover:border-[#7ca982] transition shadow-xs"
             >
               Market Trends Dashboard
             </Link>

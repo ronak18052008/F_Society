@@ -251,7 +251,7 @@ export default function OwnerDashboardPage() {
                           );
                           toast(`Enquiry marked as ${nextStatus}`);
                         }}
-                        className="cursor-pointer rounded-lg bg-[#6E9271]/15 px-2.5 py-1 text-[11px] font-semibold text-[#284431] dark:text-[#A3B899] hover:bg-[#6E9271]/25 transition"
+                        className="cursor-pointer rounded-lg bg-[#7ca982]/15 px-2.5 py-1 text-[11px] font-semibold text-[#1d3122] dark:text-[#a3caa6] hover:bg-[#7ca982]/25 transition"
                       >
                         Mark {item.status === "sent" ? "seen" : "replied"}
                       </button>

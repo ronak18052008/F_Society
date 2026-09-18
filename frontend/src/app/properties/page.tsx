@@ -207,7 +207,7 @@ function PropertiesMarketplace() {
               onClick={() => handlePageChange(num)}
               className={`min-w-[36px] h-9 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer ${
                 isCurrent
-                  ? "bg-[#284431] dark:bg-[#6E9271] text-white"
+                  ? "bg-[#7ca982] text-white"
                   : "border border-line bg-card text-ink hover:bg-paper"
               }`}
             >
@@ -238,8 +238,8 @@ function PropertiesMarketplace() {
         {/* Header Block with Live Metrics */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-line">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#284431] dark:text-[#A3B899] border border-[#6E9271]/30">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271] animate-pulse" />
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#23452b] dark:text-[#a3caa6] border border-[#7ca982]/30">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982] animate-pulse" />
               Live Housing Directory · 2025–2026 Upgrades
             </div>
             <h1 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-ink">
@@ -254,7 +254,7 @@ function PropertiesMarketplace() {
           <div className="flex flex-wrap items-center gap-3 self-start md:self-auto">
             <Link
               href="/cities"
-              className="rounded-full border border-line bg-card px-4 py-2 text-xs font-semibold text-ink hover:border-[#6E9271] transition shadow-xs"
+              className="rounded-full border border-line bg-card px-4 py-2 text-xs font-semibold text-ink hover:border-[#7ca982] transition shadow-xs"
             >
               City Statistics →
             </Link>
@@ -265,7 +265,7 @@ function PropertiesMarketplace() {
                 onClick={() => setSavedOnly(false)}
                 className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
                   !savedOnly
-                    ? "bg-[#284431] dark:bg-[#6E9271] text-white shadow-xs"
+                    ? "bg-[#7ca982] text-white shadow-xs"
                     : "text-ink-muted hover:text-ink"
                 }`}
               >
@@ -276,7 +276,7 @@ function PropertiesMarketplace() {
                 onClick={() => setSavedOnly(true)}
                 className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                   savedOnly
-                    ? "bg-[#284431] dark:bg-[#6E9271] text-white shadow-xs"
+                    ? "bg-[#7ca982] text-white shadow-xs"
                     : "text-ink-muted hover:text-ink"
                 }`}
               >
@@ -325,7 +325,7 @@ function PropertiesMarketplace() {
                   onClick={() => handlePageSizeChange(size)}
                   className={`rounded-lg px-2.5 py-1 font-semibold transition cursor-pointer ${
                     pageSize === size
-                      ? "bg-[#284431] dark:bg-[#6E9271] text-white"
+                      ? "bg-[#7ca982] text-white"
                       : "border border-line bg-card text-ink hover:bg-paper"
                   }`}
                 >
@@ -373,7 +373,7 @@ function PropertiesMarketplace() {
                 <button
                   type="button"
                   onClick={() => handleFilterChange(defaultFilters)}
-                  className="rounded-full bg-[#284431] dark:bg-[#6E9271] px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:opacity-95 transition cursor-pointer"
+                  className="rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:shadow-md transition cursor-pointer"
                 >
                   Reset All Filters
                 </button>

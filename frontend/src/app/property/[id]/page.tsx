@@ -74,7 +74,7 @@ export default function PropertyDetailPage() {
     return (
       <SiteShell>
         <div className="mx-auto max-w-xl px-4 py-28 text-center">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#6E9271]/15 text-[#284431] dark:text-[#A3B899]">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6]">
             <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
@@ -86,7 +86,7 @@ export default function PropertyDetailPage() {
           <div className="mt-6">
             <Link
               href="/properties"
-              className="inline-flex items-center gap-2 rounded-full bg-[#284431] dark:bg-[#6E9271] px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:opacity-95 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:shadow-md transition"
             >
               Browse 4,746+ Residences
             </Link>
@@ -121,9 +121,9 @@ export default function PropertyDetailPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Navigation Breadcrumb */}
         <div className="mb-6 flex items-center gap-2 text-xs font-medium text-ink-muted">
-          <Link href="/properties" className="hover:text-[#6E9271] transition">Residences</Link>
+          <Link href="/properties" className="hover:text-[#7ca982] transition">Residences</Link>
           <span>/</span>
-          <Link href={`/properties?city=${property.city}`} className="hover:text-[#6E9271] transition">
+          <Link href={`/properties?city=${property.city}`} className="hover:text-[#7ca982] transition">
             {property.city}
           </Link>
           <span>/</span>
@@ -141,8 +141,8 @@ export default function PropertyDetailPage() {
             <div>
               <div className="flex flex-wrap items-center gap-2.5">
                 {isDataset ? (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#284431]/90 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[#D8E6D3] border border-[#6E9271]/40 shadow-xs">
-                    <span className="h-2 w-2 rounded-full bg-[#6E9271] animate-pulse" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#faf7f0]/95 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[#1d3122] border border-[#7ca982]/50 shadow-xs">
+                    <span className="h-2 w-2 rounded-full bg-[#7ca982] animate-pulse" />
                     Dataset Listing · 2025–2026 Upgraded
                   </span>
                 ) : (
@@ -158,7 +158,7 @@ export default function PropertyDetailPage() {
                 </span>
 
                 {property.tenantPreferred && (
-                  <span className="rounded-full bg-[#6E9271]/15 border border-[#6E9271]/30 px-3 py-1 text-xs font-semibold text-[#284431] dark:text-[#A3B899]">
+                  <span className="rounded-full bg-[#7ca982]/15 border border-[#7ca982]/30 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6]">
                     Tenant: {property.tenantPreferred}
                   </span>
                 )}
@@ -229,9 +229,9 @@ export default function PropertyDetailPage() {
 
             {/* Data Provenance Card */}
             {isDataset && (
-              <div className="rounded-3xl border border-[#6E9271]/30 bg-[#6E9271]/5 p-6 shadow-card">
+              <div className="rounded-3xl border border-[#7ca982]/30 bg-[#7ca982]/5 p-6 shadow-card">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#6E9271]/20 text-[#284431] dark:text-[#A3B899]">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
@@ -249,7 +249,7 @@ export default function PropertyDetailPage() {
                   </div>
                   <div className="rounded-xl border border-line bg-card p-3">
                     <span className="text-ink-muted block text-[11px]">Upgraded Availability Date:</span>
-                    <strong className="text-[#284431] dark:text-[#A3B899] font-tabular">{property.displayPostedOn || "2025-06-15"}</strong>
+                    <strong className="text-[#57875d] dark:text-[#a3caa6] font-tabular">{property.displayPostedOn || "2025-06-15"}</strong>
                   </div>
                 </div>
 
@@ -264,7 +264,7 @@ export default function PropertyDetailPage() {
                       href={property.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-semibold text-[#6E9271] dark:text-[#A3B899] hover:underline flex items-center gap-1"
+                      className="font-semibold text-[#7ca982] dark:text-[#a3caa6] hover:underline flex items-center gap-1"
                     >
                       <span>View Open Data Repository</span>
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -293,7 +293,7 @@ export default function PropertyDetailPage() {
                     key={item}
                     className="inline-flex items-center gap-2 rounded-xl border border-line bg-card px-3.5 py-2 text-xs font-semibold text-ink shadow-xs"
                   >
-                    <svg className="w-4 h-4 text-[#6E9271] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-4 h-4 text-[#7ca982] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>{item}</span>
@@ -315,7 +315,7 @@ export default function PropertyDetailPage() {
                     </span>
                     <span className="text-xs text-ink-muted ml-1.5">/ month</span>
                   </div>
-                  <span className="rounded-full bg-[#6E9271]/15 px-2.5 py-1 text-[11px] font-bold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
+                  <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-1 text-[11px] font-bold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
                     Direct Listing
                   </span>
                 </div>
@@ -329,7 +329,7 @@ export default function PropertyDetailPage() {
                   <button
                     type="button"
                     onClick={() => setOpenEnquiry(true)}
-                    className="w-full rounded-2xl bg-[#284431] dark:bg-[#6E9271] py-3.5 px-4 text-sm font-semibold text-white shadow-card hover:opacity-95 transition cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full rounded-2xl bg-[#7ca982] hover:bg-[#6b9a71] py-3.5 px-4 text-sm font-semibold text-white shadow-card hover:shadow-md transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Connect With {property.pointOfContact || "Owner"}</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -340,7 +340,7 @@ export default function PropertyDetailPage() {
                   <button
                     type="button"
                     onClick={() => toggleSave(property.id)}
-                    className="w-full rounded-2xl border border-line bg-paper py-3 px-4 text-xs font-semibold text-ink hover:border-[#6E9271] transition cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full rounded-2xl border border-line bg-paper py-3 px-4 text-xs font-semibold text-ink hover:border-[#7ca982] transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <svg
                       className={`w-4 h-4 ${saved ? "fill-rose-500 text-rose-500" : "fill-none text-ink-muted"}`}
@@ -459,7 +459,7 @@ export default function PropertyDetailPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="rounded-xl bg-[#284431] dark:bg-[#6E9271] px-5 py-2 text-xs font-semibold text-white hover:opacity-95 transition disabled:opacity-50"
+                className="rounded-xl bg-[#7ca982] hover:bg-[#6b9a71] px-5 py-2 text-xs font-semibold text-white hover:shadow-xs transition disabled:opacity-50 cursor-pointer"
               >
                 {submitting ? "Sending..." : "Submit Inquiry"}
               </button>

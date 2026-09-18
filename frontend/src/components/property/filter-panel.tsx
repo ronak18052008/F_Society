@@ -143,7 +143,7 @@ export function FilterPanel({
                   onClick={() => set({ bhk: item.val })}
                   className={`flex-1 rounded-lg py-1.5 text-xs font-semibold transition-all cursor-pointer ${
                     active
-                      ? "bg-[#284431] dark:bg-[#6E9271] text-white shadow-xs"
+                      ? "bg-[#7ca982] text-white shadow-xs"
                       : "text-ink-muted hover:text-ink hover:bg-card/50"
                   }`}
                 >
@@ -163,7 +163,7 @@ export function FilterPanel({
             id="filter-sort"
             value={value.sort}
             onChange={(e) => set({ sort: e.target.value as Filters["sort"] })}
-            className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-xs font-semibold text-ink focus:border-[#6E9271] focus:ring-2 focus:ring-[#6E9271]/20 focus:outline-none transition-all cursor-pointer"
+            className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-xs font-semibold text-ink focus:border-[#7ca982] focus:ring-2 focus:ring-[#7ca982]/20 focus:outline-none transition-all cursor-pointer"
           >
             <option value="newest">Latest First</option>
             <option value="oldest">Oldest First</option>
@@ -182,8 +182,8 @@ export function FilterPanel({
             onClick={() => setExpanded(!expanded)}
             className={`w-full h-[42px] rounded-xl border flex items-center justify-center gap-1.5 text-xs font-semibold transition-all cursor-pointer ${
               expanded
-                ? "border-[#6E9271] bg-[#6E9271]/15 text-[#284431] dark:text-[#A3B899]"
-                : "border-line bg-paper text-ink-muted hover:text-ink hover:border-[#6E9271]/40"
+                ? "border-[#7ca982] bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6]"
+                : "border-line bg-paper text-ink-muted hover:text-ink hover:border-[#7ca982]/40"
             }`}
           >
             <svg
@@ -209,7 +209,7 @@ export function FilterPanel({
               <label htmlFor="filter-budget" className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
                 Monthly Budget
               </label>
-              <span className="text-xs font-bold text-[#6E9271] dark:text-[#A3B899] font-tabular">
+              <span className="text-xs font-bold text-[#7ca982] dark:text-[#a3caa6] font-tabular">
                 ₹{value.maxRent.toLocaleString("en-IN")}
               </span>
             </div>
@@ -221,7 +221,7 @@ export function FilterPanel({
               step={5000}
               value={value.maxRent}
               onChange={(e) => set({ maxRent: Number(e.target.value) })}
-              className="w-full h-2 bg-[#E3DFD5] dark:bg-[#284431]/40 rounded-lg appearance-none cursor-pointer accent-[#6E9271] my-2"
+              className="w-full h-2 bg-[#e5dfc5] dark:bg-[#7ca982]/30 rounded-lg appearance-none cursor-pointer accent-[#7ca982] my-2"
             />
             <div className="flex flex-wrap gap-1 mt-1">
               {[
@@ -295,7 +295,7 @@ export function FilterPanel({
                   onClick={() => set({ year: yr.val })}
                   className={`flex-1 rounded-lg py-1.5 text-xs font-semibold transition-all cursor-pointer ${
                     value.year === yr.val
-                      ? "bg-[#284431] dark:bg-[#6E9271] text-white shadow-xs"
+                      ? "bg-[#7ca982] text-white shadow-xs"
                       : "text-ink-muted hover:text-ink"
                   }`}
                 >
@@ -319,7 +319,7 @@ export function FilterPanel({
               </span>
             )}
             {value.city !== "any" && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#6E9271]/15 text-[#284431] dark:text-[#A3B899] border border-[#6E9271]/30 px-2.5 py-0.5">
+              <span className="inline-flex items-center gap-1 rounded-full bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30 px-2.5 py-0.5">
                 City: {value.city}
                 <button type="button" onClick={() => set({ city: "any" })} className="hover:text-red-500 font-bold ml-1">×</button>
               </span>
@@ -353,7 +353,7 @@ export function FilterPanel({
           <button
             type="button"
             onClick={handleReset}
-            className="text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] hover:underline cursor-pointer ml-auto"
+            className="text-xs font-semibold text-[#7ca982] hover:text-[#6b9a71] dark:text-[#a3caa6] hover:underline cursor-pointer ml-auto"
           >
             Clear all filters
           </button>

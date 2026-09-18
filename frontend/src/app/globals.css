@@ -1,39 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  /* F_Society Natural Cream + Pista/Sage Green Palette — Light (Default) */
-  --bg-canvas: #fbf9f4;            /* warm radiant cream / off-white */
+  /* F_Society Natural Cream + Light Pista Green Palette — Light (Default) */
+  --bg-canvas: #faf7f0;            /* warm radiant cream / off-white */
   --bg-surface: #ffffff;           /* soft ivory card background */
-  --bg-surface-elevated: #fcfbf7;  /* warm elevated surface */
-  --bg-surface-subtle: #f3efe6;    /* subtle warm stone cream */
-  --bg-glass: rgba(253, 252, 248, 0.88);
+  --bg-surface-elevated: #fcfaf5;  /* warm elevated cream surface */
+  --bg-surface-subtle: #f4efe6;    /* subtle warm stone cream */
+  --bg-glass: rgba(250, 247, 240, 0.90);
   
-  --primary-pista: #6e9271;        /* muted pista green — primary actions & active states */
-  --primary-pista-hover: #5b7d5e;  /* darker pista hover */
-  --primary-pista-subtle: rgba(110, 146, 113, 0.14);
+  --primary-pista: #7ca982;        /* fresh light pista green */
+  --primary-pista-hover: #6b9a71;  /* richer pista hover */
+  --primary-pista-subtle: rgba(124, 169, 130, 0.16);
   
-  --secondary-sage: #8fa89b;       /* sage green — secondary pills & tags */
-  --secondary-sage-hover: #7b9487;
-  --secondary-sage-subtle: rgba(143, 168, 155, 0.16);
+  --secondary-sage: #96bd9b;       /* soft sage / pistachio tint */
+  --secondary-sage-hover: #83ac89;
+  --secondary-sage-subtle: rgba(150, 189, 155, 0.18);
 
-  --accent-forest: #284431;        /* deep forest green — headers, contrast badges, primary CTAs */
-  --accent-forest-hover: #1e3526;
-  --accent-forest-subtle: rgba(40, 68, 49, 0.1);
+  --accent-forest: #7ca982;        /* light pista green accent */
+  --accent-forest-hover: #6b9a71;
+  --accent-forest-subtle: rgba(124, 169, 130, 0.14);
 
-  --text-main: #1a281f;            /* dark forest charcoal — crisp readable typography */
-  --text-muted: #4a5e50;           /* soft forest slate */
-  --text-faint: #7d9183;           /* muted warm sage */
+  --text-main: #1d3122;            /* botanical charcoal — crisp readable typography */
+  --text-muted: #4e6853;           /* soft botanical sage */
+  --text-faint: #7d9782;           /* muted warm pista */
 
-  --border: #e3dfd5;               /* subtle warm beige/green border */
-  --border-subtle: #efeae0;
-  --border-hover: rgba(40, 68, 49, 0.24);
+  --border: #e5dfc5;               /* delicate warm cream-pista border */
+  --border-subtle: #efe9dc;
+  --border-hover: rgba(124, 169, 130, 0.35);
 
-  --success: #3d8c57;              /* natural green */
+  --success: #4e9b5f;              /* natural pista green */
   --warning: #d9822b;              /* warm amber */
   --error: #c24b4b;                /* muted red */
 
-  --shadow-card: 0 10px 30px -8px rgba(40, 68, 49, 0.05), 0 2px 6px rgba(40, 68, 49, 0.02);
-  --shadow-glow: 0 0 45px -8px rgba(110, 146, 113, 0.25);
+  --shadow-card: 0 10px 30px -8px rgba(124, 169, 130, 0.10), 0 2px 6px rgba(29, 49, 34, 0.03);
+  --shadow-glow: 0 0 45px -8px rgba(124, 169, 130, 0.35);
 
   /* Semantic Aliases */
   --ink: var(--text-main);
@@ -194,7 +194,7 @@ a {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   border-radius: 9999px;
-  box-shadow: 0 4px 20px rgba(40, 68, 49, 0.04);
+  box-shadow: 0 4px 20px rgba(124, 169, 130, 0.08);
 }
 
 .glass-card {
@@ -211,7 +211,7 @@ a {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-forest) 0%, var(--primary-pista) 100%);
+  background: linear-gradient(135deg, #4d7a55 0%, #7ca982 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
