@@ -203,7 +203,7 @@ export async function createConditionPassport(
     return {
       data: {
         rentalId: passport.rental_id,
-        rooms: (rooms || []).map((r) => ({
+        rooms: (rooms || []).map((r: any) => ({
           id: r.id,
           name: r.name,
           notes: r.notes || "",

@@ -1,7 +1,9 @@
 import { createBrowserClient } from "@supabase/ssr";
 
+let browserClient: ReturnType<typeof createBrowserClient> | null = null;
+
 /**
- * Browser-side Supabase client.
+ * Browser-side Supabase client singleton.
  *
  * Returns `null` when NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY
  * are not configured, allowing the app to fall back to demo mode.
@@ -14,7 +16,14 @@ export function createClient() {
 
   if (!url || !key) return null;
 
-  return createBrowserClient(url, key);
+  if (typeof window === "undefined") {
+    return createBrowserClient(url, key);
+  }
+
+  if (!browserClient) {
+    browserClient = createBrowserClient(url, key);
+  }
+  return browserClient;
 }
 
 /** Whether Supabase credentials are configured */

@@ -29,7 +29,7 @@ export function subscribeToEnquiries(
           schema: "public",
           table: "enquiries",
         },
-        (payload) => {
+        (payload: any) => {
           if (payload.new && typeof payload.new === "object") {
             const row = payload.new as EnquiryRow;
             onNewEnquiry({
@@ -70,7 +70,7 @@ export function subscribeToWorkspaceEvents(
           table: "workspace_activity",
           filter: `workspace_id=eq.${workspaceId}`,
         },
-        (payload) => {
+        (payload: any) => {
           if (payload.new && typeof payload.new === "object") {
             const row = payload.new as ActivityRow;
             onEvent({

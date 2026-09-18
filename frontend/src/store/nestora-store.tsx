@@ -8,8 +8,9 @@ import {
   useState,
   useSyncExternalStore,
   useEffect,
+  useRef,
 } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { seedEnquiries } from "@/data/demo";
 import type { Enquiry, SessionUser, UserRole } from "@/types";
 
@@ -150,8 +151,23 @@ export function NestoraProvider({ children }: { children: React.ReactNode }) {
     () => ({
       ...persisted,
       toasts,
-      signIn: (user) => write({ ...getSnapshot(), user }),
-      signOut: () => write({ ...getSnapshot(), user: null }),
+      signIn: (user) => {
+        const current = getSnapshot().user;
+        if (
+          current &&
+          current.id === user.id &&
+          current.email === user.email &&
+          current.role === user.role &&
+          current.supabaseId === user.supabaseId
+        ) {
+          return;
+        }
+        write({ ...getSnapshot(), user });
+      },
+      signOut: () => {
+        if (getSnapshot().user === null) return;
+        write({ ...getSnapshot(), user: null });
+      },
       toggleSave: (propertyId) => {
         const current = getSnapshot();
         const isSaved = current.savedIds.includes(propertyId);
@@ -255,26 +271,42 @@ export function makeUser(input: {
 
 export function useSupabaseSync() {
   const supabase = createClient();
-  const { signIn, signOut, toast } = useNestora();
+  const { signIn, signOut, toast, user } = useNestora();
+
+  const signInRef = useRef(signIn);
+  const signOutRef = useRef(signOut);
+  const toastRef = useRef(toast);
+  const userRef = useRef(user);
+
+  useEffect(() => {
+    signInRef.current = signIn;
+    signOutRef.current = signOut;
+    toastRef.current = toast;
+    userRef.current = user;
+  });
 
   useEffect(() => {
     if (!supabase) return;
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
       if (session?.user) {
-        const meta = session.user.user_metadata;
-        signIn({
-          id: session.user.id,
-          name: (meta?.name as string) || session.user.email?.split("@")[0] || "",
-          email: session.user.email || "",
-          role: (meta?.role as "tenant" | "owner") || "tenant",
-          supabaseId: session.user.id,
-          emailVerified: !!session.user.email_confirmed_at,
-        });
+        if (userRef.current?.supabaseId !== session.user.id) {
+          const meta = session.user.user_metadata;
+          signInRef.current({
+            id: session.user.id,
+            name: (meta?.name as string) || session.user.email?.split("@")[0] || "",
+            email: session.user.email || "",
+            role: (meta?.role as "tenant" | "owner") || "tenant",
+            supabaseId: session.user.id,
+            emailVerified: !!session.user.email_confirmed_at,
+          });
+        }
       } else {
-        signOut();
+        if (userRef.current !== null) {
+          signOutRef.current();
+        }
       }
     });
 
@@ -289,9 +321,10 @@ export function useSupabaseSync() {
             schema: "public",
             table: "enquiries",
           },
-          (payload) => {
+          (payload: any) => {
             if (payload.new) {
-              toast(`Incoming inquiry from ${payload.new.from_name || "member"}`);
+              const newRecord = payload.new as Record<string, any>;
+              toastRef.current(`Incoming inquiry from ${newRecord.from_name || "member"}`);
             }
           },
         )
@@ -308,7 +341,7 @@ export function useSupabaseSync() {
       subscription.unsubscribe();
       if (unsubscribeRealtime) unsubscribeRealtime();
     };
-  }, [supabase, signIn, signOut, toast]);
+  }, [supabase]);
 
-  return { supabase, isConfigured: !!supabase };
+  return { supabase, isConfigured: isSupabaseConfigured };
 }
