@@ -56,6 +56,7 @@ type Store = Persisted & {
   setPrivacy: (value: "limited" | "hidden") => void;
   setRoommatePrefs: (value: RoommatePrefs) => void;
   setTenantReqs: (value: Persisted["tenantReqs"]) => void;
+  switchRole: (role: UserRole) => void;
   toast: (message: string) => void;
   dismissToast: (id: string) => void;
 };
@@ -240,6 +241,17 @@ export function NivasaProvider({ children }: { children: React.ReactNode }) {
       setPrivacy: (roommatePrivacy) => write({ ...getSnapshot(), roommatePrivacy }),
       setRoommatePrefs: (roommatePrefs) => write({ ...getSnapshot(), roommatePrefs }),
       setTenantReqs: (tenantReqs) => write({ ...getSnapshot(), tenantReqs }),
+      switchRole: (role) => {
+        const current = getSnapshot();
+        if (current.user) {
+          write({ ...current, user: { ...current.user, role } });
+          toast(`Workspace role updated to ${role === "owner" ? "Property Owner" : "Tenant Member"}`);
+        } else {
+          const demoUser = role === "owner" ? DEMO_OWNER : DEMO_TENANT;
+          write({ ...current, user: demoUser });
+          toast(`Signed in as demo ${role === "owner" ? "Property Owner" : "Tenant Member"}`);
+        }
+      },
       toast,
       dismissToast: (id) =>
         setToasts((current) => current.filter((item) => item.id !== id)),
@@ -249,6 +261,26 @@ export function NivasaProvider({ children }: { children: React.ReactNode }) {
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }
+
+export const DEMO_TENANT: SessionUser = {
+  id: "usr-tenant-demo",
+  name: "Rohan Varma",
+  email: "rohan.tenant@nivasa.living",
+  role: "tenant",
+  city: "Mumbai",
+  phone: "+91 98201 54321",
+  emailVerified: true,
+};
+
+export const DEMO_OWNER: SessionUser = {
+  id: "usr-owner-demo",
+  name: "Vikram Mehta",
+  email: "vikram.owner@nivasa.living",
+  role: "owner",
+  city: "Mumbai",
+  phone: "+91 98210 98765",
+  emailVerified: true,
+};
 
 export function useNivasa() {
   const ctx = useContext(StoreContext);
