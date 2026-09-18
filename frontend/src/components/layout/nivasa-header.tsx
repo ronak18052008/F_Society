@@ -36,8 +36,10 @@ const METRO_CITIES = [
 export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: NivasaHeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, signOut, savedIds } = useNivasa();
+  const { user, signOut, savedIds, switchRole } = useNivasa();
   const { theme, toggle } = useTheme();
+
+  const isOwner = user?.role === "owner";
 
   // Search state
   const [searchOpen, setSearchOpen] = useState(false);
@@ -50,11 +52,15 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
-  const appHome = user?.role === "owner" ? "/owner/dashboard" : "/tenant/dashboard";
+  const appHome = isOwner ? "/owner/dashboard" : "/tenant/dashboard";
 
   // Dynamic breadcrumb / title
   const getPageTitle = () => {
     if (pathname === "/") return "Discover";
+    if (pathname === "/owner") return "Owner Hub";
+    if (pathname === "/tenant") return "Tenant Hub";
+    if (pathname === "/login/owner") return "Owner Sign In";
+    if (pathname === "/login/tenant") return "Tenant Sign In";
     if (pathname.startsWith("/properties") || pathname.startsWith("/homes")) return "Residences";
     if (pathname.startsWith("/property/")) return "Residence Details";
     if (pathname.startsWith("/cities")) return "Metro Hubs";
@@ -195,6 +201,14 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
             <span className="text-xs font-semibold text-ink-muted hidden sm:inline">Nivasa</span>
             <span className="text-xs text-ink-muted/50 hidden sm:inline">/</span>
             <h2 className="text-sm font-bold text-ink tracking-tight font-serif">{getPageTitle()}</h2>
+            {user && (
+              <span className={cn(
+                "hidden md:inline-flex rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider",
+                isOwner ? "bg-amber-500/15 text-amber-900 dark:text-amber-200" : "bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6]"
+              )}>
+                {isOwner ? "Owner" : "Tenant"}
+              </span>
+            )}
           </div>
         </div>
 
@@ -301,9 +315,9 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           )}
         </div>
 
-        {/* Right Actions: Saved (❤️), Post Property, Theme & Profile */}
+        {/* Right Actions: Role Adaptive CTAs, Theme & Profile */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Saved Homes (❤️) Badge Counter */}
+          {/* Saved Homes (❤️) Badge Counter (for Tenants) */}
           <Link
             href="/properties?saved=true"
             className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] hover:border-[#7ca982] hover:text-rose-500 transition-colors"
@@ -329,16 +343,29 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
             )}
           </Link>
 
-          {/* "+ Post Property" Direct CTA */}
-          <Link
-            href="/owner/properties/new"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-3.5 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
-          >
-            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-            <span>Post Property</span>
-          </Link>
+          {/* Role-Adaptive Primary CTA */}
+          {isOwner ? (
+            <Link
+              href="/owner/properties/new"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-amber-700 hover:bg-amber-800 text-white px-3.5 py-1.5 text-xs font-semibold shadow-xs transition-all cursor-pointer"
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              <span>+ Post Property</span>
+            </Link>
+          ) : (
+            <Link
+              href="/tenant/roommates"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-3.5 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+              </svg>
+              <span>Find Roommate</span>
+            </Link>
+          )}
 
           {/* Theme Switcher */}
           <button
@@ -368,26 +395,58 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                 onClick={() => setUserMenuOpen((prev) => !prev)}
                 className="flex items-center gap-1.5 rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] pl-1 pr-2.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#8fb893] hover:border-[#7ca982] transition-colors cursor-pointer"
               >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#7ca982] text-white text-[11px] font-bold">
+                <div className={cn("flex h-6 w-6 items-center justify-center rounded-full text-white text-[11px] font-bold", isOwner ? "bg-amber-600" : "bg-[#7ca982]")}>
                   {user.name ? user.name[0].toUpperCase() : "U"}
                 </div>
                 <span className="hidden sm:inline max-w-[70px] truncate">{user.name || "Account"}</span>
               </button>
 
               {userMenuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#142018] p-2 shadow-xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                <div className="absolute right-0 top-full mt-2 w-60 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#142018] p-2.5 shadow-xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
                   <div className="px-3 py-2 border-b border-[#e5dfc5] dark:border-[#2a3f31]">
-                    <span className="text-xs font-bold text-ink block truncate">{user.name || "Member"}</span>
-                    <span className="text-[11px] text-ink-muted block truncate">{user.email}</span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-ink block truncate">{user.name || "Member"}</span>
+                      <span className={cn(
+                        "rounded-full px-2 py-0.5 text-[9px] font-bold uppercase",
+                        isOwner ? "bg-amber-500/20 text-amber-900 dark:text-amber-200" : "bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]"
+                      )}>
+                        {user.role}
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-ink-muted block truncate mt-0.5">{user.email}</span>
                   </div>
+
+                  {/* Fast 1-Click Role Switcher */}
+                  <div className="my-1.5 p-1.5 rounded-xl bg-paper dark:bg-[#1d2d22] border border-[#e5dfc5] dark:border-[#2a3f31]">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        switchRole(isOwner ? "tenant" : "owner");
+                        setUserMenuOpen(false);
+                      }}
+                      className="w-full text-left flex items-center justify-between px-2 py-1 text-[11px] font-semibold text-ink hover:text-[#57875d] transition-colors cursor-pointer"
+                    >
+                      <span>Switch to {isOwner ? "Tenant Mode" : "Owner Mode"}</span>
+                      <span className="text-[10px] text-ink-muted">Toggle ⇄</span>
+                    </button>
+                  </div>
+
                   <div className="mt-1 space-y-0.5">
+                    <Link
+                      href={isOwner ? "/owner" : "/tenant"}
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                    >
+                      <span>{isOwner ? "Owner Hub" : "Tenant Hub"}</span>
+                      <span className="text-[10px] font-bold text-[#7ca982]">Hub</span>
+                    </Link>
                     <Link
                       href={appHome}
                       onClick={() => setUserMenuOpen(false)}
                       className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
                     >
-                      <span>Open Workspace</span>
-                      <span className="text-[10px] font-bold uppercase text-[#7ca982]">{user.role}</span>
+                      <span>{isOwner ? "Owner Portfolio" : "Tenancy Workspace"}</span>
+                      <span className="text-[10px] font-bold uppercase text-[#7ca982]">Desk</span>
                     </Link>
                     <Link
                       href="/profile"
@@ -395,14 +454,6 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
                     >
                       Profile & Settings
-                    </Link>
-                    <Link
-                      href="/properties?saved=true"
-                      onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
-                    >
-                      <span>Saved Properties</span>
-                      <span className="text-[10px] font-bold text-rose-500">{savedIds.length}</span>
                     </Link>
                     <button
                       type="button"
