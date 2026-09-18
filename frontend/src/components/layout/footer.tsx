@@ -1,3 +1,4 @@
+import { NivasaLogo } from "@/components/brand/nivasa-logo";
 import Link from "next/link";
 
 export function Footer() {
@@ -10,7 +11,7 @@ export function Footer() {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-[#7ca982] to-[#5c8e63] text-white shadow-md shadow-[#7ca982]/20">
               <span className="font-serif font-bold text-lg tracking-tight">F</span>
             </div>
-            <span className="font-sans text-2xl font-bold tracking-tight">F_Society</span>
+            <span className="font-sans text-2xl font-bold tracking-tight">Nivasa</span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-[11px] font-semibold text-[#23452b] dark:text-[#8fb893]">
               Verified Living
             </span>
@@ -93,7 +94,7 @@ export function Footer() {
             </li>
             <li>
               <Link className="text-[#4e6853] transition-colors hover:text-[#57875d] dark:text-[#a5b8aa] dark:hover:text-[#8fb893]" href="/ai/recommend">
-                Ask F_Society AI
+                Ask Nivasa AI
               </Link>
             </li>
           </ul>
@@ -131,7 +132,7 @@ export function Footer() {
       <div className="border-t border-[#e5dfc5]/80 dark:border-[#2a3f31]/80 py-6">
         <div className="wrap flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#5e7565] dark:text-[#a5b8aa]">
           <div className="flex items-center gap-3">
-            <span>© {new Date().getFullYear()} F_Society. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Nivasa. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
             <span>Verified Residential Living</span>

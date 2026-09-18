@@ -109,7 +109,7 @@ export default function AddPropertyPage() {
   return (
     <DashboardShell
       title="List New Residence"
-      subtitle="Publish a verified architectural residence to the F_Society network with itemized cost ledgers and photo verification."
+      subtitle="Publish a verified architectural residence to the Nivasa network with itemized cost ledgers and photo verification."
     >
       <div className="max-w-2xl rounded-3xl border border-line bg-card p-6 sm:p-8 shadow-card">
         {error && (

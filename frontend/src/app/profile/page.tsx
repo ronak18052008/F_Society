@@ -25,7 +25,7 @@ export default function ProfilePage() {
           </div>
           <h1 className="font-serif text-2xl font-bold text-ink">Account Access Required</h1>
           <p className="text-sm text-ink-muted">
-            Sign in to access your F_Society profile, verified credentials, and personalized tenancy workspace.
+            Sign in to access your Nivasa profile, verified credentials, and personalized tenancy workspace.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
             <Button variant="primary" onClick={() => router.push("/login?next=/profile")}>
@@ -79,7 +79,7 @@ export default function ProfilePage() {
               <p className="text-sm text-ink-muted mt-1">{user.email}</p>
               <div className="mt-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#7ca982] dark:text-[#a3caa6]">
                 <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
-                <span>F_Society {user.role === "owner" ? "Property Owner" : "Tenant Member"}</span>
+                <span>Nivasa {user.role === "owner" ? "Property Owner" : "Tenant Member"}</span>
               </div>
             </div>
           </div>
@@ -222,7 +222,7 @@ export default function ProfilePage() {
 
           <div className="pt-4 border-t border-line">
             <p className="text-xs text-ink-muted">
-              F_Society Protocol v2.4 · All data secured with end-to-end lease encryption and verified digital signatures.
+              Nivasa Protocol v2.4 · All data secured with end-to-end lease encryption and verified digital signatures.
             </p>
           </div>
         </div>

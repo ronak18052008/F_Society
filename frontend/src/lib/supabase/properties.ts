@@ -142,7 +142,7 @@ export function mapRowToProperty(row: DatabasePropertyRow): Property {
     { id: "e2", label: "Society Maintenance", amount: maintenance, cadence: "monthly", source: "owner-provided" },
     { id: "e3", label: "Electricity (Estimated)", amount: electricity, cadence: "monthly", source: "estimated", note: `Typical consumption for ${bhk} BHK.` },
     { id: "e4", label: "Water & Municipal Utility", amount: 400, cadence: "monthly", source: "estimated" },
-    { id: "e5", label: "Brokerage", amount: 0, cadence: "one-time", source: "verified", note: "₹0 Brokerage on F_Society." },
+    { id: "e5", label: "Brokerage", amount: 0, cadence: "one-time", source: "verified", note: "₹0 Brokerage on Nivasa." },
     { id: "e6", label: "Security Deposit", amount: deposit, cadence: "deposit", source: "owner-provided" }
   ];
 

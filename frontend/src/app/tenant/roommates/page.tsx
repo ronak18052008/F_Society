@@ -183,7 +183,7 @@ export default function RoommatesPage() {
           onClose={() => setReportId(null)}
         >
           <p className="text-sm text-ink-muted">
-            F_Society upholds strict trust and mutual respect standards. Flagging this profile will immediately suppress it from your matches and log a moderation review ticket.
+            Nivasa upholds strict trust and mutual respect standards. Flagging this profile will immediately suppress it from your matches and log a moderation review ticket.
           </p>
           <div className="mt-6 flex justify-end gap-2">
             <Button variant="outline" onClick={() => setReportId(null)}>

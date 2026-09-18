@@ -23,7 +23,7 @@ export default function RequirementsPage() {
     <DashboardShell title="Tenancy Requirements & Search Profile">
       <div className="max-w-3xl">
         <p className="text-sm text-ink-muted">
-          Configure your residential preferences, financial constraints, and living habits. These parameters power intelligent matching across the F_Society residence network.
+          Configure your residential preferences, financial constraints, and living habits. These parameters power intelligent matching across the Nivasa residence network.
         </p>
 
         <form

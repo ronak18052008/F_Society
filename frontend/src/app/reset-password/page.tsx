@@ -64,7 +64,7 @@ export default function ResetPasswordPage() {
               Create a new password
             </h1>
             <p className="mt-2 text-xs text-ink-muted">
-              Set a strong password for your verified F_Society account.
+              Set a strong password for your verified Nivasa account.
             </p>
           </div>
 

@@ -66,7 +66,7 @@ export default function RecommendPage() {
             <span>Gemini 2.5 Tenancy Discovery</span>
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl font-serif font-bold tracking-tight text-ink dark:text-cream">
-            Ask F_Society AI
+            Ask Nivasa AI
           </h1>
           <p className="mt-3 text-base sm:text-lg text-ink-muted max-w-2xl mx-auto">
             Describe your ideal living space, daily commute, sunlight needs, or pet preferences in natural language.

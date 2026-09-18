@@ -29,7 +29,7 @@ interface EditorialVideoProps {
 export function EditorialVideo({
   src,
   poster = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85",
-  title = "Inside the F_Society Living Experience",
+  title = "Inside the Nivasa Living Experience",
   subtitle = "Spatial walkthrough & verified tenancy documentation",
   caption = "A walkthrough of mutual check-in documentation, unbundled cost calculations, and shared tenancy agreements.",
 }: EditorialVideoProps) {
@@ -158,7 +158,7 @@ export function EditorialVideo({
               <div className="flex items-end justify-between text-xs text-white/80">
                 <p className="max-w-md line-clamp-1">{caption}</p>
                 <span className="rounded-full bg-black/50 px-2.5 py-0.5 backdrop-blur-sm text-[11px]">
-                  F_Society Cinema
+                  Nivasa Cinema
                 </span>
               </div>
             </div>

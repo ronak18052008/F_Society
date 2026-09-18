@@ -152,7 +152,7 @@ export function Navbar() {
               <span className="font-serif font-bold text-base tracking-tight">F</span>
             </div>
             <span className="font-sans text-xl font-bold tracking-tight text-[#1d3122] dark:text-[#f5f9f6]">
-              F_Society
+              Nivasa
             </span>
             <span className="hidden xl:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-[10px] font-semibold text-[#23452b] dark:text-[#8fb893]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982] animate-pulse" />
@@ -596,7 +596,7 @@ export function Navbar() {
                           How It Works
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
-                          F_Society verification & rental workflow
+                          Nivasa verification & rental workflow
                         </span>
                       </div>
                     </Link>

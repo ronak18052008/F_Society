@@ -137,7 +137,7 @@ export default function PropertyDetailPage() {
             {/* Top Badges & Header */}
             <div>
               <div className="flex flex-wrap items-center gap-2.5">
-                <StatusBadge tone="ok">F_Society Verified Residence</StatusBadge>
+                <StatusBadge tone="ok">Nivasa Verified Residence</StatusBadge>
                 {property.pointOfContact && (
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#faf7f0]/95 dark:bg-[#142018]/95 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#f5f9f6] border border-[#e5dfc5] dark:border-[#2a3f31] shadow-xs">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
@@ -233,7 +233,7 @@ export default function PropertyDetailPage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-ink">Verified Tenancy & Listing Audit</h3>
-                  <p className="text-xs text-ink-muted">F_Society Metropolitan Residential Network</p>
+                  <p className="text-xs text-ink-muted">Nivasa Metropolitan Residential Network</p>
                 </div>
               </div>
 
@@ -249,7 +249,7 @@ export default function PropertyDetailPage() {
               </div>
 
               <p className="mt-3 text-xs text-ink-muted leading-relaxed">
-                This property is registered in the F_Society metropolitan directory. Specifications including configuration ({property.bhk || property.bedrooms} BHK), living area ({property.sizeSqft || property.areaSqft} sqft), floor level ({property.floor || "Standard"}), and preferred tenancy ({property.tenantPreferred || "Open to all"}) have been verified.
+                This property is registered in the Nivasa metropolitan directory. Specifications including configuration ({property.bhk || property.bedrooms} BHK), living area ({property.sizeSqft || property.areaSqft} sqft), floor level ({property.floor || "Standard"}), and preferred tenancy ({property.tenantPreferred || "Open to all"}) have been verified.
               </p>
             </div>
 

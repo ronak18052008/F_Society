@@ -30,7 +30,7 @@ export default function DashboardPage() {
         <div className="mb-10 rounded-3xl border border-[#7ca982]/30 bg-gradient-to-r from-[#7ca982]/15 via-[#96bd9b]/10 to-transparent p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-card">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982] px-3.5 py-1 text-xs font-semibold text-white">
-              F_Society Workspace Hub
+              Nivasa Workspace Hub
             </div>
             <h1 className="mt-3 text-2xl sm:text-3xl font-serif font-bold text-ink tracking-tight">
               Metropolitan Housing Telemetry & Dashboard

@@ -217,7 +217,7 @@ export default function TenantDashboardPage() {
           </p>
         </div>
         <Button href="/ai/recommend" size="md">
-          Ask F_Society AI →
+          Ask Nivasa AI →
         </Button>
       </div>
 

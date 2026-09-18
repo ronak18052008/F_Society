@@ -147,7 +147,7 @@ function HeroFallback({
           </p>
         </div>
         <p className="text-[11px] font-medium text-slate-400 hidden sm:block">
-          Spatial Habitat · F_Society Architecture
+          Spatial Habitat · Nivasa Architecture
         </p>
       </div>
     </div>
@@ -172,7 +172,7 @@ export function ArchitecturalHero() {
       <HeroFallback
         label={
           reduced
-            ? "F_Society Elevation · Reduced motion"
+            ? "Nivasa Elevation · Reduced motion"
             : "Spatial Habitat · Active on desktop viewports"
         }
       />
@@ -193,7 +193,7 @@ export function ArchitecturalHero() {
       <div className="pointer-events-none absolute bottom-4 right-4 z-10 hidden items-center gap-2 rounded-full border border-white/10 bg-slate-950/75 px-3.5 py-1.5 backdrop-blur-md sm:flex shadow-lg">
         <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271] animate-pulse" />
         <span className="text-[11px] font-medium tracking-wide text-slate-300">
-          F_Society Habitat · Spatial Orbit
+          Nivasa Habitat · Spatial Orbit
         </span>
       </div>
     </div>

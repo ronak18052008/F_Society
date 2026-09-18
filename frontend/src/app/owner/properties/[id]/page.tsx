@@ -87,7 +87,7 @@ export default function ManagePropertyPage() {
                 if (res.error) {
                   toast(`Update note: ${res.error}`);
                 } else {
-                  toast("Listing updated successfully on F_Society network.");
+                  toast("Listing updated successfully on Nivasa network.");
                 }
               } else {
                 toast("Listing changes saved locally.");

@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <SiteShell>
       {/* ========================================================
-          1. F_SOCIETY SPATIAL HERO WITH INTEGRATED 3D HABITAT
+          1. NIVASA SPATIAL HERO WITH INTEGRATED 3D HABITAT
       ======================================================== */}
       <section className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24">
         {/* Ambient atmospheric glows */}
@@ -34,7 +34,7 @@ export default function HomePage() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7ca982] dark:bg-[#a3caa6]"></span>
                 </span>
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#23452b] dark:text-[#a3caa6]">
-                  F_Society Residential Network · v2.4
+                  Nivasa Residential Network · v2.4
                 </span>
               </div>
             </Reveal>
@@ -140,7 +140,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* 3D F_Society Spatial Habitat Showcase */}
+          {/* 3D Nivasa Spatial Habitat Showcase */}
           <div className="mt-12 sm:mt-16">
             <Reveal delay={0.4}>
               <div className="relative mx-auto max-w-5xl rounded-3xl border border-line bg-card p-2 sm:p-3 shadow-card">
@@ -180,7 +180,7 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          2. F_SOCIETY ECOSYSTEM BENTO GRID
+          2. NIVASA ECOSYSTEM BENTO GRID
       ======================================================== */}
       <section className="py-16 sm:py-24 bg-card/40 border-b border-line">
         <div className="wrap">

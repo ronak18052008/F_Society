@@ -84,7 +84,7 @@ export default function LoginPage() {
           {/* Header */}
           <div className="text-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-pista/15 px-3 py-1 text-xs font-semibold text-forest dark:text-pista border border-pista/30">
-              F_Society Identity
+              Nivasa Identity
             </div>
             <h1 className="mt-4 text-3xl sm:text-4xl font-serif font-bold tracking-tight text-ink dark:text-cream">
               Welcome Back

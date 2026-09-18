@@ -44,10 +44,10 @@ export async function POST(req: NextRequest) {
         </head>
         <body>
           <div class="container">
-            <div class="brand">F_Society</div>
+            <div class="brand">Nivasa</div>
             <h2>Security Notice: New Account Sign-in</h2>
             <p>Hello ${name || "there"},</p>
-            <p>We detected a new sign-in to your F_Society account associated with <strong>${email}</strong>.</p>
+            <p>We detected a new sign-in to your Nivasa account associated with <strong>${email}</strong>.</p>
             <div class="details">
               <div><strong>Time:</strong> ${timestamp}</div>
               <div><strong>IP Address:</strong> ${clientIp}</div>
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
             </div>
             <p>If this was you, no action is needed. If you did not authorize this access, please change your password immediately in your account settings or initiate a password reset.</p>
             <div class="footer">
-              &copy; ${new Date().getFullYear()} F_Society — Modern Living, Harmonized. All rights reserved.
+              &copy; ${new Date().getFullYear()} Nivasa — Modern Living, Harmonized. All rights reserved.
             </div>
           </div>
         </body>
@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         from: fromEmail,
         to: [email],
-        subject: "Security Alert: New Sign-in to your F_Society Account",
+        subject: "Security Alert: New Sign-in to your Nivasa Account",
         html: htmlContent,
       }),
     });

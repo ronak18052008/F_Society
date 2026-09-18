@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* F_Society Natural Cream + Light Pista Green Palette — Light (Default) */
+  /* Nivasa Natural Cream + Light Pista Green Palette — Light (Default) */
   --bg-canvas: #faf7f0;            /* warm radiant cream / off-white */
   --bg-surface: #ffffff;           /* soft ivory card background */
   --bg-surface-elevated: #fcfaf5;  /* warm elevated cream surface */
@@ -56,7 +56,7 @@
 }
 
 [data-theme="dark"] {
-  /* F_Society Forest Night Palette — Dark */
+  /* Nivasa Forest Night Palette — Dark */
   --bg-canvas: #0e1711;            /* deep forest pine obsidian */
   --bg-surface: #152219;           /* dark forest surface */
   --bg-surface-elevated: #1d2d22;  /* elevated pine surface */
@@ -187,7 +187,7 @@ a {
   padding-block: clamp(5.5rem, 9vw, 8.5rem);
 }
 
-/* F_Society Modern Primitives */
+/* Nivasa Modern Primitives */
 .glass-pill {
   background: var(--bg-glass);
   backdrop-filter: blur(16px);

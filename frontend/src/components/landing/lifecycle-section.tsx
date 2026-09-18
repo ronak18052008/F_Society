@@ -107,7 +107,7 @@ export function LifecycleSection() {
             </h2>
             <p className="mt-4 text-base sm:text-lg text-ink-muted leading-relaxed">
               Traditional rental platforms vanish once phone numbers are exchanged.
-              F_Society provides a living, verifiable system of record for both tenant and owner.
+              Nivasa provides a living, verifiable system of record for both tenant and owner.
             </p>
           </div>
         </Reveal>

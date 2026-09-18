@@ -26,7 +26,7 @@ export default function HowItWorksPage() {
             Platform Protocol
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-serif font-bold tracking-tight text-ink">
-            How F_Society Works
+            How Nivasa Works
           </h1>
           <p className="mt-4 text-base sm:text-lg text-ink-muted">
             Two distinct perspectives unified into a single dispute-proof tenancy ledger.
@@ -101,7 +101,7 @@ export default function HowItWorksPage() {
             <p className="mt-4 text-sm sm:text-base text-ink-muted leading-relaxed">
               Tenancy agreements, security deposits, repair tickets, and move-out inspections
               should never depend on scattered screenshots or contested memory.
-              F_Society provides a living cryptographic record for both parties from day zero through move-out.
+              Nivasa provides a living cryptographic record for both parties from day zero through move-out.
             </p>
           </div>
         </Reveal>

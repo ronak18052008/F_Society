@@ -122,7 +122,7 @@ export function DashboardShell({
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-line bg-card/60 px-3 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
-                  <span>F_Society Workspace</span>
+                  <span>Nivasa Workspace</span>
                   <span className="text-ink-muted/50">·</span>
                   <span className="text-[#6E9271] dark:text-[#A3B899]">Live Telemetry</span>
                 </div>

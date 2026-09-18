@@ -25,13 +25,13 @@ const plex = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "F_Society — Modern Verified Tenancy & Living Ecosystem",
-    template: "%s · F_Society",
+    default: "Nivasa — Modern Verified Tenancy & Living Ecosystem",
+    template: "%s · Nivasa",
   },
   description:
-    "F_Society is a modern tenancy and verified living platform connecting residents and property owners with absolute cost clarity, shared condition passports, and direct workflows.",
+    "Nivasa is a modern tenancy and verified living platform connecting residents and property owners with absolute cost clarity, shared condition passports, and direct workflows.",
   keywords: [
-    "F_Society",
+    "Nivasa",
     "spatial living",
     "verified rentals India",
     "RentTruth cost transparency",
@@ -40,20 +40,24 @@ export const metadata: Metadata = {
     "verified rentals Bengaluru",
     "AI tenancy agreement audit",
   ],
-  authors: [{ name: "F_Society" }],
+  authors: [{ name: "Nivasa" }],
   openGraph: {
-    title: "F_Society — Modern Verified Tenancy & Living Ecosystem",
+    title: "Nivasa — Modern Verified Tenancy & Living Ecosystem",
     description:
       "A serene rental ecosystem built for verified cost clarity, shared property passports, and effortless modern dwellings.",
-    url: "https://fsociety.living",
-    siteName: "F_Society",
+    url: "https://nivasa.living",
+    siteName: "Nivasa",
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "F_Society — Modern Verified Tenancy & Living Ecosystem",
+    title: "Nivasa — Modern Verified Tenancy & Living Ecosystem",
     description: "Curated residences with transparent RentTruth expense tracking and direct verified tenancy.",
+  },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/brand/nivasa-logo.jpg",
   },
 };
 

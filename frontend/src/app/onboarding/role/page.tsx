@@ -29,7 +29,7 @@ export default function RolePage() {
             Define your living journey
           </h1>
           <p className="mt-3 text-sm text-ink-muted leading-relaxed">
-            Select your primary mode of interaction on the F_Society platform. You can change your workspace role at any time.
+            Select your primary mode of interaction on the Nivasa platform. You can change your workspace role at any time.
           </p>
         </div>
 
