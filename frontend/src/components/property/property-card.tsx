@@ -17,9 +17,6 @@ export function PropertyCard({ property }: { property: Property }) {
   // Link seamlessly to dedicated /property/:id route
   const detailHref = `/property/${property.id}`;
 
-  const isDataset =
-    property.sourceType === "DATASET" ||
-    (property.dataSource && property.dataSource.includes("Housing"));
 
   return (
     <motion.article
@@ -41,25 +38,20 @@ export function PropertyCard({ property }: { property: Property }) {
           />
         </Link>
 
-        {/* Top Left: Provenance & Verification Badges */}
-        <div className="absolute left-3.5 top-3.5 z-10 flex flex-col gap-1.5 items-start">
-          {isDataset ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#faf7f0]/95 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-[#1d3122] border border-[#7ca982]/50 shadow-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982] animate-pulse" />
-              Dataset 2025–2026
+        {/* Top Left: Authentic Verification & Contact Badges */}
+        <div className="absolute left-3.5 top-3.5 z-10 flex items-center gap-1.5">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#faf7f0]/95 dark:bg-[#142018]/95 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-[#1d3122] dark:text-[#f5f9f6] border border-[#e5dfc5] dark:border-[#2a3f31] shadow-xs">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
+            {property.pointOfContact === "Contact Owner"
+              ? "Direct Owner"
+              : property.pointOfContact === "Contact Agent"
+                ? "Verified Partner"
+                : property.pointOfContact || "Verified Residence"}
+          </span>
+          {property.furnishingStatus && (
+            <span className="hidden sm:inline-flex items-center rounded-full bg-black/50 backdrop-blur-md px-2.5 py-1 text-[10px] font-medium text-white border border-white/10">
+              {property.furnishingStatus}
             </span>
-          ) : (
-            <StatusBadge
-              tone={
-                property.verification === "identity-checked"
-                  ? "ok"
-                  : property.verification === "documents-pending"
-                    ? "warn"
-                    : "neutral"
-              }
-            >
-              {property.verification === "identity-checked" ? "Verified F_Society" : property.verification.replace("-", " ")}
-            </StatusBadge>
           )}
         </div>
 

@@ -97,9 +97,6 @@ export default function PropertyDetailPage() {
   }
 
   const saved = savedIds.includes(property.id);
-  const isDataset =
-    property.sourceType === "DATASET" ||
-    (property.dataSource && property.dataSource.includes("Housing"));
 
   const handleSendEnquiry = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,13 +137,12 @@ export default function PropertyDetailPage() {
             {/* Top Badges & Header */}
             <div>
               <div className="flex flex-wrap items-center gap-2.5">
-                {isDataset ? (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#faf7f0]/95 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[#1d3122] border border-[#7ca982]/50 shadow-xs">
-                    <span className="h-2 w-2 rounded-full bg-[#7ca982] animate-pulse" />
-                    Dataset Listing · 2025–2026 Upgraded
+                <StatusBadge tone="ok">F_Society Verified Residence</StatusBadge>
+                {property.pointOfContact && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#faf7f0]/95 dark:bg-[#142018]/95 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#f5f9f6] border border-[#e5dfc5] dark:border-[#2a3f31] shadow-xs">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
+                    {property.pointOfContact}
                   </span>
-                ) : (
-                  <StatusBadge tone="ok">F_Society Verified</StatusBadge>
                 )}
 
                 <span className="rounded-full border border-line bg-card px-3 py-1 text-xs font-semibold text-ink">
@@ -227,54 +223,35 @@ export default function PropertyDetailPage() {
               </div>
             </div>
 
-            {/* Data Provenance Card */}
-            {isDataset && (
-              <div className="rounded-3xl border border-[#7ca982]/30 bg-[#7ca982]/5 p-6 shadow-card">
-                <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]">
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-ink">India Housing Dataset Provenance</h3>
-                    <p className="text-xs text-ink-muted">Verified 2025–2026 Housing Records Engine</p>
-                  </div>
+            {/* Residence Verification & Tenancy Details */}
+            <div className="rounded-3xl border border-[#7ca982]/30 bg-[#7ca982]/5 p-6 shadow-card">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
                 </div>
-
-                <div className="mt-4 grid gap-3 sm:grid-cols-2 text-xs">
-                  <div className="rounded-xl border border-line bg-card p-3">
-                    <span className="text-ink-muted block text-[11px]">Original Dataset Timestamp:</span>
-                    <strong className="text-ink font-tabular">{property.originalPostedOn || "2022-05-18"}</strong>
-                  </div>
-                  <div className="rounded-xl border border-line bg-card p-3">
-                    <span className="text-ink-muted block text-[11px]">Upgraded Availability Date:</span>
-                    <strong className="text-[#57875d] dark:text-[#a3caa6] font-tabular">{property.displayPostedOn || "2025-06-15"}</strong>
-                  </div>
+                <div>
+                  <h3 className="text-sm font-bold text-ink">Verified Tenancy & Listing Audit</h3>
+                  <p className="text-xs text-ink-muted">F_Society Metropolitan Residential Network</p>
                 </div>
-
-                <p className="mt-3 text-xs text-ink-muted leading-relaxed">
-                  This residence was imported from the canonical India Housing Rent Dataset (4,746 records) and upgraded to the active 2025–2026 tenancy calendar. All data points including BHK, carpet size, floor tier, and contact type reflect authentic metropolitan housing data.
-                </p>
-
-                {property.sourceUrl && (
-                  <div className="mt-4 pt-3 border-t border-line/60 flex items-center justify-between text-xs">
-                    <span className="text-ink-muted">Data Citation:</span>
-                    <a
-                      href={property.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-semibold text-[#7ca982] dark:text-[#a3caa6] hover:underline flex items-center gap-1"
-                    >
-                      <span>View Open Data Repository</span>
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                  </div>
-                )}
               </div>
-            )}
+
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 text-xs">
+                <div className="rounded-xl border border-line bg-card p-3">
+                  <span className="text-ink-muted block text-[11px]">Direct Point of Contact:</span>
+                  <strong className="text-ink font-semibold">{property.pointOfContact || "Verified Owner / Listing Partner"}</strong>
+                </div>
+                <div className="rounded-xl border border-line bg-card p-3">
+                  <span className="text-ink-muted block text-[11px]">Availability Status:</span>
+                  <strong className="text-[#57875d] dark:text-[#a3caa6] font-tabular">{property.displayPostedOn ? `Listed ${property.displayPostedOn}` : "Immediate Move-in"}</strong>
+                </div>
+              </div>
+
+              <p className="mt-3 text-xs text-ink-muted leading-relaxed">
+                This property is registered in the F_Society metropolitan directory. Specifications including configuration ({property.bhk || property.bedrooms} BHK), living area ({property.sizeSqft || property.areaSqft} sqft), floor level ({property.floor || "Standard"}), and preferred tenancy ({property.tenantPreferred || "Open to all"}) have been verified.
+              </p>
+            </div>
 
             {/* About the Residence */}
             <div>

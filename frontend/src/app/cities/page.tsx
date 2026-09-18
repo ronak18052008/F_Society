@@ -12,7 +12,7 @@ export default async function CitiesPage() {
         {/* Editorial Header */}
         <div className="max-w-3xl pb-8 border-b border-line">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
-            India Metropolitan Housing Telemetry · 2025–2026
+            India Metropolitan Housing Telemetry · Live Metropolitan Index
           </div>
           <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-ink">
             City Exploration & Housing Analytics

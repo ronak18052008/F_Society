@@ -55,7 +55,7 @@ function PropertiesMarketplace() {
   const [pageSize, setPageSize] = useState<number>(() => {
     return Math.max(12, Number(searchParams.get("pageSize")) || 24);
   });
-  const [savedOnly, setSavedOnly] = useState(false);
+  const [savedOnly, setSavedOnly] = useState(() => searchParams.get("saved") === "true");
 
   const [data, setData] = useState<PaginatedPropertiesResult>({
     properties: [],
@@ -240,7 +240,7 @@ function PropertiesMarketplace() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#23452b] dark:text-[#a3caa6] border border-[#7ca982]/30">
               <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982] animate-pulse" />
-              Live Housing Directory · 2025–2026 Upgrades
+              Verified Metropolitan Housing Directory · 4,750+ Residences
             </div>
             <h1 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-ink">
               Metropolitan Residences
