@@ -1,111 +1,207 @@
 import { SiteShell } from "@/components/layout/site-shell";
 import { ArchitecturalHero } from "@/components/three/architectural-hero";
 import { Button } from "@/components/ui/button";
-import { LifecycleStrip } from "@/components/landing/lifecycle-strip";
-import { Reveal } from "@/components/motion/reveal";
+import { Reveal, StaggerIn } from "@/components/motion/reveal";
 import { PropertyCard } from "@/components/property/property-card";
+import { LifecycleSection } from "@/components/landing/lifecycle-section";
+import { FeatureTeasers } from "@/components/landing/feature-teasers";
+import { EditorialVideo } from "@/components/landing/editorial-video";
 import { properties } from "@/data/demo";
-import Link from "next/link";
 
 export default function HomePage() {
+  const featuredProperties = properties.slice(0, 3);
+
   return (
     <SiteShell>
-      <section className="relative grid min-h-[88vh] items-stretch lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="flex flex-col justify-end px-6 py-16 md:px-12 lg:py-24">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-bronze">
-            Rental lifecycle, made legible
-          </p>
-          <h1 className="mt-6 max-w-xl font-serif text-5xl leading-[0.95] md:text-7xl">
-            Rent with the full picture in view.
-          </h1>
-          <p className="mt-6 max-w-md text-base text-ink-soft">
-            Nestora connects tenants and owners across discovery, costs,
-            documents, and move-in condition — without hiding estimates as facts.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Button href="/homes">Explore homes</Button>
-            <Button href="/register?intent=owner" variant="line">
-              List your property
-            </Button>
+      {/* ========================================================
+          1. EDITORIAL HERO SECTION WITH 3D RESIDENCE
+      ======================================================== */}
+      <section className="relative grid min-h-[92vh] items-stretch lg:grid-cols-[1.08fr_0.92fr] border-b border-line">
+        {/* Left Editorial Narrative */}
+        <div className="flex flex-col justify-center px-6 py-16 sm:px-10 md:px-14 lg:py-24 xl:py-28 bg-paper">
+          <div className="max-w-xl">
+            {/* Kicker with prototype notice */}
+            <div className="flex items-center gap-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-bronze" />
+              <p className="kicker-bronze">
+                Rental lifecycle, made legible · Prototype v0.1
+              </p>
+            </div>
+
+            {/* Display Heading */}
+            <h1 className="display-lg mt-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-ink">
+              Rent with the full picture in view.
+            </h1>
+
+            {/* Editorial Lede */}
+            <p className="lede mt-6 max-w-lg text-base sm:text-lg text-ink-soft">
+              Nestora connects tenants and owners across discovery, true unbundled
+              costs, mutual agreements, and move-in condition — without hiding
+              estimates as facts or forcing broker intermediaries.
+            </p>
+
+            {/* Primary / Secondary CTAs */}
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Button href="/homes" size="lg">
+                Explore homes
+              </Button>
+              <Button href="/register?intent=owner" variant="line" size="lg">
+                List your property
+              </Button>
+            </div>
+
+            {/* Subtle Hero Metadata Principles */}
+            <div className="mt-14 border-t border-line/70 pt-6 grid grid-cols-3 gap-4 font-mono text-[11px] text-ink-soft">
+              <div>
+                <span className="block font-semibold text-ink uppercase tracking-wider">
+                  RentTruth™
+                </span>
+                <span className="text-[10px] text-ink-soft/80">Itemized cost receipts</span>
+              </div>
+              <div>
+                <span className="block font-semibold text-ink uppercase tracking-wider">
+                  Passport
+                </span>
+                <span className="text-[10px] text-ink-soft/80">Timestamped condition</span>
+              </div>
+              <div>
+                <span className="block font-semibold text-ink uppercase tracking-wider">
+                  Direct
+                </span>
+                <span className="text-[10px] text-ink-soft/80">No broker distortion</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="min-h-[420px] border-t border-line lg:border-l lg:border-t-0">
+
+        {/* Right 3D Architectural Visual Canvas */}
+        <div className="relative min-h-[460px] sm:min-h-[520px] lg:min-h-full border-t border-line lg:border-l lg:border-t-0 bg-[#110f0d]">
           <ArchitecturalHero />
         </div>
       </section>
 
-      <Reveal className="mx-auto max-w-6xl px-5 py-24">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-soft">
-          What Nestora is
-        </p>
-        <h2 className="mt-4 max-w-3xl font-serif text-4xl md:text-5xl">
-          A shared record for a relationship that usually lives in chats,
-          PDFs, and memory.
-        </h2>
-        <p className="mt-6 max-w-2xl text-ink-soft">
-          Listings, estimated costs, agreements, bills, and condition notes sit
-          in one place. This build is a frontend prototype. Demo listings are
-          labelled. No payment is processed.
-        </p>
-      </Reveal>
-
-      <div className="mx-auto max-w-6xl px-5 pb-24">
-        <LifecycleStrip />
-      </div>
-
-      <Reveal className="border-y border-line">
-        <div className="mx-auto grid max-w-6xl gap-px bg-line md:grid-cols-3">
-          {[
-            {
-              href: "/renttruth/prop-navrang-02",
-              kicker: "RentTruth",
-              title: "See more than headline rent",
-              copy: "Maintenance, utilities, parking, and deposits with source labels.",
-            },
-            {
-              href: "/rental/rent-navrang/passport",
-              kicker: "Condition Passport",
-              title: "Photograph the home as you found it",
-              copy: "Room notes and timestamps. The system does not assign blame.",
-            },
-            {
-              href: "/tenant/roommates",
-              kicker: "Roommate matching",
-              title: "Share preferences, not guarantees",
-              copy: "Compatibility is overlap of stated preferences, not safety.",
-            },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="bg-paper p-8 transition-colors hover:bg-paper-2"
-            >
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-bronze">
-                {item.kicker}
+      {/* ========================================================
+          2. EDITORIAL MANIFESTO / PROTOTYPE STATEMENT
+      ======================================================== */}
+      <section className="section-lg bg-paper text-ink border-b border-line">
+        <div className="wrap">
+          <Reveal>
+            <div className="max-w-4xl">
+              <p className="kicker-bronze">The Core Idea</p>
+              <h2 className="display mt-4 text-4xl sm:text-5xl md:text-6xl tracking-tight text-ink">
+                A shared record for a relationship that usually lives in chats,
+                PDFs, and contested memory.
+              </h2>
+              <p className="lede mt-6 max-w-2xl text-base sm:text-lg text-ink-soft">
+                Tenancy agreements, security deposits, routine repairs, and move-out
+                inspections shouldn&apos;t depend on who took screenshots. Nestora provides
+                a single living record for both parties from day zero.
               </p>
-              <h3 className="mt-4 font-serif text-3xl">{item.title}</h3>
-              <p className="mt-3 text-sm text-ink-soft">{item.copy}</p>
-            </Link>
-          ))}
-        </div>
-      </Reveal>
 
-      <section className="mx-auto max-w-6xl px-5 py-24">
-        <div className="mb-10 flex items-end justify-between gap-4">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft">
-              Sample listings
-            </p>
-            <h2 className="mt-2 font-serif text-4xl">Homes on the board</h2>
-          </div>
-          <Button href="/homes" variant="line">
-            View all
-          </Button>
+              <div className="mt-8 inline-flex items-center gap-3 border border-line bg-paper-2/60 px-4 py-2 text-xs font-mono text-ink-soft">
+                <span className="h-2 w-2 rounded-full bg-bronze" />
+                <span>Working prototype: demo listings are labeled and state is stored locally.</span>
+              </div>
+            </div>
+          </Reveal>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {properties.slice(0, 3).map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
+      </section>
+
+      {/* ========================================================
+          3. 8-STEP RENTAL LIFECYCLE SECTION
+      ======================================================== */}
+      <LifecycleSection />
+
+      {/* ========================================================
+          4. FEATURE TEASERS: RENTTRUTH & CONDITION PASSPORT
+      ======================================================== */}
+      <FeatureTeasers />
+
+      {/* ========================================================
+          5. REUSABLE EDITORIAL VIDEO THEATER
+      ======================================================== */}
+      <EditorialVideo />
+
+      {/* ========================================================
+          6. PREMIUM / SAMPLE LISTINGS PREVIEW SECTION
+      ======================================================== */}
+      <section className="section-lg bg-paper text-ink border-t border-line">
+        <div className="wrap">
+          {/* Section Header */}
+          <Reveal>
+            <div className="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-line pb-6">
+              <div>
+                <p className="kicker-bronze">Selected Residences</p>
+                <h2 className="display mt-2 text-4xl sm:text-5xl tracking-tight">
+                  Homes currently on the board
+                </h2>
+                <p className="mt-2 text-sm text-ink-soft">
+                  Verified dimensions, itemized fee structures, and direct owner channels.
+                </p>
+              </div>
+              <Button href="/homes" variant="line">
+                View all residences ({properties.length}) →
+              </Button>
+            </div>
+          </Reveal>
+
+          {/* Properties Grid */}
+          <StaggerIn
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            selector=".property-card-wrap"
+          >
+            {featuredProperties.map((property) => (
+              <div key={property.id} className="property-card-wrap">
+                <PropertyCard property={property} />
+              </div>
+            ))}
+          </StaggerIn>
+
+          {/* Bottom City Directory Bar */}
+          <Reveal delay={0.2} className="mt-14 border border-line bg-paper-2/40 p-6 sm:p-8">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+              <div>
+                <h3 className="font-serif text-2xl font-medium">
+                  Seeking residences in Ahmedabad, Bengaluru, or Pune?
+                </h3>
+                <p className="mt-1 text-sm text-ink-soft">
+                  Filter by transit corridors, verified balconies, and realistic utility estimates.
+                </p>
+              </div>
+              <Button href="/homes" variant="primary">
+                Browse Directory
+              </Button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ========================================================
+          7. INVITATION / ONBOARDING GATEWAY
+      ======================================================== */}
+      <section className="section-lg border-t border-line bg-paper-2 text-ink">
+        <div className="wrap">
+          <Reveal>
+            <div className="mx-auto max-w-4xl text-center">
+              <p className="kicker-bronze">Get Started with Nestora</p>
+              <h2 className="display mt-4 text-4xl sm:text-5xl md:text-6xl tracking-tight">
+                Ready for a rental experience built on clarity?
+              </h2>
+              <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
+                Join our prototype as a tenant searching for an unvarnished living space
+                or as an owner looking for respectful, verified residents.
+              </p>
+
+              <div className="mt-10 flex flex-wrap justify-center gap-4">
+                <Button href="/register?intent=tenant" size="lg">
+                  Start as Tenant
+                </Button>
+                <Button href="/register?intent=owner" variant="line" size="lg">
+                  Start as Property Owner
+                </Button>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
     </SiteShell>

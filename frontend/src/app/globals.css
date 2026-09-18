@@ -12,6 +12,9 @@
   --danger: #8a3a2d;
   --ok: #3f5d46;
   --shadow: 0 24px 60px rgba(22, 19, 15, 0.12);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --section-y: clamp(4.5rem, 9vw, 7.5rem);
+  --wrap: 72rem;
 }
 
 [data-theme="dark"] {
@@ -54,9 +57,14 @@ body {
   color: var(--ink);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-outfit), system-ui, sans-serif;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 ::selection {
@@ -67,6 +75,15 @@ a {
   color: inherit;
 }
 
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--bronze);
+  outline-offset: 3px;
+}
+
 .font-serif {
   font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 500;
@@ -74,6 +91,73 @@ a {
 
 .font-mono {
   font-family: var(--font-plex), ui-monospace, monospace;
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.kicker {
+  font-family: var(--font-plex), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.kicker-bronze {
+  font-family: var(--font-plex), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  font-weight: 500;
+}
+
+.display {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.94;
+}
+
+.display-lg {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+.lede {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.subhead {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, var(--wrap));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section-sm {
+  padding-block: clamp(3rem, 5vw, 4.5rem);
+}
+
+.section-lg {
+  padding-block: clamp(6rem, 11vw, 9.5rem);
 }
 
 .hairline {
@@ -97,6 +181,10 @@ a {
   background: var(--ink);
   color: var(--paper);
   padding: 0.5rem 0.8rem;
+  font-family: var(--font-plex), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .skip-link:focus {
@@ -104,6 +192,10 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {

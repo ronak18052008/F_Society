@@ -2,108 +2,121 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { ContactShadows } from "@react-three/drei";
-import { useMemo, useRef } from "react";
 import * as THREE from "three";
-
-function Pavilion({ reduced }: { reduced: boolean }) {
-  const group = useRef<THREE.Group>(null);
-  const slabs = useMemo(
-    () => [
-      { pos: [0, 0.08, 0] as const, size: [4.4, 0.12, 3.2] as const },
-      { pos: [0, 1.7, 0] as const, size: [4.1, 0.08, 2.9] as const },
-      { pos: [0.2, 2.55, -0.2] as const, size: [2.6, 0.06, 1.8] as const },
-    ],
-    [],
-  );
-
-  const columns = useMemo(() => {
-    const pts: Array<[number, number, number]> = [];
-    for (const x of [-1.8, 1.8]) {
-      for (const z of [-1.2, 1.2]) pts.push([x, 0.9, z]);
-    }
-    return pts;
-  }, []);
-
-  useFrame((state) => {
-    if (!group.current || reduced) return;
-    const t = state.clock.elapsedTime;
-    group.current.rotation.y = Math.sin(t * 0.12) * 0.18;
-    group.current.position.y = Math.sin(t * 0.6) * 0.04;
-  });
-
-  return (
-    <group ref={group}>
-      {slabs.map((slab, index) => (
-        <mesh key={index} position={slab.pos} castShadow receiveShadow>
-          <boxGeometry args={[...slab.size]} />
-          <meshStandardMaterial
-            color={index === 2 ? "#c4a574" : "#d8d0c4"}
-            roughness={0.42}
-            metalness={0.08}
-          />
-        </mesh>
-      ))}
-      {columns.map((pos, index) => (
-        <mesh key={index} position={pos} castShadow>
-          <boxGeometry args={[0.12, 1.55, 0.12]} />
-          <meshStandardMaterial color="#8c8174" roughness={0.5} />
-        </mesh>
-      ))}
-      <mesh position={[-0.9, 0.95, 1.45]}>
-        <boxGeometry args={[1.6, 1.5, 0.08]} />
-        <meshStandardMaterial
-          color="#9aa7a0"
-          transparent
-          opacity={0.22}
-          roughness={0.1}
-          metalness={0.2}
-        />
-      </mesh>
-      <mesh position={[1.4, 0.55, -0.2]} rotation={[0, 0.4, 0]} castShadow>
-        <boxGeometry args={[0.9, 0.7, 0.9]} />
-        <meshStandardMaterial color="#b7a48c" roughness={0.55} />
-      </mesh>
-      <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[6.5, 48]} />
-        <meshStandardMaterial color="#1a1713" roughness={1} />
-      </mesh>
-    </group>
-  );
-}
+import { useEffect, useRef } from "react";
+import { ArchitecturalResidence } from "./architectural-residence";
 
 function CameraRig({ reduced }: { reduced: boolean }) {
-  useFrame((state) => {
+  const scrollRef = useRef(0);
+
+  useEffect(() => {
     if (reduced) return;
-    const x = state.pointer.x * 1.4;
-    const y = state.pointer.y * 0.5;
-    state.camera.position.x = THREE.MathUtils.lerp(state.camera.position.x, 6.2 + x, 0.04);
-    state.camera.position.y = THREE.MathUtils.lerp(state.camera.position.y, 3.4 + y, 0.04);
-    state.camera.lookAt(0, 1.1, 0);
+    const handleScroll = () => {
+      // Gentle scroll influence (0 to 1 over first 800px)
+      const maxScroll = 800;
+      scrollRef.current = Math.min(window.scrollY / maxScroll, 1);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [reduced]);
+
+  useFrame((state) => {
+    if (reduced) {
+      state.camera.position.set(7.4, 3.6, 7.8);
+      state.camera.lookAt(0, 1.2, 0);
+      return;
+    }
+
+    const px = state.pointer.x * 0.9;
+    const py = state.pointer.y * 0.45;
+    const scrollFactor = scrollRef.current * 0.8;
+
+    // Target positions with pointer parallax and scroll-dependent elevation
+    const targetX = 7.4 + px + scrollFactor * 0.6;
+    const targetY = 3.6 + py - scrollFactor * 0.4;
+    const targetZ = 7.8 - scrollFactor * 0.5;
+
+    state.camera.position.x = THREE.MathUtils.lerp(
+      state.camera.position.x,
+      targetX,
+      0.035,
+    );
+    state.camera.position.y = THREE.MathUtils.lerp(
+      state.camera.position.y,
+      targetY,
+      0.035,
+    );
+    state.camera.position.z = THREE.MathUtils.lerp(
+      state.camera.position.z,
+      targetZ,
+      0.035,
+    );
+
+    state.camera.lookAt(0, 1.2, 0);
   });
+
   return null;
 }
 
-export function ArchitecturalCanvas({ reduced = false }: { reduced?: boolean }) {
+export function ArchitecturalCanvas({
+  reduced = false,
+}: {
+  reduced?: boolean;
+}) {
   return (
     <Canvas
-      camera={{ position: [6.4, 3.5, 7.2], fov: 28 }}
-      dpr={[1, 1.6]}
-      gl={{ antialias: true, alpha: true }}
+      camera={{ position: [7.4, 3.6, 7.8], fov: 28 }}
+      dpr={[1, 1.75]}
+      gl={{
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
+      }}
       shadows
     >
-      <color attach="background" args={["#12100d"]} />
-      <fog attach="fog" args={["#12100d", 10, 22]} />
-      <ambientLight intensity={0.35} />
+      <color attach="background" args={["#110f0d"]} />
+      <fog attach="fog" args={["#110f0d", 12, 26]} />
+
+      {/* Atmospheric & Directional Lighting */}
+      <ambientLight intensity={0.42} color="#f4efe6" />
+
+      {/* Primary Warm Sun */}
       <directionalLight
         castShadow
-        position={[6, 9, 4]}
-        intensity={1.35}
-        color="#f2eadb"
+        position={[7, 10, 5]}
+        intensity={1.55}
+        color="#fff5e6"
         shadow-mapSize={[1024, 1024]}
+        shadow-bias={-0.0001}
       />
-      <directionalLight position={[-5, 2, -4]} intensity={0.28} color="#8ea0b4" />
-      <Pavilion reduced={reduced} />
-      <ContactShadows opacity={0.4} scale={12} blur={2.4} far={8} />
+
+      {/* Cool Sky Fill */}
+      <directionalLight
+        position={[-6, 4, -4]}
+        intensity={0.35}
+        color="#92a8b8"
+      />
+
+      {/* Ground Warm Bounce */}
+      <directionalLight
+        position={[0, -4, 4]}
+        intensity={0.2}
+        color="#c8a876"
+      />
+
+      {/* The Procedural Modern Residence */}
+      <ArchitecturalResidence reduced={reduced} />
+
+      {/* Contact Ground Shadows */}
+      <ContactShadows
+        opacity={0.5}
+        position={[0, -0.64, 0]}
+        scale={14}
+        blur={2.8}
+        far={7}
+      />
+
       <CameraRig reduced={reduced} />
     </Canvas>
   );
