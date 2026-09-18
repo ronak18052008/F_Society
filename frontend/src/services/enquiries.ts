@@ -29,7 +29,7 @@ export async function sendEnquiry(input: {
     return { enquiry: localEnquiry, error: null };
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const { data, error } = await supabase
     .from("property_enquiries")
     .insert({
@@ -64,7 +64,7 @@ export async function fetchUserEnquiries(userId: string): Promise<Enquiry[]> {
     return seedEnquiries;
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const { data, error } = await supabase
     .from("property_enquiries")
     .select("*, profiles!from_user_id(name)")

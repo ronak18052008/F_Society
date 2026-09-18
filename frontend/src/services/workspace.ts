@@ -43,7 +43,7 @@ export async function fetchWorkspaceData(workspaceId: string): Promise<{
     };
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
 
   // Fetch workspace details + members
   const { data: wsData } = await supabase
@@ -192,7 +192,7 @@ export async function createMaintenanceRequest(input: {
   if (!isSupabaseConfigured()) {
     return { error: null };
   }
-  const supabase = createClient();
+  const supabase = createClient()!;
   const { error } = await supabase.from("maintenance_requests").insert({
     workspace_id: input.workspaceId,
     reported_by: input.reportedBy,
@@ -211,7 +211,7 @@ export async function acknowledgePassport(params: {
   if (!isSupabaseConfigured()) {
     return { error: null };
   }
-  const supabase = createClient();
+  const supabase = createClient()!;
   const updatePayload =
     params.role === "tenant"
       ? { tenant_acknowledged_at: new Date().toISOString() }

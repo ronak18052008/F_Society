@@ -16,7 +16,7 @@ export async function fetchProperties(): Promise<Property[]> {
     return demoProperties;
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const { data: propertiesData, error } = await supabase
     .from("properties")
     .select("*, property_expenses(*)")
@@ -35,7 +35,7 @@ export async function fetchPropertyByIdOrSlug(idOrSlug: string): Promise<Propert
     return demoProperties.find((p) => p.id === idOrSlug || p.slug === idOrSlug) ?? null;
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(idOrSlug);
 
   const query = supabase.from("properties").select("*, property_expenses(*)");
@@ -104,7 +104,7 @@ export async function createPropertyListing(input: {
     return { property: newProperty, error: null };
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const { data: propData, error: propError } = await supabase
     .from("properties")
     .insert({

@@ -33,7 +33,7 @@ export async function signUpUser(params: {
     };
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const { data: authData, error: authError } = await supabase.auth.signUp({
     email: params.email,
     password: params.password,
@@ -92,7 +92,7 @@ export async function signInUser(params: {
     };
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
     email: params.email,
     password: params.password,
@@ -139,7 +139,7 @@ export async function signOutUser(): Promise<{ error: string | null }> {
   if (!isSupabaseConfigured()) {
     return { error: null };
   }
-  const supabase = createClient();
+  const supabase = createClient()!;
   const { error } = await supabase.auth.signOut();
   return { error: error?.message ?? null };
 }
@@ -148,7 +148,7 @@ export async function getCurrentSessionUser(): Promise<SessionUser | null> {
   if (!isSupabaseConfigured()) {
     return null;
   }
-  const supabase = createClient();
+  const supabase = createClient()!;
   const {
     data: { user: authUser },
   } = await supabase.auth.getUser();

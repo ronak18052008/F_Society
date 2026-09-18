@@ -17,7 +17,7 @@ export async function uploadPropertyImage(params: {
     return { url: URL.createObjectURL(params.file), error: null };
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const filePath = `${params.ownerId}/${params.propertyId}/${Date.now()}-${params.file.name}`;
 
   const { error } = await supabase.storage
@@ -44,7 +44,7 @@ export async function uploadRentalDocument(params: {
     return { path: `local-doc-${params.file.name}`, error: null };
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const filePath = `${params.workspaceId}/${params.documentId}/${params.file.name}`;
 
   const { error } = await supabase.storage
@@ -70,7 +70,7 @@ export async function uploadPassportPhoto(params: {
     return { path: URL.createObjectURL(params.file), error: null };
   }
 
-  const supabase = createClient();
+  const supabase = createClient()!;
   const filePath = `${params.workspaceId}/${params.roomId}/${Date.now()}-${params.file.name}`;
 
   const { error } = await supabase.storage
