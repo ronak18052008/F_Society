@@ -52,7 +52,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
-  const appHome = isOwner ? "/owner/dashboard" : "/tenant/dashboard";
+  const appDashboard = isOwner ? "/owner" : "/tenant";
 
   // Dynamic breadcrumb / title
   const getPageTitle = () => {
@@ -150,6 +150,12 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
     router.push("/");
   };
 
+  const handleRoleSwitch = (newRole: "tenant" | "owner") => {
+    switchRole(newRole);
+    setUserMenuOpen(false);
+    router.push(newRole === "owner" ? "/owner" : "/tenant");
+  };
+
   const executeSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) {
@@ -163,7 +169,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
   return (
     <header className="sticky top-0 z-30 w-full border-b border-[#e5dfc5] dark:border-[#2a3f31] bg-[#ffffff]/90 dark:bg-[#142018]/90 backdrop-blur-xl transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-        {/* Left: Mobile Hamburger & Current Page Title */}
+        {/* Left: Mobile Hamburger, Desktop Collapse & Current Page Title */}
         <div className="flex items-center gap-3">
           {/* Mobile Hamburger Button */}
           <button
@@ -196,19 +202,19 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
             </svg>
           </button>
 
-          {/* Breadcrumb Title */}
+          {/* Breadcrumb Title & 16. Role Badge */}
           <div className="flex items-center gap-2">
             <span className="text-xs font-semibold text-ink-muted hidden sm:inline">Nivasa</span>
             <span className="text-xs text-ink-muted/50 hidden sm:inline">/</span>
             <h2 className="text-sm font-bold text-ink tracking-tight font-serif">{getPageTitle()}</h2>
-            {user && (
-              <span className={cn(
-                "hidden md:inline-flex rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider",
+            <span
+              className={cn(
+                "hidden sm:inline-flex rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider",
                 isOwner ? "bg-amber-500/15 text-amber-900 dark:text-amber-200" : "bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6]"
-              )}>
-                {isOwner ? "Owner" : "Tenant"}
-              </span>
-            )}
+              )}
+            >
+              {isOwner ? "OWNER" : "TENANT"}
+            </span>
           </div>
         </div>
 
@@ -315,36 +321,48 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           )}
         </div>
 
-        {/* Right Actions: Role Adaptive CTAs, Theme & Profile */}
+        {/* 17. Adaptive Header Actions */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Saved Homes (❤️) Badge Counter (for Tenants) */}
-          <Link
-            href="/properties?saved=true"
-            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] hover:border-[#7ca982] hover:text-rose-500 transition-colors"
-            title="Saved residences"
-            aria-label="View saved residences"
-          >
-            <svg
-              className={cn("h-4 w-4 transition-colors", savedIds.length > 0 ? "fill-rose-500 text-rose-500" : "fill-none")}
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              />
-            </svg>
-            {savedIds.length > 0 && (
-              <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-rose-500 text-white text-[9px] font-bold shadow-xs">
-                {savedIds.length}
-              </span>
-            )}
-          </Link>
-
-          {/* Role-Adaptive Primary CTA */}
-          {isOwner ? (
+          {/* Tenant header actions: Saved Homes & Find Roommate */}
+          {!isOwner ? (
+            <>
+              <Link
+                href="/properties?saved=true"
+                className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] hover:border-[#7ca982] hover:text-rose-500 transition-colors"
+                title="Saved Homes"
+                aria-label="View saved residences"
+              >
+                <svg
+                  className={cn("h-4 w-4 transition-colors", savedIds.length > 0 ? "fill-rose-500 text-rose-500" : "fill-none")}
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+                {savedIds.length > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-rose-500 text-white text-[9px] font-bold shadow-xs">
+                    {savedIds.length}
+                  </span>
+                )}
+              </Link>
+              <Link
+                href="/tenant/roommates"
+                className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-3 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
+              >
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                </svg>
+                <span>Find Roommate</span>
+              </Link>
+            </>
+          ) : (
+            /* Owner header action: + Post Property */
             <Link
               href="/owner/properties/new"
               className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-amber-700 hover:bg-amber-800 text-white px-3.5 py-1.5 text-xs font-semibold shadow-xs transition-all cursor-pointer"
@@ -353,17 +371,6 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                 <path d="M12 5v14M5 12h14" />
               </svg>
               <span>+ Post Property</span>
-            </Link>
-          ) : (
-            <Link
-              href="/tenant/roommates"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-3.5 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
-            >
-              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-              </svg>
-              <span>Find Roommate</span>
             </Link>
           )}
 
@@ -387,7 +394,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
             )}
           </button>
 
-          {/* User Account Menu / Auth */}
+          {/* 18. User Profile Dropdown */}
           {user ? (
             <div ref={userMenuRef} className="relative">
               <button
@@ -407,54 +414,51 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-bold text-ink block truncate">{user.name || "Member"}</span>
                       <span className={cn(
-                        "rounded-full px-2 py-0.5 text-[9px] font-bold uppercase",
+                        "rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider",
                         isOwner ? "bg-amber-500/20 text-amber-900 dark:text-amber-200" : "bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]"
                       )}>
-                        {user.role}
+                        {isOwner ? "OWNER" : "TENANT"}
                       </span>
                     </div>
                     <span className="text-[11px] text-ink-muted block truncate mt-0.5">{user.email}</span>
                   </div>
 
-                  {/* Fast 1-Click Role Switcher */}
-                  <div className="my-1.5 p-1.5 rounded-xl bg-paper dark:bg-[#1d2d22] border border-[#e5dfc5] dark:border-[#2a3f31]">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        switchRole(isOwner ? "tenant" : "owner");
-                        setUserMenuOpen(false);
-                      }}
-                      className="w-full text-left flex items-center justify-between px-2 py-1 text-[11px] font-semibold text-ink hover:text-[#57875d] transition-colors cursor-pointer"
-                    >
-                      <span>Switch to {isOwner ? "Tenant Mode" : "Owner Mode"}</span>
-                      <span className="text-[10px] text-ink-muted">Toggle ⇄</span>
-                    </button>
-                  </div>
-
                   <div className="mt-1 space-y-0.5">
                     <Link
-                      href={isOwner ? "/owner" : "/tenant"}
+                      href={appDashboard}
                       onClick={() => setUserMenuOpen(false)}
                       className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
                     >
-                      <span>{isOwner ? "Owner Hub" : "Tenant Hub"}</span>
-                      <span className="text-[10px] font-bold text-[#7ca982]">Hub</span>
-                    </Link>
-                    <Link
-                      href={appHome}
-                      onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
-                    >
-                      <span>{isOwner ? "Owner Portfolio" : "Tenancy Workspace"}</span>
-                      <span className="text-[10px] font-bold uppercase text-[#7ca982]">Desk</span>
+                      <span>{isOwner ? "Owner Dashboard" : "Tenant Dashboard"}</span>
+                      <span className="text-[10px] font-bold text-[#7ca982]">Portal</span>
                     </Link>
                     <Link
                       href="/profile"
                       onClick={() => setUserMenuOpen(false)}
                       className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
                     >
-                      Profile & Settings
+                      Profile
                     </Link>
+                    <Link
+                      href="/profile"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                    >
+                      Settings
+                    </Link>
+
+                    {/* 19. Fast Role Switcher inside menu */}
+                    <div className="pt-1.5 pb-1 px-1">
+                      <button
+                        type="button"
+                        onClick={() => handleRoleSwitch(isOwner ? "tenant" : "owner")}
+                        className="w-full text-left rounded-xl bg-paper dark:bg-[#1d2d22] px-3 py-1.5 text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:bg-[#7ca982]/20 transition-colors flex items-center justify-between cursor-pointer"
+                      >
+                        <span>Switch to {isOwner ? "Tenant" : "Owner"}</span>
+                        <span className="text-[10px]">⇄</span>
+                      </button>
+                    </div>
+
                     <button
                       type="button"
                       onClick={() => {
@@ -463,7 +467,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       }}
                       className="w-full text-left rounded-xl px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
                     >
-                      Sign out
+                      Logout
                     </button>
                   </div>
                 </div>

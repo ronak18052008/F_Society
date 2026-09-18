@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
+import { NivasaLogo } from "@/components/brand/nivasa-logo";
 import { useNivasa, DEMO_TENANT, DEMO_OWNER, makeUser } from "@/store/nivasa-store";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
@@ -33,12 +34,12 @@ export default function LoginPage() {
   const handleDemoSignIn = () => {
     if (activeRole === "owner") {
       signIn(DEMO_OWNER);
-      toast("Signed in as Demo Owner (Vikram Mehta).");
-      router.push("/owner/dashboard");
+      toast("Signed in as Demo Owner.");
+      router.push("/owner");
     } else {
       signIn(DEMO_TENANT);
-      toast("Signed in as Demo Tenant (Rohan Varma).");
-      router.push("/tenant/dashboard");
+      toast("Signed in as Demo Tenant.");
+      router.push("/tenant");
     }
   };
 
@@ -85,7 +86,7 @@ export default function LoginPage() {
             role,
           })
         );
-        router.push(role === "owner" ? "/owner/dashboard" : "/tenant/dashboard");
+        router.push(role === "owner" ? "/owner" : "/tenant");
         return;
       }
 
@@ -97,8 +98,8 @@ export default function LoginPage() {
           role: activeRole,
         })
       );
-      toast(`Signed in to ${activeRole === "owner" ? "Owner Command Deck" : "Tenant Workspace"}.`);
-      router.push(activeRole === "owner" ? "/owner/dashboard" : "/tenant/dashboard");
+      toast(`Signed in as ${activeRole === "owner" ? "Owner" : "Tenant"}.`);
+      router.push(activeRole === "owner" ? "/owner" : "/tenant");
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
@@ -112,6 +113,9 @@ export default function LoginPage() {
         <div className="rounded-3xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-7 sm:p-9 shadow-xl shadow-warm-300/30 dark:shadow-none">
           {/* Header */}
           <div className="text-center">
+            <div className="flex justify-center mb-3">
+              <NivasaLogo variant="mark" size="sm" />
+            </div>
             <div className="inline-flex items-center gap-2 rounded-full bg-pista/15 px-3 py-1 text-xs font-semibold text-forest dark:text-pista border border-pista/30">
               Nivasa Identity
             </div>
@@ -119,11 +123,13 @@ export default function LoginPage() {
               Welcome Back
             </h1>
             <p className="mt-1.5 text-xs text-ink-muted">
-              Choose your role to access your personalized workspace.
+              {activeRole === "owner"
+                ? "Manage properties, tenant inquiries, leases, and operations with Nivasa."
+                : "Find verified homes, understand rental costs, and manage your tenancy with Nivasa."}
             </p>
           </div>
 
-          {/* Role Tabs */}
+          {/* Role-selection tabs */}
           <div className="mt-6 flex rounded-2xl bg-paper dark:bg-[#1d2d22] p-1 border border-[#e5dfc5] dark:border-[#2a3f31]">
             <button
               type="button"
@@ -135,7 +141,7 @@ export default function LoginPage() {
                   : "text-ink-muted hover:text-ink"
               )}
             >
-              <span>Tenant Member</span>
+              <span>[Tenant Member]</span>
             </button>
             <button
               type="button"
@@ -147,14 +153,14 @@ export default function LoginPage() {
                   : "text-ink-muted hover:text-ink"
               )}
             >
-              <span>Property Owner</span>
+              <span>[Property Owner / Landlord]</span>
             </button>
           </div>
 
           {/* 1-Click Demo Shortcut */}
           <div className="mt-4 rounded-2xl border border-[#7ca982]/30 bg-[#7ca982]/10 p-3 text-center">
             <p className="text-[11px] text-ink-muted mb-1.5">
-              Quick test as {activeRole === "owner" ? "Property Owner" : "Tenant Member"}:
+              Instant 1-click test as {activeRole === "owner" ? "Owner" : "Tenant"}:
             </p>
             <button
               type="button"
@@ -164,7 +170,7 @@ export default function LoginPage() {
               <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
               </svg>
-              <span>1-Click Demo {activeRole === "owner" ? "Owner" : "Tenant"} Sign-In</span>
+              <span>1-Click Demo {activeRole === "owner" ? "Owner" : "Tenant"} Sign In</span>
             </button>
           </div>
 
@@ -173,7 +179,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-[#e5dfc5] dark:border-[#2a3f31]" />
             </div>
             <span className="relative bg-card dark:bg-card-dark px-3 text-[10px] font-semibold text-ink-muted uppercase">
-              or standard credentials
+              or enter credentials
             </span>
           </div>
 
@@ -222,13 +228,13 @@ export default function LoginPage() {
             </div>
           </form>
 
-          {/* Dedicated Portal Links */}
+          {/* Direct links to dedicated portals */}
           <div className="mt-5 pt-4 border-t border-warm-200/60 dark:border-forest/30 flex items-center justify-between text-[11px]">
             <Link href="/login/tenant" className="text-[#57875d] dark:text-[#a3caa6] font-semibold hover:underline">
-              Full Tenant Portal →
+              Dedicated Tenant Login →
             </Link>
             <Link href="/login/owner" className="text-[#57875d] dark:text-[#a3caa6] font-semibold hover:underline">
-              Full Owner Portal →
+              Dedicated Owner Login →
             </Link>
           </div>
 

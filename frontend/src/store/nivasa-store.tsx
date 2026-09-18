@@ -263,9 +263,9 @@ export function NivasaProvider({ children }: { children: React.ReactNode }) {
 }
 
 export const DEMO_TENANT: SessionUser = {
-  id: "usr-tenant-demo",
-  name: "Rohan Varma",
-  email: "rohan.tenant@nivasa.living",
+  id: "demo-tenant",
+  name: "Demo Tenant",
+  email: "demo.tenant@nivasa.living",
   role: "tenant",
   city: "Mumbai",
   phone: "+91 98201 54321",
@@ -273,9 +273,9 @@ export const DEMO_TENANT: SessionUser = {
 };
 
 export const DEMO_OWNER: SessionUser = {
-  id: "usr-owner-demo",
-  name: "Vikram Mehta",
-  email: "vikram.owner@nivasa.living",
+  id: "demo-owner",
+  name: "Demo Owner",
+  email: "demo.owner@nivasa.living",
   role: "owner",
   city: "Mumbai",
   phone: "+91 98210 98765",

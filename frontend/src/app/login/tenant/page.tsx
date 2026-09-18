@@ -6,6 +6,7 @@ import Link from "next/link";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
+import { NivasaLogo } from "@/components/brand/nivasa-logo";
 import { useNivasa, DEMO_TENANT, makeUser } from "@/store/nivasa-store";
 import { createClient } from "@/lib/supabase/client";
 
@@ -20,8 +21,8 @@ export default function TenantLoginPage() {
 
   const handleDemoSignIn = () => {
     signIn(DEMO_TENANT);
-    toast("Welcome back, Rohan! Signed in to Tenant Workspace.");
-    router.push("/tenant/dashboard");
+    toast("Signed in as Demo Tenant.");
+    router.push("/tenant");
   };
 
   async function submit() {
@@ -60,7 +61,7 @@ export default function TenantLoginPage() {
             role: "tenant",
           })
         );
-        router.push("/tenant/dashboard");
+        router.push("/tenant");
         return;
       }
 
@@ -72,8 +73,8 @@ export default function TenantLoginPage() {
           role: "tenant",
         })
       );
-      toast("Signed in to Tenant Portal.");
-      router.push("/tenant/dashboard");
+      toast("Signed in as Tenant.");
+      router.push("/tenant");
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
@@ -87,66 +88,67 @@ export default function TenantLoginPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Tenant Value Props */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
-              <span>Tenant Portal</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
-              <span>Verified Tenancy</span>
+            <div className="flex items-center gap-3">
+              <NivasaLogo variant="mark" size="sm" />
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                <span>Tenant Portal</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
+                <span>TENANT</span>
+              </div>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-ink tracking-tight leading-tight">
-              Rent with absolute clarity. Live with confidence.
+              Tenant Sign In
             </h1>
 
-            <p className="text-sm sm:text-base text-ink-muted leading-relaxed">
-              Sign in to your dedicated tenant workspace to manage shortlisted homes, track your RentTruth™ cost ledgers, and connect with verified roommates.
+            <p className="text-sm sm:text-base text-ink-muted leading-relaxed font-medium">
+              Find verified homes, understand your rental costs, and manage your tenancy with Nivasa.
             </p>
 
-            {/* Feature Checklist */}
-            <div className="space-y-3.5 pt-2">
-              <div className="flex items-start gap-3">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="text-xs sm:text-sm font-bold text-ink">Zero Broker Intermediaries</h2>
-                  <p className="text-xs text-ink-muted">Connect directly with genuine homeowners across 6 major Indian metros.</p>
-                </div>
+            {/* Feature Highlights per Section 6 */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+                  ✓
+                </span>
+                <span>Verified residence discovery</span>
               </div>
 
-              <div className="flex items-start gap-3">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="text-xs sm:text-sm font-bold text-ink">RentTruth™ Itemized Ledger</h2>
-                  <p className="text-xs text-ink-muted">Exact breakdown of rent, society maintenance, utility estimates, and deposit terms.</p>
-                </div>
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+                  ✓
+                </span>
+                <span>Rental expense information</span>
               </div>
 
-              <div className="flex items-start gap-3">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="text-xs sm:text-sm font-bold text-ink">Digital Move-in Condition Passport</h2>
-                  <p className="text-xs text-ink-muted">Cryptographically logged photo condition reports safeguarding your security deposit.</p>
-                </div>
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+                  ✓
+                </span>
+                <span>Digital condition passport</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+                  ✓
+                </span>
+                <span>Roommate matching</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+                  ✓
+                </span>
+                <span>Tenant-focused housing tools</span>
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-3 border-t border-[#e5dfc5] dark:border-[#2a3f31]">
               <Link
                 href="/login/owner"
                 className="inline-flex items-center gap-2 text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline"
               >
-                <span>Are you a property owner or landlord?</span>
-                <span>Switch to Owner Sign-In →</span>
+                <span>Are you a property owner? Sign in as Owner →</span>
               </Link>
             </div>
           </div>
@@ -157,16 +159,16 @@ export default function TenantLoginPage() {
               <div className="flex items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-4 mb-6">
                 <div>
                   <h2 className="text-xl font-bold font-serif text-ink">Tenant Member Sign In</h2>
-                  <p className="text-xs text-ink-muted mt-0.5">Access your active tenancy workspace</p>
+                  <p className="text-xs text-ink-muted mt-0.5">Access your verified tenancy workspace</p>
                 </div>
                 <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-1 text-[11px] font-bold text-[#1d3122] dark:text-[#a3caa6]">
-                  Tenant Mode
+                  TENANT
                 </span>
               </div>
 
               {/* 1-Click Demo Shortcut */}
               <div className="mb-6 rounded-2xl border border-[#7ca982]/30 bg-[#7ca982]/10 p-3.5 text-center">
-                <p className="text-xs text-ink-muted mb-2">Want to test the tenant workspace instantly?</p>
+                <p className="text-xs text-ink-muted mb-2">Instant demo testing without typing credentials:</p>
                 <button
                   type="button"
                   onClick={handleDemoSignIn}
@@ -175,7 +177,7 @@ export default function TenantLoginPage() {
                   <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                   </svg>
-                  <span>1-Click Demo Tenant Sign-In</span>
+                  <span>1-Click Demo Tenant Sign In</span>
                 </button>
               </div>
 
@@ -184,7 +186,7 @@ export default function TenantLoginPage() {
                   <div className="w-full border-t border-[#e5dfc5] dark:border-[#2a3f31]" />
                 </div>
                 <span className="relative bg-card dark:bg-card-dark px-3 text-[11px] font-semibold text-ink-muted uppercase">
-                  or sign in with credentials
+                  or enter credentials
                 </span>
               </div>
 
@@ -231,7 +233,7 @@ export default function TenantLoginPage() {
 
                 <div className="pt-2">
                   <Button type="submit" size="lg" className="w-full" disabled={loading}>
-                    {loading ? "Authenticating..." : "Sign In as Tenant"}
+                    {loading ? "Authenticating..." : "Sign In to Tenant Portal"}
                   </Button>
                 </div>
               </form>
