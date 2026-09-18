@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #16130f;
+  --ink-soft: #3f3a33;
+  --paper: #f4efe6;
+  --paper-2: #ebe4d8;
+  --line: rgba(22, 19, 15, 0.12);
+  --bronze: #9a7b4f;
+  --bronze-2: #c4a574;
+  --moss: #4d5c4b;
+  --danger: #8a3a2d;
+  --ok: #3f5d46;
+  --shadow: 0 24px 60px rgba(22, 19, 15, 0.12);
+}
+
+[data-theme="dark"] {
+  --ink: #f3eee6;
+  --ink-soft: #c9c1b4;
+  --paper: #12100d;
+  --paper-2: #1b1814;
+  --line: rgba(243, 238, 230, 0.12);
+  --bronze: #c4a574;
+  --bronze-2: #9a7b4f;
+  --moss: #9fb39a;
+  --danger: #e09a8c;
+  --ok: #9fbfa8;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-line: var(--line);
+  --color-bronze: var(--bronze);
+  --color-bronze-2: var(--bronze-2);
+  --color-moss: var(--moss);
+  --color-danger: var(--danger);
+  --color-ok: var(--ok);
+  --font-sans: var(--font-outfit);
+  --font-serif: var(--font-cormorant);
+  --font-mono: var(--font-plex);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--bronze) 40%, transparent);
+}
+
+a {
+  color: inherit;
+}
+
+.font-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 500;
+}
+
+.font-mono {
+  font-family: var(--font-plex), ui-monospace, monospace;
+}
+
+.hairline {
+  background: var(--line);
+}
+
+.grain {
+  background-image: radial-gradient(rgba(22, 19, 15, 0.04) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+}
+
+[data-theme="dark"] .grain {
+  background-image: radial-gradient(rgba(243, 238, 230, 0.04) 0.6px, transparent 0.6px);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -40px;
+  z-index: 80;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.5rem 0.8rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

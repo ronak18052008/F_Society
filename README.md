@@ -11,6 +11,18 @@ communication, rental documentation, expense visibility, maintenance
 tracking, property condition records, roommate discovery, and
 AI-assisted rental tools into one unified experience.
 
+## Run the frontend prototype
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The Next.js app lives in `frontend/`. Listings and workspace records are
+demo data. Local actions (save, enquiry, drafts, session) stay in the
+browser. See `docs/ARCHITECTURE.md`.
+
 ------------------------------------------------------------------------
 
 ## 🚀 Vision
@@ -570,11 +582,11 @@ feature/agreement-analyzer
 
 ## ⚠️ Current Project Status
 
-**Status:** Planning and early development
+**Status:** Frontend prototype in `frontend/` (Next.js). Backend and
+Supabase are not connected yet.
 
-The feature list and architecture are evolving. Some features may
-initially be implemented as prototypes before being connected to
-production-ready backend services.
+The feature list and architecture are evolving. Some features are
+implemented as labelled prototypes before production backend services.
 
 The project should clearly label:
 
