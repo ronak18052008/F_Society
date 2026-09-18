@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ProfileSetupPage() {
   const router = useRouter();
-  const { user, signIn, toast } = useNestora();
+  const { user, signIn, toast } = useNivasa();
   const [name, setName] = useState(user?.name ?? "");
   const [city, setCity] = useState(user?.city ?? "");
   const [phone, setPhone] = useState(user?.phone ?? "");

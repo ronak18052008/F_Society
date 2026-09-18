@@ -9,14 +9,14 @@ import { Button } from "@/components/ui/button";
 import { UploadField } from "@/components/ui/upload-field";
 import { passport as demoPassport } from "@/data/demo";
 import { formatDateTime } from "@/lib/format";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { getConditionPassport, acknowledgePassport, addRoomPhoto } from "@/lib/supabase/passport";
 import { uploadFile } from "@/lib/supabase/storage";
 import type { ConditionPassport } from "@/types";
 
 export default function PassportPage() {
   const { id } = useParams<{ id: string }>();
-  const { toast, user } = useNestora();
+  const { toast, user } = useNivasa();
   const [data, setData] = useState<ConditionPassport>(demoPassport);
   const [ownerAck, setOwnerAck] = useState<string | undefined>(demoPassport.ownerAcknowledgedAt);
   const [tenantAck, setTenantAck] = useState<string | undefined>(demoPassport.tenantAcknowledgedAt);

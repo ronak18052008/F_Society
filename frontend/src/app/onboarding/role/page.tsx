@@ -3,11 +3,11 @@
 import { useRouter } from "next/navigation";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
-import { makeUser, useNestora } from "@/store/nestora-store";
+import { makeUser, useNivasa } from "@/store/nivasa-store";
 
 export default function RolePage() {
   const router = useRouter();
-  const { user, signIn } = useNestora();
+  const { user, signIn } = useNivasa();
 
   function choose(role: "tenant" | "owner") {
     if (user) signIn({ ...user, role });

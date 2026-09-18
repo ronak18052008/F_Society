@@ -9,9 +9,9 @@ import { cn } from "@/lib/cn";
  * ============================================================================
  * LOCAL VIDEO ASSET INSTRUCTIONS:
  * ============================================================================
- * To provide a custom walkthrough video for Nestora:
- * 1. Place your MP4 or WebM video inside: `frontend/public/videos/nestora-walkthrough.mp4`
- * 2. Pass `src="/videos/nestora-walkthrough.mp4"` to this `<EditorialVideo />` component.
+ * To provide a custom walkthrough video for NIVASA:
+ * 1. Place your MP4 or WebM video inside: `frontend/public/videos/nivasa-walkthrough.mp4`
+ * 2. Pass `src="/videos/nivasa-walkthrough.mp4"` to this `<EditorialVideo />` component.
  * 3. In the absence of a local video file, this component automatically renders
  *    a high-resolution architectural poster state with fallback indicators,
  *    preventing broken players or third-party 404 CDN errors.
@@ -27,7 +27,7 @@ interface EditorialVideoProps {
 }
 
 export function EditorialVideo({
-  src, // e.g. "/videos/nestora-walkthrough.mp4"
+  src, // e.g. "/videos/nivasa-walkthrough.mp4"
   poster = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85",
   title = "Inside the NIVASA Living Experience",
   subtitle = "Spatial walkthrough & verified tenancy documentation",

@@ -13,7 +13,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { properties as fallbackProperties } from "@/data/demo";
 import { isDemoFallbackAllowed } from "@/lib/supabase/client";
 import { getProperties } from "@/lib/supabase/properties";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { Button } from "@/components/ui/button";
 import type { Property } from "@/types";
 
@@ -24,7 +24,7 @@ export default function HomesPage() {
     isDemoFallbackAllowed() ? fallbackProperties : [],
   );
   const [loading, setLoading] = useState(true);
-  const { savedIds } = useNestora();
+  const { savedIds } = useNivasa();
 
   useEffect(() => {
     let active = true;

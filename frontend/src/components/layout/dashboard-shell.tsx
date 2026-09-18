@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Navbar } from "@/components/layout/navbar";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { cn } from "@/lib/cn";
 
 const tenantNav = [
@@ -34,7 +34,7 @@ export function DashboardShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const { user } = useNestora();
+  const { user } = useNivasa();
   const role = user?.role === "owner" ? "owner" : "tenant";
   const items = role === "owner" ? ownerNav : tenantNav;
 

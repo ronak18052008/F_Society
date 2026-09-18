@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field, SelectField, TextArea } from "@/components/ui/field";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 
 export default function TenantOnboardingPage() {
   const router = useRouter();
-  const { tenantReqs, setTenantReqs, toast } = useNestora();
+  const { tenantReqs, setTenantReqs, toast } = useNivasa();
   const [budget, setBudget] = useState(String(tenantReqs.budget));
   const [city, setCity] = useState(tenantReqs.cities[0] ?? "Ahmedabad");
   const [type, setType] = useState(tenantReqs.type);

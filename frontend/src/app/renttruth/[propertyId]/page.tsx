@@ -12,7 +12,7 @@ import { getProperty as getDemoProperty } from "@/data/demo";
 import { getPropertyById } from "@/lib/supabase/properties";
 import { getExpensesByPropertyId, addExpenseLine } from "@/lib/supabase/expenses";
 import { formatInr } from "@/lib/format";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import type { Property, ExpenseLine } from "@/types";
 
 export default function RentTruthPage() {
@@ -28,7 +28,7 @@ export default function RentTruthPage() {
   const [source, setSource] = useState<ExpenseLine["source"]>("verified");
   const [note, setNote] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useNestora();
+  const { toast } = useNivasa();
 
   useEffect(() => {
     let active = true;

@@ -1,6 +1,6 @@
-# Nestora frontend
+# NIVASA frontend
 
-Premium rental-lifecycle prototype.
+Spatial living platform and verified rental ecosystem.
 
 ```bash
 cd frontend

@@ -8,7 +8,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { SelectField } from "@/components/ui/field";
 import { documents as demoDocuments } from "@/data/demo";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { formatDateTime } from "@/lib/format";
 import { getWorkspaceDocuments, addWorkspaceDocument } from "@/lib/supabase/workspace";
 import { uploadFile, getSignedDocumentUrl } from "@/lib/supabase/storage";
@@ -16,7 +16,7 @@ import type { DocumentRecord } from "@/types";
 
 export default function DocumentsPage() {
   const { id } = useParams<{ id: string }>();
-  const { user, toast } = useNestora();
+  const { user, toast } = useNivasa();
   const [category, setCategory] = useState("all");
   const [localDocs, setLocalDocs] = useState<DocumentRecord[]>(demoDocuments);
   const [uploading, setUploading] = useState(false);

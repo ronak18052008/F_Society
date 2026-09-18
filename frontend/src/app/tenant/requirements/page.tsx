@@ -4,12 +4,12 @@ import { useState } from "react";
 import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { Button } from "@/components/ui/button";
 import { Field, SelectField, TextArea } from "@/components/ui/field";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { formatInr } from "@/lib/format";
 
 export default function RequirementsPage() {
   const { tenantReqs, setTenantReqs, roommatePrefs, setRoommatePrefs, toast } =
-    useNestora();
+    useNivasa();
   const [budget, setBudget] = useState(String(tenantReqs.budget));
   const [city, setCity] = useState(tenantReqs.cities[0] ?? "Ahmedabad");
   const [type, setType] = useState(tenantReqs.type);

@@ -7,14 +7,14 @@ import { StatusBadge } from "@/components/ui/status-badge";
 import { UploadField } from "@/components/ui/upload-field";
 import { payments as demoPayments } from "@/data/demo";
 import { formatInr, formatDate } from "@/lib/format";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { getWorkspacePayments, markPaymentPaid } from "@/lib/supabase/workspace";
 import { uploadFile } from "@/lib/supabase/storage";
 import type { PaymentRecord } from "@/types";
 
 export default function PaymentsPage() {
   const { id } = useParams<{ id: string }>();
-  const { toast } = useNestora();
+  const { toast } = useNivasa();
   const [rows, setRows] = useState<PaymentRecord[]>(demoPayments);
   const [uploading, setUploading] = useState(false);
 

@@ -10,7 +10,7 @@ import {
 
 type Theme = "dark" | "light";
 
-const KEY = "nestora-theme";
+const KEY = "nivasa-theme";
 const listeners = new Set<() => void>();
 
 function emit() {

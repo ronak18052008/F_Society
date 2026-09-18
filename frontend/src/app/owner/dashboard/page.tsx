@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 import { getProperty, maintenance, payments, properties as demoProps } from "@/data/demo";
 import { getOwnerProperties } from "@/lib/supabase/properties";
 import { createClient } from "@/lib/supabase/client";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { formatInr } from "@/lib/format";
 import type { Property } from "@/types";
 
 export default function OwnerDashboardPage() {
-  const { drafts, enquiries: localEnquiries, user, toast } = useNestora();
+  const { drafts, enquiries: localEnquiries, user, toast } = useNivasa();
   const [listed, setListed] = useState<Property[]>(() =>
     demoProps.filter((item) => item.ownerId === "own-mehta"),
   );

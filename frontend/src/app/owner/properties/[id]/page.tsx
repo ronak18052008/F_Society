@@ -9,14 +9,14 @@ import { Field } from "@/components/ui/field";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { getProperty as getDemoProperty } from "@/data/demo";
 import { getPropertyById, updateProperty } from "@/lib/supabase/properties";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import type { Property } from "@/types";
 
 export default function ManagePropertyPage() {
   const { id } = useParams<{ id: string }>();
   const [property, setProperty] = useState<Property | null>(() => getDemoProperty(id) || null);
   const [loading, setLoading] = useState(!property);
-  const { enquiries, toast, user } = useNestora();
+  const { enquiries, toast, user } = useNivasa();
   const [title, setTitle] = useState(property?.title ?? "");
   const [status, setStatus] = useState("available");
   const [saving, setSaving] = useState(false);

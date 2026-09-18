@@ -7,7 +7,7 @@ import { Modal } from "@/components/ui/modal";
 import { SelectField } from "@/components/ui/field";
 import { EmptyState } from "@/components/ui/empty-state";
 import { roommates } from "@/data/demo";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { formatInr } from "@/lib/format";
 
 export default function RoommatesPage() {
@@ -21,7 +21,7 @@ export default function RoommatesPage() {
     roommatePrivacy,
     setPrivacy,
     toast,
-  } = useNestora();
+  } = useNivasa();
   const [city, setCity] = useState(roommatePrefs.city);
   const [reportId, setReportId] = useState<string | null>(null);
 

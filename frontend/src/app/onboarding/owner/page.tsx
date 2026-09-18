@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 
 export default function OwnerOnboardingPage() {
   const router = useRouter();
-  const { addDraft, toast } = useNestora();
+  const { addDraft, toast } = useNivasa();
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("Ahmedabad");
   const [rent, setRent] = useState("");

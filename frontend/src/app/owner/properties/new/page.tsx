@@ -6,13 +6,13 @@ import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { Button } from "@/components/ui/button";
 import { Field, SelectField, TextArea } from "@/components/ui/field";
 import { UploadField } from "@/components/ui/upload-field";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { uploadFile } from "@/lib/supabase/storage";
 import { createProperty } from "@/lib/supabase/properties";
 
 export default function AddPropertyPage() {
   const router = useRouter();
-  const { addDraft, toast, user } = useNestora();
+  const { addDraft, toast, user } = useNivasa();
   const [title, setTitle] = useState("");
   const [locality, setLocality] = useState("");
   const [city, setCity] = useState("Ahmedabad");

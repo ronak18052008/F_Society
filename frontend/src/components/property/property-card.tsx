@@ -7,11 +7,11 @@ import type { Property } from "@/types";
 import { formatInr } from "@/lib/format";
 import { monthlyEstimate } from "@/data/demo";
 import { StatusBadge } from "@/components/ui/status-badge";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { cn } from "@/lib/cn";
 
 export function PropertyCard({ property }: { property: Property }) {
-  const { savedIds, toggleSave } = useNestora();
+  const { savedIds, toggleSave } = useNivasa();
   const saved = savedIds.includes(property.id);
 
   return (

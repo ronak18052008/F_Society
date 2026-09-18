@@ -6,14 +6,14 @@ import Link from "next/link";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
-import { makeUser, useNestora } from "@/store/nestora-store";
+import { makeUser, useNivasa } from "@/store/nivasa-store";
 import { Suspense } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 function RegisterForm() {
   const params = useSearchParams();
   const router = useRouter();
-  const { signIn, toast } = useNestora();
+  const { signIn, toast } = useNivasa();
   const intent = params.get("intent");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

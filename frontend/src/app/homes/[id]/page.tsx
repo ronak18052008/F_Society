@@ -13,7 +13,7 @@ import { getOwner, getProperty as getDemoProperty, monthlyEstimate } from "@/dat
 import { getPropertyById } from "@/lib/supabase/properties";
 import { createClient } from "@/lib/supabase/client";
 import { formatInr } from "@/lib/format";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 import { ArchitecturalHero } from "@/components/three/architectural-hero";
 import type { Property } from "@/types";
 
@@ -21,7 +21,7 @@ export default function PropertyDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [property, setProperty] = useState<Property | null>(() => getDemoProperty(id) || null);
   const [loading, setLoading] = useState(!property);
-  const { savedIds, toggleSave, addEnquiry, user, toast } = useNestora();
+  const { savedIds, toggleSave, addEnquiry, user, toast } = useNivasa();
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState(
     "I would like to visit this week. Please share a suitable time.",

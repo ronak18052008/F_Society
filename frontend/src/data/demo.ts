@@ -15,7 +15,7 @@ const img = (id: string, extra = "") =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&q=80${extra}`;
 
 export const DEMO_NOTICE =
-  "Prototype data. Nothing here is persisted to a backend or verified by Nestora.";
+  "Prototype data. Nothing here is persisted to a backend or verified by NIVASA.";
 
 export const owners: OwnerProfile[] = [
   {
@@ -237,7 +237,7 @@ export const properties: Property[] = [
     ownerId: "own-desai",
     verification: "identity-checked",
     description:
-      "Intended for two students or early-career professionals. Owner asks for a local guarantor. Distance to campus is not measured by Nestora.",
+      "Intended for two students or early-career professionals. Owner asks for a local guarantor. Distance to campus is not measured by NIVASA.",
     expenses: [
       { id: "e1", label: "Monthly rent", amount: 22000, cadence: "monthly", source: "owner-provided" },
       { id: "e2", label: "Maintenance", amount: 1500, cadence: "monthly", source: "owner-provided" },

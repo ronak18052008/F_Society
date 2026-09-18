@@ -1,6 +1,6 @@
 "use client";
 
-import { NestoraProvider, useSupabaseSync } from "@/store/nestora-store";
+import { NivasaProvider, useSupabaseSync } from "@/store/nivasa-store";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { ToastViewport } from "@/components/ui/toast";
 
@@ -11,13 +11,13 @@ function SupabaseAuthSync({ children }: { children: React.ReactNode }) {
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <NestoraProvider>
+    <NivasaProvider>
       <SupabaseAuthSync>
         <ThemeProvider>
           {children}
           <ToastViewport />
         </ThemeProvider>
       </SupabaseAuthSync>
-    </NestoraProvider>
+    </NivasaProvider>
   );
 }

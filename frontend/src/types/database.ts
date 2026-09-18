@@ -1,6 +1,6 @@
 /**
  * @file Supabase Database Types
- * @description TypeScript type definitions matching the actual Nestora database schema.
+ * @description TypeScript type definitions matching the actual NIVASA database schema.
  *              Generated from supabase/migrations/001–007.
  *
  * These types provide compile-time safety for all Supabase queries.

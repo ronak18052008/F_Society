@@ -60,7 +60,7 @@ type Store = Persisted & {
   dismissToast: (id: string) => void;
 };
 
-const KEY = "nestora-prototype-v1";
+const KEY = "nivasa-store-v1";
 const listeners = new Set<() => void>();
 
 const defaults: Persisted = {
@@ -135,7 +135,7 @@ function write(next: Persisted) {
 
 const StoreContext = createContext<Store | null>(null);
 
-export function NestoraProvider({ children }: { children: React.ReactNode }) {
+export function NivasaProvider({ children }: { children: React.ReactNode }) {
   const persisted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [toasts, setToasts] = useState<Toast[]>([]);
 
@@ -250,9 +250,9 @@ export function NestoraProvider({ children }: { children: React.ReactNode }) {
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }
 
-export function useNestora() {
+export function useNivasa() {
   const ctx = useContext(StoreContext);
-  if (!ctx) throw new Error("useNestora must be used within NestoraProvider");
+  if (!ctx) throw new Error("useNivasa must be used within NivasaProvider");
   return ctx;
 }
 
@@ -271,7 +271,7 @@ export function makeUser(input: {
 
 export function useSupabaseSync() {
   const supabase = createClient();
-  const { signIn, signOut, toast, user } = useNestora();
+  const { signIn, signOut, toast, user } = useNivasa();
 
   const signInRef = useRef(signIn);
   const signOutRef = useRef(signOut);

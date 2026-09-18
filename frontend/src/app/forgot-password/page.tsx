@@ -6,14 +6,14 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { Field } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
-import { useNestora } from "@/store/nestora-store";
+import { useNivasa } from "@/store/nivasa-store";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
-  const { toast } = useNestora();
+  const { toast } = useNivasa();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

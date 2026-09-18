@@ -1,19 +1,86 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { PropertyCard } from "@/components/property/property-card";
 import { Timeline } from "@/components/ui/timeline";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { Button } from "@/components/ui/button";
-import { activity, getProperty, maintenance, payments, properties } from "@/data/demo";
-import { useNestora } from "@/store/nestora-store";
-import { formatInr } from "@/lib/format";
+import {
+  activity as demoActivity,
+  maintenance as demoMaintenance,
+  payments as demoPayments,
+  properties as demoProperties,
+} from "@/data/demo";
+import { useNivasa } from "@/store/nivasa-store";
+import { createClient } from "@/lib/supabase/client";
+import { getProperties } from "@/lib/supabase/properties";
+import {
+  getWorkspacePayments,
+  getWorkspaceMaintenance,
+  getWorkspaceActivity,
+} from "@/lib/supabase/workspace";
+import type { ActivityEvent, MaintenanceRequest, PaymentRecord, Property } from "@/types";
 
 export default function TenantDashboardPage() {
-  const { savedIds, user } = useNestora();
-  const saved = properties.filter((item) => savedIds.includes(item.id));
-  const unpaid = payments.filter((item) => item.status !== "paid");
+  const { savedIds, user } = useNivasa();
+  const [allProperties, setAllProperties] = useState<Property[]>(demoProperties);
+  const [workspacePayments, setWorkspacePayments] = useState<PaymentRecord[]>(demoPayments);
+  const [workspaceMaintenance, setWorkspaceMaintenance] = useState<MaintenanceRequest[]>(demoMaintenance);
+  const [activityFeed, setActivityFeed] = useState<ActivityEvent[]>(demoActivity);
+  const [userSavedIds, setUserSavedIds] = useState<string[]>(savedIds);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadTenantData() {
+      try {
+        // Fetch properties (from Supabase if configured)
+        const remoteProps = await getProperties();
+        if (active && remoteProps && remoteProps.length > 0) {
+          setAllProperties(remoteProps);
+        }
+
+        // Fetch live workspace telemetry for Navrangpura Courtyard
+        const [livePayments, liveMaint, liveAct] = await Promise.all([
+          getWorkspacePayments("rent-navrang"),
+          getWorkspaceMaintenance("rent-navrang"),
+          getWorkspaceActivity("rent-navrang"),
+        ]);
+
+        if (active) {
+          if (livePayments && livePayments.length > 0) setWorkspacePayments(livePayments);
+          if (liveMaint && liveMaint.length > 0) setWorkspaceMaintenance(liveMaint);
+          if (liveAct && liveAct.length > 0) setActivityFeed(liveAct);
+        }
+
+        // If authenticated with Supabase, fetch persisted saved_properties
+        const supabase = createClient();
+        if (supabase && user?.supabaseId) {
+          const { data: dbSaved } = await supabase
+            .from("saved_properties")
+            .select("property_id")
+            .eq("user_id", user.supabaseId);
+
+          if (active && dbSaved && dbSaved.length > 0) {
+            const dbIds = dbSaved.map((s: { property_id: string }) => s.property_id);
+            setUserSavedIds(Array.from(new Set([...savedIds, ...dbIds])));
+          }
+        }
+      } catch (err) {
+        console.warn("Failed to load live tenant telemetry:", err);
+      }
+    }
+
+    loadTenantData();
+    return () => {
+      active = false;
+    };
+  }, [user, savedIds]);
+
+  const saved = allProperties.filter((item) => userSavedIds.includes(item.id));
+  const unpaid = workspacePayments.filter((item) => item.status !== "paid");
 
   return (
     <DashboardShell
@@ -65,7 +132,7 @@ export default function TenantDashboardPage() {
               Maintenance
             </span>
             <span className="rounded-full bg-teal-500/10 px-2 py-0.5 text-[10px] font-bold text-teal-600">
-              {maintenance.filter((item) => item.status !== "resolved").length} In Progress
+              {workspaceMaintenance.filter((item) => item.status !== "resolved").length} In Progress
             </span>
           </div>
           <p className="mt-2 text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
@@ -136,7 +203,7 @@ export default function TenantDashboardPage() {
       <div className="mt-12">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Chronological Tenancy Log</h2>
         <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
-          <Timeline events={activity} />
+          <Timeline events={activityFeed} />
         </div>
       </div>
 
