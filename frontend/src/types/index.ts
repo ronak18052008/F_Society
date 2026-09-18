@@ -68,7 +68,7 @@ export type RoommateProfile = {
   pets: "no" | "ok";
   sharing: "1bhk" | "2bhk" | "either";
   visibility: "limited";
-  demo: true;
+  demo?: boolean;
 };
 
 export type SessionUser = {
