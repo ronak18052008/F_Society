@@ -64,74 +64,97 @@ export default function ManagePropertyPage() {
   const related = enquiries.filter((item) => item.propertyId === property.id);
 
   return (
-    <DashboardShell title="Manage listing">
-      <StatusBadge tone={property.demo ? "demo" : "ok"}>
-        {property.demo ? "Demo record" : "Live listing"}
-      </StatusBadge>
-      <form
-        className="mt-6 max-w-lg space-y-4"
-        onSubmit={async (event) => {
-          event.preventDefault();
-          setSaving(true);
-          try {
-            if (user?.supabaseId) {
-              const res = await updateProperty(property.id, { title }, user.supabaseId);
-              if (res.error) {
-                toast(`Update note: ${res.error}`);
+    <DashboardShell
+      title="Manage Residence Listing"
+      subtitle={`Configure listing status, update title metadata, and review inbound inquiries for ${property.locality}, ${property.city}.`}
+    >
+      <div className="flex items-center gap-2.5 mb-6">
+        <StatusBadge tone={property.demo ? "demo" : "ok"}>
+          {property.demo ? "Demo record" : "Live listing"}
+        </StatusBadge>
+        <span className="text-xs text-slate-500 font-medium">ID: {property.id}</span>
+      </div>
+
+      <div className="max-w-xl rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+        <form
+          className="space-y-4"
+          onSubmit={async (event) => {
+            event.preventDefault();
+            setSaving(true);
+            try {
+              if (user?.supabaseId) {
+                const res = await updateProperty(property.id, { title }, user.supabaseId);
+                if (res.error) {
+                  toast(`Update note: ${res.error}`);
+                } else {
+                  toast("Listing updated successfully on NIVASA network.");
+                }
               } else {
-                toast("Listing updated successfully on Nestora network.");
+                toast("Listing changes saved locally.");
               }
-            } else {
-              toast("Listing changes saved locally.");
+            } catch (err) {
+              console.warn("Update error:", err);
+              toast("Changes saved locally.");
+            } finally {
+              setSaving(false);
             }
-          } catch (err) {
-            console.warn("Update error:", err);
-            toast("Changes saved locally.");
-          } finally {
-            setSaving(false);
-          }
-        }}
-      >
-        <Field label="Title" name="title" value={title} onChange={setTitle} />
-        <label className="block">
-          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-soft">
-            Status
-          </span>
-          <select
-            value={status}
-            onChange={(event) => setStatus(event.target.value)}
-            className="mt-2 w-full border border-line bg-paper px-3 py-3 text-sm"
-          >
-            <option value="available">Available</option>
-            <option value="paused">Paused</option>
-            <option value="let">Let (occupied)</option>
-          </select>
-        </label>
-        <Button type="submit" disabled={saving}>
-          {saving ? "Saving..." : "Save changes"}
-        </Button>
-      </form>
-      <h2 className="mt-12 font-serif text-3xl">Enquiries</h2>
-      {related.length === 0 ? (
-        <p className="mt-3 text-sm text-ink-soft">No enquiries on this listing yet.</p>
-      ) : (
-        <ul className="mt-4 space-y-3">
-          {related.map((item) => (
-            <li key={item.id} className="border border-line p-4 text-sm">
-              <p>{item.fromName}</p>
-              <p className="text-ink-soft">{item.message}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-      <h2 className="mt-12 font-serif text-3xl">Tenant connections</h2>
-      <p className="mt-3 text-sm text-ink-soft">
-        Shared demo workspace:{" "}
-        <Link className="text-bronze" href="/rental/rent-navrang">
-          Navrangpura courtyard
-        </Link>
-        .
-      </p>
+          }}
+        >
+          <Field label="Residence Title" name="title" value={title} onChange={setTitle} required />
+          <div>
+            <label htmlFor="listing-status" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+              Listing Availability Status
+            </label>
+            <select
+              id="listing-status"
+              value={status}
+              onChange={(event) => setStatus(event.target.value)}
+              className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 px-3.5 py-2.5 text-sm font-medium text-slate-900 dark:text-white focus:border-blue-500 focus:outline-none cursor-pointer"
+            >
+              <option value="available">Available for Enquiries</option>
+              <option value="paused">Paused / Under Negotiation</option>
+              <option value="let">Leased (Occupied)</option>
+            </select>
+          </div>
+          <div className="pt-2">
+            <Button type="submit" size="lg" className="w-full" disabled={saving}>
+              {saving ? "Saving Changes..." : "Save Listing Updates"}
+            </Button>
+          </div>
+        </form>
+      </div>
+
+      {/* Inquiries */}
+      <div className="mt-12">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Inquiries On This Property</h2>
+        {related.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 p-8 text-center bg-slate-50/50 dark:bg-slate-900/30">
+            <p className="text-sm text-slate-500">No inquiries received for this specific listing yet.</p>
+          </div>
+        ) : (
+          <ul className="space-y-3">
+            {related.map((item) => (
+              <li key={item.id} className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
+                <p className="text-sm font-bold text-slate-900 dark:text-white">{item.fromName}</p>
+                <p className="mt-1 text-xs text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-100 dark:border-slate-800">{item.message}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Linked Workspace */}
+      <div className="mt-10 rounded-2xl border border-blue-500/20 bg-blue-50/30 dark:bg-blue-950/20 p-5">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Connected Tenancy Workspace
+        </span>
+        <p className="mt-1 text-sm font-semibold text-slate-800 dark:text-slate-200">
+          Shared Tenancy Ledger:{" "}
+          <Link className="text-blue-600 dark:text-blue-400 hover:underline" href="/rental/rent-navrang">
+            Navrangpura Courtyard Workspace →
+          </Link>
+        </p>
+      </div>
     </DashboardShell>
   );
 }

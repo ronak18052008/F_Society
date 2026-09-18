@@ -25,34 +25,35 @@ const plex = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Nestora — Architectural Property Living & Verified Tenancy",
-    template: "%s · Nestora",
+    default: "NIVASA — Living, Harmonized | Modern Verified Tenancy",
+    template: "%s · NIVASA",
   },
   description:
-    "Nestora is a residential living platform connecting discerning tenants and property owners with transparent RentTruth costs, cryptographic condition passports, and verified rental workflows.",
+    "NIVASA is a spatial living platform connecting modern tenants and verified property owners with absolute cost clarity, cryptographic condition passports, and direct tenancy workflows.",
   keywords: [
-    "architectural living",
+    "NIVASA",
+    "spatial living",
     "verified rentals India",
     "RentTruth cost transparency",
     "condition passport",
-    "luxury apartments Mumbai",
-    "architectural homes Bengaluru",
-    "lease agreement analysis",
+    "modern homes Mumbai",
+    "verified rentals Bengaluru",
+    "AI tenancy agreement audit",
   ],
-  authors: [{ name: "Nestora Architectural Living" }],
+  authors: [{ name: "NIVASA Living" }],
   openGraph: {
-    title: "Nestora — Architectural Property Living & Verified Tenancy",
+    title: "NIVASA — Living, Harmonized",
     description:
-      "A modern rental platform built for cost clarity, verified property passports, and elevated architectural spaces.",
-    url: "https://nestora.in",
-    siteName: "Nestora",
+      "A luminous rental ecosystem built for verified cost clarity, shared property passports, and effortless modern dwellings.",
+    url: "https://nivasa.in",
+    siteName: "NIVASA",
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nestora — Architectural Property Living & Verified Tenancy",
-    description: "Curated architectural properties with transparent RentTruth expense tracking.",
+    title: "NIVASA — Living, Harmonized",
+    description: "Curated contemporary residences with transparent RentTruth expense tracking.",
   },
 };
 

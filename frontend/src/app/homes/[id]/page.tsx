@@ -54,8 +54,9 @@ export default function PropertyDetailPage() {
   if (loading) {
     return (
       <SiteShell>
-        <div className="mx-auto max-w-xl px-5 py-20">
-          <p className="font-mono text-sm text-bronze uppercase tracking-widest">Loading property...</p>
+        <div className="mx-auto max-w-xl px-5 py-28 text-center">
+          <div className="inline-flex h-12 w-12 animate-spin rounded-full border-4 border-blue-600 border-t-transparent mb-4" />
+          <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Loading residence telemetry...</p>
         </div>
       </SiteShell>
     );
@@ -64,18 +65,19 @@ export default function PropertyDetailPage() {
   if (!property) {
     return (
       <SiteShell>
-        <div className="mx-auto max-w-xl px-5 py-20">
-          <h1 className="font-serif text-4xl">Listing not found</h1>
-          <p className="mt-3 text-sm text-ink-soft">
-            This residence is currently unavailable or does not exist.
+        <div className="mx-auto max-w-xl px-5 py-24 text-center">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Listing Not Found</h1>
+          <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
+            This residence is currently unavailable or has been archived from the network.
           </p>
           <div className="mt-6">
-            <Button href="/homes">Back to homes</Button>
+            <Button href="/homes">Back to residences</Button>
           </div>
         </div>
       </SiteShell>
     );
   }
+
   const owner = getOwner(property.ownerId) || {
     id: property.ownerId,
     name: "Property Host",
@@ -87,97 +89,183 @@ export default function PropertyDetailPage() {
 
   return (
     <SiteShell>
-      <div className="mx-auto max-w-6xl px-5 py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        {/* Navigation Breadcrumb */}
+        <div className="mb-6 flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+          <a href="/homes" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Residences</a>
+          <span>/</span>
+          <span className="text-slate-400 dark:text-slate-500">{property.city}</span>
+          <span>/</span>
+          <span className="text-slate-800 dark:text-slate-200 font-semibold truncate max-w-xs">{property.title}</span>
+        </div>
+
+        {/* Gallery */}
         <PropertyGallery images={property.images} title={property.title} />
-        <div className="mt-10 grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+
+        {/* Main Content Layout */}
+        <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+          {/* Left Column: Residence Specs & Details */}
           <div>
-            <StatusBadge tone={property.demo ? "demo" : "ok"}>
-              {property.demo ? "Demo listing" : "Verified residence"}
-            </StatusBadge>
-            <h1 className="mt-4 font-serif text-5xl">{property.title}</h1>
-            <p className="mt-2 text-ink-soft">
-              {property.locality}, {property.city}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <StatusBadge tone={property.demo ? "demo" : "ok"}>
+                {property.demo ? "Demo Listing" : "NIVASA Verified"}
+              </StatusBadge>
+              <span className="rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-800/70 px-3 py-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                {property.bedrooms} BHK · {property.type}
+              </span>
+              <span className="rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-800/70 px-3 py-1 text-xs font-semibold text-slate-600 dark:text-slate-300 capitalize">
+                {property.furnishing}
+              </span>
+            </div>
+
+            <h1 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+              {property.title}
+            </h1>
+            <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-blue-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>{property.locality}, {property.city}</span>
             </p>
-            <p className="mt-6 max-w-xl text-sm leading-6">{property.description}</p>
-            <dl className="mt-8 grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
-              <div>
-                <dt className="text-ink-soft">Rent</dt>
-                <dd>{formatInr(property.rent)}</dd>
+
+            {/* Core Specifications Bento Grid */}
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-4">
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">Base Rent</span>
+                <span className="mt-1 block text-lg font-bold text-slate-900 dark:text-white">{formatInr(property.rent)}</span>
+                <span className="text-[10px] text-slate-500">per month</span>
               </div>
-              <div>
-                <dt className="text-ink-soft">Deposit</dt>
-                <dd>{formatInr(property.deposit)}</dd>
+              <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-4">
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">Security Deposit</span>
+                <span className="mt-1 block text-lg font-bold text-slate-900 dark:text-white">{formatInr(property.deposit)}</span>
+                <span className="text-[10px] text-slate-500">fully refundable</span>
               </div>
-              <div>
-                <dt className="text-ink-soft">Area</dt>
-                <dd>{property.areaSqft} sqft</dd>
+              <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-4">
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">Carpet Area</span>
+                <span className="mt-1 block text-lg font-bold text-slate-900 dark:text-white">{property.areaSqft} sqft</span>
+                <span className="text-[10px] text-slate-500">verified layout</span>
               </div>
-              <div>
-                <dt className="text-ink-soft">Available</dt>
-                <dd>{property.availableFrom}</dd>
+              <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-4">
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">Possession</span>
+                <span className="mt-1 block text-lg font-bold text-slate-900 dark:text-white">{property.availableFrom}</span>
+                <span className="text-[10px] text-slate-500">ready to move</span>
               </div>
-            </dl>
-            <h2 className="mt-10 font-serif text-3xl">Amenities</h2>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {property.amenities.map((item) => (
-                <li key={item} className="border border-line px-3 py-1 text-sm">
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <h2 className="mt-10 font-serif text-3xl">Location</h2>
-            <p className="mt-2 text-sm text-ink-soft">
-              Approximate coordinates {property.coordinates.lat},{" "}
-              {property.coordinates.lng}.
-            </p>
-            <div className="mt-10 h-72 border border-line">
-              <ArchitecturalHero />
+            </div>
+
+            {/* Description */}
+            <div className="mt-8">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">About the Residence</h2>
+              <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                {property.description}
+              </p>
+            </div>
+
+            {/* Amenities Grid */}
+            <div className="mt-8">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Included Amenities & Features</h2>
+              <ul className="mt-4 flex flex-wrap gap-2.5">
+                {property.amenities.map((item) => (
+                  <li
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 px-3.5 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-xs"
+                  >
+                    <svg className="w-4 h-4 text-teal-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* 3D Spatial Architectural Preview */}
+            <div className="mt-10">
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">Spatial Habitat 3D Telemetry</h2>
+                <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">Interactive WebGL</span>
+              </div>
+              <div className="relative h-80 w-full overflow-hidden rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-[#050a17] shadow-xl">
+                <ArchitecturalHero />
+              </div>
             </div>
           </div>
+
+          {/* Right Column: Sticky Action Dock & RentTruth Breakdown */}
           <aside className="space-y-6">
-            <div className="border border-line p-5">
-              <p className="font-serif text-4xl">{formatInr(property.rent)}</p>
-              <p className="text-sm text-ink-soft">
-                Est. monthly {formatInr(monthlyEstimate(property))}
-              </p>
-              <div className="mt-4 flex flex-col gap-3">
-                <Button onClick={() => setOpen(true)}>Contact owner</Button>
-                <Button variant="line" onClick={() => toggleSave(property.id)}>
-                  {saved ? "Saved" : "Save property"}
-                </Button>
-                <Button href={`/renttruth/${property.id}`} variant="ghost">
-                  Open RentTruth
-                </Button>
+            <div className="sticky top-24 space-y-6">
+              {/* Financial Action Dock */}
+              <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-6 shadow-xl shadow-slate-200/40 dark:shadow-none backdrop-blur-xl">
+                <div className="flex items-baseline justify-between">
+                  <div>
+                    <span className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+                      {formatInr(property.rent)}
+                    </span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400 ml-1.5">/ month</span>
+                  </div>
+                  <span className="rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+                    Direct Deal
+                  </span>
+                </div>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                  Est. monthly living outlay: <strong className="text-slate-700 dark:text-slate-200">{formatInr(monthlyEstimate(property))}</strong>
+                </p>
+
+                <div className="mt-6 flex flex-col gap-3">
+                  <Button size="lg" onClick={() => setOpen(true)}>
+                    Connect With Owner Directly
+                  </Button>
+                  <Button
+                    variant="line"
+                    size="md"
+                    onClick={() => toggleSave(property.id)}
+                  >
+                    {saved ? "Saved in Shortlist" : "Shortlist Residence"}
+                  </Button>
+                  <Button href={`/renttruth/${property.id}`} variant="ghost" size="sm">
+                    View Full RentTruth™ Breakdown →
+                  </Button>
+                </div>
+              </div>
+
+              {/* Verified Owner Card */}
+              <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  Property Host
+                </span>
+                <div className="mt-2 flex items-center justify-between">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">{owner?.name}</h3>
+                  <StatusBadge
+                    tone={
+                      property.verification === "identity-checked" ? "ok" : "warn"
+                    }
+                  >
+                    {property.verification.replaceAll("-", " ")}
+                  </StatusBadge>
+                </div>
+                <p className="text-xs text-slate-500 mt-0.5">{owner?.city} · Member since {owner?.listedSince}</p>
+                <p className="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                  &ldquo;{owner?.responseNote}&rdquo;
+                </p>
+              </div>
+
+              {/* Itemized Expense Breakdown */}
+              <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
+                <ExpenseBreakdown lines={property.expenses} />
               </div>
             </div>
-            <div className="border border-line p-5 text-sm">
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-soft">
-                Owner
-              </p>
-              <p className="mt-2 font-serif text-2xl">{owner?.name}</p>
-              <p className="text-ink-soft">{owner?.city}</p>
-              <div className="mt-3">
-                <StatusBadge
-                  tone={
-                    property.verification === "identity-checked" ? "ok" : "warn"
-                  }
-                >
-                  {property.verification.replaceAll("-", " ")}
-                </StatusBadge>
-              </div>
-              <p className="mt-3 text-ink-soft">{owner?.responseNote}</p>
-            </div>
-            <ExpenseBreakdown lines={property.expenses} />
           </aside>
         </div>
       </div>
-      <Modal open={open} title="Contact owner" onClose={() => setOpen(false)}>
-        <p className="mb-4 text-sm text-ink-soft">
-          Send a direct inquiry to the owner regarding visits, availability, and lease terms.
+
+      {/* Direct Contact Modal */}
+      <Modal open={open} title="Connect With Property Host" onClose={() => setOpen(false)}>
+        <p className="mb-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Send a direct, verified inquiry to the host regarding site visits, lease tenure, and move-in timeline without intermediaries.
         </p>
         <div className="space-y-4">
           <Field
-            label="Your name"
+            label="Your Name"
             name="name"
             value={name}
             onChange={setName}
@@ -185,12 +273,12 @@ export default function PropertyDetailPage() {
             error={error && !name ? error : undefined}
           />
           <TextArea
-            label="Message"
+            label="Message or Preferred Visit Date"
             name="message"
             value={message}
             onChange={setMessage}
           />
-          {error && <p className="text-xs text-danger">{error}</p>}
+          {error && <p className="text-xs text-rose-600 font-semibold">{error}</p>}
           <Button
             disabled={submitting}
             onClick={async () => {
@@ -224,7 +312,7 @@ export default function PropertyDetailPage() {
               }
             }}
           >
-            {submitting ? "Sending..." : "Submit enquiry"}
+            {submitting ? "Transmitting..." : "Send Direct Enquiry"}
           </Button>
         </div>
       </Modal>

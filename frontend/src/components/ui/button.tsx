@@ -30,29 +30,27 @@ export function Button({
   ariaLabel,
 }: Props) {
   const sizeStyles = {
-    sm: "px-3.5 py-1.5 text-xs tracking-wider",
-    md: "px-5 py-3 text-sm tracking-wide",
-    lg: "px-7 py-3.5 text-base tracking-wide font-medium",
+    sm: "px-3.5 py-1.5 text-xs font-medium",
+    md: "px-5 py-2.5 text-sm font-medium",
+    lg: "px-6 py-3 text-base font-semibold",
   }[size];
 
   const variantStyles = {
     primary:
-      "bg-bronze text-[#14110e] hover:bg-bronze-2 hover:shadow-[var(--shadow)] active:bg-[#b09060]",
+      "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/20 hover:from-blue-500 hover:to-indigo-500 hover:shadow-lg hover:shadow-blue-500/25 active:scale-[0.98]",
     secondary:
-      "bg-paper-2 text-ink border border-line hover:border-ink/30 hover:bg-paper active:bg-paper-2",
+      "bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-[0.98]",
     line:
-      "border border-line bg-transparent text-ink hover:border-ink hover:bg-paper-2/60 active:bg-paper-2",
+      "border border-slate-200 bg-white/70 backdrop-blur-md text-slate-800 hover:border-blue-500/40 hover:bg-white dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-blue-400/40 dark:hover:bg-slate-900 active:scale-[0.98]",
     ghost:
-      "bg-transparent text-ink-soft hover:bg-paper-2 hover:text-ink active:bg-paper-2/80",
+      "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/80 dark:hover:text-white",
   }[variant];
 
   const styles = cn(
-    "inline-flex items-center justify-center gap-2 font-sans select-none",
-    "transition-[color,background-color,border-color,transform,box-shadow,opacity] duration-300",
-    "ease-[cubic-bezier(0.22,1,0.36,1)]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 focus-visible:ring-offset-paper",
+    "inline-flex items-center justify-center gap-2 font-sans select-none rounded-full cursor-pointer",
+    "transition-all duration-200 ease-out",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
     "disabled:pointer-events-none disabled:opacity-40",
-    "active:scale-[0.985]",
     sizeStyles,
     variantStyles,
     fullWidth && "w-full",

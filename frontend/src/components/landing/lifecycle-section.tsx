@@ -99,21 +99,22 @@ export function LifecycleSection() {
         {/* Section Header */}
         <Reveal>
           <div className="max-w-3xl">
-            <p className="kicker-bronze">The Complete Lifecycle</p>
-            <h2 className="display mt-3 text-4xl sm:text-5xl md:text-6xl tracking-tight">
-              Eight steps from first search to honest deposit return.
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
+              The Tenancy Journey
+            </span>
+            <h2 className="display mt-4 text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              End-to-end verified living, from first inquiry to full deposit return.
             </h2>
-            <p className="lede mt-5 max-w-2xl text-base sm:text-lg">
-              Most rental websites disappear once contact details are exchanged.
-              Nestora provides a continuous, accountable record across every stage
-              of the living relationship.
+            <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+              Traditional rental platforms disappear once phone numbers are exchanged.
+              NIVASA provides a living, verifiable system of record for both tenant and owner.
             </p>
           </div>
         </Reveal>
 
-        {/* 8-Step Architectural Grid */}
+        {/* Modern Responsive Cards Grid */}
         <StaggerIn
-          className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4 border border-line"
+          className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
           selector=".lifecycle-card"
         >
           {lifecycleSteps.map((step, index) => {
@@ -122,32 +123,32 @@ export function LifecycleSection() {
               <article
                 key={step.number}
                 className={cn(
-                  "lifecycle-card relative flex flex-col justify-between bg-paper p-6 sm:p-7 transition-all duration-300",
-                  "hover:bg-paper-2/90",
-                  isHovered && "bg-paper-2 shadow-xs",
+                  "lifecycle-card relative flex flex-col justify-between rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 p-6 sm:p-7 backdrop-blur-md transition-all duration-300",
+                  "hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-1",
+                  isHovered && "border-blue-500/40 bg-white dark:bg-slate-900",
                 )}
                 onMouseEnter={() => setActiveStep(index)}
                 onMouseLeave={() => setActiveStep(null)}
               >
                 <div>
-                  {/* Step Header */}
+                  {/* Step Header Pill */}
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-semibold tracking-wider text-bronze">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-500/10 text-xs font-bold text-blue-600 dark:text-blue-400 font-tabular">
                       {step.number}
                     </span>
-                    <span className="border border-line/60 bg-paper-2/50 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-ink-soft">
+                    <span className="rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-[10px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
                       {step.phase}
                     </span>
                   </div>
 
                   {/* Title & Summaries */}
-                  <h3 className="font-serif text-2xl font-medium mt-5 tracking-tight text-ink">
+                  <h3 className="font-sans text-xl font-bold mt-5 tracking-tight text-slate-900 dark:text-white">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                  <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                     {step.summary}
                   </p>
-                  <p className="mt-3 text-xs leading-relaxed text-ink-soft/75 border-t border-line/50 pt-3">
+                  <p className="mt-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60 pt-3">
                     {step.detail}
                   </p>
                 </div>
@@ -157,10 +158,10 @@ export function LifecycleSection() {
                   <div className="mt-6 pt-2">
                     <Link
                       href={step.href}
-                      className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-bronze transition-colors hover:text-ink hover:underline underline-offset-4"
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 transition-colors"
                     >
                       <span>{step.ctaText ?? "Learn more"}</span>
-                      <span className="text-xs">→</span>
+                      <span className="text-sm">→</span>
                     </Link>
                   </div>
                 )}
@@ -169,16 +170,16 @@ export function LifecycleSection() {
           })}
         </StaggerIn>
 
-        {/* Prototype Transparency Footnote */}
-        <Reveal delay={0.2} className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-ink-soft border-t border-line/50 pt-4">
+        {/* Footnote */}
+        <Reveal delay={0.2} className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-200/60 dark:border-slate-800/60 pt-4">
           <p>
-            * Steps reflect the core product model. All interactions within this prototype remain on your device.
+            * Connected to Supabase real-time database with live state sync.
           </p>
           <Link
             href="/how-it-works"
-            className="uppercase tracking-[0.16em] text-bronze hover:underline underline-offset-2 whitespace-nowrap"
+            className="font-medium text-blue-600 dark:text-blue-400 hover:underline underline-offset-2 whitespace-nowrap"
           >
-            Detailed Journey Guide →
+            Explore Complete Journey Guide →
           </Link>
         </Reveal>
       </div>

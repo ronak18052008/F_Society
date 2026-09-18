@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
@@ -81,46 +82,74 @@ function RegisterForm() {
   }
 
   return (
-    <div className="mx-auto max-w-md px-5 py-16">
-      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-bronze">
-        Prototype registration
-      </p>
-      <h1 className="mt-3 font-serif text-5xl">Create account</h1>
-      {error && (
-        <div className="mt-4 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-600">
-          {error}
+    <div className="mx-auto max-w-md px-4 sm:px-6 py-16 sm:py-24">
+      <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-xl shadow-slate-200/40 dark:shadow-none">
+        {/* Header */}
+        <div className="text-center">
+          <div className="inline-flex items-center gap-2 rounded-full bg-teal-500/10 px-3 py-1 text-xs font-semibold text-teal-600 dark:text-teal-400">
+            NIVASA Network
+          </div>
+          <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Create Account
+          </h1>
+          <p className="mt-2 text-xs sm:text-sm text-slate-500">
+            Join India&apos;s direct tenancy platform with itemized ledgers and condition passports.
+          </p>
         </div>
-      )}
-      <form
-        className="mt-8 space-y-4"
-        onSubmit={(event) => {
-          event.preventDefault();
-          submit();
-        }}
-      >
-        <Field label="Full name" name="name" value={name} onChange={setName} error={errors.name} required />
-        <Field
-          label="Email"
-          name="email"
-          type="email"
-          value={email}
-          onChange={setEmail}
-          error={errors.email}
-          required
-        />
-        <Field
-          label="Password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={setPassword}
-          error={errors.password}
-          required
-        />
-        <Button type="submit" disabled={loading}>
-          {loading ? "Creating..." : "Continue"}
-        </Button>
-      </form>
+
+        {error && (
+          <div className="mt-6 rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-950/40 p-3.5 text-xs text-rose-600 dark:text-rose-300 font-medium">
+            {error}
+          </div>
+        )}
+
+        <form
+          className="mt-6 space-y-4"
+          onSubmit={(event) => {
+            event.preventDefault();
+            submit();
+          }}
+        >
+          <Field
+            label="Full Name"
+            name="name"
+            value={name}
+            onChange={setName}
+            error={errors.name}
+            required
+          />
+          <Field
+            label="Email Address"
+            name="email"
+            type="email"
+            value={email}
+            onChange={setEmail}
+            error={errors.email}
+            required
+          />
+          <Field
+            label="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={setPassword}
+            error={errors.password}
+            required
+          />
+          <div className="pt-2">
+            <Button type="submit" size="lg" className="w-full" disabled={loading}>
+              {loading ? "Creating Account..." : "Create Account &amp; Proceed"}
+            </Button>
+          </div>
+        </form>
+
+        <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-xs text-slate-500">
+          Already have an account?{" "}
+          <Link className="font-semibold text-blue-600 dark:text-blue-400 hover:underline" href="/login">
+            Sign in
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

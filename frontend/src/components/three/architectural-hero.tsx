@@ -139,15 +139,15 @@ function HeroFallback({
         <div className="flex items-center gap-2.5">
           <span
             className={`h-2 w-2 rounded-full ${
-              isAssembling ? "bg-bronze animate-ping" : "bg-bronze"
+              isAssembling ? "bg-blue-500 animate-ping" : "bg-blue-500"
             }`}
           />
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-bronze">
+          <p className="text-[11px] font-semibold tracking-wider text-blue-500 uppercase">
             {label}
           </p>
         </div>
-        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-soft/70 hidden sm:block">
-          Elevation Model · Nestora Residence
+        <p className="text-[11px] font-medium text-slate-400 hidden sm:block">
+          Spatial Habitat · NIVASA Architecture
         </p>
       </div>
     </div>
@@ -164,7 +164,7 @@ export function ArchitecturalHero() {
   const isMobile = useMediaQuery("(max-width: 767px)", false);
 
   if (!isClient) {
-    return <HeroFallback label="Initializing schematic..." isAssembling />;
+    return <HeroFallback label="Initializing spatial habitat..." isAssembling />;
   }
 
   if (isMobile || reduced) {
@@ -172,28 +172,28 @@ export function ArchitecturalHero() {
       <HeroFallback
         label={
           reduced
-            ? "Architectural elevation · reduced motion"
-            : "Plan elevation · 3D active on larger displays"
+            ? "NIVASA Elevation · Reduced motion"
+            : "Spatial Habitat · Active on desktop viewports"
         }
       />
     );
   }
 
   return (
-    <div className="relative h-full min-h-[500px] w-full bg-[#110f0d]">
+    <div className="relative h-full min-h-[500px] w-full bg-[#050a17]">
       <CanvasErrorBoundary
         fallback={
-          <HeroFallback label="Architectural schematic · WebGL hardware fallback" />
+          <HeroFallback label="Spatial schematic · WebGL hardware fallback" />
         }
       >
         <ArchitecturalCanvas reduced={reduced} />
       </CanvasErrorBoundary>
 
-      {/* Subtle overlay watermark badge */}
-      <div className="pointer-events-none absolute bottom-4 right-4 z-10 hidden items-center gap-2 border border-line/30 bg-[#110f0d]/80 px-3 py-1.5 backdrop-blur-xs sm:flex">
-        <span className="h-1.5 w-1.5 rounded-full bg-bronze" />
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-soft">
-          3D Residence · Interactive Parallax
+      {/* Modern floating badge */}
+      <div className="pointer-events-none absolute bottom-4 right-4 z-10 hidden items-center gap-2 rounded-full border border-white/10 bg-slate-950/75 px-3.5 py-1.5 backdrop-blur-md sm:flex shadow-lg">
+        <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
+        <span className="text-[11px] font-medium tracking-wide text-slate-300">
+          NIVASA Habitat · Spatial Orbit
         </span>
       </div>
     </div>

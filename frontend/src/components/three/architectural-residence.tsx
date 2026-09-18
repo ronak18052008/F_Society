@@ -20,65 +20,70 @@ export function ArchitecturalResidence({ reduced = false }: ResidenceProps) {
   const roof = useRef<THREE.Group>(null);
   const landscape = useRef<THREE.Group>(null);
 
-  // Materials palette - warm architectural modernism
+  // Materials palette - NIVASA Luminous Spatial Living
   const materials = useMemo(() => {
     return {
-      concreteBase: new THREE.MeshStandardMaterial({
-        color: "#24201b",
-        roughness: 0.85,
-        metalness: 0.1,
-      }),
-      concreteGround: new THREE.MeshStandardMaterial({
-        color: "#d9d2c5",
-        roughness: 0.45,
-        metalness: 0.05,
-      }),
-      concreteUpper: new THREE.MeshStandardMaterial({
-        color: "#ece6db",
-        roughness: 0.4,
-        metalness: 0.08,
-      }),
-      bronzeMetal: new THREE.MeshStandardMaterial({
-        color: "#9a7b4f",
-        roughness: 0.32,
-        metalness: 0.65,
-      }),
-      darkFascia: new THREE.MeshStandardMaterial({
-        color: "#1e1a16",
-        roughness: 0.5,
+      podium: new THREE.MeshStandardMaterial({
+        color: "#0c1527",
+        roughness: 0.35,
         metalness: 0.3,
       }),
-      woodDoor: new THREE.MeshStandardMaterial({
-        color: "#7e5635",
-        roughness: 0.55,
+      waterPool: new THREE.MeshStandardMaterial({
+        color: "#0284c7",
+        roughness: 0.08,
+        metalness: 0.8,
+        transparent: true,
+        opacity: 0.75,
+      }),
+      alabasterWall: new THREE.MeshStandardMaterial({
+        color: "#f8fafc",
+        roughness: 0.2,
         metalness: 0.05,
       }),
-      glass: new THREE.MeshStandardMaterial({
-        color: "#8aa2ad",
+      cobaltFrame: new THREE.MeshStandardMaterial({
+        color: "#2563eb",
+        roughness: 0.25,
+        metalness: 0.75,
+      }),
+      darkFascia: new THREE.MeshStandardMaterial({
+        color: "#0f172a",
+        roughness: 0.3,
+        metalness: 0.4,
+      }),
+      deckWood: new THREE.MeshStandardMaterial({
+        color: "#cbd5e1",
+        roughness: 0.5,
+        metalness: 0.1,
+      }),
+      crystalGlass: new THREE.MeshStandardMaterial({
+        color: "#7dd3fc",
         transparent: true,
-        opacity: 0.38,
-        roughness: 0.12,
-        metalness: 0.45,
+        opacity: 0.32,
+        roughness: 0.05,
+        metalness: 0.9,
       }),
       balconyGlass: new THREE.MeshStandardMaterial({
-        color: "#b0c4cf",
+        color: "#a5f3fc",
         transparent: true,
-        opacity: 0.28,
-        roughness: 0.1,
-        metalness: 0.5,
+        opacity: 0.25,
+        roughness: 0.08,
+        metalness: 0.6,
       }),
-      gardenGrass: new THREE.MeshStandardMaterial({
-        color: "#465544",
-        roughness: 0.9,
-        metalness: 0.02,
+      gardenFlora: new THREE.MeshStandardMaterial({
+        color: "#0d9488",
+        roughness: 0.6,
+        metalness: 0.1,
       }),
       paverStone: new THREE.MeshStandardMaterial({
-        color: "#cfc7b9",
-        roughness: 0.7,
-        metalness: 0.05,
+        color: "#e2e8f0",
+        roughness: 0.4,
+        metalness: 0.1,
       }),
-      warmGlow: new THREE.MeshBasicMaterial({
-        color: "#f5d398",
+      interiorGlow: new THREE.MeshBasicMaterial({
+        color: "#93c5fd",
+      }),
+      accentBeacon: new THREE.MeshBasicMaterial({
+        color: "#38bdf8",
       }),
     };
   }, []);
@@ -161,34 +166,40 @@ export function ArchitecturalResidence({ reduced = false }: ResidenceProps) {
             1. LANDSCAPE & FOUNDATION PODIUM
         ======================================================== */}
         <group ref={landscape}>
-          {/* Main architectural plinth / site slab */}
+          {/* Main architectural plinth / podium */}
           <mesh position={[0, 0.05, 0]} receiveShadow castShadow>
             <boxGeometry args={[6.8, 0.14, 5.2]} />
-            <primitive object={materials.concreteBase} attach="material" />
+            <primitive object={materials.podium} attach="material" />
           </mesh>
 
           {/* Stepped platform */}
           <mesh position={[-0.4, 0.18, 0.2]} receiveShadow castShadow>
             <boxGeometry args={[5.8, 0.12, 4.4]} />
-            <primitive object={materials.concreteBase} attach="material" />
+            <primitive object={materials.podium} attach="material" />
           </mesh>
 
-          {/* Entrance pathway stepping pavers */}
-          {[-0.6, -0.1, 0.4, 0.9].map((offsetZ, i) => (
+          {/* Water reflection basin */}
+          <mesh position={[1.4, 0.2, 0.8]} receiveShadow>
+            <boxGeometry args={[2.2, 0.08, 1.8]} />
+            <primitive object={materials.waterPool} attach="material" />
+          </mesh>
+
+          {/* Stepping pavers over reflection water */}
+          {[-0.5, 0.0, 0.5].map((offsetZ, i) => (
             <mesh
               key={`paver-${i}`}
-              position={[2.0 - i * 0.2, 0.25, 1.6 + offsetZ * 0.5]}
+              position={[1.4, 0.26, 0.8 + offsetZ * 0.9]}
               receiveShadow
             >
-              <boxGeometry args={[0.9, 0.04, 0.55]} />
+              <boxGeometry args={[0.8, 0.05, 0.55]} />
               <primitive object={materials.paverStone} attach="material" />
             </mesh>
           ))}
 
-          {/* Sunken garden planter / green court */}
+          {/* Modern minimalist flora planter */}
           <mesh position={[-2.1, 0.25, 0.8]} receiveShadow>
             <boxGeometry args={[1.5, 0.06, 2.4]} />
-            <primitive object={materials.gardenGrass} attach="material" />
+            <primitive object={materials.gardenFlora} attach="material" />
           </mesh>
 
           {/* Planter border curb */}
@@ -201,11 +212,11 @@ export function ArchitecturalResidence({ reduced = false }: ResidenceProps) {
             <primitive object={materials.darkFascia} attach="material" />
           </mesh>
 
-          {/* Architectural small cypress / garden tree columns */}
+          {/* Sculptural flora columns */}
           {[-2.5, -2.1, -1.7].map((x, i) => (
             <mesh key={`shrub-${i}`} position={[x, 0.52 + (i % 2) * 0.1, 1.2]} castShadow>
-              <cylinderGeometry args={[0.16, 0.22, 0.55 + (i % 2) * 0.15, 8]} />
-              <primitive object={materials.gardenGrass} attach="material" />
+              <cylinderGeometry args={[0.14, 0.18, 0.55 + (i % 2) * 0.15, 8]} />
+              <primitive object={materials.gardenFlora} attach="material" />
             </mesh>
           ))}
         </group>
@@ -217,30 +228,30 @@ export function ArchitecturalResidence({ reduced = false }: ResidenceProps) {
           {/* Main living room masonry back / side wall */}
           <mesh position={[-0.8, 1.05, -0.6]} castShadow receiveShadow>
             <boxGeometry args={[2.8, 1.6, 2.6]} />
-            <primitive object={materials.concreteGround} attach="material" />
+            <primitive object={materials.alabasterWall} attach="material" />
           </mesh>
 
-          {/* Kitchen / service utility volume */}
+          {/* Service utility volume */}
           <mesh position={[-1.9, 0.95, -0.5]} castShadow receiveShadow>
             <boxGeometry args={[0.9, 1.4, 2.0]} />
-            <primitive object={materials.concreteGround} attach="material" />
+            <primitive object={materials.alabasterWall} attach="material" />
           </mesh>
 
           {/* Recessed entrance foyer wall */}
           <mesh position={[1.1, 0.95, 0.4]} castShadow receiveShadow>
             <boxGeometry args={[1.4, 1.4, 0.12]} />
-            <primitive object={materials.concreteGround} attach="material" />
+            <primitive object={materials.alabasterWall} attach="material" />
           </mesh>
 
-          {/* Front entrance door with teak/bronze wood paneling */}
+          {/* Front entrance door with bleached wood paneling */}
           <mesh position={[0.7, 0.9, 0.47]} castShadow>
             <boxGeometry args={[0.65, 1.3, 0.06]} />
-            <primitive object={materials.woodDoor} attach="material" />
+            <primitive object={materials.deckWood} attach="material" />
           </mesh>
-          {/* Entrance door bronze handle */}
+          {/* Entrance door cobalt handle */}
           <mesh position={[0.45, 0.9, 0.52]}>
             <boxGeometry args={[0.03, 0.4, 0.03]} />
-            <primitive object={materials.bronzeMetal} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
 
           {/* Entrance canopy / porch slab */}
@@ -250,48 +261,47 @@ export function ArchitecturalResidence({ reduced = false }: ResidenceProps) {
           </mesh>
           <mesh position={[1.55, 0.95, 1.4]} castShadow>
             <cylinderGeometry args={[0.03, 0.03, 1.4, 8]} />
-            <primitive object={materials.bronzeMetal} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
 
-          {/* Large floor-to-ceiling corner glass living room */}
+          {/* Large floor-to-ceiling corner crystal glass */}
           <mesh position={[0.45, 1.0, 1.0]}>
             <boxGeometry args={[1.8, 1.45, 0.06]} />
-            <primitive object={materials.glass} attach="material" />
+            <primitive object={materials.crystalGlass} attach="material" />
           </mesh>
           <mesh position={[1.32, 1.0, 0.0]}>
             <boxGeometry args={[0.06, 1.45, 1.95]} />
-            <primitive object={materials.glass} attach="material" />
+            <primitive object={materials.crystalGlass} attach="material" />
           </mesh>
 
-          {/* Window mullions (dark bronze frames) */}
+          {/* Window mullions (sleek cobalt frames) */}
           <mesh position={[0.45, 1.7, 1.0]}>
             <boxGeometry args={[1.86, 0.05, 0.08]} />
-            <primitive object={materials.darkFascia} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
           <mesh position={[0.45, 0.28, 1.0]}>
             <boxGeometry args={[1.86, 0.05, 0.08]} />
-            <primitive object={materials.darkFascia} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
           <mesh position={[-0.45, 1.0, 1.0]}>
             <boxGeometry args={[0.05, 1.45, 0.08]} />
-            <primitive object={materials.darkFascia} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
           <mesh position={[0.45, 1.0, 1.0]}>
             <boxGeometry args={[0.04, 1.45, 0.08]} />
-            <primitive object={materials.darkFascia} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
 
-          {/* Warm interior glowing light mesh (visible through glass) */}
+          {/* Luminous interior glow */}
           <mesh position={[0.3, 0.9, 0.2]}>
             <boxGeometry args={[0.6, 0.6, 0.6]} />
-            <primitive object={materials.warmGlow} attach="material" />
+            <primitive object={materials.interiorGlow} attach="material" />
           </mesh>
-          {/* Real point light for interior ambient radiation */}
           <pointLight
             position={[0.2, 1.1, 0.3]}
-            intensity={0.9}
-            distance={4.5}
-            color="#ffdfa0"
+            intensity={1.2}
+            distance={5.0}
+            color="#60a5fa"
           />
         </group>
 
@@ -299,35 +309,35 @@ export function ArchitecturalResidence({ reduced = false }: ResidenceProps) {
             3. CANTILEVERED UPPER FLOOR & BALCONY
         ======================================================== */}
         <group ref={upperFloor}>
-          {/* Main cantilever floor slab (dramatic architectural projection) */}
+          {/* Main cantilever floor slab */}
           <mesh position={[0.3, 1.82, 0.1]} castShadow receiveShadow>
             <boxGeometry args={[4.2, 0.14, 3.4]} />
-            <primitive object={materials.concreteUpper} attach="material" />
+            <primitive object={materials.alabasterWall} attach="material" />
           </mesh>
 
-          {/* Upper master suite / primary living box */}
+          {/* Upper master suite living box */}
           <mesh position={[-0.5, 2.65, -0.2]} castShadow receiveShadow>
             <boxGeometry args={[2.8, 1.5, 2.6]} />
-            <primitive object={materials.concreteUpper} attach="material" />
+            <primitive object={materials.alabasterWall} attach="material" />
           </mesh>
 
           {/* Cantilevered bedroom wing */}
           <mesh position={[1.2, 2.65, -0.4]} castShadow receiveShadow>
             <boxGeometry args={[1.8, 1.5, 2.0]} />
-            <primitive object={materials.concreteUpper} attach="material" />
+            <primitive object={materials.alabasterWall} attach="material" />
           </mesh>
 
           {/* Ribbon window glazing */}
           <mesh position={[1.1, 2.65, 0.62]}>
             <boxGeometry args={[1.5, 1.0, 0.05]} />
-            <primitive object={materials.glass} attach="material" />
+            <primitive object={materials.crystalGlass} attach="material" />
           </mesh>
 
-          {/* Vertical sun louvers / brise-soleil slats in bronze */}
+          {/* Vertical sun louvers / brise-soleil slats in cobalt */}
           {[-0.5, -0.2, 0.1, 0.4].map((lx, i) => (
             <mesh key={`louver-${i}`} position={[1.0 + lx, 2.65, 0.68]} castShadow>
               <boxGeometry args={[0.04, 1.25, 0.15]} />
-              <primitive object={materials.bronzeMetal} attach="material" />
+              <primitive object={materials.cobaltFrame} attach="material" />
             </mesh>
           ))}
 
@@ -346,14 +356,14 @@ export function ArchitecturalResidence({ reduced = false }: ResidenceProps) {
             <boxGeometry args={[0.04, 0.65, 1.08]} />
             <primitive object={materials.balconyGlass} attach="material" />
           </mesh>
-          {/* Balcony bronze handrail cap */}
+          {/* Balcony cobalt handrail cap */}
           <mesh position={[0.2, 2.56, 1.88]}>
             <boxGeometry args={[2.44, 0.04, 0.06]} />
-            <primitive object={materials.bronzeMetal} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
           <mesh position={[-0.98, 2.56, 1.35]}>
             <boxGeometry args={[0.06, 0.04, 1.12]} />
-            <primitive object={materials.bronzeMetal} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
         </group>
 
@@ -367,19 +377,34 @@ export function ArchitecturalResidence({ reduced = false }: ResidenceProps) {
             <primitive object={materials.darkFascia} attach="material" />
           </mesh>
 
-          {/* Rooftop pergola / shade slats over terrace */}
+          {/* Rooftop pergola / shade slats over terrace in cobalt */}
           {[-0.6, -0.2, 0.2, 0.6, 1.0].map((rx, i) => (
             <mesh key={`pergola-${i}`} position={[rx, 3.56, 0.9]} castShadow>
               <boxGeometry args={[0.04, 0.08, 1.4]} />
-              <primitive object={materials.bronzeMetal} attach="material" />
+              <primitive object={materials.cobaltFrame} attach="material" />
             </mesh>
           ))}
 
           {/* Sleek roof parapet cap */}
           <mesh position={[0.3, 3.53, -0.1]}>
             <boxGeometry args={[4.42, 0.03, 3.22]} />
-            <primitive object={materials.bronzeMetal} attach="material" />
+            <primitive object={materials.cobaltFrame} attach="material" />
           </mesh>
+        </group>
+
+        {/* Luminous ambient floating particles */}
+        <group position={[0, 1.8, 0]}>
+          {Array.from({ length: 16 }).map((_, i) => {
+            const angle = (i / 16) * Math.PI * 2;
+            const radius = 3.2 + (i % 3) * 0.4;
+            const y = Math.sin(i * 1.5) * 1.2;
+            return (
+              <mesh key={`part-${i}`} position={[Math.cos(angle) * radius, y, Math.sin(angle) * radius]}>
+                <sphereGeometry args={[0.028, 8, 8]} />
+                <primitive object={materials.accentBeacon} attach="material" />
+              </mesh>
+            );
+          })}
         </group>
       </group>
     </group>

@@ -46,23 +46,27 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur-md transition-colors duration-300">
-      <div className="wrap flex items-center justify-between py-3.5 sm:py-4">
+    <header className="sticky top-3.5 z-50 px-4 sm:px-6 transition-all duration-300">
+      <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 px-4 sm:px-6 py-2.5 backdrop-blur-xl shadow-lg shadow-black/[0.03] dark:shadow-black/[0.4]">
+        {/* NIVASA Brand Symbol & Wordmark */}
         <Link
           href="/"
-          className="group flex items-baseline gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+          className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-full"
         >
-          <span className="font-serif text-2xl tracking-tight transition-colors group-hover:text-bronze">
-            Nestora
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-teal-400 text-white shadow-md shadow-blue-500/25 transition-transform duration-200 group-hover:scale-105">
+            <span className="font-sans font-black text-sm tracking-tight">N</span>
+          </div>
+          <span className="font-sans text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+            NIVASA
           </span>
-          <span className="inline-flex items-center gap-1.5 border border-line bg-paper-2/60 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-ink-soft">
-            <span className="h-1.5 w-1.5 rounded-full bg-bronze animate-pulse" />
-            Prototype
+          <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-600 dark:text-blue-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+            Live
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-7 text-sm lg:gap-8 md:flex" aria-label="Primary">
+        {/* Desktop Navigation Pills */}
+        <nav className="hidden items-center gap-1.5 md:flex" aria-label="Primary">
           {publicLinks.map((link) => {
             const active =
               link.href === "/homes"
@@ -74,99 +78,103 @@ export function Navbar() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative py-1 font-sans text-sm tracking-wide transition-colors duration-200 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze",
-                  active ? "text-ink font-medium" : "text-ink-soft",
+                  "rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200",
+                  active
+                    ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60",
                 )}
               >
                 {link.label}
-                <span
-                  className={cn(
-                    "absolute inset-x-0 -bottom-1 h-0.5 bg-bronze transition-all duration-300",
-                    active ? "opacity-100 scale-x-100" : "opacity-0 scale-x-50 hover:opacity-40",
-                  )}
-                />
               </Link>
             );
           })}
         </nav>
 
-        {/* Right Actions & Theme Switcher */}
-        <div className="hidden items-center gap-3 md:flex">
+        {/* Right Actions: Theme Toggle & Account / Auth */}
+        <div className="hidden items-center gap-2.5 md:flex">
           <button
             type="button"
             onClick={toggle}
-            className="flex items-center gap-1.5 border border-line bg-paper-2/40 px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-soft transition-all duration-200 hover:border-ink/40 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100/60 dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 transition-all duration-200 hover:scale-105 hover:text-slate-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
             {theme === "dark" ? (
-              <>
-                <svg className="h-3 w-3 text-bronze" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="5" />
-                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-                </svg>
-                <span>Light</span>
-              </>
+              <svg className="h-4 w-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="5" />
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+              </svg>
             ) : (
-              <>
-                <svg className="h-3 w-3 text-bronze" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
-                <span>Dark</span>
-              </>
+              <svg className="h-4 w-4 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
             )}
           </button>
 
           {user ? (
-            <>
-              <Button href={appHome} variant="ghost" size="sm">
-                Workspace
-              </Button>
-              <Button onClick={handleSignOut} variant="line" size="sm">
+            <div className="flex items-center gap-2">
+              <Link
+                href={appHome}
+                className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 transition-colors"
+              >
+                <span className="capitalize">{user.role} Workspace</span>
+              </Link>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="rounded-full px-3 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors cursor-pointer"
+              >
                 Sign out
-              </Button>
-            </>
+              </button>
+            </div>
           ) : (
-            <>
-              <Button href="/login" variant="ghost" size="sm">
+            <div className="flex items-center gap-2">
+              <Link
+                href="/login"
+                className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+              >
                 Sign in
-              </Button>
+              </Link>
               <Button href="/register" size="sm">
                 Get started
               </Button>
-            </>
+            </div>
           )}
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          type="button"
-          className="flex items-center gap-2 border border-line bg-paper-2/50 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:bg-paper-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span className="inline-block">{open ? "Close" : "Menu"}</span>
-          <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {open ? (
-              <path d="M18 6L6 18M6 6l12 12" />
-            ) : (
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        {/* Mobile Hamburger Trigger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            onClick={toggle}
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+          <button
+            type="button"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-200"
+            aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {open ? (
+                <path d="M18 6L6 18M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer */}
       {open ? (
-        <div
-          id="mobile-nav"
-          className="border-t border-line bg-paper/98 px-6 py-6 backdrop-blur-lg md:hidden animate-in fade-in slide-in-from-top-2 duration-200"
-        >
+        <div className="mx-auto mt-2 max-w-6xl rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-950/95 p-6 backdrop-blur-2xl shadow-xl md:hidden animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="space-y-4">
-            <p className="kicker text-[10px]">Navigation</p>
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               {publicLinks.map((link) => {
                 const active = pathname.startsWith(link.href);
                 return (
@@ -174,10 +182,10 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "block border-l-2 py-1.5 pl-3 text-base font-medium transition-colors",
+                      "rounded-xl px-4 py-2.5 text-sm font-medium transition-colors",
                       active
-                        ? "border-bronze text-ink bg-paper-2/40"
-                        : "border-transparent text-ink-soft hover:text-ink hover:border-line",
+                        ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900",
                     )}
                     onClick={() => setOpen(false)}
                   >
@@ -187,24 +195,11 @@ export function Navbar() {
               })}
             </div>
 
-            <div className="pt-4 border-t border-line">
-              <button
-                type="button"
-                className="flex w-full items-center justify-between py-2 font-mono text-xs uppercase tracking-[0.14em] text-ink-soft hover:text-ink"
-                onClick={toggle}
-              >
-                <span>Theme Mode</span>
-                <span className="text-bronze font-medium">
-                  {theme === "dark" ? "Dark (Switch to Light)" : "Light (Switch to Dark)"}
-                </span>
-              </button>
-            </div>
-
-            <div className="pt-3 border-t border-line flex flex-col gap-2.5">
+            <div className="border-t border-slate-200/60 dark:border-slate-800/60 pt-4 flex flex-col gap-2.5">
               {user ? (
                 <>
-                  <Button href={appHome} variant="line" fullWidth onClick={() => setOpen(false)}>
-                    Go to Workspace
+                  <Button href={appHome} fullWidth onClick={() => setOpen(false)}>
+                    Open Workspace ({user.role})
                   </Button>
                   <Button variant="ghost" fullWidth onClick={handleSignOut}>
                     Sign out
@@ -212,7 +207,7 @@ export function Navbar() {
                 </>
               ) : (
                 <>
-                  <Button href="/login" variant="line" fullWidth onClick={() => setOpen(false)}>
+                  <Button href="/login" variant="secondary" fullWidth onClick={() => setOpen(false)}>
                     Sign in
                   </Button>
                   <Button href="/register" fullWidth onClick={() => setOpen(false)}>

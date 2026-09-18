@@ -75,34 +75,34 @@ export function ArchitecturalCanvas({
       }}
       shadows
     >
-      <color attach="background" args={["#110f0d"]} />
-      <fog attach="fog" args={["#110f0d", 12, 26]} />
+      <color attach="background" args={["#050a17"]} />
+      <fog attach="fog" args={["#050a17", 13, 28]} />
 
       {/* Atmospheric & Directional Lighting */}
-      <ambientLight intensity={0.42} color="#f4efe6" />
+      <ambientLight intensity={0.55} color="#e0f2fe" />
 
-      {/* Primary Warm Sun */}
+      {/* Primary Pure Sunlight */}
       <directionalLight
         castShadow
         position={[7, 10, 5]}
-        intensity={1.55}
-        color="#fff5e6"
+        intensity={1.7}
+        color="#ffffff"
         shadow-mapSize={[1024, 1024]}
         shadow-bias={-0.0001}
       />
 
-      {/* Cool Sky Fill */}
+      {/* Azure Sky Fill */}
       <directionalLight
-        position={[-6, 4, -4]}
-        intensity={0.35}
-        color="#92a8b8"
+        position={[-6, 5, -4]}
+        intensity={0.45}
+        color="#38bdf8"
       />
 
-      {/* Ground Warm Bounce */}
+      {/* Subtle Ground Water Bounce */}
       <directionalLight
         position={[0, -4, 4]}
-        intensity={0.2}
-        color="#c8a876"
+        intensity={0.25}
+        color="#0284c7"
       />
 
       {/* The Procedural Modern Residence */}

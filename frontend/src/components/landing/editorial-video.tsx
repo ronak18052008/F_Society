@@ -29,8 +29,8 @@ interface EditorialVideoProps {
 export function EditorialVideo({
   src, // e.g. "/videos/nestora-walkthrough.mp4"
   poster = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85",
-  title = "Inside the Nestora Experience",
-  subtitle = "Architectural walkthrough & rental verification workflow",
+  title = "Inside the NIVASA Living Experience",
+  subtitle = "Spatial walkthrough & verified tenancy documentation",
   caption = "A walkthrough of mutual check-in documentation, unbundled cost calculations, and shared tenancy agreements.",
 }: EditorialVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -62,25 +62,27 @@ export function EditorialVideo({
   };
 
   return (
-    <section className="section-lg border-t border-line bg-paper text-ink">
+    <section className="section">
       <div className="wrap">
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div>
-              <p className="kicker-bronze">Visual Walkthrough</p>
-              <h2 className="display mt-3 text-3xl sm:text-4xl md:text-5xl tracking-tight">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
+                Visual Experience
+              </span>
+              <h2 className="display mt-3 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
                 {title}
               </h2>
             </div>
-            <p className="lede text-sm sm:text-base text-ink-soft max-w-md">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-md">
               {subtitle}
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="relative aspect-video w-full overflow-hidden border border-line bg-[#12100d] shadow-2xl group">
-            {/* Video element (renders only if valid source provided & no error) */}
+          <div className="relative aspect-video w-full overflow-hidden rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-[#060c18] shadow-2xl group">
+            {/* Video element */}
             {src && !hasError ? (
               <video
                 ref={videoRef}
@@ -98,9 +100,9 @@ export function EditorialVideo({
               <div className="relative h-full w-full">
                 <Image
                   src={poster}
-                  alt="Architectural modern residential home"
+                  alt="Modern residential living architecture"
                   fill
-                  className="object-cover opacity-80 filter brightness-90 transition-transform duration-700 group-hover:scale-102"
+                  className="object-cover opacity-85 filter brightness-95 transition-transform duration-700 group-hover:scale-102"
                   sizes="(max-width: 1200px) 100vw, 1200px"
                   unoptimized
                 />
@@ -111,16 +113,16 @@ export function EditorialVideo({
             {/* Play Overlay / Action Controls */}
             <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10 pointer-events-none">
               <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-2 border border-white/20 bg-black/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/90 backdrop-blur-md">
-                  <span className="h-1.5 w-1.5 rounded-full bg-bronze" />
-                  {src && !hasError ? "Walkthrough Film" : "Architectural Showcase · Demo Preview"}
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3.5 py-1 text-xs font-semibold text-white/90 backdrop-blur-md">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
+                  {src && !hasError ? "Walkthrough Film" : "Spatial Showcase · Verified Preview"}
                 </span>
 
                 {src && !hasError && isPlaying && (
                   <button
                     type="button"
                     onClick={toggleMute}
-                    className="pointer-events-auto border border-white/20 bg-black/60 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white hover:bg-black/80 backdrop-blur-md"
+                    className="pointer-events-auto rounded-full border border-white/20 bg-black/60 px-3 py-1 text-xs font-medium text-white hover:bg-black/80 backdrop-blur-md cursor-pointer"
                   >
                     {isMuted ? "Unmute" : "Mute"}
                   </button>
@@ -133,32 +135,30 @@ export function EditorialVideo({
                   type="button"
                   onClick={togglePlay}
                   className={cn(
-                    "pointer-events-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-white/40 bg-black/50 text-white backdrop-blur-md transition-all duration-300",
-                    "hover:scale-110 hover:border-bronze hover:bg-black/75 hover:text-bronze focus-visible:ring-2 focus-visible:ring-bronze focus-visible:outline-none",
+                    "pointer-events-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-white/40 bg-blue-600/80 text-white backdrop-blur-md shadow-xl transition-all duration-300",
+                    "hover:scale-110 hover:bg-blue-600 hover:shadow-blue-500/30 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none cursor-pointer",
                     isPlaying && "opacity-0 group-hover:opacity-100",
                   )}
                   aria-label={isPlaying ? "Pause video walkthrough" : "Play video walkthrough"}
                 >
                   {isPlaying ? (
-                    <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                      <rect x="6" y="4" width="4" height="16" />
-                      <rect x="14" y="4" width="4" height="16" />
+                    <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                      <rect x="6" y="4" width="4" height="16" rx="1" />
+                      <rect x="14" y="4" width="4" height="16" rx="1" />
                     </svg>
                   ) : (
-                    <svg className="h-7 w-7 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <polygon points="5,3 19,12 5,21" />
+                    <svg className="h-7 w-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
                     </svg>
                   )}
                 </button>
               </div>
 
-              {/* Bottom Caption Bar */}
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-white/90">
-                <p className="max-w-xl text-xs sm:text-sm font-sans tracking-wide drop-shadow-sm">
-                  {caption}
-                </p>
-                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">
-                  {src && !hasError ? "4K Architectural Reel" : "Local asset placeholder: /public/videos/"}
+              {/* Bottom Caption */}
+              <div className="flex items-end justify-between text-xs text-white/80">
+                <p className="max-w-md line-clamp-1">{caption}</p>
+                <span className="rounded-full bg-black/50 px-2.5 py-0.5 backdrop-blur-sm text-[11px]">
+                  NIVASA Cinematic
                 </span>
               </div>
             </div>

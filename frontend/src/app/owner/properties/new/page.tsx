@@ -107,52 +107,133 @@ export default function AddPropertyPage() {
   };
 
   return (
-    <DashboardShell title="Add property">
-      <p className="mb-8 max-w-xl text-sm text-ink-soft">
-        Publish an architectural property listing with real photo upload and tenant discovery.
-      </p>
-      {error && (
-        <div className="mb-6 max-w-xl rounded border border-red-200 bg-red-50 p-3 text-sm text-red-600">
-          {error}
-        </div>
-      )}
-      <form className="max-w-xl space-y-4" onSubmit={handleSubmit}>
-        <Field label="Title" name="title" value={title} onChange={setTitle} error={error} required />
-        <Field label="Locality / Neighborhood" name="locality" value={locality} onChange={setLocality} placeholder="e.g. Bandra West, Indiranagar" />
-        <Field label="City" name="city" value={city} onChange={setCity} required />
-        <Field label="Monthly rent (₹)" name="rent" value={rent} onChange={setRent} required />
-        <Field label="Security deposit (₹)" name="deposit" value={deposit} onChange={setDeposit} />
-        <Field label="Amenities (comma separated)" name="amenities" value={amenities} onChange={setAmenities} />
-        <Field
-          label="Availability"
-          name="availability"
-          type="date"
-          value={availability}
-          onChange={setAvailability}
-        />
-        <SelectField
-          label="Furnishing"
-          value={furnishing}
-          onChange={setFurnishing}
-          options={[
-            { value: "furnished", label: "Furnished" },
-            { value: "semi-furnished", label: "Semi-furnished" },
-            { value: "unfurnished", label: "Unfurnished" },
-          ]}
-        />
-        <TextArea label="Tenant requirements & details" name="reqs" value={reqs} onChange={setReqs} />
-        <UploadField
-          label="Photographs"
-          accept="image/*"
-          hint="Uploaded to secure media storage."
-          uploading={uploadingImage}
-          previewUrl={imageUrl || undefined}
-          onSelect={handleImageSelect}
-        />
-        <Button type="submit" disabled={submitting || uploadingImage}>
-          {submitting ? "Publishing listing..." : "Publish property listing"}
-        </Button>
-      </form>
+    <DashboardShell
+      title="List New Residence"
+      subtitle="Publish a verified architectural residence to the NIVASA network with itemized cost ledgers and photo verification."
+    >
+      <div className="max-w-2xl rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xl shadow-slate-200/40 dark:shadow-none">
+        {error && (
+          <div className="mb-6 rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-950/40 p-3.5 text-xs text-rose-600 dark:text-rose-300 font-medium">
+            {error}
+          </div>
+        )}
+
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          {/* Section 1: Overview */}
+          <div>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">1. Residence Identity</h3>
+            <div className="space-y-4">
+              <Field
+                label="Residence Title"
+                name="title"
+                value={title}
+                onChange={setTitle}
+                placeholder="e.g. Modern Courtyard Apartment, Sunlit Terrace Penthouse"
+                error={error}
+                required
+              />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field
+                  label="Locality / Neighborhood"
+                  name="locality"
+                  value={locality}
+                  onChange={setLocality}
+                  placeholder="e.g. Navrangpura, Indiranagar"
+                  required
+                />
+                <Field
+                  label="City Hub"
+                  name="city"
+                  value={city}
+                  onChange={setCity}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2: Financial Terms */}
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">2. Financial Terms (RentTruth™)</h3>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field
+                label="Monthly Base Rent (₹)"
+                name="rent"
+                value={rent}
+                onChange={setRent}
+                placeholder="32000"
+                required
+              />
+              <Field
+                label="Refundable Security Deposit (₹)"
+                name="deposit"
+                value={deposit}
+                onChange={setDeposit}
+                placeholder="64000"
+              />
+            </div>
+          </div>
+
+          {/* Section 3: Specs & Amenities */}
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">3. Specifications &amp; Move-in</h3>
+            <div className="grid gap-4 sm:grid-cols-2 mb-4">
+              <SelectField
+                label="Furnishing Tier"
+                value={furnishing}
+                onChange={setFurnishing}
+                options={[
+                  { value: "furnished", label: "Fully Furnished" },
+                  { value: "semi-furnished", label: "Semi-Furnished" },
+                  { value: "unfurnished", label: "Unfurnished Canvas" },
+                ]}
+              />
+              <Field
+                label="Availability Date"
+                name="availability"
+                type="date"
+                value={availability}
+                onChange={setAvailability}
+              />
+            </div>
+            <Field
+              label="Amenities (comma separated)"
+              name="amenities"
+              value={amenities}
+              onChange={setAmenities}
+              placeholder="Lift, Covered Parking, 24/7 Security, Balcony"
+            />
+            <div className="mt-4">
+              <TextArea
+                label="Description &amp; Resident Preferences"
+                name="reqs"
+                value={reqs}
+                onChange={setReqs}
+                placeholder="Describe lighting, cross-ventilation, transit proximity..."
+              />
+            </div>
+          </div>
+
+          {/* Section 4: Imagery */}
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">4. Architectural Photography</h3>
+            <UploadField
+              label="Upload Primary Showcase Photograph"
+              accept="image/*"
+              hint="Uploaded to public CDN storage for horizon card rendering."
+              uploading={uploadingImage}
+              previewUrl={imageUrl || undefined}
+              onSelect={handleImageSelect}
+            />
+          </div>
+
+          <div className="pt-4">
+            <Button type="submit" size="lg" className="w-full" disabled={submitting || uploadingImage}>
+              {submitting ? "Publishing Residence..." : "Publish Verified Residence Listing"}
+            </Button>
+          </div>
+        </form>
+      </div>
     </DashboardShell>
   );
 }

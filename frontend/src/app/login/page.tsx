@@ -79,62 +79,73 @@ export default function LoginPage() {
 
   return (
     <SiteShell>
-      <div className="mx-auto max-w-md px-5 py-16">
-        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-bronze">
-          Prototype auth
-        </p>
-        <h1 className="mt-3 font-serif text-5xl">Sign in</h1>
-        <p className="mt-3 text-sm text-ink-soft">
-          Credentials are not checked against a database. This creates a local
-          session in your browser.
-        </p>
-        {error && (
-          <div className="mt-4 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-600">
-            {error}
+      <div className="mx-auto max-w-md px-4 sm:px-6 py-16 sm:py-24">
+        <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-xl shadow-slate-200/40 dark:shadow-none">
+          {/* Header */}
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
+              NIVASA Identity
+            </div>
+            <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Welcome Back
+            </h1>
+            <p className="mt-2 text-xs sm:text-sm text-slate-500">
+              Sign in to manage your tenancy workspace, RentTruth™ ledger, and condition passports.
+            </p>
           </div>
-        )}
-        <form
-          className="mt-8 space-y-4"
-          onSubmit={(event) => {
-            event.preventDefault();
-            submit();
-          }}
-        >
-          <Field
-            label="Email"
-            name="email"
-            type="email"
-            value={email}
-            onChange={setEmail}
-            error={errors.email}
-            required
-          />
-          <div>
+
+          {error && (
+            <div className="mt-6 rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-950/40 p-3.5 text-xs text-rose-600 dark:text-rose-300 font-medium">
+              {error}
+            </div>
+          )}
+
+          <form
+            className="mt-6 space-y-4"
+            onSubmit={(event) => {
+              event.preventDefault();
+              submit();
+            }}
+          >
             <Field
-              label="Password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={setPassword}
-              error={errors.password}
+              label="Email Address"
+              name="email"
+              type="email"
+              value={email}
+              onChange={setEmail}
+              error={errors.email}
               required
             />
-            <div className="mt-1 text-right">
-              <Link href="/forgot-password" className="text-xs text-bronze hover:underline">
-                Forgot password?
-              </Link>
+            <div>
+              <Field
+                label="Password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={setPassword}
+                error={errors.password}
+                required
+              />
+              <div className="mt-1.5 text-right">
+                <Link href="/forgot-password" className="text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  Forgot password?
+                </Link>
+              </div>
             </div>
+            <div className="pt-2">
+              <Button type="submit" size="lg" className="w-full" disabled={loading}>
+                {loading ? "Authenticating..." : "Sign In to Workspace"}
+              </Button>
+            </div>
+          </form>
+
+          <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-xs text-slate-500">
+            Don&apos;t have an account yet?{" "}
+            <Link className="font-semibold text-blue-600 dark:text-blue-400 hover:underline" href="/register">
+              Create a free account
+            </Link>
           </div>
-          <Button type="submit" disabled={loading}>
-            {loading ? "Signing in..." : "Continue"}
-          </Button>
-        </form>
-        <p className="mt-6 text-sm text-ink-soft">
-          New here?{" "}
-          <Link className="text-bronze" href="/register">
-            Create an account
-          </Link>
-        </p>
+        </div>
       </div>
     </SiteShell>
   );

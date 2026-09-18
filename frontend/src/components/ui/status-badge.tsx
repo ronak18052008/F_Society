@@ -10,14 +10,24 @@ export function StatusBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em]",
-        tone === "neutral" && "border-line text-ink-soft",
-        tone === "ok" && "border-ok/40 text-ok",
-        tone === "warn" && "border-bronze/50 text-bronze",
-        tone === "danger" && "border-danger/40 text-danger",
-        tone === "demo" && "border-line text-ink-soft",
+        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium backdrop-blur-md transition-colors",
+        tone === "neutral" && "bg-slate-500/10 text-slate-700 dark:text-slate-300 border border-slate-500/20",
+        tone === "ok" && "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20",
+        tone === "warn" && "bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20",
+        tone === "danger" && "bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20",
+        tone === "demo" && "bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20",
       )}
     >
+      <span
+        className={cn(
+          "h-1.5 w-1.5 rounded-full",
+          tone === "neutral" && "bg-slate-400",
+          tone === "ok" && "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]",
+          tone === "warn" && "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]",
+          tone === "danger" && "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.6)]",
+          tone === "demo" && "bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]",
+        )}
+      />
       {children}
     </span>
   );
