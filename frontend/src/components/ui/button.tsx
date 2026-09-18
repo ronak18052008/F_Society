@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type ButtonVariant = "primary" | "secondary" | "line" | "ghost" | "danger";
+type ButtonVariant = "primary" | "secondary" | "line" | "outline" | "ghost" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
 
 type Props = {
@@ -37,21 +37,23 @@ export function Button({
 
   const variantStyles = {
     primary:
-      "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/20 hover:from-blue-500 hover:to-indigo-500 hover:shadow-lg hover:shadow-blue-500/25 active:scale-[0.98]",
+      "bg-gradient-to-r from-[#284431] to-[#3b6045] text-[#fbf9f4] shadow-md shadow-[#284431]/20 hover:from-[#1e3526] hover:to-[#31513a] hover:shadow-lg hover:shadow-[#284431]/25 active:scale-[0.98]",
     secondary:
-      "bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 active:scale-[0.98]",
+      "bg-[#f3efe6] text-[#1a281f] hover:bg-[#eae4d7] border border-[#e3dfd5] dark:bg-[#1d2d22] dark:text-[#f5f9f6] dark:border-[#2a3f31] dark:hover:bg-[#24362a] active:scale-[0.98]",
     line:
-      "border border-slate-200 bg-white/70 backdrop-blur-md text-slate-800 hover:border-blue-500/40 hover:bg-white dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-blue-400/40 dark:hover:bg-slate-900 active:scale-[0.98]",
+      "border border-[#d5cfbe] bg-white/80 backdrop-blur-md text-[#1a281f] hover:border-[#6e9271] hover:bg-[#fbf9f4] hover:text-[#284431] dark:border-[#2a3f31] dark:bg-[#152219]/80 dark:text-[#f5f9f6] dark:hover:border-[#8fb893] active:scale-[0.98]",
+    outline:
+      "border border-[#d5cfbe] bg-white/80 backdrop-blur-md text-[#1a281f] hover:border-[#6e9271] hover:bg-[#fbf9f4] hover:text-[#284431] dark:border-[#2a3f31] dark:bg-[#152219]/80 dark:text-[#f5f9f6] dark:hover:border-[#8fb893] active:scale-[0.98]",
     ghost:
-      "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/80 dark:hover:text-white",
+      "bg-transparent text-[#4a5e50] hover:bg-[#f3efe6] hover:text-[#1a281f] dark:text-[#a5b8aa] dark:hover:bg-[#1d2d22] dark:hover:text-[#f5f9f6]",
     danger:
-      "bg-rose-600 text-white shadow-md shadow-rose-500/20 hover:bg-rose-500 hover:shadow-lg hover:shadow-rose-500/25 active:scale-[0.98]",
+      "bg-[#c24b4b] text-white shadow-md shadow-[#c24b4b]/20 hover:bg-[#af3f3f] hover:shadow-lg active:scale-[0.98]",
   }[variant];
 
   const styles = cn(
     "inline-flex items-center justify-center gap-2 font-sans select-none rounded-full cursor-pointer",
     "transition-all duration-200 ease-out",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6e9271] focus-visible:ring-offset-2",
     "disabled:pointer-events-none disabled:opacity-40",
     sizeStyles,
     variantStyles,

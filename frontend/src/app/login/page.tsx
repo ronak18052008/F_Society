@@ -80,16 +80,16 @@ export default function LoginPage() {
   return (
     <SiteShell>
       <div className="mx-auto max-w-md px-4 sm:px-6 py-16 sm:py-24">
-        <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-xl shadow-slate-200/40 dark:shadow-none">
+        <div className="rounded-3xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-8 sm:p-10 shadow-xl shadow-warm-300/30 dark:shadow-none">
           {/* Header */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
-              NIVASA Identity
+            <div className="inline-flex items-center gap-2 rounded-full bg-pista/15 px-3 py-1 text-xs font-semibold text-forest dark:text-pista border border-pista/30">
+              F_Society Identity
             </div>
-            <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+            <h1 className="mt-4 text-3xl sm:text-4xl font-serif font-bold tracking-tight text-ink dark:text-cream">
               Welcome Back
             </h1>
-            <p className="mt-2 text-xs sm:text-sm text-slate-500">
+            <p className="mt-2 text-xs sm:text-sm text-ink-muted">
               Sign in to manage your tenancy workspace, RentTruth™ ledger, and condition passports.
             </p>
           </div>
@@ -127,7 +127,7 @@ export default function LoginPage() {
                 required
               />
               <div className="mt-1.5 text-right">
-                <Link href="/forgot-password" className="text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                <Link href="/forgot-password" className="text-xs text-forest dark:text-pista font-semibold hover:underline">
                   Forgot password?
                 </Link>
               </div>
@@ -139,9 +139,9 @@ export default function LoginPage() {
             </div>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-xs text-slate-500">
+          <div className="mt-6 pt-6 border-t border-warm-200/60 dark:border-forest/30 text-center text-xs text-ink-muted">
             Don&apos;t have an account yet?{" "}
-            <Link className="font-semibold text-blue-600 dark:text-blue-400 hover:underline" href="/register">
+            <Link className="font-semibold text-forest dark:text-pista hover:underline" href="/register">
               Create a free account
             </Link>
           </div>

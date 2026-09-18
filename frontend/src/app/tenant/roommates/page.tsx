@@ -105,31 +105,31 @@ export default function RoommatesPage() {
               return (
                 <article
                   key={person.id}
-                  className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-6 shadow-sm hover:shadow-md transition-shadow"
+                  className="rounded-3xl border border-line bg-card p-6 shadow-card hover:shadow-card-hover transition-shadow"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-500 to-indigo-600 text-white font-bold text-lg shadow-sm">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#284431] to-[#6E9271] text-white font-serif font-bold text-lg shadow-sm">
                         {person.displayName[0]}
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                        <h3 className="text-lg font-serif font-bold text-ink">
                           {person.displayName}
                         </h3>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                        <p className="text-xs text-ink-muted">
                           {person.ageRange} · {person.city} · {person.occupation}
                         </p>
                       </div>
                     </div>
-                    <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                    <span className="rounded-full bg-[#6E9271]/15 px-2.5 py-0.5 text-[10px] font-bold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
                       Verified
                     </span>
                   </div>
 
-                  <div className="mt-4 flex items-baseline justify-between border-t border-slate-100 dark:border-slate-800/80 pt-3 text-xs">
-                    <span className="text-slate-400">Target Contribution:</span>
-                    <span className="font-bold text-slate-900 dark:text-white text-sm">
-                      {formatInr(person.budget)} <span className="text-[11px] font-normal text-slate-400">/ mo</span>
+                  <div className="mt-4 flex items-baseline justify-between border-t border-line pt-3 text-xs">
+                    <span className="text-ink-muted">Target Contribution:</span>
+                    <span className="font-serif font-bold text-ink text-sm">
+                      {formatInr(person.budget)} <span className="text-[11px] font-normal text-ink-muted">/ mo</span>
                     </span>
                   </div>
 
@@ -138,38 +138,35 @@ export default function RoommatesPage() {
                       overlap.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-lg bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 text-[11px] font-medium text-blue-600 dark:text-blue-400"
+                          className="rounded-full border border-[#6E9271]/30 bg-[#6E9271]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#284431] dark:text-[#A3B899]"
                         >
-                          ✓ {tag}
+                          {tag}
                         </span>
                       ))
                     ) : (
-                      <span className="text-xs text-slate-400">No overlapping habits with your active profile</span>
+                      <span className="text-[10px] text-ink-muted">General Lifestyle Compatibility</span>
                     )}
                   </div>
 
-                  <div className="mt-5 flex items-center gap-2 border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                  <div className="mt-6 flex items-center gap-2 pt-2">
                     <Button
                       size="sm"
-                      variant={connected ? "secondary" : "primary"}
+                      variant={connected ? "outline" : "primary"}
                       onClick={() => {
                         connectRoommate(person.id);
-                        toast(`Connection request sent to ${person.displayName}.`);
+                        toast(
+                          connected
+                            ? `Invitation already pending with ${person.displayName}`
+                            : `Invitation sent to ${person.displayName}`,
+                        );
                       }}
                     >
-                      {connected ? "Connection Requested" : "Request Connection"}
+                      {connected ? "Invite Pending" : "Connect"}
                     </Button>
                     <button
                       type="button"
-                      onClick={() => blockRoommate(person.id)}
-                      className="rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-                    >
-                      Dismiss
-                    </button>
-                    <button
-                      type="button"
                       onClick={() => setReportId(person.id)}
-                      className="ml-auto rounded-xl px-2 py-1.5 text-xs text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                      className="ml-auto rounded-xl px-2 py-1.5 text-xs text-ink-muted hover:text-rose-600 transition-colors cursor-pointer"
                     >
                       Report
                     </button>
@@ -185,11 +182,11 @@ export default function RoommatesPage() {
           title="Flag Community Profile"
           onClose={() => setReportId(null)}
         >
-          <p className="text-sm text-slate-600 dark:text-slate-300">
-            NIVASA upholds strict trust and mutual respect standards. Flagging this profile will immediately suppress it from your matches and log a moderation review ticket.
+          <p className="text-sm text-ink-muted">
+            F_Society upholds strict trust and mutual respect standards. Flagging this profile will immediately suppress it from your matches and log a moderation review ticket.
           </p>
           <div className="mt-6 flex justify-end gap-2">
-            <Button variant="secondary" onClick={() => setReportId(null)}>
+            <Button variant="outline" onClick={() => setReportId(null)}>
               Cancel
             </Button>
             <Button

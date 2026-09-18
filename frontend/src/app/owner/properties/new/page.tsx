@@ -109,9 +109,9 @@ export default function AddPropertyPage() {
   return (
     <DashboardShell
       title="List New Residence"
-      subtitle="Publish a verified architectural residence to the NIVASA network with itemized cost ledgers and photo verification."
+      subtitle="Publish a verified architectural residence to the F_Society network with itemized cost ledgers and photo verification."
     >
-      <div className="max-w-2xl rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xl shadow-slate-200/40 dark:shadow-none">
+      <div className="max-w-2xl rounded-3xl border border-line bg-card p-6 sm:p-8 shadow-card">
         {error && (
           <div className="mb-6 rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-950/40 p-3.5 text-xs text-rose-600 dark:text-rose-300 font-medium">
             {error}
@@ -121,7 +121,7 @@ export default function AddPropertyPage() {
         <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Section 1: Overview */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">1. Residence Identity</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-ink-muted mb-3">1. Residence Identity</h3>
             <div className="space-y-4">
               <Field
                 label="Residence Title"

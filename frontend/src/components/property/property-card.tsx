@@ -14,39 +14,53 @@ export function PropertyCard({ property }: { property: Property }) {
   const { savedIds, toggleSave } = useNivasa();
   const saved = savedIds.includes(property.id);
 
+  // Link seamlessly to dedicated /property/:id route
+  const detailHref = `/property/${property.id}`;
+
+  const isDataset =
+    property.sourceType === "DATASET" ||
+    (property.dataSource && property.dataSource.includes("Housing"));
+
   return (
     <motion.article
       layout
       whileHover={{ y: -4 }}
       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-500/30 dark:hover:border-blue-500/30"
+      className="group relative flex flex-col rounded-3xl border border-line bg-card overflow-hidden shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-[#6E9271]/50"
     >
       {/* Visual Image Banner with Floating Pills */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
-        <Link href={`/homes/${property.id}`} className="block h-full w-full">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-paper">
+        <Link href={detailHref} className="block h-full w-full">
           <Image
-            src={property.images[0]}
+            src={property.images[0] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"}
             alt={property.title}
             fill
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             unoptimized
           />
         </Link>
 
-        {/* Top Badges: Verification Status */}
-        <div className="absolute left-3.5 top-3.5 z-10">
-          <StatusBadge
-            tone={
-              property.verification === "identity-checked"
-                ? "ok"
-                : property.verification === "documents-pending"
-                  ? "warn"
-                  : "neutral"
-            }
-          >
-            {property.verification.replace("-", " ")}
-          </StatusBadge>
+        {/* Top Left: Provenance & Verification Badges */}
+        <div className="absolute left-3.5 top-3.5 z-10 flex flex-col gap-1.5 items-start">
+          {isDataset ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#284431]/90 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-[#D8E6D3] border border-[#6E9271]/40 shadow-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271] animate-pulse" />
+              Dataset 2025–2026
+            </span>
+          ) : (
+            <StatusBadge
+              tone={
+                property.verification === "identity-checked"
+                  ? "ok"
+                  : property.verification === "documents-pending"
+                    ? "warn"
+                    : "neutral"
+              }
+            >
+              {property.verification === "identity-checked" ? "Verified F_Society" : property.verification.replace("-", " ")}
+            </StatusBadge>
+          )}
         </div>
 
         {/* Top Right: Magnetic Heart Button */}
@@ -58,12 +72,12 @@ export function PropertyCard({ property }: { property: Property }) {
           }}
           aria-label={saved ? "Remove from saved" : "Save property"}
           aria-pressed={saved}
-          className="absolute right-3.5 top-3.5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/85 dark:bg-slate-950/85 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-sm transition-all hover:scale-110 active:scale-95 cursor-pointer"
+          className="absolute right-3.5 top-3.5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 dark:bg-[#1A281F]/90 backdrop-blur-md text-ink-muted shadow-sm transition-all hover:scale-110 active:scale-95 cursor-pointer border border-line/60"
         >
           <svg
             className={cn(
               "h-4 w-4 transition-colors",
-              saved ? "fill-rose-500 text-rose-500" : "fill-none text-slate-600 dark:text-slate-300",
+              saved ? "fill-rose-500 text-rose-500" : "fill-none text-ink-muted",
             )}
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -78,16 +92,16 @@ export function PropertyCard({ property }: { property: Property }) {
         </button>
 
         {/* Bottom Image Gradient Overlay */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
 
-        {/* Locality Chip on image bottom-left */}
+        {/* Locality & City Chip on image bottom-left */}
         <div className="absolute bottom-3 left-3.5 z-10">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-950/70 px-2.5 py-0.5 text-[11px] font-medium text-white backdrop-blur-md">
-            <svg className="h-3 w-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+            <svg className="h-3 w-3 text-[#A3B899]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            {property.locality}, {property.city}
+            <span className="truncate max-w-[200px]">{property.locality}, {property.city}</span>
           </span>
         </div>
       </div>
@@ -95,46 +109,70 @@ export function PropertyCard({ property }: { property: Property }) {
       {/* Property Details Content */}
       <div className="flex flex-1 flex-col justify-between p-5">
         <div>
-          <Link href={`/homes/${property.id}`} className="group/title block">
-            <h3 className="font-sans text-lg font-bold tracking-tight text-slate-900 dark:text-white transition-colors group-hover/title:text-blue-600 dark:group-hover/title:text-blue-400 line-clamp-1">
+          <Link href={detailHref} className="group/title block">
+            <h3 className="font-serif text-lg font-bold tracking-tight text-ink transition-colors group-hover/title:text-[#284431] dark:group-hover/title:text-[#A3B899] line-clamp-1">
               {property.title}
             </h3>
           </Link>
 
           {/* Specification Pills */}
-          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-            <span className="rounded-lg bg-slate-100 dark:bg-slate-800/60 px-2.5 py-1 font-medium">
-              {property.bedrooms} BHK
+          <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-ink-muted">
+            <span className="rounded-lg bg-paper border border-line/60 px-2.5 py-1 font-semibold text-ink">
+              {property.bhk || property.bedrooms} BHK
             </span>
-            <span className="rounded-lg bg-slate-100 dark:bg-slate-800/60 px-2.5 py-1 font-medium font-tabular">
-              {property.areaSqft} sqft
+            <span className="rounded-lg bg-paper border border-line/60 px-2.5 py-1 font-medium font-tabular text-ink">
+              {property.sizeSqft || property.areaSqft} sqft
             </span>
-            <span className="rounded-lg bg-slate-100 dark:bg-slate-800/60 px-2.5 py-1 font-medium capitalize">
-              {property.furnishing}
+            <span className="rounded-lg bg-paper border border-line/60 px-2.5 py-1 font-medium text-ink">
+              {property.bathrooms || property.bathroom || 1} Bath
             </span>
+            <span className="rounded-lg bg-paper border border-line/60 px-2.5 py-1 font-medium capitalize text-ink">
+              {property.furnishingStatus || property.furnishing}
+            </span>
+            {property.tenantPreferred && (
+              <span className="rounded-lg bg-[#6E9271]/10 border border-[#6E9271]/20 px-2 py-0.5 text-[11px] font-medium text-[#284431] dark:text-[#A3B899]">
+                {property.tenantPreferred}
+              </span>
+            )}
           </div>
+
+          {/* Floor & Contact Info */}
+          {(property.floor || property.displayPostedOn) && (
+            <div className="mt-2.5 flex items-center justify-between text-[11px] text-ink-muted">
+              {property.floor && (
+                <span className="truncate max-w-[160px]">
+                  Floor: {property.floor}
+                </span>
+              )}
+              {property.displayPostedOn && (
+                <span className="font-tabular ml-auto">
+                  Available: {property.displayPostedOn}
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Pricing & RentTruth Transparency */}
-        <div className="mt-5 border-t border-slate-100 dark:border-slate-800/80 pt-4 flex items-end justify-between">
+        <div className="mt-5 border-t border-line/60 pt-4 flex items-end justify-between">
           <div>
             <div className="flex items-baseline gap-1">
-              <span className="font-sans text-2xl font-black tracking-tight text-slate-900 dark:text-white font-tabular">
+              <span className="font-serif text-2xl font-bold tracking-tight text-ink font-tabular">
                 {formatInr(property.rent)}
               </span>
-              <span className="text-xs text-slate-500 font-medium">/ month</span>
+              <span className="text-xs text-ink-muted font-medium">/ month</span>
             </div>
-            <p className="mt-0.5 text-[11px] text-teal-600 dark:text-teal-400 font-medium flex items-center gap-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
+            <p className="mt-0.5 text-[11px] text-[#284431] dark:text-[#A3B899] font-medium flex items-center gap-1">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271]" />
               All-in est. {formatInr(monthlyEstimate(property))} · RentTruth™
             </p>
           </div>
 
           <Link
-            href={`/homes/${property.id}`}
-            className="inline-flex items-center gap-1 rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-all cursor-pointer"
+            href={detailHref}
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#284431] dark:bg-[#6E9271] px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:opacity-95 transition-all cursor-pointer"
           >
-            <span>View</span>
+            <span>Explore</span>
             <svg className="h-3 w-3 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

@@ -2,11 +2,12 @@ import { cn } from "@/lib/cn";
 
 export function Field({
   label,
-  name,
+  name = "",
   id,
   type = "text",
   value,
   onChange,
+  disabled = false,
   error,
   placeholder,
   required,
@@ -14,11 +15,12 @@ export function Field({
   className,
 }: {
   label: string;
-  name: string;
+  name?: string;
   id?: string;
   type?: string;
   value: string;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
+  disabled?: boolean;
   error?: string;
   placeholder?: string;
   required?: boolean;
@@ -27,9 +29,9 @@ export function Field({
 }) {
   return (
     <label className={cn("block", className)}>
-      <span className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+      <span className="block text-xs font-semibold uppercase tracking-wider text-[#3e5244] dark:text-[#a5b8aa] mb-1.5">
         {label}
-        {required ? <span className="text-rose-500 ml-0.5">*</span> : null}
+        {required ? <span className="text-[#c24b4b] ml-0.5">*</span> : null}
       </span>
       <input
         id={id}
@@ -38,16 +40,18 @@ export function Field({
         value={value}
         placeholder={placeholder}
         required={required}
-        onChange={(event) => onChange(event.target.value)}
+        disabled={disabled}
+        onChange={(event) => onChange?.(event.target.value)}
         className={cn(
-          "w-full rounded-xl border bg-white dark:bg-slate-900/90 px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+          "w-full rounded-xl border bg-[#fdfcf9] dark:bg-[#152219] px-4 py-2.5 text-sm text-[#1a281f] dark:text-[#f5f9f6] placeholder:text-[#8fa89b] transition-all outline-none focus:border-[#6e9271] focus:ring-2 focus:ring-[#6e9271]/20",
+          disabled && "opacity-60 cursor-not-allowed bg-[#f3efe6]/40 dark:bg-[#1d2d22]/40",
           error
-            ? "border-rose-400 dark:border-rose-600 focus:ring-rose-500/20"
-            : "border-slate-200 dark:border-slate-800",
+            ? "border-[#e08b8b] dark:border-[#963737] focus:ring-[#c24b4b]/20"
+            : "border-[#e3dfd5] dark:border-[#2a3f31]",
         )}
       />
-      {hint ? <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">{hint}</p> : null}
-      {error ? <p className="mt-1.5 text-xs text-rose-600 dark:rose-400 font-medium">{error}</p> : null}
+      {hint ? <p className="mt-1.5 text-xs text-[#5e7565] dark:text-[#8ea393]">{hint}</p> : null}
+      {error ? <p className="mt-1.5 text-xs text-[#c24b4b] font-medium">{error}</p> : null}
     </label>
   );
 }
@@ -76,7 +80,7 @@ export function TextArea({
   return (
     <label className={cn("block", className)}>
       {label ? (
-        <span className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+        <span className="block text-xs font-semibold uppercase tracking-wider text-[#3e5244] dark:text-[#a5b8aa] mb-1.5">
           {label}
         </span>
       ) : null}
@@ -88,13 +92,13 @@ export function TextArea({
         placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
         className={cn(
-          "w-full rounded-xl border bg-white dark:bg-slate-900/90 px-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+          "w-full rounded-xl border bg-[#fdfcf9] dark:bg-[#152219] px-4 py-3 text-sm text-[#1a281f] dark:text-[#f5f9f6] placeholder:text-[#8fa89b] transition-all outline-none focus:border-[#6e9271] focus:ring-2 focus:ring-[#6e9271]/20",
           error
-            ? "border-rose-400 dark:border-rose-600 focus:ring-rose-500/20"
-            : "border-slate-200 dark:border-slate-800",
+            ? "border-[#e08b8b] dark:border-[#963737] focus:ring-[#c24b4b]/20"
+            : "border-[#e3dfd5] dark:border-[#2a3f31]",
         )}
       />
-      {error ? <p className="mt-1.5 text-xs text-rose-600 dark:rose-400 font-medium">{error}</p> : null}
+      {error ? <p className="mt-1.5 text-xs text-[#c24b4b] font-medium">{error}</p> : null}
     </label>
   );
 }
@@ -114,13 +118,13 @@ export function SelectField({
 }) {
   return (
     <label className={cn("block", className)}>
-      <span className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+      <span className="block text-xs font-semibold uppercase tracking-wider text-[#3e5244] dark:text-[#a5b8aa] mb-1.5">
         {label}
       </span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2.5 text-sm text-slate-900 dark:text-slate-100 transition-all outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+        className="w-full rounded-xl border border-[#e3dfd5] dark:border-[#2a3f31] bg-[#fdfcf9] dark:bg-[#152219] px-4 py-2.5 text-sm text-[#1a281f] dark:text-[#f5f9f6] transition-all outline-none focus:border-[#6e9271] focus:ring-2 focus:ring-[#6e9271]/20 cursor-pointer"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

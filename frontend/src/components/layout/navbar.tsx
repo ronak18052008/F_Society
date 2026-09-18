@@ -10,10 +10,12 @@ import { cn } from "@/lib/cn";
 import { createClient } from "@/lib/supabase/client";
 
 const publicLinks = [
-  { href: "/homes", label: "Homes" },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/renttruth/prop-navrang-02", label: "RentTruth" },
-  { href: "/ai/recommend", label: "Ask NIVASA" },
+  { href: "/", label: "Home" },
+  { href: "/properties", label: "Residences" },
+  { href: "/cities", label: "Cities" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/renttruth/prop-navrang-02", label: "RentTruth™" },
+  { href: "/ai/recommend", label: "AI Advisor" },
 ];
 
 export function Navbar() {
@@ -47,41 +49,43 @@ export function Navbar() {
 
   return (
     <header className="sticky top-3.5 z-50 px-4 sm:px-6 transition-all duration-300">
-      <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 px-4 sm:px-6 py-2.5 backdrop-blur-xl shadow-lg shadow-black/[0.03] dark:shadow-black/[0.4]">
-        {/* NIVASA Brand Symbol & Wordmark */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-[#e3dfd5] dark:border-[#2a3f31] bg-[#ffffff]/90 dark:bg-[#142018]/90 px-4 sm:px-6 py-2.5 backdrop-blur-xl shadow-lg shadow-[#284431]/[0.03] dark:shadow-black/[0.4]">
+        {/* F_Society Brand Symbol & Wordmark */}
         <Link
           href="/"
-          className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-full"
+          className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6e9271] rounded-full"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-teal-400 text-white shadow-md shadow-blue-500/25 transition-transform duration-200 group-hover:scale-105">
-            <span className="font-sans font-black text-sm tracking-tight">N</span>
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-[#284431] to-[#6e9271] text-[#fbf9f4] shadow-md shadow-[#284431]/20 transition-transform duration-200 group-hover:scale-105">
+            <span className="font-serif font-bold text-base tracking-tight">F</span>
           </div>
-          <span className="font-sans text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-            NIVASA
+          <span className="font-sans text-xl font-bold tracking-tight text-[#1a281f] dark:text-[#f5f9f6]">
+            F_Society
           </span>
-          <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-600 dark:text-blue-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
-            Live
+          <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#6e9271]/15 px-2.5 py-0.5 text-[10px] font-semibold text-[#284431] dark:text-[#8fb893]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#6e9271] animate-pulse" />
+            Verified
           </span>
         </Link>
 
         {/* Desktop Navigation Pills */}
-        <nav className="hidden items-center gap-1.5 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {publicLinks.map((link) => {
             const active =
-              link.href === "/homes"
-                ? pathname === "/homes" || pathname.startsWith("/homes/")
-                : pathname.startsWith(link.href);
+              link.href === "/"
+                ? pathname === "/"
+                : link.href === "/homes"
+                  ? pathname === "/homes" || pathname.startsWith("/homes/")
+                  : pathname.startsWith(link.href);
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200",
+                  "rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200",
                   active
-                    ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
-                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60",
+                    ? "bg-[#284431] text-[#fbf9f4] dark:bg-[#d2e8d6] dark:text-[#142018] shadow-xs"
+                    : "text-[#4a5e50] dark:text-[#a5b8aa] hover:text-[#1a281f] dark:hover:text-[#f5f9f6] hover:bg-[#6e9271]/10",
                 )}
               >
                 {link.label}
@@ -95,17 +99,17 @@ export function Navbar() {
           <button
             type="button"
             onClick={toggle}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100/60 dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 transition-all duration-200 hover:scale-105 hover:text-slate-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e3dfd5] dark:border-[#2a3f31] bg-[#fbf9f4] dark:bg-[#1d2d22] text-[#3e5244] dark:text-[#a5b8aa] transition-all duration-200 hover:scale-105 hover:text-[#1a281f] dark:hover:text-[#f5f9f6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6e9271] cursor-pointer"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
             {theme === "dark" ? (
-              <svg className="h-4 w-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="5" />
                 <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
               </svg>
             ) : (
-              <svg className="h-4 w-4 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4 text-[#3e5244]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
             )}
@@ -114,15 +118,25 @@ export function Navbar() {
           {user ? (
             <div className="flex items-center gap-2">
               <Link
-                href={appHome}
-                className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 transition-colors"
+                href="/profile"
+                className="flex items-center gap-1.5 rounded-full border border-[#e3dfd5] dark:border-[#2a3f31] bg-[#fbf9f4] dark:bg-[#1d2d22] px-3 py-1.5 text-xs font-semibold text-[#284431] dark:text-[#8fb893] hover:border-[#6e9271] transition-colors"
+                title="Manage profile & account"
               >
-                <span className="capitalize">{user.role} Workspace</span>
+                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#6e9271] text-white text-[10px] font-bold">
+                  {user.name ? user.name[0].toUpperCase() : "U"}
+                </div>
+                <span className="max-w-[80px] truncate">{user.name || "Profile"}</span>
+              </Link>
+              <Link
+                href={appHome}
+                className="inline-flex items-center gap-1.5 rounded-full bg-[#6e9271] hover:bg-[#5b7d5e] text-white px-3.5 py-1.5 text-xs font-semibold shadow-xs transition-colors"
+              >
+                <span className="capitalize">{user.role} Space</span>
               </Link>
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="rounded-full px-3 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors cursor-pointer"
+                className="rounded-full px-2.5 py-1.5 text-xs font-medium text-[#5e7565] hover:text-[#1a281f] dark:text-[#8ea393] dark:hover:text-[#f5f9f6] transition-colors cursor-pointer"
               >
                 Sign out
               </button>
@@ -131,7 +145,7 @@ export function Navbar() {
             <div className="flex items-center gap-2">
               <Link
                 href="/login"
-                className="rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+                className="rounded-full px-3.5 py-1.5 text-xs font-medium text-[#4a5e50] dark:text-[#a5b8aa] hover:text-[#1a281f] dark:hover:text-[#f5f9f6] transition-colors"
               >
                 Sign in
               </Link>
@@ -147,14 +161,14 @@ export function Navbar() {
           <button
             type="button"
             onClick={toggle}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#e3dfd5] dark:border-[#2a3f31] bg-[#fbf9f4] dark:bg-[#1d2d22] text-[#3e5244] dark:text-[#a5b8aa]"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? "☀️" : "🌙"}
           </button>
           <button
             type="button"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-200"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#e3dfd5] dark:border-[#2a3f31] bg-[#fbf9f4] dark:bg-[#1d2d22] text-[#284431] dark:text-[#f5f9f6]"
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((value) => !value)}
@@ -172,11 +186,14 @@ export function Navbar() {
 
       {/* Mobile Drawer */}
       {open ? (
-        <div className="mx-auto mt-2 max-w-6xl rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-950/95 p-6 backdrop-blur-2xl shadow-xl md:hidden animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="mx-auto mt-2 max-w-6xl rounded-3xl border border-[#e3dfd5] dark:border-[#2a3f31] bg-[#fbf9f4]/95 dark:bg-[#142018]/95 p-6 backdrop-blur-2xl shadow-xl md:hidden animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="space-y-4">
             <div className="flex flex-col gap-2">
               {publicLinks.map((link) => {
-                const active = pathname.startsWith(link.href);
+                const active =
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(link.href);
                 return (
                   <Link
                     key={link.href}
@@ -184,8 +201,8 @@ export function Navbar() {
                     className={cn(
                       "rounded-xl px-4 py-2.5 text-sm font-medium transition-colors",
                       active
-                        ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold"
-                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900",
+                        ? "bg-[#6e9271]/20 text-[#284431] dark:text-[#8fb893] font-semibold"
+                        : "text-[#3e5244] dark:text-[#a5b8aa] hover:bg-[#6e9271]/10",
                     )}
                     onClick={() => setOpen(false)}
                   >
@@ -195,9 +212,17 @@ export function Navbar() {
               })}
             </div>
 
-            <div className="border-t border-slate-200/60 dark:border-slate-800/60 pt-4 flex flex-col gap-2.5">
+            <div className="border-t border-[#e3dfd5] dark:border-[#2a3f31] pt-4 flex flex-col gap-2.5">
               {user ? (
                 <>
+                  <Link
+                    href="/profile"
+                    className="flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium bg-[#f3efe6] dark:bg-[#1d2d22] text-[#284431] dark:text-[#8fb893]"
+                    onClick={() => setOpen(false)}
+                  >
+                    <span>My Account & Profile</span>
+                    <span className="text-xs uppercase font-bold text-[#6e9271]">{user.role}</span>
+                  </Link>
                   <Button href={appHome} fullWidth onClick={() => setOpen(false)}>
                     Open Workspace ({user.role})
                   </Button>

@@ -25,13 +25,13 @@ const plex = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "NIVASA — Living, Harmonized | Modern Verified Tenancy",
-    template: "%s · NIVASA",
+    default: "F_Society — Modern Verified Tenancy & Living Ecosystem",
+    template: "%s · F_Society",
   },
   description:
-    "NIVASA is a spatial living platform connecting modern tenants and verified property owners with absolute cost clarity, cryptographic condition passports, and direct tenancy workflows.",
+    "F_Society is a modern tenancy and verified living platform connecting residents and property owners with absolute cost clarity, shared condition passports, and direct workflows.",
   keywords: [
-    "NIVASA",
+    "F_Society",
     "spatial living",
     "verified rentals India",
     "RentTruth cost transparency",
@@ -40,20 +40,20 @@ export const metadata: Metadata = {
     "verified rentals Bengaluru",
     "AI tenancy agreement audit",
   ],
-  authors: [{ name: "NIVASA Living" }],
+  authors: [{ name: "F_Society" }],
   openGraph: {
-    title: "NIVASA — Living, Harmonized",
+    title: "F_Society — Modern Verified Tenancy & Living Ecosystem",
     description:
-      "A luminous rental ecosystem built for verified cost clarity, shared property passports, and effortless modern dwellings.",
-    url: "https://nivasa.in",
-    siteName: "NIVASA",
+      "A serene rental ecosystem built for verified cost clarity, shared property passports, and effortless modern dwellings.",
+    url: "https://fsociety.living",
+    siteName: "F_Society",
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NIVASA — Living, Harmonized",
-    description: "Curated contemporary residences with transparent RentTruth expense tracking.",
+    title: "F_Society — Modern Verified Tenancy & Living Ecosystem",
+    description: "Curated residences with transparent RentTruth expense tracking and direct verified tenancy.",
   },
 };
 
@@ -61,7 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       className={`${outfit.variable} ${cormorant.variable} ${plex.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper text-ink">

@@ -22,8 +22,8 @@ export default function RequirementsPage() {
   return (
     <DashboardShell title="Tenancy Requirements & Search Profile">
       <div className="max-w-3xl">
-        <p className="text-sm text-slate-500 dark:text-slate-400">
-          Configure your residential preferences, financial constraints, and living habits. These parameters power intelligent matching across the NIVASA residence ecosystem.
+        <p className="text-sm text-ink-muted">
+          Configure your residential preferences, financial constraints, and living habits. These parameters power intelligent matching across the F_Society residence network.
         </p>
 
         <form
@@ -41,13 +41,13 @@ export default function RequirementsPage() {
           }}
         >
           {/* Section 1: Financial & Spatial Constraints */}
-          <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-6 sm:p-7 shadow-sm backdrop-blur-sm space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+          <div className="rounded-3xl border border-line bg-card p-6 sm:p-7 shadow-card space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-line">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-ink-muted">
                 1. Budget &amp; Dwelling Type
               </h3>
               {parsedBudget > 0 ? (
-                <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
+                <span className="text-xs font-bold text-[#6E9271] dark:text-[#A3B899]">
                   Target: {formatInr(parsedBudget)} / mo
                 </span>
               ) : null}
@@ -75,7 +75,7 @@ export default function RequirementsPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
                 Dwelling Architecture
               </label>
               <div className="grid grid-cols-3 gap-3">
@@ -90,8 +90,8 @@ export default function RequirementsPage() {
                     onClick={() => setType(item.id)}
                     className={`flex flex-col items-center gap-1.5 rounded-2xl border p-4 text-center transition-all cursor-pointer ${
                       type === item.id
-                        ? "border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 ring-2 ring-blue-500/20"
-                        : "border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                        ? "border-[#6E9271] bg-[#6E9271]/10 text-[#284431] dark:text-[#A3B899] ring-2 ring-[#6E9271]/20 font-semibold"
+                        : "border-line bg-paper text-ink-muted hover:bg-black/5 dark:hover:bg-white/5 hover:text-ink"
                     }`}
                   >
                     <span className="text-xl">{item.icon}</span>
@@ -103,9 +103,9 @@ export default function RequirementsPage() {
           </div>
 
           {/* Section 2: Habit & Compatibility Preferences */}
-          <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-6 sm:p-7 shadow-sm backdrop-blur-sm space-y-6">
-            <div className="pb-3 border-b border-slate-100 dark:border-slate-800">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">
+          <div className="rounded-3xl border border-line bg-card p-6 sm:p-7 shadow-card space-y-6">
+            <div className="pb-3 border-b border-line">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-ink-muted">
                 2. Lifestyle &amp; Dwelling Habits
               </h3>
             </div>
@@ -148,7 +148,7 @@ export default function RequirementsPage() {
             <Button type="submit" size="lg">
               Save Tenancy Profile
             </Button>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-ink-muted">
               Changes update search weights immediately
             </span>
           </div>

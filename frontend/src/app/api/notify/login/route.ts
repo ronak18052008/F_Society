@@ -33,21 +33,21 @@ export async function POST(req: NextRequest) {
         <head>
           <meta charset="utf-8">
           <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f7f6f2; color: #1c1917; margin: 0; padding: 40px 20px; }
-            .container { max-width: 540px; margin: 0 auto; background: #ffffff; border: 1px solid #e7e5e4; border-radius: 4px; padding: 32px; }
-            .brand { font-family: Georgia, serif; font-size: 22px; font-weight: bold; letter-spacing: 0.15em; color: #8c6d48; text-transform: uppercase; margin-bottom: 24px; }
-            h2 { font-family: Georgia, serif; font-size: 24px; margin-top: 0; color: #1c1917; font-weight: 400; }
-            p { font-size: 14px; line-height: 1.6; color: #44403c; margin: 12px 0; }
-            .details { background-color: #fafaf9; border-left: 3px solid #8c6d48; padding: 16px; margin: 24px 0; font-family: monospace; font-size: 13px; color: #57534e; }
-            .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #f5f5f4; font-size: 12px; color: #a8a29e; }
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #fbf9f4; color: #1c2a1f; margin: 0; padding: 40px 20px; }
+            .container { max-width: 540px; margin: 0 auto; background: #ffffff; border: 1px solid #e3dfd5; border-radius: 8px; padding: 32px; }
+            .brand { font-family: Georgia, serif; font-size: 22px; font-weight: bold; letter-spacing: 0.15em; color: #284431; text-transform: uppercase; margin-bottom: 24px; }
+            h2 { font-family: Georgia, serif; font-size: 24px; margin-top: 0; color: #1c2a1f; font-weight: 400; }
+            p { font-size: 14px; line-height: 1.6; color: #405545; margin: 12px 0; }
+            .details { background-color: #f6f3eb; border-left: 3px solid #6e9271; padding: 16px; margin: 24px 0; font-family: monospace; font-size: 13px; color: #284431; }
+            .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e3dfd5; font-size: 12px; color: #76877b; }
           </style>
         </head>
         <body>
           <div class="container">
-            <div class="brand">NIVASA</div>
+            <div class="brand">F_Society</div>
             <h2>Security Notice: New Account Sign-in</h2>
             <p>Hello ${name || "there"},</p>
-            <p>We detected a new sign-in to your NIVASA account associated with <strong>${email}</strong>.</p>
+            <p>We detected a new sign-in to your F_Society account associated with <strong>${email}</strong>.</p>
             <div class="details">
               <div><strong>Time:</strong> ${timestamp}</div>
               <div><strong>IP Address:</strong> ${clientIp}</div>
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
             </div>
             <p>If this was you, no action is needed. If you did not authorize this access, please change your password immediately in your account settings or initiate a password reset.</p>
             <div class="footer">
-              &copy; ${new Date().getFullYear()} NIVASA — Living, Harmonized. All rights reserved.
+              &copy; ${new Date().getFullYear()} F_Society — Modern Living, Harmonized. All rights reserved.
             </div>
           </div>
         </body>
@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         from: fromEmail,
         to: [email],
-        subject: "Security Alert: New Sign-in to your NIVASA Account",
+        subject: "Security Alert: New Sign-in to your F_Society Account",
         html: htmlContent,
       }),
     });

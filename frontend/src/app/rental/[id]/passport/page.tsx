@@ -124,7 +124,7 @@ export default function PassportPage() {
       subtitle="Cryptographically timestamped baseline photographs and condition notes creating a dispute-proof move-in and handover record."
     >
       {/* Dual Signature Badges */}
-      <div className="flex flex-wrap items-center gap-3 pb-6 border-b border-slate-200/80 dark:border-slate-800">
+      <div className="flex flex-wrap items-center gap-3 pb-6 border-b border-warm-200/80 dark:border-forest/40">
         <StatusBadge tone={tenantAck ? "ok" : "warn"}>
           Tenant {tenantAck ? `Signed · ${formatDateTime(tenantAck)}` : "Pending Signature"}
         </StatusBadge>
@@ -138,12 +138,12 @@ export default function PassportPage() {
         {data.rooms.map((room) => (
           <article
             key={room.id}
-            className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs"
+            className="rounded-3xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 sm:p-8 shadow-xs"
           >
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{room.name}</h2>
-                <p className="mt-1 text-xs sm:text-sm text-slate-500">{room.notes}</p>
+                <h2 className="text-xl font-serif font-bold text-ink dark:text-cream">{room.name}</h2>
+                <p className="mt-1 text-xs sm:text-sm text-ink-muted">{room.notes}</p>
               </div>
               {room.reviewRequired ? (
                 <StatusBadge tone="warn">Discrepancy Flagged</StatusBadge>
@@ -158,7 +158,7 @@ export default function PassportPage() {
                 <div
                   key={photo.id}
                   onClick={() => swapPhoto(photo.src)}
-                  className="group relative h-40 w-60 shrink-0 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 cursor-pointer shadow-xs hover:border-blue-500 transition-all"
+                  className="group relative h-40 w-60 shrink-0 overflow-hidden rounded-2xl border border-warm-200 dark:border-forest/40 bg-warm-100 dark:bg-forest/20 cursor-pointer shadow-xs hover:border-pista transition-all"
                 >
                   <Image src={photo.src} alt={photo.label} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-2.5 text-[11px] text-white">
@@ -173,31 +173,31 @@ export default function PassportPage() {
       </div>
 
       {/* Dual Comparison Viewport */}
-      <div className="mt-12 rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
+      <div className="mt-12 rounded-3xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 sm:p-8 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
           <div>
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Dual Frame Inspection Comparison</h2>
-            <p className="mt-1 text-xs text-slate-500">
+            <h2 className="text-xl font-serif font-bold text-ink dark:text-cream">Dual Frame Inspection Comparison</h2>
+            <p className="mt-1 text-xs text-ink-muted">
               Select any photograph from the gallery to compare move-in state against interim inspection records.
             </p>
           </div>
-          <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">Click any photo below to inspect</span>
+          <span className="text-xs font-semibold text-forest dark:text-pista">Click any photo below to inspect</span>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
           {[left, right].map((src, index) => (
             <div
               key={src + index}
-              className="relative h-72 sm:h-80 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-950 shadow-inner"
+              className="relative h-72 sm:h-80 overflow-hidden rounded-2xl border border-warm-200 dark:border-forest/40 bg-warm-100/50 dark:bg-forest/20 shadow-inner"
             >
               {src ? (
                 <Image src={src} alt="Comparison specimen" fill className="object-cover" />
               ) : (
-                <div className="flex h-full items-center justify-center text-xs text-slate-400">
+                <div className="flex h-full items-center justify-center text-xs text-ink-muted">
                   No photograph selected for frame {index + 1}
                 </div>
               )}
-              <span className="absolute top-3 left-3 rounded-full bg-black/60 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
+              <span className="absolute top-3 left-3 rounded-full bg-forest/80 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
                 Viewport {index === 0 ? "A (Baseline)" : "B (Current)"}
               </span>
             </div>
@@ -209,7 +209,7 @@ export default function PassportPage() {
             <button
               key={photo.id}
               type="button"
-              className="rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-blue-500 hover:text-blue-600 transition cursor-pointer"
+              className="rounded-full border border-warm-200 dark:border-forest/40 bg-card dark:bg-card-dark px-3 py-1 text-xs font-medium text-ink-muted hover:border-pista hover:text-forest dark:hover:text-pista transition cursor-pointer"
               onClick={() => swapPhoto(photo.src)}
             >
               {photo.label}
@@ -220,8 +220,8 @@ export default function PassportPage() {
 
       {/* Upload & Signature Block */}
       <div className="mt-10 grid gap-8 md:grid-cols-2 items-start">
-        <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
-          <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Upload Condition Document / Photo</h3>
+        <div className="rounded-3xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 sm:p-8 shadow-xs">
+          <h3 className="text-base font-serif font-bold text-ink dark:text-cream mb-2">Upload Condition Document / Photo</h3>
           <UploadField
             label="Upload Room Photograph"
             accept="image/*"
@@ -231,10 +231,10 @@ export default function PassportPage() {
           />
         </div>
 
-        <div className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs flex flex-col justify-between">
+        <div className="rounded-3xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 sm:p-8 shadow-xs flex flex-col justify-between">
           <div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Mutual Handover Confirmation</h3>
-            <p className="text-xs text-slate-500 leading-relaxed">
+            <h3 className="text-base font-serif font-bold text-ink dark:text-cream mb-2">Mutual Handover Confirmation</h3>
+            <p className="text-xs text-ink-muted leading-relaxed">
               By digitally acknowledging, both parties verify that baseline fixtures, walls, and electrical appliances match the photographs above.
             </p>
           </div>

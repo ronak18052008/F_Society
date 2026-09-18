@@ -20,6 +20,8 @@ export type ExpenseLine = {
   note?: string;
 };
 
+export type HousingSourceType = "DATASET" | "USER_LISTING" | "ADMIN_LISTING" | "LIVE_API" | "DEMO";
+
 export type Property = {
   id: string;
   slug: string;
@@ -37,12 +39,28 @@ export type Property = {
   availableFrom: string;
   amenities: string[];
   images: string[];
-  ownerId: string;
+  ownerId?: string | null;
   verification: "identity-checked" | "listing-unverified" | "documents-pending";
   description: string;
   expenses: ExpenseLine[];
-  coordinates: { lat: number; lng: number };
+  coordinates: { lat: number; lng: number; datasetMeta?: any };
   demo?: boolean;
+
+  // Housing Dataset 2025-2026 Upgrades
+  bhk?: number;
+  sizeSqft?: number;
+  floor?: string;
+  areaType?: string;
+  areaLocality?: string;
+  furnishingStatus?: string;
+  tenantPreferred?: string;
+  bathroom?: number;
+  pointOfContact?: string;
+  originalPostedOn?: string;
+  displayPostedOn?: string;
+  sourceType?: HousingSourceType;
+  dataSource?: string;
+  sourceUrl?: string;
 };
 
 export type OwnerProfile = {

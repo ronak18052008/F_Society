@@ -27,11 +27,11 @@ function subscribe(listener: () => void) {
 }
 
 function getSnapshot(): Theme {
-  return localStorage.getItem(KEY) === "light" ? "light" : "dark";
+  return localStorage.getItem(KEY) === "dark" ? "dark" : "light";
 }
 
 function getServerSnapshot(): Theme {
-  return "dark";
+  return "light";
 }
 
 const ThemeContext = createContext<{

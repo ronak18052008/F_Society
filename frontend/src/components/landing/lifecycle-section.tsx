@@ -99,15 +99,15 @@ export function LifecycleSection() {
         {/* Section Header */}
         <Reveal>
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
-              The Tenancy Journey
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
+              The Tenancy Protocol
             </span>
-            <h2 className="display mt-4 text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+            <h2 className="display mt-4 text-3xl sm:text-5xl font-serif font-bold tracking-tight text-ink">
               End-to-end verified living, from first inquiry to full deposit return.
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              Traditional rental platforms disappear once phone numbers are exchanged.
-              NIVASA provides a living, verifiable system of record for both tenant and owner.
+            <p className="mt-4 text-base sm:text-lg text-ink-muted leading-relaxed">
+              Traditional rental platforms vanish once phone numbers are exchanged.
+              F_Society provides a living, verifiable system of record for both tenant and owner.
             </p>
           </div>
         </Reveal>
@@ -123,9 +123,9 @@ export function LifecycleSection() {
               <article
                 key={step.number}
                 className={cn(
-                  "lifecycle-card relative flex flex-col justify-between rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 p-6 sm:p-7 backdrop-blur-md transition-all duration-300",
-                  "hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-1",
-                  isHovered && "border-blue-500/40 bg-white dark:bg-slate-900",
+                  "lifecycle-card relative flex flex-col justify-between rounded-3xl border border-line bg-card p-6 sm:p-7 shadow-card transition-all duration-300",
+                  "hover:border-[#6E9271]/50 hover:shadow-card-hover hover:-translate-y-1",
+                  isHovered && "border-[#6E9271]/60",
                 )}
                 onMouseEnter={() => setActiveStep(index)}
                 onMouseLeave={() => setActiveStep(null)}
@@ -133,22 +133,22 @@ export function LifecycleSection() {
                 <div>
                   {/* Step Header Pill */}
                   <div className="flex items-center justify-between">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-500/10 text-xs font-bold text-blue-600 dark:text-blue-400 font-tabular">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#6E9271]/15 text-xs font-bold text-[#6E9271] dark:text-[#A3B899] font-tabular border border-[#6E9271]/20">
                       {step.number}
                     </span>
-                    <span className="rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-[10px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
+                    <span className="rounded-full bg-paper border border-line px-2.5 py-0.5 text-[10px] font-semibold text-ink-muted uppercase tracking-wider">
                       {step.phase}
                     </span>
                   </div>
 
                   {/* Title & Summaries */}
-                  <h3 className="font-sans text-xl font-bold mt-5 tracking-tight text-slate-900 dark:text-white">
+                  <h3 className="font-serif text-lg font-bold mt-5 tracking-tight text-ink">
                     {step.title}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  <p className="mt-2.5 text-sm leading-relaxed text-ink-muted">
                     {step.summary}
                   </p>
-                  <p className="mt-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60 pt-3">
+                  <p className="mt-3 text-xs leading-relaxed text-ink-muted/80 border-t border-line pt-3">
                     {step.detail}
                   </p>
                 </div>
@@ -158,7 +158,7 @@ export function LifecycleSection() {
                   <div className="mt-6 pt-2">
                     <Link
                       href={step.href}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#284431] dark:text-[#A3B899] hover:underline transition-colors"
                     >
                       <span>{step.ctaText ?? "Learn more"}</span>
                       <span className="text-sm">→</span>
@@ -171,13 +171,13 @@ export function LifecycleSection() {
         </StaggerIn>
 
         {/* Footnote */}
-        <Reveal delay={0.2} className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-200/60 dark:border-slate-800/60 pt-4">
+        <Reveal delay={0.2} className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-ink-muted border-t border-line pt-4">
           <p>
-            * Connected to Supabase real-time database with live state sync.
+            * Connected to Supabase real-time database with live state synchronization.
           </p>
           <Link
             href="/how-it-works"
-            className="font-medium text-blue-600 dark:text-blue-400 hover:underline underline-offset-2 whitespace-nowrap"
+            className="font-medium text-[#6E9271] hover:underline underline-offset-2 whitespace-nowrap"
           >
             Explore Complete Journey Guide →
           </Link>

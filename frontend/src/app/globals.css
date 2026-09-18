@@ -1,40 +1,54 @@
 @import "tailwindcss";
 
 :root {
-  /* NIVASA Luminous Palette - Light */
-  --text-main: #090d16;
-  --text-muted: #475569;
-  --text-faint: #94a3b8;
-  --bg-canvas: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-surface-elevated: #ffffff;
-  --bg-surface-subtle: #f1f5f9;
-  --bg-glass: rgba(255, 255, 255, 0.82);
-  --border: rgba(15, 23, 42, 0.08);
-  --border-subtle: rgba(15, 23, 42, 0.04);
-  --border-hover: rgba(15, 23, 42, 0.18);
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-subtle: rgba(37, 99, 235, 0.08);
-  --teal: #0d9488;
-  --teal-subtle: rgba(13, 148, 136, 0.08);
-  --emerald: #10b981;
-  --rose: #f43f5e;
-  --amber: #f59e0b;
-  --shadow-card: 0 16px 36px -12px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.02);
-  --shadow-glow: 0 0 50px -10px rgba(37, 99, 235, 0.18);
+  /* F_Society Natural Cream + Pista/Sage Green Palette — Light (Default) */
+  --bg-canvas: #fbf9f4;            /* warm radiant cream / off-white */
+  --bg-surface: #ffffff;           /* soft ivory card background */
+  --bg-surface-elevated: #fcfbf7;  /* warm elevated surface */
+  --bg-surface-subtle: #f3efe6;    /* subtle warm stone cream */
+  --bg-glass: rgba(253, 252, 248, 0.88);
+  
+  --primary-pista: #6e9271;        /* muted pista green — primary actions & active states */
+  --primary-pista-hover: #5b7d5e;  /* darker pista hover */
+  --primary-pista-subtle: rgba(110, 146, 113, 0.14);
+  
+  --secondary-sage: #8fa89b;       /* sage green — secondary pills & tags */
+  --secondary-sage-hover: #7b9487;
+  --secondary-sage-subtle: rgba(143, 168, 155, 0.16);
 
-  /* Legacy aliases mapped to NIVASA */
+  --accent-forest: #284431;        /* deep forest green — headers, contrast badges, primary CTAs */
+  --accent-forest-hover: #1e3526;
+  --accent-forest-subtle: rgba(40, 68, 49, 0.1);
+
+  --text-main: #1a281f;            /* dark forest charcoal — crisp readable typography */
+  --text-muted: #4a5e50;           /* soft forest slate */
+  --text-faint: #7d9183;           /* muted warm sage */
+
+  --border: #e3dfd5;               /* subtle warm beige/green border */
+  --border-subtle: #efeae0;
+  --border-hover: rgba(40, 68, 49, 0.24);
+
+  --success: #3d8c57;              /* natural green */
+  --warning: #d9822b;              /* warm amber */
+  --error: #c24b4b;                /* muted red */
+
+  --shadow-card: 0 10px 30px -8px rgba(40, 68, 49, 0.05), 0 2px 6px rgba(40, 68, 49, 0.02);
+  --shadow-glow: 0 0 45px -8px rgba(110, 146, 113, 0.25);
+
+  /* Semantic Aliases */
   --ink: var(--text-main);
   --ink-soft: var(--text-muted);
   --paper: var(--bg-canvas);
   --paper-2: var(--bg-surface-elevated);
   --line: var(--border);
-  --bronze: var(--accent);
-  --bronze-2: var(--teal);
-  --moss: var(--teal);
-  --danger: var(--rose);
-  --ok: var(--emerald);
+  --accent: var(--primary-pista);
+  --accent-hover: var(--primary-pista-hover);
+  --teal: var(--secondary-sage);
+  --bronze: var(--accent-forest);
+  --bronze-2: var(--primary-pista);
+  --moss: var(--primary-pista);
+  --danger: var(--error);
+  --ok: var(--success);
   --shadow: var(--shadow-card);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --section-y: clamp(4rem, 8vw, 7rem);
@@ -42,40 +56,54 @@
 }
 
 [data-theme="dark"] {
-  /* NIVASA Luminous Palette - Dark */
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-faint: #64748b;
-  --bg-canvas: #040813;
-  --bg-surface: #0a101f;
-  --bg-surface-elevated: #0f172a;
-  --bg-surface-subtle: #1e293b;
-  --bg-glass: rgba(10, 16, 31, 0.82);
+  /* F_Society Forest Night Palette — Dark */
+  --bg-canvas: #0e1711;            /* deep forest pine obsidian */
+  --bg-surface: #152219;           /* dark forest surface */
+  --bg-surface-elevated: #1d2d22;  /* elevated pine surface */
+  --bg-surface-subtle: #24362a;    /* dark sage stone */
+  --bg-glass: rgba(21, 34, 25, 0.88);
+
+  --primary-pista: #8fb893;        /* lighter pista green for dark mode contrast */
+  --primary-pista-hover: #a3caa6;
+  --primary-pista-subtle: rgba(143, 184, 147, 0.2);
+
+  --secondary-sage: #a1bdb0;       /* lighter sage */
+  --secondary-sage-hover: #b4d0c3;
+  --secondary-sage-subtle: rgba(161, 189, 176, 0.2);
+
+  --accent-forest: #d2e8d6;        /* light mint/forest accent for dark contrast */
+  --accent-forest-hover: #e5f5e8;
+  --accent-forest-subtle: rgba(210, 232, 214, 0.15);
+
+  --text-main: #f5f9f6;            /* clean warm off-white */
+  --text-muted: #a5b8aa;           /* soft sage slate */
+  --text-faint: #6e8272;           /* muted pine */
+
   --border: rgba(255, 255, 255, 0.1);
   --border-subtle: rgba(255, 255, 255, 0.05);
   --border-hover: rgba(255, 255, 255, 0.22);
-  --accent: #3b82f6;
-  --accent-hover: #60a5fa;
-  --accent-subtle: rgba(59, 130, 246, 0.16);
-  --teal: #14b8a6;
-  --teal-subtle: rgba(20, 184, 166, 0.16);
-  --emerald: #34d399;
-  --rose: #fb7185;
-  --amber: #fbbf24;
-  --shadow-card: 0 24px 50px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  --shadow-glow: 0 0 60px -5px rgba(59, 130, 246, 0.28);
 
-  /* Legacy aliases mapped to NIVASA Dark */
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #f87171;
+
+  --shadow-card: 0 20px 45px -10px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-glow: 0 0 50px -5px rgba(143, 184, 147, 0.3);
+
+  /* Semantic Aliases (Dark) */
   --ink: var(--text-main);
   --ink-soft: var(--text-muted);
   --paper: var(--bg-canvas);
   --paper-2: var(--bg-surface-elevated);
   --line: var(--border);
-  --bronze: var(--accent);
-  --bronze-2: var(--teal);
-  --moss: var(--teal);
-  --danger: var(--rose);
-  --ok: var(--emerald);
+  --accent: var(--primary-pista);
+  --accent-hover: var(--primary-pista-hover);
+  --teal: var(--secondary-sage);
+  --bronze: var(--accent-forest);
+  --bronze-2: var(--primary-pista);
+  --moss: var(--primary-pista);
+  --danger: var(--error);
+  --ok: var(--success);
   --shadow: var(--shadow-card);
 }
 
@@ -85,15 +113,18 @@
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
   --color-line: var(--line);
-  --color-bronze: var(--bronze);
-  --color-bronze-2: var(--bronze-2);
-  --color-moss: var(--moss);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-pista: var(--primary-pista);
+  --color-sage: var(--secondary-sage);
+  --color-forest: var(--accent-forest);
+  --color-cream: var(--bg-canvas);
+  --color-ivory: var(--bg-surface);
   --color-danger: var(--danger);
   --color-ok: var(--ok);
-  --color-accent: var(--accent);
-  --color-teal: var(--teal);
+  --color-warning: var(--warning);
   --font-sans: var(--font-outfit);
-  --font-serif: var(--font-outfit);
+  --font-serif: var(--font-cormorant);
   --font-mono: var(--font-plex);
 }
 
@@ -117,10 +148,11 @@ body {
   text-rendering: optimizeLegibility;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   overflow-x: hidden;
+  background-color: var(--paper);
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: color-mix(in srgb, var(--primary-pista) 30%, transparent);
   color: inherit;
 }
 
@@ -134,7 +166,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--primary-pista);
   outline-offset: 3px;
 }
 
@@ -155,14 +187,14 @@ a {
   padding-block: clamp(5.5rem, 9vw, 8.5rem);
 }
 
-/* NIVASA Modern Primitives */
+/* F_Society Modern Primitives */
 .glass-pill {
   background: var(--bg-glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   border-radius: 9999px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(40, 68, 49, 0.04);
 }
 
 .glass-card {
@@ -179,7 +211,13 @@ a {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+  background: linear-gradient(135deg, var(--accent-forest) 0%, var(--primary-pista) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-pista) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -189,18 +227,7 @@ a {
   border-radius: 9999px;
   filter: blur(80px);
   pointer-events: none;
-  opacity: 0.45;
-}
-
-.grain {
-  /* Subtle clean spatial noise */
-  background-image: radial-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-[data-theme="dark"] .grain {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
+  opacity: 0.35;
 }
 
 .skip-link {
@@ -215,6 +242,7 @@ a {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  border-radius: 0.5rem;
 }
 
 .skip-link:focus {

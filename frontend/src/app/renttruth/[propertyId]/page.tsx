@@ -124,29 +124,29 @@ export default function RentTruthPage() {
     <SiteShell>
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         {/* Navigation Breadcrumbs */}
-        <div className="mb-6 flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
-          <a href="/homes" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Residences</a>
+        <div className="mb-6 flex items-center gap-2 text-xs font-medium text-ink-muted">
+          <a href="/homes" className="hover:text-forest dark:hover:text-pista transition">Residences</a>
           <span>/</span>
-          <a href={`/homes/${property.id}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition">{property.title}</a>
+          <a href={`/homes/${property.id}`} className="hover:text-forest dark:hover:text-pista transition">{property.title}</a>
           <span>/</span>
-          <span className="text-slate-800 dark:text-slate-200 font-semibold">RentTruth™ Breakdown</span>
+          <span className="text-ink dark:text-cream font-semibold">RentTruth™ Breakdown</span>
         </div>
 
         {/* Header Block */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200/80 dark:border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-warm-200/80 dark:border-forest/40">
           <div>
             <div className="flex items-center gap-2.5">
               <StatusBadge tone={property.demo ? "demo" : "ok"}>
                 {property.demo ? "Demo Ledger" : "Cryptographically Verified"}
               </StatusBadge>
-              <span className="text-xs font-semibold text-teal-600 dark:text-teal-400">
+              <span className="text-xs font-semibold text-forest dark:text-pista">
                 100% Unbundled
               </span>
             </div>
-            <h1 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+            <h1 className="mt-3 text-3xl sm:text-4xl font-serif font-bold tracking-tight text-ink dark:text-cream">
               RentTruth™ Cost Audit
             </h1>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-ink-muted">
               {property.title} · {property.locality}, {property.city}
             </p>
           </div>
@@ -158,41 +158,41 @@ export default function RentTruthPage() {
 
         {/* Cost Comparison Bento */}
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Headline Rent</span>
-            <p className="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+          <div className="rounded-2xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 shadow-xs">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">Headline Rent</span>
+            <p className="mt-1 text-2xl sm:text-3xl font-serif font-bold text-ink dark:text-cream">
               {formatInr(property.rent)}
             </p>
-            <p className="text-xs text-slate-500 mt-0.5">Base lease fee quoted</p>
+            <p className="text-xs text-ink-muted mt-0.5">Base lease fee quoted</p>
           </div>
 
-          <div className="rounded-2xl border border-blue-500/20 bg-blue-50/40 dark:bg-blue-950/20 p-5 shadow-xs">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">True Monthly Outlay</span>
-            <p className="mt-1 text-2xl sm:text-3xl font-bold text-blue-700 dark:text-blue-300">
+          <div className="rounded-2xl border border-pista/40 bg-pista/10 dark:bg-forest/20 p-6 shadow-xs">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-forest dark:text-pista">True Monthly Outlay</span>
+            <p className="mt-1 text-2xl sm:text-3xl font-serif font-bold text-forest dark:text-pista">
               {formatInr(monthly)}
             </p>
-            <p className="text-xs text-blue-600/80 dark:text-blue-400/80 mt-0.5">
+            <p className="text-xs text-forest/80 dark:text-pista/80 mt-0.5">
               +{formatInr(monthly - property.rent)} monthly utilities/dues
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Line Integrity</span>
+          <div className="rounded-2xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 shadow-xs">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">Line Integrity</span>
             <div className="mt-1.5 flex items-center gap-2">
-              <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+              <span className="rounded-full bg-pista/20 px-2.5 py-0.5 text-xs font-bold text-forest dark:text-pista border border-pista/30">
                 {verifiedCount} Verified
               </span>
-              <span className="rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-semibold text-slate-500">
+              <span className="rounded-full bg-warm-100 dark:bg-forest/30 px-2.5 py-0.5 text-xs font-semibold text-ink-muted">
                 {estimatedCount} Est.
               </span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-1">Zero hidden society surprises</p>
+            <p className="text-[11px] text-ink-muted mt-1">Zero hidden society surprises</p>
           </div>
         </div>
 
         {/* Itemized Breakdown Component */}
-        <div className="mt-10 rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xs">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Disaggregated Fee Ledger</h2>
+        <div className="mt-10 rounded-3xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 sm:p-8 shadow-xs">
+          <h2 className="text-xl font-serif font-bold text-ink dark:text-cream mb-6">Disaggregated Fee Ledger</h2>
           <ExpenseBreakdown lines={expenses} />
         </div>
 
@@ -209,7 +209,7 @@ export default function RentTruthPage() {
 
       {/* Add Cost Line Modal */}
       <Modal open={openAddModal} title="Add Cost Line to RentTruth™" onClose={() => setOpenAddModal(false)}>
-        <p className="mb-4 text-xs text-slate-500 leading-relaxed">
+        <p className="mb-4 text-xs text-ink-muted leading-relaxed">
           Record society dues, metered water, club fees, or fiber internet costs into this residence&apos;s public RentTruth™ ledger.
         </p>
         <form onSubmit={handleAddExpense} className="space-y-4">

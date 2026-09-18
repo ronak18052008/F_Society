@@ -11,21 +11,21 @@ export function StatusBadge({
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium backdrop-blur-md transition-colors",
-        tone === "neutral" && "bg-slate-500/10 text-slate-700 dark:text-slate-300 border border-slate-500/20",
-        tone === "ok" && "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20",
-        tone === "warn" && "bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20",
-        tone === "danger" && "bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20",
-        tone === "demo" && "bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20",
+        tone === "neutral" && "bg-[#8fa89b]/15 text-[#3e5244] dark:text-[#a5b8aa] border border-[#8fa89b]/30",
+        tone === "ok" && "bg-[#3d8c57]/15 text-[#245e37] dark:text-[#6ee7b7] border border-[#3d8c57]/25",
+        tone === "warn" && "bg-[#d9822b]/15 text-[#9a5410] dark:text-[#fcd34d] border border-[#d9822b]/25",
+        tone === "danger" && "bg-[#c24b4b]/15 text-[#942f2f] dark:text-[#fca5a5] border border-[#c24b4b]/25",
+        tone === "demo" && "bg-[#6e9271]/15 text-[#284431] dark:text-[#a3caa6] border border-[#6e9271]/30",
       )}
     >
       <span
         className={cn(
           "h-1.5 w-1.5 rounded-full",
-          tone === "neutral" && "bg-slate-400",
-          tone === "ok" && "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]",
-          tone === "warn" && "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]",
-          tone === "danger" && "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.6)]",
-          tone === "demo" && "bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]",
+          tone === "neutral" && "bg-[#8fa89b]",
+          tone === "ok" && "bg-[#3d8c57] shadow-[0_0_8px_rgba(61,140,87,0.6)]",
+          tone === "warn" && "bg-[#d9822b] shadow-[0_0_8px_rgba(217,130,43,0.6)]",
+          tone === "danger" && "bg-[#c24b4b] shadow-[0_0_8px_rgba(194,75,75,0.6)]",
+          tone === "demo" && "bg-[#6e9271] shadow-[0_0_8px_rgba(110,146,113,0.6)]",
         )}
       />
       {children}

@@ -27,9 +27,9 @@ interface EditorialVideoProps {
 }
 
 export function EditorialVideo({
-  src, // e.g. "/videos/nivasa-walkthrough.mp4"
+  src,
   poster = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85",
-  title = "Inside the NIVASA Living Experience",
+  title = "Inside the F_Society Living Experience",
   subtitle = "Spatial walkthrough & verified tenancy documentation",
   caption = "A walkthrough of mutual check-in documentation, unbundled cost calculations, and shared tenancy agreements.",
 }: EditorialVideoProps) {
@@ -62,26 +62,26 @@ export function EditorialVideo({
   };
 
   return (
-    <section className="section">
+    <section className="section bg-paper">
       <div className="wrap">
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
                 Visual Experience
               </span>
-              <h2 className="display mt-3 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              <h2 className="display mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-ink">
                 {title}
               </h2>
             </div>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-md">
+            <p className="text-sm sm:text-base text-ink-muted max-w-md">
               {subtitle}
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="relative aspect-video w-full overflow-hidden rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-[#060c18] shadow-2xl group">
+          <div className="relative aspect-video w-full overflow-hidden rounded-3xl border border-line bg-[#060c18] shadow-card group">
             {/* Video element */}
             {src && !hasError ? (
               <video
@@ -114,7 +114,7 @@ export function EditorialVideo({
             <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10 pointer-events-none">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3.5 py-1 text-xs font-semibold text-white/90 backdrop-blur-md">
-                  <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271] animate-pulse" />
                   {src && !hasError ? "Walkthrough Film" : "Spatial Showcase · Verified Preview"}
                 </span>
 
@@ -135,8 +135,8 @@ export function EditorialVideo({
                   type="button"
                   onClick={togglePlay}
                   className={cn(
-                    "pointer-events-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-white/40 bg-blue-600/80 text-white backdrop-blur-md shadow-xl transition-all duration-300",
-                    "hover:scale-110 hover:bg-blue-600 hover:shadow-blue-500/30 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none cursor-pointer",
+                    "pointer-events-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-white/40 bg-[#284431]/90 text-white backdrop-blur-md shadow-xl transition-all duration-300",
+                    "hover:scale-110 hover:bg-[#284431] hover:shadow-[#284431]/30 focus-visible:ring-2 focus-visible:ring-[#6E9271] focus-visible:outline-none cursor-pointer",
                     isPlaying && "opacity-0 group-hover:opacity-100",
                   )}
                   aria-label={isPlaying ? "Pause video walkthrough" : "Play video walkthrough"}
@@ -158,7 +158,7 @@ export function EditorialVideo({
               <div className="flex items-end justify-between text-xs text-white/80">
                 <p className="max-w-md line-clamp-1">{caption}</p>
                 <span className="rounded-full bg-black/50 px-2.5 py-0.5 backdrop-blur-sm text-[11px]">
-                  NIVASA Cinematic
+                  F_Society Cinema
                 </span>
               </div>
             </div>

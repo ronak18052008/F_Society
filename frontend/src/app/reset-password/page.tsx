@@ -55,16 +55,16 @@ export default function ResetPasswordPage() {
   return (
     <SiteShell>
       <section className="min-h-[75vh] flex items-center justify-center px-4 py-16">
-        <div className="w-full max-w-md rounded-3xl border border-slate-200/90 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-8 shadow-xl shadow-slate-200/40 dark:shadow-none backdrop-blur-xl">
+        <div className="w-full max-w-md rounded-3xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-8 sm:p-10 shadow-xl shadow-warm-300/30 dark:shadow-none">
           <div className="mb-8 text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-pista/15 px-3 py-1 text-xs font-semibold text-forest dark:text-pista border border-pista/30 mb-3">
               Security Credentials
             </span>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+            <h1 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-ink dark:text-cream">
               Create a new password
             </h1>
-            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-              Set a strong password for your verified NIVASA account.
+            <p className="mt-2 text-xs text-ink-muted">
+              Set a strong password for your verified F_Society account.
             </p>
           </div>
 
