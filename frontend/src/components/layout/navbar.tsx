@@ -13,7 +13,7 @@ const publicLinks = [
   { href: "/homes", label: "Homes" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/renttruth/prop-navrang-02", label: "RentTruth" },
-  { href: "/ai/recommend", label: "Ask Nestora" },
+  { href: "/ai/recommend", label: "Ask NIVASA" },
 ];
 
 export function Navbar() {

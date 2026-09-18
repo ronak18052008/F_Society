@@ -156,5 +156,5 @@ export function LineReveal({
     { scope: ref, dependencies: [delay] },
   );
 
-  return <div ref={ref} className={cn("h-px w-full bg-line", className)} />;
+  return <div ref={ref} className={cn("h-px w-full bg-slate-200 dark:bg-slate-800", className)} />;
 }

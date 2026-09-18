@@ -44,44 +44,53 @@ export default function ForgotPasswordPage() {
 
   return (
     <SiteShell>
-      <section className="py-24 px-4 min-h-[70vh] flex items-center justify-center">
-        <div className="max-w-md w-full bg-paper p-8 border border-bronze/20 shadow-sm">
-          <div className="mb-8">
-            <div className="text-bronze uppercase font-mono text-sm mb-4 tracking-wider">Account recovery</div>
-            <h1 className="text-3xl font-serif text-ink mb-2">Reset your password</h1>
-            <p className="text-muted">Enter your email address and we&apos;ll send you a link to reset your password.</p>
+      <section className="min-h-[75vh] flex items-center justify-center px-4 py-16">
+        <div className="w-full max-w-md rounded-3xl border border-slate-200/90 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-8 shadow-xl shadow-slate-200/40 dark:shadow-none backdrop-blur-xl">
+          <div className="mb-8 text-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3">
+              Account Recovery
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+              Reset your password
+            </h1>
+            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+              Enter your registered email and we&apos;ll dispatch a secure recovery link.
+            </p>
           </div>
 
           {error && (
-            <div className="mb-6 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-600">
+            <div className="mb-6 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/30 p-3.5 text-xs font-medium text-rose-600 dark:text-rose-400">
               {error}
             </div>
           )}
 
           {success ? (
-            <div className="bg-bronze/10 text-ink p-4 border border-bronze/30 mb-6">
-              <p>Check your email for a reset link to set your new password.</p>
+            <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50 dark:bg-emerald-950/30 p-4 text-xs font-medium text-emerald-700 dark:text-emerald-400 mb-6 text-center">
+              ✓ Recovery link dispatched! Please check your email inbox to reset your password.
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <Field
-                label="Email"
+                label="Registered Email"
                 name="email"
                 type="email"
                 required
                 value={email}
                 onChange={setEmail}
-                placeholder="you@example.com"
+                placeholder="resident@example.com"
               />
-              <Button type="submit" disabled={loading} className="w-full">
-                {loading ? "Sending link..." : "Send reset link"}
+              <Button type="submit" disabled={loading} fullWidth size="lg">
+                {loading ? "Dispatching link..." : "Send Recovery Link"}
               </Button>
             </form>
           )}
-          
-          <div className="mt-6 text-center">
-            <Link href="/login" className="text-sm text-bronze hover:underline">
-              Return to login
+
+          <div className="mt-6 border-t border-slate-100 dark:border-slate-800/80 pt-4 text-center">
+            <Link
+              href="/login"
+              className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              ← Back to Sign in
             </Link>
           </div>
         </div>

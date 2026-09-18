@@ -54,21 +54,27 @@ export default function ResetPasswordPage() {
 
   return (
     <SiteShell>
-      <section className="py-24 px-4 min-h-[70vh] flex items-center justify-center">
-        <div className="max-w-md w-full bg-paper p-8 border border-bronze/20 shadow-sm">
-          <div className="mb-8">
-            <div className="text-bronze uppercase font-mono text-sm mb-4 tracking-wider">Account recovery</div>
-            <h1 className="text-3xl font-serif text-ink mb-2">Choose a new password</h1>
-            <p className="text-muted">Enter a new password for your account.</p>
+      <section className="min-h-[75vh] flex items-center justify-center px-4 py-16">
+        <div className="w-full max-w-md rounded-3xl border border-slate-200/90 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-8 shadow-xl shadow-slate-200/40 dark:shadow-none backdrop-blur-xl">
+          <div className="mb-8 text-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3">
+              Security Credentials
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+              Create a new password
+            </h1>
+            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+              Set a strong password for your verified NIVASA account.
+            </p>
           </div>
 
           {error && (
-            <div className="mb-6 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-600">
+            <div className="mb-6 rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50 dark:bg-rose-950/30 p-3.5 text-xs font-medium text-rose-600 dark:text-rose-400">
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <Field
               label="New Password"
               name="password"
@@ -76,7 +82,7 @@ export default function ResetPasswordPage() {
               required
               value={password}
               onChange={setPassword}
-              placeholder="••••••••"
+              placeholder="Minimum 8 characters"
             />
             <Field
               label="Confirm Password"
@@ -85,10 +91,10 @@ export default function ResetPasswordPage() {
               required
               value={confirmPassword}
               onChange={setConfirmPassword}
-              placeholder="••••••••"
+              placeholder="Re-enter password"
             />
-            <Button type="submit" disabled={loading} className="w-full">
-              {loading ? "Updating password..." : "Update password"}
+            <Button type="submit" disabled={loading} fullWidth size="lg">
+              {loading ? "Updating credentials..." : "Update Password & Sign In"}
             </Button>
           </form>
         </div>

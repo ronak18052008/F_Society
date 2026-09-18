@@ -37,12 +37,12 @@ export function LifecycleStrip() {
   );
 
   return (
-    <div ref={ref} className="grid gap-px bg-line md:grid-cols-4">
+    <div ref={ref} className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
       {stages.map((stage) => (
-        <article key={stage.n} className="stage bg-paper p-6">
-          <p className="font-mono text-[11px] text-bronze">{stage.n}</p>
-          <h3 className="mt-4 font-serif text-3xl">{stage.title}</h3>
-          <p className="mt-3 text-sm text-ink-soft">{stage.copy}</p>
+        <article key={stage.n} className="stage rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-6 shadow-sm backdrop-blur-sm">
+          <p className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">{stage.n}</p>
+          <h3 className="mt-3 text-lg font-bold text-slate-900 dark:text-white">{stage.title}</h3>
+          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{stage.copy}</p>
         </article>
       ))}
     </div>

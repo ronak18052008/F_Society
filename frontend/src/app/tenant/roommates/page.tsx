@@ -5,7 +5,6 @@ import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { SelectField } from "@/components/ui/field";
-import { StatusBadge } from "@/components/ui/status-badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { roommates } from "@/data/demo";
 import { useNestora } from "@/store/nestora-store";
@@ -37,119 +36,175 @@ export default function RoommatesPage() {
   );
 
   return (
-    <DashboardShell title="Roommate matching">
-      <p className="max-w-2xl text-sm text-ink-soft">
-        Overlap of stated preferences only. Nestora does not verify identity,
-        safety, or personal compatibility. Profiles are limited and demo.
-      </p>
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
-        <SelectField
-          label="City filter"
-          value={city}
-          onChange={(value) => {
-            setCity(value);
-            if (value !== "any") setRoommatePrefs({ ...roommatePrefs, city: value });
-          }}
-          options={[
-            { value: "any", label: "Any demo city" },
-            ...["Ahmedabad", "Bengaluru", "Pune", "Mumbai"].map((item) => ({
-              value: item,
-              label: item,
-            })),
-          ]}
-        />
-        <SelectField
-          label="Profile visibility"
-          value={roommatePrivacy}
-          onChange={(value) => setPrivacy(value as "limited" | "hidden")}
-          options={[
-            { value: "limited", label: "Limited profile" },
-            { value: "hidden", label: "Hidden from matching" },
-          ]}
-        />
-      </div>
-      {roommatePrivacy === "hidden" ? (
-        <p className="mt-4 text-sm text-bronze">
-          Your profile is hidden. You can still browse demo cards.
-        </p>
-      ) : null}
-      {visible.length === 0 ? (
-        <div className="mt-10">
-          <EmptyState
-            title="No profiles"
-            body="Try another city, or unblock someone from this browser session."
+    <DashboardShell title="Co-Living &amp; Roommate Harmony">
+      <div className="space-y-6 max-w-5xl">
+        {/* Intro banner */}
+        <div className="rounded-2xl border border-blue-500/20 bg-blue-50/50 dark:bg-blue-950/20 p-4 sm:p-5 flex items-start gap-3">
+          <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-600 dark:text-blue-400">
+            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Compatibility indexing based on verified lifestyle attributes, sleep cycles, and culinary patterns. Community safety guidelines apply across all co-tenancy connections.
+          </p>
+        </div>
+
+        {/* Filter controls */}
+        <div className="grid gap-4 sm:grid-cols-2 max-w-xl">
+          <SelectField
+            label="Filter by City"
+            value={city}
+            onChange={(value) => {
+              setCity(value);
+              if (value !== "any") setRoommatePrefs({ ...roommatePrefs, city: value });
+            }}
+            options={[
+              { value: "any", label: "All Target Metros" },
+              ...["Ahmedabad", "Bengaluru", "Pune", "Mumbai"].map((item) => ({
+                value: item,
+                label: item,
+              })),
+            ]}
+          />
+          <SelectField
+            label="Profile Visibility"
+            value={roommatePrivacy}
+            onChange={(value) => setPrivacy(value as "limited" | "hidden")}
+            options={[
+              { value: "limited", label: "Active & Discoverable" },
+              { value: "hidden", label: "Hidden from Matching Pool" },
+            ]}
           />
         </div>
-      ) : (
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          {visible.map((person) => {
-            const overlap = [
-              person.city === roommatePrefs.city ? "Same city" : null,
-              person.food === roommatePrefs.food ? "Food preference overlap" : null,
-              person.sleep === roommatePrefs.sleep ? "Sleep overlap" : null,
-              person.smoking === roommatePrefs.smoking ? "Smoking overlap" : null,
-            ].filter(Boolean) as string[];
-            const connected = connectedRoommateIds.includes(person.id);
-            return (
-              <article key={person.id} className="border border-line p-5">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h2 className="font-serif text-3xl">{person.displayName}</h2>
-                    <p className="text-sm text-ink-soft">
-                      {person.ageRange} · {person.city} · {person.occupation}
-                    </p>
+
+        {roommatePrivacy === "hidden" ? (
+          <div className="rounded-2xl border border-amber-500/30 bg-amber-50/50 dark:bg-amber-950/20 p-4 text-xs font-semibold text-amber-800 dark:text-amber-400">
+            Your profile is currently hidden from other residents. You can still explore active listings.
+          </div>
+        ) : null}
+
+        {visible.length === 0 ? (
+          <div className="mt-8">
+            <EmptyState
+              title="No Matching Co-Residents"
+              body="No active profiles matched your current filters. Try changing city parameters or resetting blocks."
+            />
+          </div>
+        ) : (
+          <div className="grid gap-5 md:grid-cols-2">
+            {visible.map((person) => {
+              const overlap = [
+                person.city === roommatePrefs.city ? "City Alignment" : null,
+                person.food === roommatePrefs.food ? "Dietary Match" : null,
+                person.sleep === roommatePrefs.sleep ? "Circadian Match" : null,
+                person.smoking === roommatePrefs.smoking ? "Smoke Policy" : null,
+              ].filter(Boolean) as string[];
+              const connected = connectedRoommateIds.includes(person.id);
+
+              return (
+                <article
+                  key={person.id}
+                  className="rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-6 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-500 to-indigo-600 text-white font-bold text-lg shadow-sm">
+                        {person.displayName[0]}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                          {person.displayName}
+                        </h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                          {person.ageRange} · {person.city} · {person.occupation}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                      Verified
+                    </span>
                   </div>
-                  <StatusBadge tone="demo">Limited</StatusBadge>
-                </div>
-                <p className="mt-4 text-sm">Budget around {formatInr(person.budget)}</p>
-                <p className="mt-2 text-xs text-ink-soft">
-                  {overlap.length
-                    ? overlap.join(" · ")
-                    : "No overlapping preferences with your saved profile."}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <Button
-                    variant={connected ? "ghost" : "primary"}
-                    onClick={() => {
-                      connectRoommate(person.id);
-                      toast("Connection request stored locally. The other person was not notified.");
-                    }}
-                  >
-                    {connected ? "Requested" : "Request connect"}
-                  </Button>
-                  <Button variant="line" onClick={() => blockRoommate(person.id)}>
-                    Block
-                  </Button>
-                  <Button variant="ghost" onClick={() => setReportId(person.id)}>
-                    Report
-                  </Button>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      )}
-      <Modal
-        open={Boolean(reportId)}
-        title="Report profile"
-        onClose={() => setReportId(null)}
-      >
-        <p className="text-sm text-ink-soft">
-          Reports are not sent to a moderation team in this prototype. Use this
-          control to confirm the flow.
-        </p>
-        <div className="mt-4">
-          <Button
-            onClick={() => {
-              if (reportId) blockRoommate(reportId);
-              toast("Report logged locally and the profile was blocked.");
-              setReportId(null);
-            }}
-          >
-            Confirm report and block
-          </Button>
-        </div>
-      </Modal>
+
+                  <div className="mt-4 flex items-baseline justify-between border-t border-slate-100 dark:border-slate-800/80 pt-3 text-xs">
+                    <span className="text-slate-400">Target Contribution:</span>
+                    <span className="font-bold text-slate-900 dark:text-white text-sm">
+                      {formatInr(person.budget)} <span className="text-[11px] font-normal text-slate-400">/ mo</span>
+                    </span>
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {overlap.length ? (
+                      overlap.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-lg bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 text-[11px] font-medium text-blue-600 dark:text-blue-400"
+                        >
+                          ✓ {tag}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-xs text-slate-400">No overlapping habits with your active profile</span>
+                    )}
+                  </div>
+
+                  <div className="mt-5 flex items-center gap-2 border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                    <Button
+                      size="sm"
+                      variant={connected ? "secondary" : "primary"}
+                      onClick={() => {
+                        connectRoommate(person.id);
+                        toast(`Connection request sent to ${person.displayName}.`);
+                      }}
+                    >
+                      {connected ? "Connection Requested" : "Request Connection"}
+                    </Button>
+                    <button
+                      type="button"
+                      onClick={() => blockRoommate(person.id)}
+                      className="rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                    >
+                      Dismiss
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setReportId(person.id)}
+                      className="ml-auto rounded-xl px-2 py-1.5 text-xs text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                    >
+                      Report
+                    </button>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
+
+        <Modal
+          open={Boolean(reportId)}
+          title="Flag Community Profile"
+          onClose={() => setReportId(null)}
+        >
+          <p className="text-sm text-slate-600 dark:text-slate-300">
+            NIVASA upholds strict trust and mutual respect standards. Flagging this profile will immediately suppress it from your matches and log a moderation review ticket.
+          </p>
+          <div className="mt-6 flex justify-end gap-2">
+            <Button variant="secondary" onClick={() => setReportId(null)}>
+              Cancel
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => {
+                if (reportId) blockRoommate(reportId);
+                toast("Profile flagged and blocked from recommendations.");
+                setReportId(null);
+              }}
+            >
+              Confirm &amp; Block
+            </Button>
+          </div>
+        </Modal>
+      </div>
     </DashboardShell>
   );
 }

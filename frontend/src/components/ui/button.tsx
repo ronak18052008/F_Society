@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type ButtonVariant = "primary" | "secondary" | "line" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "line" | "ghost" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
 
 type Props = {
@@ -44,6 +44,8 @@ export function Button({
       "border border-slate-200 bg-white/70 backdrop-blur-md text-slate-800 hover:border-blue-500/40 hover:bg-white dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-blue-400/40 dark:hover:bg-slate-900 active:scale-[0.98]",
     ghost:
       "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/80 dark:hover:text-white",
+    danger:
+      "bg-rose-600 text-white shadow-md shadow-rose-500/20 hover:bg-rose-500 hover:shadow-lg hover:shadow-rose-500/25 active:scale-[0.98]",
   }[variant];
 
   const styles = cn(

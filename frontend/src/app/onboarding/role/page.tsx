@@ -13,43 +13,83 @@ export default function RolePage() {
     if (user) signIn({ ...user, role });
     else
       signIn(
-        makeUser({ name: "Guest", email: "guest@nestora.local", role }),
+        makeUser({ name: "Resident", email: "resident@nivasa.local", role }),
       );
     router.push(role === "owner" ? "/onboarding/owner" : "/onboarding/tenant");
   }
 
   return (
     <SiteShell>
-      <div className="mx-auto max-w-3xl px-5 py-16">
-        <h1 className="font-serif text-5xl">How will you use Nestora?</h1>
-        <p className="mt-3 text-sm text-ink-soft">
-          You can switch later in profile setup.
-        </p>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+      <div className="mx-auto max-w-4xl px-5 py-20 sm:py-28">
+        <div className="text-center max-w-xl mx-auto">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400 mb-4">
+            Step 1 of 3 · Identity Selection
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+            Define your living journey
+          </h1>
+          <p className="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            Select your primary mode of interaction on the NIVASA platform. You can change your workspace role at any time.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {/* Tenant Option */}
           <button
             type="button"
-            className="border border-line p-8 text-left hover:border-bronze"
+            className="group relative rounded-3xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-8 text-left transition-all hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 active:scale-[0.99] cursor-pointer"
             onClick={() => choose("tenant")}
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-bronze">
-              Tenant
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+              <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <p className="mt-6 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              Resident · Tenant
             </p>
-            <h2 className="mt-3 font-serif text-3xl">I am looking to rent</h2>
+            <h2 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
+              I am seeking a dwelling
+            </h2>
+            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Explore verified listings with unbundled RentTruth costs, photographic condition passports, and digital agreements.
+            </p>
+            <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-blue-600 dark:text-blue-400">
+              <span>Continue as Resident</span>
+              <span>→</span>
+            </div>
           </button>
+
+          {/* Owner Option */}
           <button
             type="button"
-            className="border border-line p-8 text-left hover:border-bronze"
+            className="group relative rounded-3xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-8 text-left transition-all hover:border-teal-500 hover:shadow-xl hover:shadow-teal-500/10 hover:-translate-y-1 active:scale-[0.99] cursor-pointer"
             onClick={() => choose("owner")}
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-bronze">
-              Owner
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 group-hover:scale-110 transition-transform">
+              <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <p className="mt-6 text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">
+              Dwelling Curator · Owner
             </p>
-            <h2 className="mt-3 font-serif text-3xl">I list a property</h2>
+            <h2 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
+              I am listing a residence
+            </h2>
+            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Publish high-end residences, verify applicant criteria, manage tenancy workspaces, and track rental cashflows.
+            </p>
+            <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-teal-600 dark:text-teal-400">
+              <span>Continue as Owner</span>
+              <span>→</span>
+            </div>
           </button>
         </div>
-        <div className="mt-8">
+
+        <div className="mt-10 text-center">
           <Button href="/login" variant="ghost">
-            I already have a session
+            Already have an active account? Sign in
           </Button>
         </div>
       </div>
