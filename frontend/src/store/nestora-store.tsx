@@ -7,7 +7,9 @@ import {
   useMemo,
   useState,
   useSyncExternalStore,
+  useEffect,
 } from "react";
+import { createClient } from "@/lib/supabase/client";
 import { seedEnquiries } from "@/data/demo";
 import type { Enquiry, SessionUser, UserRole } from "@/types";
 
@@ -152,12 +154,33 @@ export function NestoraProvider({ children }: { children: React.ReactNode }) {
       signOut: () => write({ ...getSnapshot(), user: null }),
       toggleSave: (propertyId) => {
         const current = getSnapshot();
+        const isSaved = current.savedIds.includes(propertyId);
+        const nextSavedIds = isSaved
+          ? current.savedIds.filter((id) => id !== propertyId)
+          : [...current.savedIds, propertyId];
         write({
           ...current,
-          savedIds: current.savedIds.includes(propertyId)
-            ? current.savedIds.filter((id) => id !== propertyId)
-            : [...current.savedIds, propertyId],
+          savedIds: nextSavedIds,
         });
+        const supabase = createClient();
+        if (supabase && current.user?.supabaseId) {
+          if (isSaved) {
+            supabase
+              .from("saved_properties")
+              .delete()
+              .eq("user_id", current.user.supabaseId)
+              .eq("property_id", propertyId)
+              .then(() => {});
+          } else {
+            supabase
+              .from("saved_properties")
+              .insert({
+                user_id: current.user.supabaseId,
+                property_id: propertyId,
+              })
+              .then(() => {});
+          }
+        }
       },
       addEnquiry: (propertyId, message) => {
         const current = getSnapshot();
@@ -228,4 +251,64 @@ export function makeUser(input: {
     email: input.email,
     role: input.role,
   };
+}
+
+export function useSupabaseSync() {
+  const supabase = createClient();
+  const { signIn, signOut, toast } = useNestora();
+
+  useEffect(() => {
+    if (!supabase) return;
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        const meta = session.user.user_metadata;
+        signIn({
+          id: session.user.id,
+          name: (meta?.name as string) || session.user.email?.split("@")[0] || "",
+          email: session.user.email || "",
+          role: (meta?.role as "tenant" | "owner") || "tenant",
+          supabaseId: session.user.id,
+          emailVerified: !!session.user.email_confirmed_at,
+        });
+      } else {
+        signOut();
+      }
+    });
+
+    let unsubscribeRealtime: (() => void) | null = null;
+    try {
+      const channel = supabase
+        .channel("public:enquiries-global")
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "public",
+            table: "enquiries",
+          },
+          (payload) => {
+            if (payload.new) {
+              toast(`Incoming inquiry from ${payload.new.from_name || "member"}`);
+            }
+          },
+        )
+        .subscribe();
+
+      unsubscribeRealtime = () => {
+        supabase.removeChannel(channel);
+      };
+    } catch (err) {
+      console.warn("Realtime error:", err);
+    }
+
+    return () => {
+      subscription.unsubscribe();
+      if (unsubscribeRealtime) unsubscribeRealtime();
+    };
+  }, [supabase, signIn, signOut, toast]);
+
+  return { supabase, isConfigured: !!supabase };
 }

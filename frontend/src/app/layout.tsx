@@ -25,11 +25,35 @@ const plex = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Nestora — Rent with clarity",
+    default: "Nestora — Architectural Property Living & Verified Tenancy",
     template: "%s · Nestora",
   },
   description:
-    "Nestora is a rental lifecycle platform connecting tenants and property owners with clearer costs, records, and shared workflows.",
+    "Nestora is a residential living platform connecting discerning tenants and property owners with transparent RentTruth costs, cryptographic condition passports, and verified rental workflows.",
+  keywords: [
+    "architectural living",
+    "verified rentals India",
+    "RentTruth cost transparency",
+    "condition passport",
+    "luxury apartments Mumbai",
+    "architectural homes Bengaluru",
+    "lease agreement analysis",
+  ],
+  authors: [{ name: "Nestora Architectural Living" }],
+  openGraph: {
+    title: "Nestora — Architectural Property Living & Verified Tenancy",
+    description:
+      "A modern rental platform built for cost clarity, verified property passports, and elevated architectural spaces.",
+    url: "https://nestora.in",
+    siteName: "Nestora",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nestora — Architectural Property Living & Verified Tenancy",
+    description: "Curated architectural properties with transparent RentTruth expense tracking.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

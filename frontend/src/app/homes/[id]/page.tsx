@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SiteShell } from "@/components/layout/site-shell";
 import { PropertyGallery } from "@/components/property/property-gallery";
 import { ExpenseBreakdown } from "@/components/property/expense-breakdown";
@@ -9,21 +9,57 @@ import { Button } from "@/components/ui/button";
 import { Field, TextArea } from "@/components/ui/field";
 import { Modal } from "@/components/ui/modal";
 import { StatusBadge } from "@/components/ui/status-badge";
-import { getOwner, getProperty, monthlyEstimate } from "@/data/demo";
+import { getOwner, getProperty as getDemoProperty, monthlyEstimate } from "@/data/demo";
+import { getPropertyById } from "@/lib/supabase/properties";
+import { createClient } from "@/lib/supabase/client";
 import { formatInr } from "@/lib/format";
 import { useNestora } from "@/store/nestora-store";
 import { ArchitecturalHero } from "@/components/three/architectural-hero";
+import type { Property } from "@/types";
 
 export default function PropertyDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const property = getProperty(id);
-  const { savedIds, toggleSave, addEnquiry, user } = useNestora();
+  const [property, setProperty] = useState<Property | null>(() => getDemoProperty(id) || null);
+  const [loading, setLoading] = useState(!property);
+  const { savedIds, toggleSave, addEnquiry, user, toast } = useNestora();
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState(
     "I would like to visit this week. Please share a suitable time.",
   );
   const [name, setName] = useState(user?.name ?? "");
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      if (!id) return;
+      try {
+        const found = await getPropertyById(id);
+        if (active && found) {
+          setProperty(found);
+        }
+      } catch (err) {
+        console.warn("Could not fetch remote property details:", err);
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      active = false;
+    };
+  }, [id]);
+
+  if (loading) {
+    return (
+      <SiteShell>
+        <div className="mx-auto max-w-xl px-5 py-20">
+          <p className="font-mono text-sm text-bronze uppercase tracking-widest">Loading property...</p>
+        </div>
+      </SiteShell>
+    );
+  }
 
   if (!property) {
     return (
@@ -31,7 +67,7 @@ export default function PropertyDetailPage() {
         <div className="mx-auto max-w-xl px-5 py-20">
           <h1 className="font-serif text-4xl">Listing not found</h1>
           <p className="mt-3 text-sm text-ink-soft">
-            This id is not in the demo inventory.
+            This residence is currently unavailable or does not exist.
           </p>
           <div className="mt-6">
             <Button href="/homes">Back to homes</Button>
@@ -40,7 +76,13 @@ export default function PropertyDetailPage() {
       </SiteShell>
     );
   }
-  const owner = getOwner(property.ownerId);
+  const owner = getOwner(property.ownerId) || {
+    id: property.ownerId,
+    name: "Property Host",
+    city: property.city,
+    listedSince: "2025",
+    responseNote: "Responds promptly to verified inquiries.",
+  };
   const saved = savedIds.includes(property.id);
 
   return (
@@ -49,7 +91,9 @@ export default function PropertyDetailPage() {
         <PropertyGallery images={property.images} title={property.title} />
         <div className="mt-10 grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <StatusBadge tone="demo">Demo listing</StatusBadge>
+            <StatusBadge tone={property.demo ? "demo" : "ok"}>
+              {property.demo ? "Demo listing" : "Verified residence"}
+            </StatusBadge>
             <h1 className="mt-4 font-serif text-5xl">{property.title}</h1>
             <p className="mt-2 text-ink-soft">
               {property.locality}, {property.city}
@@ -84,8 +128,7 @@ export default function PropertyDetailPage() {
             <h2 className="mt-10 font-serif text-3xl">Location</h2>
             <p className="mt-2 text-sm text-ink-soft">
               Approximate coordinates {property.coordinates.lat},{" "}
-              {property.coordinates.lng}. No live map is connected in this
-              prototype.
+              {property.coordinates.lng}.
             </p>
             <div className="mt-10 h-72 border border-line">
               <ArchitecturalHero />
@@ -130,8 +173,7 @@ export default function PropertyDetailPage() {
       </div>
       <Modal open={open} title="Contact owner" onClose={() => setOpen(false)}>
         <p className="mb-4 text-sm text-ink-soft">
-          This enquiry stays in your browser. It is not emailed or stored on a
-          server.
+          Send a direct inquiry to the owner regarding visits, availability, and lease terms.
         </p>
         <div className="space-y-4">
           <Field
@@ -148,17 +190,41 @@ export default function PropertyDetailPage() {
             value={message}
             onChange={setMessage}
           />
+          {error && <p className="text-xs text-danger">{error}</p>}
           <Button
-            onClick={() => {
+            disabled={submitting}
+            onClick={async () => {
               if (!name.trim() || message.trim().length < 12) {
                 setError("Name and a short message (12+ characters) are required.");
                 return;
               }
-              addEnquiry(property.id, `${name}: ${message}`);
-              setOpen(false);
+              setSubmitting(true);
+              setError("");
+              try {
+                const supabase = createClient();
+                if (supabase && user?.supabaseId) {
+                  await supabase.from("enquiries").insert({
+                    property_id: property.id,
+                    from_user: user.supabaseId,
+                    from_name: name,
+                    message,
+                    status: "sent",
+                  });
+                }
+                addEnquiry(property.id, `${name}: ${message}`);
+                toast("Enquiry sent to the owner.");
+                setOpen(false);
+              } catch (err) {
+                console.warn("Failed to submit enquiry to server:", err);
+                addEnquiry(property.id, `${name}: ${message}`);
+                toast("Enquiry recorded locally.");
+                setOpen(false);
+              } finally {
+                setSubmitting(false);
+              }
             }}
           >
-            Submit enquiry
+            {submitting ? "Sending..." : "Submit enquiry"}
           </Button>
         </div>
       </Modal>

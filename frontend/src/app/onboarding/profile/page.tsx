@@ -6,6 +6,7 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { useNestora } from "@/store/nestora-store";
+import { createClient } from "@/lib/supabase/client";
 
 export default function ProfileSetupPage() {
   const router = useRouter();
@@ -19,15 +20,33 @@ export default function ProfileSetupPage() {
       <div className="mx-auto max-w-lg px-5 py-16">
         <h1 className="font-serif text-5xl">Profile</h1>
         <p className="mt-3 text-sm text-ink-soft">
-          Phone is optional and never submitted to a server in this build.
+          Your profile is saved to your account when connected.
         </p>
         <form
           className="mt-8 space-y-4"
-          onSubmit={(event) => {
+          onSubmit={async (event) => {
             event.preventDefault();
             if (!user || name.trim().length < 2) return;
+
+            // Update local store immediately
             signIn({ ...user, name, city, phone });
-            toast("Profile updated in local storage.");
+
+            // Persist to Supabase if configured
+            const supabase = createClient();
+            if (supabase) {
+              const { error } = await supabase
+                .from("profiles")
+                .update({ name, city, phone })
+                .eq("id", user.supabaseId ?? user.id);
+              if (error) {
+                toast("Profile saved locally. Server sync failed.");
+              } else {
+                toast("Profile saved.");
+              }
+            } else {
+              toast("Profile updated in local storage.");
+            }
+
             router.push(
               user.role === "owner" ? "/owner/dashboard" : "/tenant/dashboard",
             );

@@ -42,7 +42,7 @@ export type Property = {
   description: string;
   expenses: ExpenseLine[];
   coordinates: { lat: number; lng: number };
-  demo: true;
+  demo?: boolean;
 };
 
 export type OwnerProfile = {
@@ -78,6 +78,9 @@ export type SessionUser = {
   role: UserRole;
   city?: string;
   phone?: string;
+  supabaseId?: string;
+  avatarUrl?: string;
+  emailVerified?: boolean;
 };
 
 export type Enquiry = {
@@ -86,7 +89,7 @@ export type Enquiry = {
   fromName: string;
   message: string;
   createdAt: string;
-  status: "sent" | "seen";
+  status: "sent" | "seen" | "replied";
 };
 
 export type DocumentRecord = {
@@ -97,6 +100,8 @@ export type DocumentRecord = {
   uploadedAt: string;
   visibleTo: Array<"tenant" | "owner">;
   fileName: string;
+  fileUrl?: string;
+  storagePath?: string;
 };
 
 export type PaymentRecord = {
@@ -108,6 +113,8 @@ export type PaymentRecord = {
   status: "paid" | "unpaid" | "proof-uploaded";
   source: DataSource;
   proofName?: string;
+  proofUrl?: string;
+  proofStoragePath?: string;
 };
 
 export type MaintenanceRequest = {
@@ -117,6 +124,9 @@ export type MaintenanceRequest = {
   status: "open" | "in-progress" | "resolved";
   openedAt: string;
   note: string;
+  photos?: string[];
+  assignedTo?: string;
+  resolvedAt?: string;
 };
 
 export type ActivityEvent = {
@@ -130,7 +140,7 @@ export type PassportRoom = {
   id: string;
   name: string;
   notes: string;
-  photos: { id: string; label: string; src: string; takenAt: string }[];
+  photos: { id: string; label: string; src: string; takenAt: string; storageUrl?: string }[];
   reviewRequired: boolean;
 };
 
@@ -150,4 +160,7 @@ export type RentalWorkspace = {
   rent: number;
   deposit: number;
   agreementSummary: string;
+  status?: 'active' | 'ended' | 'pending';
+  tenantId?: string;
+  ownerId?: string;
 };

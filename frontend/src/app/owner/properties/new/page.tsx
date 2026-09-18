@@ -7,50 +7,122 @@ import { Button } from "@/components/ui/button";
 import { Field, SelectField, TextArea } from "@/components/ui/field";
 import { UploadField } from "@/components/ui/upload-field";
 import { useNestora } from "@/store/nestora-store";
+import { uploadFile } from "@/lib/supabase/storage";
+import { createProperty } from "@/lib/supabase/properties";
 
 export default function AddPropertyPage() {
   const router = useRouter();
-  const { addDraft, toast } = useNestora();
+  const { addDraft, toast, user } = useNestora();
   const [title, setTitle] = useState("");
+  const [locality, setLocality] = useState("");
   const [city, setCity] = useState("Ahmedabad");
   const [rent, setRent] = useState("");
   const [deposit, setDeposit] = useState("");
-  const [amenities, setAmenities] = useState("Lift, Parking");
-  const [costs, setCosts] = useState("Maintenance 3000");
+  const [amenities, setAmenities] = useState("Lift, Parking, 24/7 Security, Power Backup");
   const [availability, setAvailability] = useState("2026-10-01");
   const [reqs, setReqs] = useState("Working professionals preferred.");
   const [fileName, setFileName] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [furnishing, setFurnishing] = useState("semi-furnished");
   const [error, setError] = useState("");
+
+  const handleImageSelect = async (file: File) => {
+    setFileName(file.name);
+    setUploadingImage(true);
+    try {
+      const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
+      const path = `${user?.supabaseId || "guest"}/${Date.now()}-${sanitizedName}`;
+      const res = await uploadFile("property-images", path, file);
+      if (res.url) {
+        setImageUrl(res.url);
+        toast("Property photograph uploaded successfully.");
+      }
+    } catch (err) {
+      console.warn("Upload error:", err);
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (title.trim().length < 4 || !Number(rent)) {
+      setError("Title and a numeric rent are required.");
+      return;
+    }
+
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const amenitiesList = amenities
+        .split(",")
+        .map((a) => a.trim())
+        .filter(Boolean);
+
+      const defaultImage =
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80";
+
+      if (user?.supabaseId) {
+        const res = await createProperty(
+          {
+            title,
+            locality: locality.trim() || city,
+            city,
+            rent: Number(rent),
+            deposit: Number(deposit) || Number(rent) * 2,
+            amenities: amenitiesList,
+            availableFrom: availability,
+            furnishing: furnishing as "furnished" | "semi-furnished" | "unfurnished",
+            description: reqs,
+            images: imageUrl ? [imageUrl] : [defaultImage],
+          },
+          user.supabaseId,
+        );
+
+        if (res.error) {
+          toast(`Server note: ${res.error}. Saved locally.`);
+        } else {
+          toast("Property listing published successfully to the network!");
+        }
+      } else {
+        toast(
+          fileName
+            ? `Listing saved locally with image ${fileName}.`
+            : "Listing saved locally.",
+        );
+      }
+
+      addDraft({ title, city, rent: Number(rent) });
+      router.push("/owner/dashboard");
+    } catch (err) {
+      console.warn("Error creating property:", err);
+      addDraft({ title, city, rent: Number(rent) });
+      router.push("/owner/dashboard");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <DashboardShell title="Add property">
       <p className="mb-8 max-w-xl text-sm text-ink-soft">
-        Drafts stay in this browser. Photographs are not uploaded to storage.
+        Publish an architectural property listing with real photo upload and tenant discovery.
       </p>
-      <form
-        className="max-w-xl space-y-4"
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (title.trim().length < 4 || !Number(rent)) {
-            setError("Title and a numeric rent are required.");
-            return;
-          }
-          addDraft({ title, city, rent: Number(rent) });
-          toast(
-            fileName
-              ? `Draft saved with local file ${fileName}. Deposit ${deposit || "n/a"}.`
-              : "Draft saved locally.",
-          );
-          router.push("/owner/dashboard");
-        }}
-      >
+      {error && (
+        <div className="mb-6 max-w-xl rounded border border-red-200 bg-red-50 p-3 text-sm text-red-600">
+          {error}
+        </div>
+      )}
+      <form className="max-w-xl space-y-4" onSubmit={handleSubmit}>
         <Field label="Title" name="title" value={title} onChange={setTitle} error={error} required />
+        <Field label="Locality / Neighborhood" name="locality" value={locality} onChange={setLocality} placeholder="e.g. Bandra West, Indiranagar" />
         <Field label="City" name="city" value={city} onChange={setCity} required />
         <Field label="Monthly rent (₹)" name="rent" value={rent} onChange={setRent} required />
-        <Field label="Deposit (₹)" name="deposit" value={deposit} onChange={setDeposit} />
-        <Field label="Amenities" name="amenities" value={amenities} onChange={setAmenities} />
-        <Field label="Recurring costs" name="costs" value={costs} onChange={setCosts} />
+        <Field label="Security deposit (₹)" name="deposit" value={deposit} onChange={setDeposit} />
+        <Field label="Amenities (comma separated)" name="amenities" value={amenities} onChange={setAmenities} />
         <Field
           label="Availability"
           name="availability"
@@ -68,14 +140,18 @@ export default function AddPropertyPage() {
             { value: "unfurnished", label: "Unfurnished" },
           ]}
         />
-        <TextArea label="Tenant requirements" name="reqs" value={reqs} onChange={setReqs} />
+        <TextArea label="Tenant requirements & details" name="reqs" value={reqs} onChange={setReqs} />
         <UploadField
           label="Photographs"
           accept="image/*"
-          hint="Files remain on your device."
-          onSelect={(file) => setFileName(file.name)}
+          hint="Uploaded to secure media storage."
+          uploading={uploadingImage}
+          previewUrl={imageUrl || undefined}
+          onSelect={handleImageSelect}
         />
-        <Button type="submit">Save draft listing</Button>
+        <Button type="submit" disabled={submitting || uploadingImage}>
+          {submitting ? "Publishing listing..." : "Publish property listing"}
+        </Button>
       </form>
     </DashboardShell>
   );

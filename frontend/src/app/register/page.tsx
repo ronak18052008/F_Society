@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { makeUser, useNestora } from "@/store/nestora-store";
 import { Suspense } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 function RegisterForm() {
   const params = useSearchParams();
@@ -17,28 +18,66 @@ function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const nextPath = useMemo(
     () => (intent === "owner" ? "/onboarding/owner" : "/onboarding/role"),
     [intent],
   );
 
-  function submit() {
+  async function submit() {
+    setError("");
     const next: Record<string, string> = {};
     if (name.trim().length < 2) next.name = "Enter your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = "Enter a valid email.";
     if (password.length < 8) next.password = "Use at least 8 characters.";
     setErrors(next);
     if (Object.keys(next).length) return;
-    signIn(
-      makeUser({
-        name,
-        email,
-        role: intent === "owner" ? "owner" : "tenant",
-      }),
-    );
-    toast("Account exists only in this browser.");
-    router.push(nextPath);
+
+    setLoading(true);
+    try {
+      const supabase = createClient();
+      const role = intent === "owner" ? "owner" : "tenant";
+      
+      if (supabase) {
+        const { error: authError } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              name,
+              role,
+            },
+          },
+        });
+
+        if (authError) {
+          setError(authError.message);
+          setLoading(false);
+          return;
+        }
+
+        toast("Check your email to confirm your account");
+        router.push("/login");
+        return;
+      }
+
+      // Fallback
+      signIn(
+        makeUser({
+          name,
+          email,
+          role,
+        }),
+      );
+      toast("Account exists only in this browser.");
+      router.push(nextPath);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -47,6 +86,11 @@ function RegisterForm() {
         Prototype registration
       </p>
       <h1 className="mt-3 font-serif text-5xl">Create account</h1>
+      {error && (
+        <div className="mt-4 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-600">
+          {error}
+        </div>
+      )}
       <form
         className="mt-8 space-y-4"
         onSubmit={(event) => {
@@ -73,7 +117,9 @@ function RegisterForm() {
           error={errors.password}
           required
         />
-        <Button type="submit">Continue</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Creating..." : "Continue"}
+        </Button>
       </form>
     </div>
   );

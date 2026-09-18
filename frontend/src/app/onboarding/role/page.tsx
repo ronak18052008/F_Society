@@ -23,7 +23,7 @@ export default function RolePage() {
       <div className="mx-auto max-w-3xl px-5 py-16">
         <h1 className="font-serif text-5xl">How will you use Nestora?</h1>
         <p className="mt-3 text-sm text-ink-soft">
-          You can switch later in profile setup. Role is stored locally.
+          You can switch later in profile setup.
         </p>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           <button

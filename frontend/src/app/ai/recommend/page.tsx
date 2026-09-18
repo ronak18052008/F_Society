@@ -20,31 +20,52 @@ export default function RecommendPage() {
   );
   const [matches, setMatches] = useState<ReturnType<typeof matchProperties>>([]);
 
-  function run() {
+  const [isAi, setIsAi] = useState(false);
+
+  async function run() {
     if (raw.trim().length < 8) {
       setStatus("error");
       return;
     }
     setStatus("loading");
-    window.setTimeout(() => {
-      const req = parseRequirements(raw);
-      const next = matchProperties(properties, req);
-      setParsed(req);
-      setMatches(next);
-      setStatus("done");
-    }, 700);
+    try {
+      const res = await fetch("/api/ai/recommend", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: raw }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setParsed(data.requirements);
+        setMatches(data.matches);
+        setIsAi(Boolean(data.aiPowered));
+        setStatus("done");
+        return;
+      }
+    } catch (err) {
+      console.warn("API recommend failed, fallback to local:", err);
+    }
+
+    // Local fallback
+    const req = parseRequirements(raw);
+    const next = matchProperties(properties, req);
+    setParsed(req);
+    setMatches(next);
+    setIsAi(false);
+    setStatus("done");
   }
 
   return (
     <SiteShell>
       <div className="mx-auto max-w-5xl px-5 py-14">
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-bronze">
-          Rule-based prototype
+          {isAi ? "Gemini-powered semantic search" : "Intelligent requirement discovery"}
         </p>
         <h1 className="mt-3 font-serif text-5xl">Ask Nestora</h1>
         <p className="mt-3 max-w-xl text-sm text-ink-soft">
-          This parser looks for city, budget, furnishing, and a few keywords. It
-          is not a trained model.
+          Express your ideal home requirements in natural language. We extract locality,
+          budget constraints, lifestyle suitability, and discover matching residences.
         </p>
         <div className="mt-8 max-w-xl">
           <TextArea label="What do you need?" name="q" value={raw} onChange={setRaw} />
