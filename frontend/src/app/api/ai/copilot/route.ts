@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCopilotProvider } from "@/lib/ai/copilot/provider";
+import { getCopilotProvider, MockCopilotProvider } from "@/lib/ai/copilot/provider";
 import {
   validateAndSanitizeInput,
   detectPromptInjection,
@@ -82,21 +82,33 @@ export async function POST(req: NextRequest) {
     // 6. Save User Message
     await saveMessage(activeConversationId, "user", sanitizedMessage);
 
-    // 7. Execute AI Provider with 15-second Abort Timeout
+    // 7. Execute AI Provider with Graceful Fallback on Timeout
     const provider = getCopilotProvider();
-    const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error("AI Copilot request timed out after 15s")), 15000)
-    );
+    let payload;
+    try {
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("AI Copilot request timed out after 9s")), 9000)
+      );
 
-    const payload = await Promise.race([
-      provider.generateResponse({
+      payload = await Promise.race([
+        provider.generateResponse({
+          message: sanitizedMessage,
+          conversationId: activeConversationId,
+          propertyId,
+          role: userRole,
+        }),
+        timeoutPromise,
+      ]);
+    } catch (fallbackErr) {
+      console.warn("AI Copilot provider timed out or encountered an issue, falling back to local domain engine:", fallbackErr);
+      const fallbackProvider = new MockCopilotProvider();
+      payload = await fallbackProvider.generateResponse({
         message: sanitizedMessage,
         conversationId: activeConversationId,
         propertyId,
         role: userRole,
-      }),
-      timeoutPromise,
-    ]);
+      });
+    }
 
     // 8. Save Assistant Reply
     await saveMessage(

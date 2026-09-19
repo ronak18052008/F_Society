@@ -36,7 +36,7 @@ const METRO_CITIES = [
 export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: NivasaHeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, signOut, savedIds, switchRole } = useNivasa();
+  const { user, signOut, savedIds } = useNivasa();
   const { theme, toggle } = useTheme();
 
   const isOwner = user?.role === "owner";
@@ -148,12 +148,6 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
     }
     signOut();
     router.push("/");
-  };
-
-  const handleRoleSwitch = (newRole: "tenant" | "owner") => {
-    switchRole(newRole);
-    setUserMenuOpen(false);
-    router.push(newRole === "owner" ? "/owner" : "/tenant");
   };
 
   const executeSearch = (e: React.FormEvent) => {
@@ -502,17 +496,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       Settings
                     </Link>
 
-                    {/* 19. Fast Role Switcher inside menu */}
-                    <div className="pt-1.5 pb-1 px-1">
-                      <button
-                        type="button"
-                        onClick={() => handleRoleSwitch(isOwner ? "tenant" : "owner")}
-                        className="w-full text-left rounded-xl bg-paper dark:bg-[#1d2d22] px-3 py-1.5 text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:bg-[#7ca982]/20 transition-colors flex items-center justify-between cursor-pointer"
-                      >
-                        <span>Switch to {isOwner ? "Tenant" : "Owner"}</span>
-                        <span className="text-[10px]">⇄</span>
-                      </button>
-                    </div>
+                    <div className="my-1 border-t border-[#e5dfc5] dark:border-[#2a3f31]" />
 
                     <button
                       type="button"

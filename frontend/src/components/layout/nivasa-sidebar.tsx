@@ -34,7 +34,7 @@ export function NivasaSidebar({
 }: NivasaSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, savedIds, switchRole } = useNivasa();
+  const { user, savedIds } = useNivasa();
   const { theme, toggle } = useTheme();
 
   const isOwner = user?.role === "owner";
@@ -61,12 +61,6 @@ export function NivasaSidebar({
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
-
-  const handleRoleSwitch = (newRole: "tenant" | "owner") => {
-    switchRole(newRole);
-    if (mobileOpen) onCloseMobile();
-    router.push(newRole === "owner" ? "/owner" : "/tenant");
-  };
 
   // Section 15: Owner Sidebar
   const ownerSections: NavSection[] = [
@@ -422,22 +416,17 @@ export function NivasaSidebar({
           )}
         </div>
 
-        {/* 16 & 19: Role Badge & Fast Switcher */}
+        {/* 16 & 19: Role Badge */}
         {(!collapsed || isMobile) && (
           <div className="mx-3 mt-3 rounded-2xl bg-[#7ca982]/10 dark:bg-[#1d2d22] p-2.5 border border-[#7ca982]/25">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold text-ink flex items-center gap-1.5">
                 <span className={cn("h-2 w-2 rounded-full", isOwner ? "bg-amber-500" : "bg-[#7ca982]")} />
-                <span className="text-[10px] font-bold tracking-wider uppercase">{isOwner ? "OWNER" : "TENANT"}</span>
+                <span className="text-[10px] font-bold tracking-wider uppercase">{isOwner ? "OWNER PORTAL" : "TENANT PORTAL"}</span>
               </span>
-              <button
-                type="button"
-                onClick={() => handleRoleSwitch(isOwner ? "tenant" : "owner")}
-                className="text-[11px] font-bold text-[#57875d] dark:text-[#a3caa6] hover:underline cursor-pointer flex items-center gap-1"
-              >
-                <span>Switch to {isOwner ? "Tenant" : "Owner"}</span>
-                <span>⇄</span>
-              </button>
+              <span className="text-[10px] font-semibold text-ink-muted">
+                {isOwner ? "Landlord" : "Resident"}
+              </span>
             </div>
           </div>
         )}
