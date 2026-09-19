@@ -20,6 +20,7 @@ import {
   getWorkspacePayments,
 } from "@/lib/supabase/workspace";
 import { getPropertyById } from "@/lib/supabase/properties";
+import { MaintenanceTriageModal } from "@/components/maintenance/maintenance-triage-modal";
 import type { RentalWorkspace, ActivityEvent, MaintenanceRequest, PaymentRecord, Property } from "@/types";
 
 export default function RentalDashboardPage() {
@@ -142,9 +143,28 @@ export default function RentalDashboardPage() {
 
       {/* Maintenance Tickets Section */}
       <div className="mt-10">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-serif font-bold text-ink dark:text-cream">Maintenance Tickets</h2>
-          <span className="text-xs text-ink-muted">{maintenanceList.length} total logged</span>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+          <div>
+            <h2 className="text-xl font-serif font-bold text-ink dark:text-cream">Maintenance Tickets</h2>
+            <span className="text-xs text-ink-muted">{maintenanceList.length} total logged · AI Triage enabled</span>
+          </div>
+          <MaintenanceTriageModal
+            propertyId={id}
+            propertyTitle={propertyData?.title || "Rental Residence"}
+            onTicketCreated={(ticket) => {
+              setMaintenanceList((prev) => [
+                {
+                  id: ticket.id,
+                  title: `[${ticket.category}] ${ticket.summary}`,
+                  area: ticket.room || "Residence",
+                  status: "open",
+                  openedAt: new Date().toISOString().split("T")[0],
+                  note: `Severity: ${ticket.severity} · Urgency: ${ticket.urgency}`,
+                },
+                ...prev,
+              ]);
+            }}
+          />
         </div>
         <ul className="space-y-3">
           {maintenanceList.map((item) => (
