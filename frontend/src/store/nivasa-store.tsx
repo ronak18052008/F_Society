@@ -16,12 +16,21 @@ import type { Enquiry, SessionUser, UserRole } from "@/types";
 
 type Toast = { id: string; message: string };
 
-type DraftListing = {
+export type DraftListing = {
   id: string;
   title: string;
   city: string;
   rent: number;
   status: "draft";
+  locality?: string;
+  deposit?: number;
+  images?: string[];
+  bedrooms?: number;
+  bathrooms?: number;
+  areaSqft?: number;
+  furnishing?: string;
+  amenities?: string[];
+  description?: string;
 };
 
 type RoommatePrefs = {

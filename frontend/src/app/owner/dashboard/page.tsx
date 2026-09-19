@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { Button } from "@/components/ui/button";
@@ -141,49 +142,134 @@ export default function OwnerDashboardPage() {
 
         <div className="overflow-hidden rounded-2xl border border-line bg-card shadow-card">
           <ul className="divide-y divide-line">
-            {listed.map((item) => (
-              <li
-                key={item.id}
-                className="flex items-center justify-between gap-4 px-5 py-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-              >
-                <div>
+            {listed.map((item) => {
+              const images = item.images && item.images.length > 0
+                ? item.images
+                : ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"];
+              const primaryPhoto = images[0];
+
+              return (
+                <li
+                  key={item.id}
+                  className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                >
+                  <div className="flex items-start sm:items-center gap-4">
+                    {/* Property Thumbnail with Photo Counter */}
+                    <div className="relative h-20 w-28 sm:h-24 sm:w-36 rounded-xl overflow-hidden shrink-0 bg-paper border border-line">
+                      <Link href={`/owner/properties/${item.id}`} className="block h-full w-full">
+                        <Image
+                          src={primaryPhoto}
+                          alt={item.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          sizes="144px"
+                          unoptimized
+                        />
+                      </Link>
+                      <span className="absolute bottom-1 right-1 rounded-sm bg-black/70 px-1.5 py-0.5 text-[9px] font-bold text-white backdrop-blur-xs flex items-center gap-0.5">
+                        <span>📷</span>
+                        <span>{images.length}</span>
+                      </span>
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Link
+                          href={`/owner/properties/${item.id}`}
+                          className="text-sm sm:text-base font-bold text-ink hover:text-[var(--accent-forest)] transition-colors line-clamp-1"
+                        >
+                          {item.title}
+                        </Link>
+                        <StatusBadge tone={item.demo ? "demo" : "ok"}>
+                          {item.demo ? "Demo" : "Active"}
+                        </StatusBadge>
+                      </div>
+
+                      <p className="text-xs text-ink-muted">
+                        {item.locality}, {item.city} · <strong className="text-ink font-semibold">{formatInr(item.rent)}</strong>/mo
+                      </p>
+
+                      <div className="flex flex-wrap items-center gap-1.5 pt-0.5 text-[11px] text-ink-muted">
+                        <span className="rounded-md bg-paper border border-line px-2 py-0.5 font-medium text-ink">
+                          {item.bedrooms || item.bhk || 1} BHK
+                        </span>
+                        <span className="rounded-md bg-paper border border-line px-2 py-0.5 font-medium text-ink font-tabular">
+                          {item.areaSqft || item.sizeSqft || 650} sqft
+                        </span>
+                        <span className="rounded-md bg-paper border border-line px-2 py-0.5 font-medium capitalize text-ink">
+                          {item.furnishingStatus || item.furnishing || "Semi-Furnished"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 sm:self-center ml-auto sm:ml-0">
+                    <Link
+                      href={`/owner/properties/${item.id}`}
+                      className="rounded-xl bg-[var(--accent-forest)] hover:bg-[var(--accent-forest-hover)] text-white px-3.5 py-2 text-xs font-semibold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                      <span>View Details &amp; Photos</span>
+                    </Link>
+
+                    <Link
+                      href={`/property/${item.id}`}
+                      target="_blank"
+                      className="rounded-xl border border-line bg-paper px-3 py-2 text-xs font-semibold text-ink hover:border-[var(--primary-pista)] hover:text-[var(--accent-forest)] transition-colors flex items-center gap-1"
+                    >
+                      <span>Public</span>
+                      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </Link>
+                  </div>
+                </li>
+              );
+            })}
+            {drafts.map((draft) => {
+              const draftPhoto = draft.images?.[0] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80";
+              return (
+                <li
+                  key={draft.id}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="relative h-20 w-28 sm:h-24 sm:w-36 rounded-xl overflow-hidden shrink-0 bg-paper border border-line">
+                      <Image
+                        src={draftPhoto}
+                        alt={draft.title}
+                        fill
+                        className="object-cover opacity-80"
+                        sizes="144px"
+                        unoptimized
+                      />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-bold text-ink">{draft.title}</p>
+                        <StatusBadge tone="warn">Draft</StatusBadge>
+                      </div>
+                      <p className="text-xs text-ink-muted mt-0.5">
+                        {draft.locality || draft.city} · <strong className="text-ink">{formatInr(draft.rent)}</strong>/mo
+                      </p>
+                      <p className="text-[11px] text-amber-700 dark:text-amber-300 font-medium mt-1">
+                        Local draft listing · Ready to publish
+                      </p>
+                    </div>
+                  </div>
+
                   <Link
-                    href={`/owner/properties/${item.id}`}
-                    className="text-sm font-semibold text-ink hover:text-[var(--accent-forest)] transition-colors"
+                    href={`/owner/properties/${draft.id}`}
+                    className="rounded-xl border border-line bg-paper px-3.5 py-2 text-xs font-semibold text-ink hover:border-[var(--primary-pista)] transition ml-auto sm:ml-0"
                   >
-                    {item.title}
+                    View Details
                   </Link>
-                  <p className="text-xs text-ink-muted mt-0.5">
-                    {item.locality}, {item.city} · <strong className="text-ink">{formatInr(item.rent)}</strong>/mo
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <StatusBadge tone={item.demo ? "demo" : "ok"}>
-                    {item.demo ? "Demo" : "Active"}
-                  </StatusBadge>
-                  <Link
-                    href={`/owner/properties/${item.id}`}
-                    className="rounded-lg border border-line bg-paper px-3 py-1 text-xs font-semibold text-ink hover:border-[var(--primary-pista)] hover:text-[var(--accent-forest)] transition"
-                  >
-                    Manage
-                  </Link>
-                </div>
-              </li>
-            ))}
-            {drafts.map((draft) => (
-              <li
-                key={draft.id}
-                className="flex items-center justify-between px-5 py-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-              >
-                <div>
-                  <p className="text-sm font-semibold text-ink">{draft.title}</p>
-                  <p className="text-xs text-ink-muted mt-0.5">
-                    {draft.city} · Local Draft
-                  </p>
-                </div>
-                <StatusBadge tone="warn">Draft</StatusBadge>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

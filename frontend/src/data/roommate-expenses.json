@@ -50,28 +50,31 @@
       "paidBy": "user-tenant-2",
       "paidByName": "M. Iyer",
       "date": "2026-09-17",
-      "isSettled": false,
+      "isSettled": true,
       "participants": [
         {
           "userId": "user-tenant-1",
           "userName": "A. Shah",
           "shareAmount": 950,
           "percentage": 33.33,
-          "isPaid": false
+          "isPaid": true,
+          "paidAt": "2026-09-19T04:48:42.240Z"
         },
         {
           "userId": "user-tenant-2",
           "userName": "M. Iyer",
           "shareAmount": 950,
           "percentage": 33.33,
-          "isPaid": true
+          "isPaid": true,
+          "paidAt": "2026-09-19T04:48:42.240Z"
         },
         {
           "userId": "user-tenant-3",
           "userName": "R. Kapoor",
           "shareAmount": 950,
           "percentage": 33.33,
-          "isPaid": false
+          "isPaid": true,
+          "paidAt": "2026-09-19T04:48:42.240Z"
         }
       ],
       "createdBy": "user-tenant-2",
@@ -119,6 +122,18 @@
     }
   ],
   "settlements": [
+    {
+      "id": "set-edge3vx",
+      "householdId": "rent-navrang",
+      "expenseId": "exp-demo-2",
+      "payerId": "demo-tenant",
+      "payeeId": "user-tenant-2",
+      "amount": 2850,
+      "status": "completed",
+      "settledAt": "2026-09-19T04:48:42.240Z",
+      "idempotencyKey": "settle-exp-demo-2-demo-tenant-1789793318040",
+      "createdAt": "2026-09-19T04:48:42.240Z"
+    },
     {
       "id": "set-7z0mhzz",
       "householdId": "hh-integration-test",

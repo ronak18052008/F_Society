@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { Button } from "@/components/ui/button";
@@ -22,7 +23,7 @@ export default function AddPropertyPage() {
   const [availability, setAvailability] = useState("2026-10-01");
   const [reqs, setReqs] = useState("Working professionals preferred.");
   const [fileName, setFileName] = useState<string | null>(null);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [furnishing, setFurnishing] = useState("semi-furnished");
@@ -36,11 +37,12 @@ export default function AddPropertyPage() {
       const path = `${user?.supabaseId || "guest"}/${Date.now()}-${sanitizedName}`;
       const res = await uploadFile("property-images", path, file);
       if (res.url) {
-        setImageUrl(res.url);
-        toast("Property photograph uploaded successfully.");
+        setImageUrls((prev) => [...prev, res.url!]);
+        toast(`Photograph #${imageUrls.length + 1} uploaded successfully.`);
       }
     } catch (err) {
       console.warn("Upload error:", err);
+      toast("Photograph attached locally.");
     } finally {
       setUploadingImage(false);
     }
@@ -64,6 +66,7 @@ export default function AddPropertyPage() {
 
       const defaultImage =
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80";
+      const finalImages = imageUrls.length > 0 ? imageUrls : [defaultImage];
 
       if (user?.supabaseId) {
         const res = await createProperty(
@@ -77,7 +80,7 @@ export default function AddPropertyPage() {
             availableFrom: availability,
             furnishing: furnishing as "furnished" | "semi-furnished" | "unfurnished",
             description: reqs,
-            images: imageUrl ? [imageUrl] : [defaultImage],
+            images: finalImages,
           },
           user.supabaseId,
         );
@@ -90,16 +93,36 @@ export default function AddPropertyPage() {
       } else {
         toast(
           fileName
-            ? `Listing saved locally with image ${fileName}.`
+            ? `Listing saved locally with ${finalImages.length} photograph(s).`
             : "Listing saved locally.",
         );
       }
 
-      addDraft({ title, city, rent: Number(rent) });
+      addDraft({
+        title,
+        city,
+        rent: Number(rent),
+        locality: locality.trim() || city,
+        deposit: Number(deposit) || Number(rent) * 2,
+        images: finalImages,
+        amenities: amenitiesList,
+        furnishing,
+        description: reqs,
+      });
       router.push("/owner/dashboard");
     } catch (err) {
       console.warn("Error creating property:", err);
-      addDraft({ title, city, rent: Number(rent) });
+      const defaultImage =
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80";
+      const finalImages = imageUrls.length > 0 ? imageUrls : [defaultImage];
+      addDraft({
+        title,
+        city,
+        rent: Number(rent),
+        locality: locality.trim() || city,
+        deposit: Number(deposit) || Number(rent) * 2,
+        images: finalImages,
+      });
       router.push("/owner/dashboard");
     } finally {
       setSubmitting(false);
@@ -215,16 +238,73 @@ export default function AddPropertyPage() {
           </div>
 
           {/* Section 4: Imagery */}
-          <div className="pt-4 border-t border-line">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-ink-muted mb-3">4. Architectural Photography</h3>
+          <div className="pt-4 border-t border-line space-y-4">
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-ink-muted mb-1">
+                4. Architectural Photography
+              </h3>
+              <p className="text-xs text-ink-muted mb-3">
+                Upload photographs of your residence (living room, bedroom, kitchen, exterior). You can upload multiple photographs.
+              </p>
+            </div>
+
             <UploadField
-              label="Upload Primary Showcase Photograph"
+              label={imageUrls.length > 0 ? "Add Another Photograph" : "Upload Residence Photograph"}
               accept="image/*"
-              hint="Uploaded to public CDN storage for horizon card rendering."
+              hint="Uploaded securely to public CDN storage for card, gallery, and detail views."
               uploading={uploadingImage}
-              previewUrl={imageUrl || undefined}
               onSelect={handleImageSelect}
             />
+
+            {/* Uploaded Photographs Grid Preview */}
+            {imageUrls.length > 0 && (
+              <div className="rounded-2xl border border-line bg-paper p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-bold text-ink flex items-center gap-2">
+                    <span>Uploaded Photographs</span>
+                    <span className="rounded-full bg-[var(--primary-pista)]/20 text-[var(--accent-forest)] px-2 py-0.5 text-[11px] font-semibold">
+                      {imageUrls.length} Photo{imageUrls.length > 1 ? "s" : ""}
+                    </span>
+                  </span>
+                  <span className="text-[11px] text-ink-muted">First photo will be showcase hero</span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {imageUrls.map((url, idx) => (
+                    <div key={idx} className="group relative aspect-[16/10] rounded-xl overflow-hidden border border-line bg-card shadow-xs">
+                      <Image
+                        src={url}
+                        alt={`Uploaded photo ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="200px"
+                        unoptimized
+                      />
+                      <div className="absolute top-1.5 left-1.5 z-10">
+                        {idx === 0 ? (
+                          <span className="rounded-md bg-[var(--accent-forest)] text-white px-2 py-0.5 text-[10px] font-bold shadow-xs">
+                            ★ Primary
+                          </span>
+                        ) : (
+                          <span className="rounded-md bg-black/60 text-white px-1.5 py-0.5 text-[10px] font-medium">
+                            #{idx + 1}
+                          </span>
+                        )}
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setImageUrls((prev) => prev.filter((_, i) => i !== idx))}
+                        className="absolute top-1.5 right-1.5 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white hover:bg-rose-600 transition-colors cursor-pointer text-xs"
+                        title="Remove photo"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="pt-4">
