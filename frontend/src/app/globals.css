@@ -16,23 +16,23 @@
   --secondary-sage-hover: #81966A;
   --secondary-sage-subtle: rgba(168, 184, 154, 0.20);
 
-  --accent-forest: #81966A;        /* Deep Pistachio */
-  --accent-forest-hover: #668B5B;
-  --accent-forest-subtle: rgba(129, 150, 106, 0.16);
+  --accent-forest: #2D4A33;        /* Dark Forest Green — High Contrast WCAG AAA with white text */
+  --accent-forest-hover: #1E3424;
+  --accent-forest-subtle: rgba(45, 74, 51, 0.14);
 
-  --text-main: #283126;            /* Dark Forest Text */
-  --text-muted: #596254;           /* Secondary Text */
-  --text-faint: #7e8c79;           /* Muted Sage */
+  --text-main: #1C241B;            /* Deep Forest Text — >12:1 Contrast */
+  --text-muted: #3D4C3B;           /* Crisp Forest Muted Text — >7:1 Contrast */
+  --text-faint: #556653;           /* Subdued Text — >4.6:1 Contrast (Passes WCAG AA) */
 
-  --border: #DDE3D5;               /* Muted Border */
-  --border-subtle: #e9eee3;
-  --border-hover: rgba(129, 150, 106, 0.40);
+  --border: #D1D8C8;               /* Muted Defined Border */
+  --border-subtle: #e2e8dc;
+  --border-hover: rgba(45, 74, 51, 0.40);
 
-  --success: #668B5B;              /* Success Green */
-  --warning: #B88A4A;              /* Warning Amber */
-  --error: #B85C55;                /* Error Red */
+  --success: #2E6B34;              /* Success Green */
+  --warning: #9A6517;              /* Warning Amber */
+  --error: #B8352E;                /* Error Red */
 
-  --shadow-card: 0 10px 30px -8px rgba(40, 49, 38, 0.06), 0 2px 6px rgba(40, 49, 38, 0.02);
+  --shadow-card: 0 10px 30px -8px rgba(28, 36, 27, 0.08), 0 2px 6px rgba(28, 36, 27, 0.03);
   --shadow-glow: 0 0 45px -8px rgba(183, 201, 154, 0.35);
 
   /* Semantic Aliases */
@@ -76,13 +76,13 @@
   --accent-forest-hover: #e5f5e8;
   --accent-forest-subtle: rgba(210, 232, 214, 0.15);
 
-  --text-main: #f5f9f6;            /* clean warm off-white */
-  --text-muted: #a5b8aa;           /* soft sage slate */
-  --text-faint: #6e8272;           /* muted pine */
+  --text-main: #f5f9f6;            /* clean warm off-white — >15:1 */
+  --text-muted: #b8ccbe;           /* soft sage slate — >8.5:1 */
+  --text-faint: #889e8e;           /* muted pine — >4.8:1 */
 
-  --border: rgba(255, 255, 255, 0.1);
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-hover: rgba(255, 255, 255, 0.22);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.25);
 
   --success: #4ade80;
   --warning: #fbbf24;
@@ -111,7 +111,7 @@
 @theme inline {
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
-  --color-ink-muted: var(--text-faint);
+  --color-ink-muted: var(--text-muted);
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
   --color-card: var(--card);

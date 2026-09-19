@@ -331,23 +331,70 @@ export function useSupabaseSync() {
   useEffect(() => {
     if (!supabase) return;
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
+    // 1. Check initial session once on mount
+    supabase.auth.getSession().then(async ({ data: { session } }: any) => {
       if (session?.user) {
-        if (userRef.current?.supabaseId !== session.user.id) {
-          const meta = session.user.user_metadata;
+        let role = (session.user.user_metadata?.role as "tenant" | "owner") || "tenant";
+        let name = (session.user.user_metadata?.name as string) || session.user.email?.split("@")[0] || "Member";
+        try {
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("role, name")
+            .eq("id", session.user.id)
+            .maybeSingle();
+          if (profile?.role) role = profile.role as "tenant" | "owner";
+          if (profile?.name) name = profile.name;
+        } catch {}
+
+        if (
+          userRef.current?.supabaseId !== session.user.id ||
+          userRef.current?.role !== role
+        ) {
           signInRef.current({
             id: session.user.id,
-            name: (meta?.name as string) || session.user.email?.split("@")[0] || "",
+            name,
             email: session.user.email || "",
-            role: (meta?.role as "tenant" | "owner") || "tenant",
+            role,
             supabaseId: session.user.id,
             emailVerified: !!session.user.email_confirmed_at,
           });
         }
-      } else {
-        if (userRef.current !== null) {
+      }
+    });
+
+    // 2. Listen to ongoing auth events
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event: any, session: any) => {
+      if (session?.user) {
+        let role = (session.user.user_metadata?.role as "tenant" | "owner") || "tenant";
+        let name = (session.user.user_metadata?.name as string) || session.user.email?.split("@")[0] || "Member";
+        try {
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("role, name")
+            .eq("id", session.user.id)
+            .maybeSingle();
+          if (profile?.role) role = profile.role as "tenant" | "owner";
+          if (profile?.name) name = profile.name;
+        } catch {}
+
+        if (
+          userRef.current?.supabaseId !== session.user.id ||
+          userRef.current?.role !== role
+        ) {
+          signInRef.current({
+            id: session.user.id,
+            name,
+            email: session.user.email || "",
+            role,
+            supabaseId: session.user.id,
+            emailVerified: !!session.user.email_confirmed_at,
+          });
+        }
+      } else if (event === "SIGNED_OUT") {
+        // Only trigger store signOut if the user was signed in with Supabase
+        if (userRef.current?.supabaseId) {
           signOutRef.current();
         }
       }

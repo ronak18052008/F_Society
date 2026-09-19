@@ -7,10 +7,10 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { NivasaLogo } from "@/components/brand/nivasa-logo";
-import { makeUser, useNivasa } from "@/store/nivasa-store";
-import { createClient } from "@/lib/supabase/client";
+import { useNivasa } from "@/store/nivasa-store";
 import { cn } from "@/lib/cn";
 import type { UserRole } from "@/types";
+import { signUpUser } from "@/services/auth";
 
 function RegisterForm() {
   const params = useSearchParams();
@@ -45,7 +45,21 @@ function RegisterForm() {
 
     setLoading(true);
     try {
-      const response = await fetch("/api/auth/register", {
+      const { user, error: authError } = await signUpUser({
+        name: name.trim(),
+        email: email.trim(),
+        password,
+        role,
+      });
+
+      if (authError || !user) {
+        setError(authError || "Failed to create account.");
+        setLoading(false);
+        return;
+      }
+
+      // Also mirror to local endpoint for offline fallback
+      fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -54,38 +68,12 @@ function RegisterForm() {
           password,
           role,
         }),
-      });
+      }).catch(() => {});
 
-      const data = await response.json();
+      signIn(user);
 
-      if (!response.ok || !data.success) {
-        setError(data.error || "Failed to create account.");
-        setLoading(false);
-        return;
-      }
-
-      // Attempt Supabase sign-up in background if client configured
-      try {
-        const supabase = createClient();
-        if (supabase) {
-          await supabase.auth.signUp({
-            email,
-            password,
-            options: { data: { name, role } },
-          });
-        }
-      } catch (_) {}
-
-      signIn(
-        makeUser({
-          name: data.user.name,
-          email: data.user.email,
-          role: data.user.role,
-        })
-      );
-
-      toast(`Account registered as ${role === "owner" ? "Property Owner" : "Tenant"}!`);
-      router.push(data.redirectTo || (role === "owner" ? "/owner" : "/tenant"));
+      toast(`Account registered as ${role === "owner" ? "Property Owner" : "Tenant Member"}!`);
+      router.push(role === "owner" ? "/owner" : "/tenant");
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred during registration");
     } finally {

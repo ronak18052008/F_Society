@@ -37,7 +37,7 @@ export function Button({
 
   const variantStyles = {
     primary:
-      "bg-[var(--accent-forest)] text-white shadow-md shadow-[var(--accent-forest)]/20 hover:bg-[var(--accent-forest-hover)] hover:shadow-lg hover:shadow-[var(--accent-forest)]/25 active:scale-[0.98] font-medium",
+      "bg-[var(--accent-forest)] text-white dark:bg-[var(--primary-pista)] dark:text-[#0e1711] dark:hover:bg-[var(--primary-pista-hover)] shadow-md shadow-[var(--accent-forest)]/20 hover:bg-[var(--accent-forest-hover)] hover:shadow-lg hover:shadow-[var(--accent-forest)]/25 active:scale-[0.98] font-semibold",
     secondary:
       "bg-[var(--bg-surface-elevated)] text-[var(--text-main)] hover:bg-[var(--border)] border border-[var(--border)] active:scale-[0.98]",
     line:

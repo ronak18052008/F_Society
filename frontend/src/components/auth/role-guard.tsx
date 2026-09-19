@@ -23,9 +23,19 @@ export function RoleGuard({ children, allowedRole }: RoleGuardProps) {
   useEffect(() => {
     if (!mounted) return;
 
-    // 1. If not authenticated, redirect to login
+    // 1. If not authenticated, check if cookies are present before redirecting to avoid hydration bounce
     if (!user) {
-      router.replace(`/login?redirect=${encodeURIComponent(pathname)}`);
+      const hasAuthCookie =
+        typeof document !== "undefined" &&
+        document.cookie.includes("nivasa_auth=1");
+
+      if (hasAuthCookie) {
+        // Still hydrating from cookie or storage
+        return;
+      }
+
+      const loginPath = allowedRole === "owner" ? "/login/owner" : "/login/tenant";
+      router.replace(`${loginPath}?redirect=${encodeURIComponent(pathname)}`);
       return;
     }
 

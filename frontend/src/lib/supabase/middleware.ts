@@ -95,8 +95,15 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  // 4. Redirect logged-in users away from /login or /register
-  const authPaths = ["/login", "/register"];
+  // 4. Redirect logged-in users away from /login or /register variants
+  const authPaths = [
+    "/login",
+    "/register",
+    "/login/tenant",
+    "/login/owner",
+    "/tenant/login",
+    "/owner/login",
+  ];
   if (authPaths.includes(pathname) && isAuthenticated) {
     const targetDashboard = request.nextUrl.clone();
     targetDashboard.pathname = userRole === "owner" ? "/owner" : "/tenant";

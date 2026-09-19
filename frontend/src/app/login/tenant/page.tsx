@@ -7,8 +7,8 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { NivasaLogo } from "@/components/brand/nivasa-logo";
-import { useNivasa, DEMO_TENANT, makeUser } from "@/store/nivasa-store";
-import { createClient } from "@/lib/supabase/client";
+import { useNivasa } from "@/store/nivasa-store";
+import { signInUser, DEMO_TENANT_USER } from "@/services/auth";
 
 export default function TenantLoginPage() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function TenantLoginPage() {
   const [loading, setLoading] = useState(false);
 
   const handleDemoSignIn = () => {
-    signIn(DEMO_TENANT);
+    signIn(DEMO_TENANT_USER);
     toast("Signed in as Demo Tenant.");
     router.push("/tenant");
   };
@@ -28,23 +28,21 @@ export default function TenantLoginPage() {
   async function submit() {
     setError("");
     const next: Record<string, string> = {};
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = "Enter a valid email.";
-    if (password.length < 6) next.password = "Use at least 6 characters.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = "Enter a valid email address.";
+    if (password.length < 6) next.password = "Password must be at least 6 characters.";
     setErrors(next);
     if (Object.keys(next).length) return;
 
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), password, expectedRole: "tenant" }),
+      const { user, error: authError } = await signInUser({
+        email: email.trim(),
+        password,
+        expectedRole: "tenant",
       });
 
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        setError(data.error || "Invalid email or password.");
+      if (authError || !user) {
+        setError(authError || "Invalid email or password.");
         setLoading(false);
         return;
       }
@@ -52,18 +50,12 @@ export default function TenantLoginPage() {
       fetch("/api/notify/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: data.user.email, name: data.user.name }),
+        body: JSON.stringify({ email: user.email, name: user.name }),
       }).catch(() => {});
 
-      signIn(
-        makeUser({
-          name: data.user.name,
-          email: data.user.email,
-          role: data.user.role,
-        })
-      );
+      signIn(user);
 
-      if (data.user.role === "owner") {
+      if (user.role === "owner") {
         toast("Your account is registered as a Property Owner. Redirecting to your Owner Portal.");
         router.push("/owner");
       } else {
@@ -71,7 +63,7 @@ export default function TenantLoginPage() {
         router.push("/tenant");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
+      setError(err instanceof Error ? err.message : "An error occurred during authentication.");
     } finally {
       setLoading(false);
     }

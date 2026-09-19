@@ -6,11 +6,11 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { NivasaLogo } from "@/components/brand/nivasa-logo";
-import { useNivasa, DEMO_TENANT, DEMO_OWNER, makeUser } from "@/store/nivasa-store";
+import { useNivasa } from "@/store/nivasa-store";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/cn";
 import type { UserRole } from "@/types";
+import { signInUser, DEMO_TENANT_USER, DEMO_OWNER_USER } from "@/services/auth";
 
 function LoginForm() {
   const router = useRouter();
@@ -33,11 +33,11 @@ function LoginForm() {
 
   const handleDemoSignIn = (roleToSign: UserRole) => {
     if (roleToSign === "owner") {
-      signIn(DEMO_OWNER);
+      signIn(DEMO_OWNER_USER);
       toast("Signed in as Demo Owner.");
       router.push("/owner");
     } else {
-      signIn(DEMO_TENANT);
+      signIn(DEMO_TENANT_USER);
       toast("Signed in as Demo Tenant.");
       router.push("/tenant");
     }
@@ -51,33 +51,16 @@ function LoginForm() {
     setErrors(next);
     if (Object.keys(next).length) return;
 
-    // Check for explicit demo credentials
-    if (email.toLowerCase() === "tenant@demo.nivasa" || email.toLowerCase() === "demo.tenant@nivasa.living") {
-      signIn(DEMO_TENANT);
-      toast("Signed in as Demo Tenant.");
-      router.push("/tenant");
-      return;
-    }
-
-    if (email.toLowerCase() === "owner@demo.nivasa" || email.toLowerCase() === "demo.owner@nivasa.living") {
-      signIn(DEMO_OWNER);
-      toast("Signed in as Demo Owner.");
-      router.push("/owner");
-      return;
-    }
-
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), password }),
+      const { user, error: authError } = await signInUser({
+        email: email.trim(),
+        password,
+        expectedRole: activeRole,
       });
 
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        setError(data.error || "Invalid email or password.");
+      if (authError || !user) {
+        setError(authError || "Invalid email or password.");
         setLoading(false);
         return;
       }
@@ -85,19 +68,13 @@ function LoginForm() {
       fetch("/api/notify/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: data.user.email, name: data.user.name }),
+        body: JSON.stringify({ email: user.email, name: user.name }),
       }).catch(() => {});
 
-      signIn(
-        makeUser({
-          name: data.user.name,
-          email: data.user.email,
-          role: data.user.role,
-        })
-      );
+      signIn(user);
 
-      toast(`Signed in as ${data.user.role === "owner" ? "Property Owner" : "Tenant Member"}.`);
-      router.push(data.redirectTo || (data.user.role === "owner" ? "/owner" : "/tenant"));
+      toast(`Signed in as ${user.role === "owner" ? "Property Owner" : "Tenant Member"}.`);
+      router.push(user.role === "owner" ? "/owner" : "/tenant");
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred during sign in");
     } finally {

@@ -7,8 +7,8 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { NivasaLogo } from "@/components/brand/nivasa-logo";
-import { useNivasa, DEMO_OWNER, makeUser } from "@/store/nivasa-store";
-import { createClient } from "@/lib/supabase/client";
+import { useNivasa } from "@/store/nivasa-store";
+import { signInUser, DEMO_OWNER_USER } from "@/services/auth";
 
 export default function OwnerLoginPage() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function OwnerLoginPage() {
   const [loading, setLoading] = useState(false);
 
   const handleDemoSignIn = () => {
-    signIn(DEMO_OWNER);
+    signIn(DEMO_OWNER_USER);
     toast("Signed in as Demo Owner.");
     router.push("/owner");
   };
@@ -35,16 +35,14 @@ export default function OwnerLoginPage() {
 
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), password, expectedRole: "owner" }),
+      const { user, error: authError } = await signInUser({
+        email: email.trim(),
+        password,
+        expectedRole: "owner",
       });
 
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        setError(data.error || "Invalid email or password.");
+      if (authError || !user) {
+        setError(authError || "Invalid email or password.");
         setLoading(false);
         return;
       }
@@ -52,18 +50,12 @@ export default function OwnerLoginPage() {
       fetch("/api/notify/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: data.user.email, name: data.user.name }),
+        body: JSON.stringify({ email: user.email, name: user.name }),
       }).catch(() => {});
 
-      signIn(
-        makeUser({
-          name: data.user.name,
-          email: data.user.email,
-          role: data.user.role,
-        })
-      );
+      signIn(user);
 
-      if (data.user.role === "tenant") {
+      if (user.role === "tenant") {
         toast("Your account is registered as a Tenant. Redirecting to your Tenant Portal.");
         router.push("/tenant");
       } else {
