@@ -17,8 +17,11 @@ import { getPropertyById, getSimilarProperties } from "@/lib/supabase/properties
 import { useNivasa } from "@/store/nivasa-store";
 import type { Property } from "@/types";
 import { RentalRiskCard } from "@/components/risk/rental-risk-card";
+<<<<<<< HEAD
 import { AuthenticityCard } from "@/components/authenticity/authenticity-card";
 import { PropertyReputationGraph } from "@/components/property/property-reputation-graph";
+=======
+>>>>>>> origin/main
 
 export default function PropertyDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -264,7 +267,6 @@ export default function PropertyDetailPage() {
 
             {/* Feature 6: Property Reputation Graph */}
             <PropertyReputationGraph propertyId={property.id} />
-
             {/* About the Residence */}
             <div>
               <h2 className="text-xl font-serif font-bold text-ink">Residence Description</h2>
