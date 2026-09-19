@@ -18,6 +18,7 @@ import { useNivasa } from "@/store/nivasa-store";
 import type { Property } from "@/types";
 import { RentalRiskCard } from "@/components/risk/rental-risk-card";
 import { AuthenticityCard } from "@/components/authenticity/authenticity-card";
+import { PropertyReputationGraph } from "@/components/property/property-reputation-graph";
 
 export default function PropertyDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -260,6 +261,9 @@ export default function PropertyDetailPage() {
 
             {/* Feature 3: AI Scam / Fake Listing Detector Card */}
             <AuthenticityCard propertyId={property.id} property={property} />
+
+            {/* Feature 6: Property Reputation Graph */}
+            <PropertyReputationGraph propertyId={property.id} />
 
             {/* About the Residence */}
             <div>
