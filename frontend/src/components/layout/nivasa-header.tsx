@@ -323,6 +323,17 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
 
         {/* 17. Adaptive Header Actions */}
         <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* AI Copilot Quick Link */}
+          <Link
+            href="/copilot"
+            className="flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-2.5 sm:px-3 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
+            title="NESTORA AI Rental Copilot"
+          >
+            <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
+            <span className="hidden md:inline font-serif">AI Copilot</span>
+            <span className="rounded-full bg-[#7ca982]/20 px-1 py-0.2 text-[9px] font-bold">AI</span>
+          </Link>
+
           {/* Tenant header actions: Saved Homes & Find Roommate */}
           {!isOwner ? (
             <>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { NivasaSidebar } from "@/components/layout/nivasa-sidebar";
 import { NivasaHeader } from "@/components/layout/nivasa-header";
 import { NivasaSplash } from "@/components/brand/nivasa-splash";
+import { FloatingCopilot } from "@/components/ai/floating-copilot";
 import { Footer } from "@/components/layout/footer";
 import { cn } from "@/lib/cn";
 
@@ -64,6 +65,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           {children}
         </main>
         <Footer />
+        {/* Global Summonable AI Rental Copilot Widget */}
+        <FloatingCopilot />
       </div>
     </div>
   );
