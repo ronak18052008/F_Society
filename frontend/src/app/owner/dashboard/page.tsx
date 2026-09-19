@@ -9,6 +9,7 @@ import { getProperty, maintenance, payments, properties as demoProps } from "@/d
 import { getOwnerProperties } from "@/lib/supabase/properties";
 import { createClient } from "@/lib/supabase/client";
 import { useNivasa } from "@/store/nivasa-store";
+import { RoleGuard } from "@/components/auth/role-guard";
 import { formatInr } from "@/lib/format";
 import { MarketTrends } from "@/components/dashboard/market-trends";
 import type { Property } from "@/types";
@@ -70,15 +71,16 @@ export default function OwnerDashboardPage() {
   }, [user, localEnquiries]);
 
   return (
-    <DashboardShell
-      title={`Owner Command Deck${user?.name ? ` · ${user.name}` : ""}`}
-      subtitle="Manage your architectural portfolio, review verified tenant inquiries, and audit tenancy ledgers."
-      actions={
-        <Button href="/owner/properties/new" size="md">
-          + List New Residence
-        </Button>
-      }
-    >
+    <RoleGuard allowedRole="owner">
+      <DashboardShell
+        title={`Owner Command Deck${user?.name ? ` · ${user.name}` : ""}`}
+        subtitle="Manage your architectural portfolio, review verified tenant inquiries, and audit tenancy ledgers."
+        actions={
+          <Button href="/owner/properties/new" size="md">
+            + List New Residence
+          </Button>
+        }
+      >
       {/* 3 Metric Stat Cards */}
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-line bg-card p-5 shadow-card">
@@ -289,5 +291,6 @@ export default function OwnerDashboardPage() {
         <MarketTrends />
       </div>
     </DashboardShell>
+  </RoleGuard>
   );
 }

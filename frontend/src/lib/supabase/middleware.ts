@@ -2,65 +2,95 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 /**
- * Refreshes the Supabase auth session on every request via middleware.
- * Returns `null` when Supabase is not configured (demo mode).
+ * Handles authentication and role-based route access controls.
+ * Supports both Supabase session tokens and client session cookies.
  */
 export async function updateSession(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  let supabaseResponse = NextResponse.next({ request });
+
+  // Read cookies
+  const hasAuthCookie = request.cookies.get("nivasa_auth")?.value === "1";
+  const roleCookie = request.cookies.get("nivasa_role")?.value;
+
+  let isAuthenticated = hasAuthCookie;
+  let userRole = roleCookie || "tenant";
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key =
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-  // Not configured → let the request through without auth checks
-  if (!url || !key) return null;
+  if (url && key) {
+    try {
+      const supabase = createServerClient(url, key, {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) =>
+              request.cookies.set(name, value),
+            );
+            supabaseResponse = NextResponse.next({ request });
+            cookiesToSet.forEach(({ name, value, options }) =>
+              supabaseResponse.cookies.set(name, value, options),
+            );
+          },
+        },
+      });
 
-  let supabaseResponse = NextResponse.next({ request });
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-  const supabase = createServerClient(url, key, {
-    cookies: {
-      getAll() {
-        return request.cookies.getAll();
-      },
-      setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value }) =>
-          request.cookies.set(name, value),
-        );
-        supabaseResponse = NextResponse.next({ request });
-        cookiesToSet.forEach(({ name, value, options }) =>
-          supabaseResponse.cookies.set(name, value, options),
-        );
-      },
-    },
-  });
-
-  // Refresh the session — this is the key operation
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  // Protected route patterns
-  const protectedPaths = ["/tenant", "/owner", "/rental", "/onboarding"];
-  const isProtected = protectedPaths.some((path) =>
-    request.nextUrl.pathname.startsWith(path),
-  );
-
-  if (isProtected && !user) {
-    const loginUrl = request.nextUrl.clone();
-    loginUrl.pathname = "/login";
-    loginUrl.searchParams.set("redirect", request.nextUrl.pathname);
-    return NextResponse.redirect(loginUrl);
+      if (user) {
+        isAuthenticated = true;
+        if (user.user_metadata?.role) {
+          userRole = user.user_metadata.role;
+        }
+      }
+    } catch {
+      // Fallback to cookie check
+    }
   }
 
-  // Redirect authenticated users away from login/register
-  const authPaths = ["/login", "/register"];
-  const isAuthPage = authPaths.some(
-    (path) => request.nextUrl.pathname === path,
-  );
+  // 1. Protect /tenant routes
+  if (pathname.startsWith("/tenant") && pathname !== "/tenant/login") {
+    if (!isAuthenticated) {
+      const loginUrl = request.nextUrl.clone();
+      loginUrl.pathname = "/login";
+      loginUrl.searchParams.set("redirect", pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+    if (userRole === "owner") {
+      const ownerUrl = request.nextUrl.clone();
+      ownerUrl.pathname = "/owner";
+      return NextResponse.redirect(ownerUrl);
+    }
+  }
 
-  if (isAuthPage && user) {
-    const dashboardUrl = request.nextUrl.clone();
-    dashboardUrl.pathname = "/tenant/dashboard";
-    return NextResponse.redirect(dashboardUrl);
+  // 2. Protect /owner routes
+  if (pathname.startsWith("/owner") && pathname !== "/owner/login") {
+    if (!isAuthenticated) {
+      const loginUrl = request.nextUrl.clone();
+      loginUrl.pathname = "/login";
+      loginUrl.searchParams.set("redirect", pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+    if (userRole === "tenant") {
+      const tenantUrl = request.nextUrl.clone();
+      tenantUrl.pathname = "/tenant";
+      return NextResponse.redirect(tenantUrl);
+    }
+  }
+
+  // 3. Redirect logged-in users away from /login or /register
+  const authPaths = ["/login", "/register"];
+  if (authPaths.includes(pathname) && isAuthenticated) {
+    const targetDashboard = request.nextUrl.clone();
+    targetDashboard.pathname = userRole === "owner" ? "/owner" : "/tenant";
+    return NextResponse.redirect(targetDashboard);
   }
 
   return supabaseResponse;
