@@ -36,7 +36,7 @@ const METRO_CITIES = [
 export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: NivasaHeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, signOut, savedIds, switchRole } = useNivasa();
+  const { user, signOut, savedIds } = useNivasa();
   const { theme, toggle } = useTheme();
 
   const isOwner = user?.role === "owner";
@@ -150,12 +150,6 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
     router.push("/");
   };
 
-  const handleRoleSwitch = (newRole: "tenant" | "owner") => {
-    switchRole(newRole);
-    setUserMenuOpen(false);
-    router.push(newRole === "owner" ? "/owner" : "/tenant");
-  };
-
   const executeSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) {
@@ -207,22 +201,52 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
             <span className="text-xs font-semibold text-ink-muted hidden sm:inline">Nivasa</span>
             <span className="text-xs text-ink-muted/50 hidden sm:inline">/</span>
             <h2 className="text-sm font-bold text-ink tracking-tight font-serif">{getPageTitle()}</h2>
-            <span
-              className={cn(
-                "hidden sm:inline-flex rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider",
-                isOwner ? "bg-amber-500/15 text-amber-900 dark:text-amber-200" : "bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6]"
-              )}
-            >
-              {isOwner ? "OWNER" : "TENANT"}
-            </span>
+            {user && (
+              <span
+                className={cn(
+                  "hidden sm:inline-flex rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider",
+                  isOwner ? "bg-amber-500/15 text-amber-900 dark:text-amber-200 border border-amber-500/30" : "bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30"
+                )}
+              >
+                {user.name ? `${user.name} | ` : ""}{isOwner ? "OWNER" : "TENANT"}
+              </span>
+            )}
           </div>
         </div>
 
-        {/* Center: Live Quick Search Bar */}
-        <div ref={searchContainerRef} className="relative hidden md:block max-w-[280px] lg:max-w-[340px] w-full mx-4">
-          <form onSubmit={executeSearch} className="relative">
-            <input
-              ref={searchInputRef}
+        {/* Center: Public Links when logged out, Live Search when logged in */}
+        {!user ? (
+          <nav className="hidden md:flex items-center gap-6 text-xs font-semibold text-[#4e6853] dark:text-[#a5b8aa]">
+            <Link
+              href="/"
+              className={cn("hover:text-[#1d3122] dark:hover:text-[#f5f9f6] transition-colors", pathname === "/" && "text-[#57875d] dark:text-[#a3caa6] font-bold")}
+            >
+              Home
+            </Link>
+            <Link
+              href="/properties"
+              className={cn("hover:text-[#1d3122] dark:hover:text-[#f5f9f6] transition-colors", pathname.startsWith("/properties") && "text-[#57875d] dark:text-[#a3caa6] font-bold")}
+            >
+              Properties
+            </Link>
+            <Link
+              href="/how-it-works"
+              className={cn("hover:text-[#1d3122] dark:hover:text-[#f5f9f6] transition-colors", pathname === "/how-it-works" && "text-[#57875d] dark:text-[#a3caa6] font-bold")}
+            >
+              How It Works
+            </Link>
+            <Link
+              href="/how-it-works#about"
+              className="hover:text-[#1d3122] dark:hover:text-[#f5f9f6] transition-colors"
+            >
+              About
+            </Link>
+          </nav>
+        ) : (
+          <div ref={searchContainerRef} className="relative hidden md:block max-w-[280px] lg:max-w-[340px] w-full mx-4">
+            <form onSubmit={executeSearch} className="relative">
+              <input
+                ref={searchInputRef}
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -320,58 +344,83 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
             </div>
           )}
         </div>
+      )}
 
         {/* 17. Adaptive Header Actions */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Tenant header actions: Saved Homes & Find Roommate */}
-          {!isOwner ? (
-            <>
-              <Link
-                href="/properties?saved=true"
-                className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] hover:border-[#7ca982] hover:text-rose-500 transition-colors"
-                title="Saved Homes"
-                aria-label="View saved residences"
-              >
-                <svg
-                  className={cn("h-4 w-4 transition-colors", savedIds.length > 0 ? "fill-rose-500 text-rose-500" : "fill-none")}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
+          {/* AI Copilot Quick Link */}
+          <Link
+            href="/copilot"
+            className="flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-2.5 sm:px-3 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
+            title="Nivasa AI Rental Copilot"
+          >
+            <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
+            <span className="hidden md:inline font-serif">AI Copilot</span>
+            <span className="rounded-full bg-[#7ca982]/20 px-1 py-0.2 text-[9px] font-bold">AI</span>
+          </Link>
+
+          {/* Tenant/Owner header actions (Only when authenticated) */}
+          {user && (
+            !isOwner ? (
+              <>
+                <Link
+                  href="/properties?saved=true"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] hover:border-[#7ca982] hover:text-rose-500 transition-colors"
+                  title="Saved Homes"
+                  aria-label="View saved residences"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
-                {savedIds.length > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-rose-500 text-white text-[9px] font-bold shadow-xs">
-                    {savedIds.length}
-                  </span>
-                )}
-              </Link>
-              <Link
-                href="/tenant/roommates"
-                className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-3 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
-              >
-                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                </svg>
-                <span>Find Roommate</span>
-              </Link>
-            </>
-          ) : (
-            /* Owner header action: + Post Property */
-            <Link
-              href="/owner/properties/new"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-amber-700 hover:bg-amber-800 text-white px-3.5 py-1.5 text-xs font-semibold shadow-xs transition-all cursor-pointer"
-            >
-              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-              <span>+ Post Property</span>
-            </Link>
+                  <svg
+                    className={cn("h-4 w-4 transition-colors", savedIds.length > 0 ? "fill-rose-500 text-rose-500" : "fill-none")}
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                  {savedIds.length > 0 && (
+                    <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-rose-500 text-white text-[9px] font-bold shadow-xs">
+                      {savedIds.length}
+                    </span>
+                  )}
+                </Link>
+                <Link
+                  href="/tenant/roommates"
+                  className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-3 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
+                >
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                  </svg>
+                  <span>Find Roommate</span>
+                </Link>
+              </>
+            ) : (
+              /* Owner header actions: Applications & + Post Residence */
+              <>
+                <Link
+                  href="/owner/dashboard#applications"
+                  className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-amber-500/15 hover:bg-amber-500/25 text-amber-900 dark:text-amber-200 px-3 py-1.5 text-xs font-semibold border border-amber-500/30 transition-all cursor-pointer shadow-xs"
+                >
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Applications</span>
+                </Link>
+                <Link
+                  href="/owner/properties/new"
+                  className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-amber-700 hover:bg-amber-800 text-white px-3.5 py-1.5 text-xs font-semibold shadow-xs transition-all cursor-pointer"
+                >
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  <span>+ Post Residence</span>
+                </Link>
+              </>
+            )
           )}
 
           {/* Theme Switcher */}
@@ -447,17 +496,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       Settings
                     </Link>
 
-                    {/* 19. Fast Role Switcher inside menu */}
-                    <div className="pt-1.5 pb-1 px-1">
-                      <button
-                        type="button"
-                        onClick={() => handleRoleSwitch(isOwner ? "tenant" : "owner")}
-                        className="w-full text-left rounded-xl bg-paper dark:bg-[#1d2d22] px-3 py-1.5 text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:bg-[#7ca982]/20 transition-colors flex items-center justify-between cursor-pointer"
-                      >
-                        <span>Switch to {isOwner ? "Tenant" : "Owner"}</span>
-                        <span className="text-[10px]">⇄</span>
-                      </button>
-                    </div>
+                    <div className="my-1 border-t border-[#e5dfc5] dark:border-[#2a3f31]" />
 
                     <button
                       type="button"

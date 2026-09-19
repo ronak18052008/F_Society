@@ -50,6 +50,29 @@ export default function RoommatesPage() {
           </p>
         </div>
 
+        {/* Navigation Banner to Smart Roommate Expenses */}
+        <div className="rounded-2xl border border-[#7ca982]/30 bg-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] text-xl">
+              💰
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-sm font-bold text-ink">Smart Roommate Expense Engine</h3>
+                <span className="rounded-full bg-[#7ca982]/20 px-2 py-0.5 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6] uppercase tracking-wider">
+                  Feature 5
+                </span>
+              </div>
+              <p className="text-xs text-ink-muted mt-0.5">
+                Manage shared household bills, transparent split algorithms, and instant peer settlements.
+              </p>
+            </div>
+          </div>
+          <Button href="/tenant/expenses" size="sm" className="bg-[#7ca982] hover:bg-[#6b9a71] text-white shrink-0">
+            Open Expense Ledger →
+          </Button>
+        </div>
+
         {/* Filter controls */}
         <div className="grid gap-4 sm:grid-cols-2 max-w-xl">
           <SelectField

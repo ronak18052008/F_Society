@@ -1,0 +1,135 @@
+{
+  "expenses": [
+    {
+      "id": "exp-demo-1",
+      "householdId": "rent-navrang",
+      "title": "High-Speed Fiber Internet Bill",
+      "description": "Monthly 300 Mbps broadband optical fiber subscription",
+      "amount": 1499,
+      "category": "INTERNET",
+      "splitMethod": "EQUAL",
+      "paidBy": "user-tenant-1",
+      "paidByName": "A. Shah",
+      "date": "2026-09-19",
+      "isSettled": false,
+      "participants": [
+        {
+          "userId": "user-tenant-1",
+          "userName": "A. Shah",
+          "shareAmount": 499.68,
+          "percentage": 33.33,
+          "isPaid": true
+        },
+        {
+          "userId": "user-tenant-2",
+          "userName": "M. Iyer",
+          "shareAmount": 499.66,
+          "percentage": 33.33,
+          "isPaid": false
+        },
+        {
+          "userId": "user-tenant-3",
+          "userName": "R. Kapoor",
+          "shareAmount": 499.66,
+          "percentage": 33.33,
+          "isPaid": false
+        }
+      ],
+      "createdBy": "user-tenant-1",
+      "createdAt": "2026-09-16T03:29:40.835Z",
+      "updatedAt": "2026-09-16T03:29:40.835Z"
+    },
+    {
+      "id": "exp-demo-2",
+      "householdId": "rent-navrang",
+      "title": "Weekly Organic Kitchen Groceries",
+      "description": "Vegetables, milk, pulses, cooking oil from Nature's Basket",
+      "amount": 2850,
+      "category": "GROCERIES",
+      "splitMethod": "EQUAL",
+      "paidBy": "user-tenant-2",
+      "paidByName": "M. Iyer",
+      "date": "2026-09-17",
+      "isSettled": false,
+      "participants": [
+        {
+          "userId": "user-tenant-1",
+          "userName": "A. Shah",
+          "shareAmount": 950,
+          "percentage": 33.33,
+          "isPaid": false
+        },
+        {
+          "userId": "user-tenant-2",
+          "userName": "M. Iyer",
+          "shareAmount": 950,
+          "percentage": 33.33,
+          "isPaid": true
+        },
+        {
+          "userId": "user-tenant-3",
+          "userName": "R. Kapoor",
+          "shareAmount": 950,
+          "percentage": 33.33,
+          "isPaid": false
+        }
+      ],
+      "createdBy": "user-tenant-2",
+      "createdAt": "2026-09-17T03:29:40.835Z",
+      "updatedAt": "2026-09-17T03:29:40.835Z"
+    },
+    {
+      "id": "exp-demo-3",
+      "householdId": "rent-navrang",
+      "title": "Quarterly RO Water Purifier Service & Filter",
+      "description": "OEM technician filter candle replacement and water TDS calibration",
+      "amount": 1200,
+      "category": "WATER",
+      "splitMethod": "EQUAL",
+      "paidBy": "user-tenant-1",
+      "paidByName": "A. Shah",
+      "date": "2026-09-09",
+      "isSettled": true,
+      "participants": [
+        {
+          "userId": "user-tenant-1",
+          "userName": "A. Shah",
+          "shareAmount": 400,
+          "percentage": 33.33,
+          "isPaid": true
+        },
+        {
+          "userId": "user-tenant-2",
+          "userName": "M. Iyer",
+          "shareAmount": 400,
+          "percentage": 33.33,
+          "isPaid": true
+        },
+        {
+          "userId": "user-tenant-3",
+          "userName": "R. Kapoor",
+          "shareAmount": 400,
+          "percentage": 33.33,
+          "isPaid": true
+        }
+      ],
+      "createdBy": "user-tenant-1",
+      "createdAt": "2026-09-09T03:29:40.835Z",
+      "updatedAt": "2026-09-09T03:29:40.835Z"
+    }
+  ],
+  "settlements": [
+    {
+      "id": "set-7z0mhzz",
+      "householdId": "hh-integration-test",
+      "expenseId": "exp-5cniskp",
+      "payerId": "u2",
+      "payeeId": "u1",
+      "amount": 700,
+      "status": "completed",
+      "settledAt": "2026-09-19T03:29:47.998Z",
+      "idempotencyKey": "idemp-1789788586137-0.7516111420324548",
+      "createdAt": "2026-09-19T03:29:47.998Z"
+    }
+  ]
+}

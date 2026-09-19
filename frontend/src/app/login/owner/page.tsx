@@ -28,53 +28,48 @@ export default function OwnerLoginPage() {
   async function submit() {
     setError("");
     const next: Record<string, string> = {};
-    if (!/^[^s@]+@[^s@]+.[^s@]+$/.test(email)) next.email = "Enter a valid email.";
-    if (password.length < 8) next.password = "Use at least 8 characters.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = "Enter a valid email.";
+    if (password.length < 6) next.password = "Use at least 6 characters.";
     setErrors(next);
     if (Object.keys(next).length) return;
 
     setLoading(true);
     try {
-      const supabase = createClient();
-      if (supabase) {
-        const { data, error: authError } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password, expectedRole: "owner" }),
+      });
 
-        if (authError) {
-          setError(authError.message);
-          setLoading(false);
-          return;
-        }
+      const data = await res.json();
 
-        fetch("/api/notify/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, name: data.user.user_metadata?.name }),
-        }).catch(() => {});
-
-        signIn(
-          makeUser({
-            name: data.user.user_metadata?.name || email.split("@")[0],
-            email,
-            role: "owner",
-          })
-        );
-        router.push("/owner");
+      if (!res.ok || !data.success) {
+        setError(data.error || "Invalid email or password.");
+        setLoading(false);
         return;
       }
 
-      // Local fallback
+      fetch("/api/notify/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.user.email, name: data.user.name }),
+      }).catch(() => {});
+
       signIn(
         makeUser({
-          name: email.split("@")[0],
-          email,
-          role: "owner",
+          name: data.user.name,
+          email: data.user.email,
+          role: data.user.role,
         })
       );
-      toast("Signed in as Owner.");
-      router.push("/owner");
+
+      if (data.user.role === "tenant") {
+        toast("Your account is registered as a Tenant. Redirecting to your Tenant Portal.");
+        router.push("/tenant");
+      } else {
+        toast("Signed in as Property Owner.");
+        router.push("/owner");
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {

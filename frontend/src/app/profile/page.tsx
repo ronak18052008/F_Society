@@ -191,17 +191,9 @@ export default function ProfilePage() {
                     {user.role === "owner" ? "Property Owner (Listing & Lease Manager)" : "Tenant (Searcher & Verified Renter)"}
                   </p>
                 </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    const newRole = user.role === "owner" ? "tenant" : "owner";
-                    signIn({ ...user, role: newRole });
-                    toast(`Switched role to ${newRole}`);
-                  }}
-                >
-                  Switch to {user.role === "owner" ? "Tenant" : "Owner"}
-                </Button>
+                <span className="px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                  {user.role === "owner" ? "Property Owner" : "Tenant"}
+                </span>
               </div>
 
               <div className="p-4 rounded-2xl bg-paper border border-line flex items-center justify-between">

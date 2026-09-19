@@ -20,6 +20,7 @@ import {
   getWorkspacePayments,
 } from "@/lib/supabase/workspace";
 import { getPropertyById } from "@/lib/supabase/properties";
+import { MaintenanceTriageModal } from "@/components/maintenance/maintenance-triage-modal";
 import type { RentalWorkspace, ActivityEvent, MaintenanceRequest, PaymentRecord, Property } from "@/types";
 
 export default function RentalDashboardPage() {
@@ -69,8 +70,8 @@ export default function RentalDashboardPage() {
       title="Tenancy Workspace"
       subtitle={`Collaborative digital ledger between ${workspaceData.tenantName} (Resident) and ${workspaceData.ownerName} (Host).`}
     >
-      {/* 3 Portal Action Cards */}
-      <div className="grid gap-5 sm:grid-cols-3">
+      {/* 4 Portal Action Cards */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Link
           href={`/rental/${id}/documents`}
           className="group relative rounded-2xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 shadow-xs hover:shadow-md hover:border-pista transition-all duration-200"
@@ -90,7 +91,7 @@ export default function RentalDashboardPage() {
         >
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pista/15 text-forest dark:text-pista mb-3 group-hover:scale-110 transition-transform">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
           </div>
           <p className="text-lg font-serif font-bold text-ink dark:text-cream group-hover:text-forest dark:group-hover:text-pista transition-colors">Payments & Ledger</p>
@@ -108,6 +109,17 @@ export default function RentalDashboardPage() {
           </div>
           <p className="text-lg font-serif font-bold text-ink dark:text-cream group-hover:text-forest dark:group-hover:text-pista transition-colors">Condition Passport</p>
           <p className="mt-1 text-xs text-ink-muted">Baseline inspection & handover log →</p>
+        </Link>
+
+        <Link
+          href="/tenant/expenses"
+          className="group relative rounded-2xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 shadow-xs hover:shadow-md hover:border-pista transition-all duration-200"
+        >
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] mb-3 group-hover:scale-110 transition-transform">
+            <span className="text-xl">💰</span>
+          </div>
+          <p className="text-lg font-serif font-bold text-ink dark:text-cream group-hover:text-forest dark:group-hover:text-pista transition-colors">Roommate Splits</p>
+          <p className="mt-1 text-xs text-ink-muted">Smart bill split engine &amp; peer settlement →</p>
         </Link>
       </div>
 
@@ -142,9 +154,28 @@ export default function RentalDashboardPage() {
 
       {/* Maintenance Tickets Section */}
       <div className="mt-10">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-serif font-bold text-ink dark:text-cream">Maintenance Tickets</h2>
-          <span className="text-xs text-ink-muted">{maintenanceList.length} total logged</span>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+          <div>
+            <h2 className="text-xl font-serif font-bold text-ink dark:text-cream">Maintenance Tickets</h2>
+            <span className="text-xs text-ink-muted">{maintenanceList.length} total logged · AI Triage enabled</span>
+          </div>
+          <MaintenanceTriageModal
+            propertyId={id}
+            propertyTitle={propertyData?.title || "Rental Residence"}
+            onTicketCreated={(ticket) => {
+              setMaintenanceList((prev) => [
+                {
+                  id: ticket.id,
+                  title: `[${ticket.category}] ${ticket.summary}`,
+                  area: ticket.room || "Residence",
+                  status: "open",
+                  openedAt: new Date().toISOString().split("T")[0],
+                  note: `Severity: ${ticket.severity} · Urgency: ${ticket.urgency}`,
+                },
+                ...prev,
+              ]);
+            }}
+          />
         </div>
         <ul className="space-y-3">
           {maintenanceList.map((item) => (

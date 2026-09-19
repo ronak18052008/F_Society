@@ -21,7 +21,9 @@ import {
   getWorkspaceMaintenance,
   getWorkspaceActivity,
 } from "@/lib/supabase/workspace";
+import { RoleGuard } from "@/components/auth/role-guard";
 import { MarketTrends } from "@/components/dashboard/market-trends";
+import { MaintenanceTriageModal } from "@/components/maintenance/maintenance-triage-modal";
 import type { ActivityEvent, MaintenanceRequest, PaymentRecord, Property } from "@/types";
 
 export default function TenantDashboardPage() {
@@ -84,10 +86,11 @@ export default function TenantDashboardPage() {
   const unpaid = workspacePayments.filter((item) => item.status !== "paid");
 
   return (
-    <DashboardShell
-      title={`Welcome back${user?.name ? `, ${user.name}` : ""}`}
-      subtitle="Your active tenancy workspace, financial ledger, and saved architectural residences."
-    >
+    <RoleGuard allowedRole="tenant">
+      <DashboardShell
+        title={`Welcome back${user?.name ? `, ${user.name}` : ""}`}
+        subtitle="Your active tenancy workspace, financial ledger, and saved architectural residences."
+      >
       {/* 3 Metric Stat Cards */}
       <div className="grid gap-4 sm:grid-cols-3">
         <Link
@@ -141,6 +144,49 @@ export default function TenantDashboardPage() {
           </p>
           <p className="mt-1 text-xs text-ink-muted">Condition Passport & repairs →</p>
         </Link>
+      </div>
+
+      {/* AI Maintenance Triage Banner */}
+      <div className="mt-8 rounded-2xl border border-warm-200/90 dark:border-forest/40 bg-gradient-to-br from-paper to-card p-5 sm:p-6 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-start gap-3.5">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-pista/15 text-forest dark:text-pista">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-base font-serif font-bold text-ink">AI Maintenance Triage</h3>
+                <span className="rounded-full bg-forest/10 dark:bg-pista/20 px-2 py-0.5 text-[10px] font-bold text-forest dark:text-pista uppercase tracking-wider">
+                  Feature 4
+                </span>
+              </div>
+              <p className="mt-0.5 text-xs text-ink-muted max-w-xl leading-relaxed">
+                Describe an issue or upload a photo to immediately assess category, severity, emergency risks, and tenant safety actions.
+              </p>
+            </div>
+          </div>
+          <MaintenanceTriageModal
+            propertyId="rent-navrang"
+            propertyTitle="Navrangpura Courtyard"
+            buttonLabel="Triage Issue with AI"
+            onTicketCreated={(ticket) => {
+              setWorkspaceMaintenance((prev) => [
+                {
+                  id: ticket.id,
+                  title: `[${ticket.category}] ${ticket.summary}`,
+                  area: ticket.room || "Residence",
+                  status: "open",
+                  openedAt: new Date().toISOString().split("T")[0],
+                  note: `Severity: ${ticket.severity} · Urgency: ${ticket.urgency}`,
+                },
+                ...prev,
+              ]);
+            }}
+          />
+        </div>
       </div>
 
       {/* Tenancy Notifications Feed */}
@@ -226,5 +272,6 @@ export default function TenantDashboardPage() {
         <MarketTrends />
       </div>
     </DashboardShell>
+  </RoleGuard>
   );
 }

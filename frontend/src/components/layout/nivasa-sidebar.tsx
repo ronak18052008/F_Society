@@ -34,7 +34,7 @@ export function NivasaSidebar({
 }: NivasaSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, savedIds, switchRole } = useNivasa();
+  const { user, savedIds } = useNivasa();
   const { theme, toggle } = useTheme();
 
   const isOwner = user?.role === "owner";
@@ -62,12 +62,6 @@ export function NivasaSidebar({
     };
   }, [mobileOpen]);
 
-  const handleRoleSwitch = (newRole: "tenant" | "owner") => {
-    switchRole(newRole);
-    if (mobileOpen) onCloseMobile();
-    router.push(newRole === "owner" ? "/owner" : "/tenant");
-  };
-
   // Section 15: Owner Sidebar
   const ownerSections: NavSection[] = [
     {
@@ -79,6 +73,17 @@ export function NivasaSidebar({
           icon: (active) => (
             <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={active ? 2.5 : 2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          ),
+        },
+        {
+          href: "/copilot",
+          label: "AI Rental Copilot",
+          badge: "AI",
+          badgeColor: "pista",
+          icon: (active) => (
+            <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={active ? 2.5 : 2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           ),
         },
@@ -225,6 +230,17 @@ export function NivasaSidebar({
           icon: (active) => (
             <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={active ? 2.5 : 2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          ),
+        },
+        {
+          href: "/copilot",
+          label: "AI Rental Copilot",
+          badge: "AI",
+          badgeColor: "pista",
+          icon: (active) => (
+            <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={active ? 2.5 : 2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           ),
         },
@@ -400,22 +416,17 @@ export function NivasaSidebar({
           )}
         </div>
 
-        {/* 16 & 19: Role Badge & Fast Switcher */}
+        {/* 16 & 19: Role Badge */}
         {(!collapsed || isMobile) && (
           <div className="mx-3 mt-3 rounded-2xl bg-[#7ca982]/10 dark:bg-[#1d2d22] p-2.5 border border-[#7ca982]/25">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold text-ink flex items-center gap-1.5">
                 <span className={cn("h-2 w-2 rounded-full", isOwner ? "bg-amber-500" : "bg-[#7ca982]")} />
-                <span className="text-[10px] font-bold tracking-wider uppercase">{isOwner ? "OWNER" : "TENANT"}</span>
+                <span className="text-[10px] font-bold tracking-wider uppercase">{isOwner ? "OWNER PORTAL" : "TENANT PORTAL"}</span>
               </span>
-              <button
-                type="button"
-                onClick={() => handleRoleSwitch(isOwner ? "tenant" : "owner")}
-                className="text-[11px] font-bold text-[#57875d] dark:text-[#a3caa6] hover:underline cursor-pointer flex items-center gap-1"
-              >
-                <span>Switch to {isOwner ? "Tenant" : "Owner"}</span>
-                <span>⇄</span>
-              </button>
+              <span className="text-[10px] font-semibold text-ink-muted">
+                {isOwner ? "Landlord" : "Resident"}
+              </span>
             </div>
           </div>
         )}

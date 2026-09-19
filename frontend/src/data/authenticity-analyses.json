@@ -1,0 +1,141 @@
+{
+  "prop-navrang-02": {
+    "id": "auth-prop-navrang-02",
+    "propertyId": "prop-navrang-02",
+    "authenticityScore": 0,
+    "score": 0,
+    "status": "HIGH_RISK",
+    "confidence": "HIGH",
+    "confidenceScore": 1,
+    "explanation": "Listing flagged as HIGH RISK (0/100). Critical scam indicators detected (severe underpricing, duplicate collision, or off-platform payment demand). Do NOT transfer any advance funds.",
+    "verificationStatus": "Unverified Listing",
+    "priceAnomaly": true,
+    "duplicateWarning": false,
+    "suspiciousDescriptionFlags": [
+      "Off-Platform Contact Redirection",
+      "Untraceable Payment Method Request",
+      "High-Pressure Urgency Tactics"
+    ],
+    "missingInformation": [],
+    "signals": [
+      {
+        "id": "sig-auth-price-prop-navrang-02",
+        "code": "UNUSUALLY_LOW_PRICE",
+        "title": "Severe Price Anomaly (Advance-Fee Scam Risk)",
+        "category": "PRICING",
+        "severity": "CRITICAL",
+        "scoreDeduction": 30,
+        "explanation": "Rent rate of ₹2/sqft is 96% below the Mumbai micro-market median (₹55/sqft). Severe underpricing is the primary marker of bait-and-switch advance token scams.",
+        "evidence": "Configured rent ₹2,000/mo for 1200 sqft against locality benchmark ₹55/sqft.",
+        "source": "Nivasa Micro-Market Rental Benchmark Index"
+      },
+      {
+        "id": "sig-auth-desc-prop-navrang-02",
+        "code": "SUSPICIOUS_DESCRIPTION",
+        "title": "High-Risk Keywords in Property Description",
+        "category": "DESCRIPTION",
+        "severity": "CRITICAL",
+        "scoreDeduction": 35,
+        "explanation": "Property description contains 3 scam marker pattern(s): Off-Platform Contact Redirection; Untraceable Payment Method Request; High-Pressure Urgency Tactics.",
+        "evidence": "Detected suspicious markers: Off-Platform Contact Redirection, Untraceable Payment Method Request, High-Pressure Urgency Tactics.",
+        "source": "Nivasa NLP Scam Indicator Parser"
+      },
+      {
+        "id": "sig-auth-loc-prop-navrang-02",
+        "code": "INCONSISTENT_LOCATION",
+        "title": "Locality & Metro City Inconsistency",
+        "category": "LOCATION",
+        "severity": "HIGH",
+        "scoreDeduction": 20,
+        "explanation": "Locality 'Navrangpura' belongs to AHMEDABAD, but property is registered under city 'Mumbai'.",
+        "evidence": "Contradiction: 'Navrangpura' matches known geography of ahmedabad.",
+        "source": "Nivasa Metropolitan Postal Directory"
+      },
+      {
+        "id": "sig-auth-owner-prop-navrang-02",
+        "code": "INCOMPLETE_OWNER_INFO",
+        "title": "Anonymous / Incomplete Landlord Information",
+        "category": "OWNER",
+        "severity": "LOW",
+        "scoreDeduction": 12,
+        "explanation": "No individual or corporate landlord name provided. Listing relies on an anonymous point of contact.",
+        "evidence": "Point of contact field is 'Owner'.",
+        "source": "Nivasa Identity Registry"
+      },
+      {
+        "id": "sig-auth-verif-prop-navrang-02",
+        "code": "MISSING_VERIFICATION",
+        "title": "Unverified Ownership & Title Credentials",
+        "category": "VERIFICATION",
+        "severity": "MEDIUM",
+        "scoreDeduction": 15,
+        "explanation": "Property has not yet undergone official government title deed or landlord identity verification.",
+        "evidence": "Verification status is marked 'listing-unverified'.",
+        "source": "Nivasa Land Registry Verification Ledger"
+      }
+    ],
+    "whyThisResult": {
+      "initialScore": 100,
+      "deductions": [
+        {
+          "signalCode": "UNUSUALLY_LOW_PRICE",
+          "title": "Severe Price Anomaly (Advance-Fee Scam Risk)",
+          "pointsDeducted": 30,
+          "explanation": "Rent rate of ₹2/sqft is 96% below the Mumbai micro-market median (₹55/sqft). Severe underpricing is the primary marker of bait-and-switch advance token scams.",
+          "evidence": "Configured rent ₹2,000/mo for 1200 sqft against locality benchmark ₹55/sqft."
+        },
+        {
+          "signalCode": "SUSPICIOUS_DESCRIPTION",
+          "title": "High-Risk Keywords in Property Description",
+          "pointsDeducted": 35,
+          "explanation": "Property description contains 3 scam marker pattern(s): Off-Platform Contact Redirection; Untraceable Payment Method Request; High-Pressure Urgency Tactics.",
+          "evidence": "Detected suspicious markers: Off-Platform Contact Redirection, Untraceable Payment Method Request, High-Pressure Urgency Tactics."
+        },
+        {
+          "signalCode": "INCONSISTENT_LOCATION",
+          "title": "Locality & Metro City Inconsistency",
+          "pointsDeducted": 20,
+          "explanation": "Locality 'Navrangpura' belongs to AHMEDABAD, but property is registered under city 'Mumbai'.",
+          "evidence": "Contradiction: 'Navrangpura' matches known geography of ahmedabad."
+        },
+        {
+          "signalCode": "INCOMPLETE_OWNER_INFO",
+          "title": "Anonymous / Incomplete Landlord Information",
+          "pointsDeducted": 12,
+          "explanation": "No individual or corporate landlord name provided. Listing relies on an anonymous point of contact.",
+          "evidence": "Point of contact field is 'Owner'."
+        },
+        {
+          "signalCode": "MISSING_VERIFICATION",
+          "title": "Unverified Ownership & Title Credentials",
+          "pointsDeducted": 15,
+          "explanation": "Property has not yet undergone official government title deed or landlord identity verification.",
+          "evidence": "Verification status is marked 'listing-unverified'."
+        }
+      ],
+      "safetyCredits": [],
+      "calculatedScore": -12,
+      "finalScore": 0,
+      "status": "HIGH_RISK",
+      "primaryRisks": [
+        "Rent rate is 96% below market benchmark (High scam likelihood)",
+        "Description contains high-risk phrasing: Off-Platform Contact Redirection",
+        "Locality 'Navrangpura' contradicts specified city 'Mumbai'",
+        "Anonymous landlord profile without designated individual contact",
+        "Landlord identity and property title deed pending official verification"
+      ],
+      "trustFactors": [
+        "Unique listing footprint (no duplicate collisions detected in metropolitan database)",
+        "3 distinct high-resolution gallery images cataloged"
+      ],
+      "methodology": "Nivasa Authenticity Detector uses deterministic heuristics across micro-market rent parity, duplicate registry collisions, regex scam phrase patterns, spatial attribute integrity, and official KYC verification."
+    },
+    "imageMetadata": {
+      "performedRealReverseSearch": false,
+      "method": "Multi-Listing Internal Asset Fingerprint & URL Matcher",
+      "duplicateAssetFound": false,
+      "notes": "Internal asset registry comparison only. Third-party web reverse-image scraping was not performed."
+    },
+    "timestamp": "2026-09-19T02:34:38.052Z"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "prop-navrang-02": {
+    "id": "risk-prop-navrang-02",
+    "propertyId": "prop-navrang-02",
+    "score": 0,
+    "riskScore": 0,
+    "riskLevel": "INSUFFICIENT_DATA",
+    "confidence": "LOW",
+    "confidenceScore": 0.2,
+    "explanation": "Insufficient data: Listing is missing essential attributes (rent, city). A reliable rental risk analysis cannot be computed until these parameters are populated.",
+    "evidence": [
+      "Missing parameter(s): rent, city"
+    ],
+    "signals": [
+      {
+        "id": "sig-insufficient-prop-navrang-02",
+        "code": "INSUFFICIENT_DATA",
+        "title": "Missing Required Listing Fields",
+        "category": "DATA_INTEGRITY",
+        "severity": "CRITICAL",
+        "impactPoints": 0,
+        "scoreImpact": 0,
+        "explanation": "Critical financial or physical attributes are missing from the property listing record.",
+        "evidence": "Missing parameter(s): rent, city",
+        "source": "Data Integrity Validator"
+      }
+    ],
+    "verificationStatus": "identity-checked",
+    "engineVersion": "v2.4.0-deterministic",
+    "insufficientData": true,
+    "missingFields": [
+      "rent",
+      "city"
+    ],
+    "whyThisScore": {
+      "baseScore": 0,
+      "signalContributions": [],
+      "calculatedScore": 0,
+      "finalScore": 0,
+      "primaryDrivers": [],
+      "riskBracket": {
+        "level": "INSUFFICIENT_DATA",
+        "range": "N/A",
+        "interpretation": "Insufficient data to score risk. Update property listing parameters."
+      },
+      "methodology": "Data integrity requirement: properties require valid rent, deposit, city, and area values before deterministic risk evaluation."
+    },
+    "timestamp": "2026-09-19T02:18:20.452Z"
+  }
+}
