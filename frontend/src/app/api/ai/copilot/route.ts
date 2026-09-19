@@ -42,7 +42,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { message, conversationId, propertyId } = body || {};
+    const { message, conversationId, propertyId, role: bodyRole } = body || {};
+    const roleCookie = req.cookies.get("nivasa_role")?.value;
+    const userRole = (bodyRole || roleCookie || "tenant") as "tenant" | "owner";
 
     // 3. Input Validation and Sanitization
     const validation = validateAndSanitizeInput(message);
@@ -61,7 +63,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           error:
-            "Your query was flagged by the NESTORA safety filter. Please rephrase your rental inquiry directly.",
+            "Your query was flagged by the Nivasa safety filter. Please rephrase your rental inquiry directly.",
           reason: injectionCheck.reason,
         },
         { status: 400 }
@@ -91,6 +93,7 @@ export async function POST(req: NextRequest) {
         message: sanitizedMessage,
         conversationId: activeConversationId,
         propertyId,
+        role: userRole,
       }),
       timeoutPromise,
     ]);

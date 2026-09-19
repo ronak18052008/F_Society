@@ -85,7 +85,17 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  // 3. Redirect logged-in users away from /login or /register
+  // 3. Protect /copilot routes
+  if (pathname.startsWith("/copilot")) {
+    if (!isAuthenticated) {
+      const loginUrl = request.nextUrl.clone();
+      loginUrl.pathname = "/login";
+      loginUrl.searchParams.set("redirect", pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // 4. Redirect logged-in users away from /login or /register
   const authPaths = ["/login", "/register"];
   if (authPaths.includes(pathname) && isAuthenticated) {
     const targetDashboard = request.nextUrl.clone();

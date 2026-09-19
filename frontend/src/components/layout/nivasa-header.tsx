@@ -358,7 +358,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           <Link
             href="/copilot"
             className="flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-2.5 sm:px-3 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
-            title="NESTORA AI Rental Copilot"
+            title="Nivasa AI Rental Copilot"
           >
             <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
             <span className="hidden md:inline font-serif">AI Copilot</span>
@@ -405,16 +405,27 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                 </Link>
               </>
             ) : (
-              /* Owner header action: + Post Property */
-              <Link
-                href="/owner/properties/new"
-                className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-amber-700 hover:bg-amber-800 text-white px-3.5 py-1.5 text-xs font-semibold shadow-xs transition-all cursor-pointer"
-              >
-                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-                <span>+ Post Property</span>
-              </Link>
+              /* Owner header actions: Applications & + Post Residence */
+              <>
+                <Link
+                  href="/owner/dashboard#applications"
+                  className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-amber-500/15 hover:bg-amber-500/25 text-amber-900 dark:text-amber-200 px-3 py-1.5 text-xs font-semibold border border-amber-500/30 transition-all cursor-pointer shadow-xs"
+                >
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Applications</span>
+                </Link>
+                <Link
+                  href="/owner/properties/new"
+                  className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-amber-700 hover:bg-amber-800 text-white px-3.5 py-1.5 text-xs font-semibold shadow-xs transition-all cursor-pointer"
+                >
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  <span>+ Post Residence</span>
+                </Link>
+              </>
             )
           )}
 
