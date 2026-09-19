@@ -17,11 +17,8 @@ import { getPropertyById, getSimilarProperties } from "@/lib/supabase/properties
 import { useNivasa } from "@/store/nivasa-store";
 import type { Property } from "@/types";
 import { RentalRiskCard } from "@/components/risk/rental-risk-card";
-<<<<<<< HEAD
 import { AuthenticityCard } from "@/components/authenticity/authenticity-card";
 import { PropertyReputationGraph } from "@/components/property/property-reputation-graph";
-=======
->>>>>>> origin/main
 
 export default function PropertyDetailPage() {
   const { id } = useParams<{ id: string }>();
