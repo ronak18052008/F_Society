@@ -20,20 +20,20 @@ export default function HomePage() {
       ======================================================== */}
       <section className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24">
         {/* Ambient atmospheric glows */}
-        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[#6E9271]/15 via-[#8FA89B]/10 to-transparent blur-3xl opacity-70 -z-10" />
-        <div className="pointer-events-none absolute top-1/3 -left-32 w-96 h-96 bg-[#6E9271]/10 blur-3xl rounded-full -z-10" />
-        <div className="pointer-events-none absolute top-1/2 -right-32 w-96 h-96 bg-[#8FA89B]/10 blur-3xl rounded-full -z-10" />
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[var(--accent-forest)]/15 via-[var(--secondary-sage)]/10 to-transparent blur-3xl opacity-70 -z-10" />
+        <div className="pointer-events-none absolute top-1/3 -left-32 w-96 h-96 bg-[var(--accent-forest)]/10 blur-3xl rounded-full -z-10" />
+        <div className="pointer-events-none absolute top-1/2 -right-32 w-96 h-96 bg-[var(--secondary-sage)]/10 blur-3xl rounded-full -z-10" />
 
         <div className="wrap">
           {/* Top Pill / Platform Status */}
           <div className="flex justify-center">
             <Reveal>
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-[#7ca982]/30 bg-[#7ca982]/10 px-4 py-1.5 backdrop-blur-md shadow-xs">
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-[var(--primary-pista)]/30 bg-[var(--primary-pista)]/10 px-4 py-1.5 backdrop-blur-md shadow-xs">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7ca982] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7ca982] dark:bg-[#a3caa6]"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary-pista)] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--primary-pista)]"></span>
                 </span>
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#23452b] dark:text-[#a3caa6]">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-main)]">
                   Nivasa Residential Network · v2.4
                 </span>
               </div>
@@ -45,7 +45,7 @@ export default function HomePage() {
             <Reveal delay={0.1}>
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold tracking-tight text-ink leading-[1.08]">
                 Living,{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#57875d] via-[#7ca982] to-[#96bd9b] dark:from-[#a3caa6] dark:via-[#7ca982] dark:to-[#96bd9b]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-forest)] via-[var(--primary-pista)] to-[var(--secondary-sage)]">
                   Harmonized.
                 </span>
               </h1>
@@ -62,7 +62,7 @@ export default function HomePage() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <Link
                   href="/properties"
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#7ca982] hover:bg-[#68946e] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#7ca982]/25 hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[var(--primary-pista)]/25 hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
                 >
                   <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -94,7 +94,7 @@ export default function HomePage() {
                 >
                   {/* City selector */}
                   <div className="flex items-center gap-3 px-4 py-2.5 flex-1">
-                    <svg className="w-5 h-5 text-[#6E9271] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-[var(--accent-forest)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -116,7 +116,7 @@ export default function HomePage() {
 
                   {/* Configuration Select */}
                   <div className="flex items-center gap-3 px-4 py-2.5 sm:w-44">
-                    <svg className="w-5 h-5 text-[#8FA89B] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-[var(--secondary-sage)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     <div className="w-full text-left">
@@ -139,7 +139,7 @@ export default function HomePage() {
                   {/* Search Button */}
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl sm:rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-[#7ca982]/20 hover:opacity-95 active:scale-95 transition-all cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl sm:rounded-full bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-[var(--primary-pista)]/20 hover:opacity-95 active:scale-95 transition-all cursor-pointer"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -154,16 +154,16 @@ export default function HomePage() {
           {/* Quick Filter Tags */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-ink-muted">
             <span className="font-medium">Popular:</span>
-            <Link href="/properties?city=Ahmedabad" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
+            <Link href="/properties?city=Ahmedabad" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[var(--primary-pista)]/50 hover:text-ink transition">
               Ahmedabad
             </Link>
-            <Link href="/properties?city=Bengaluru" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
+            <Link href="/properties?city=Bengaluru" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[var(--primary-pista)]/50 hover:text-ink transition">
               Bengaluru
             </Link>
-            <Link href="/properties?city=Mumbai" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
+            <Link href="/properties?city=Mumbai" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[var(--primary-pista)]/50 hover:text-ink transition">
               Mumbai
             </Link>
-            <Link href="/properties?verified=true" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
+            <Link href="/properties?verified=true" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[var(--primary-pista)]/50 hover:text-ink transition">
               RentTruth™ Verified Only
             </Link>
           </div>
@@ -172,7 +172,7 @@ export default function HomePage() {
           <div className="mt-12 sm:mt-16">
             <Reveal delay={0.4}>
               <div className="relative mx-auto max-w-5xl rounded-3xl border border-line bg-card p-2 sm:p-3 shadow-card">
-                <div className="relative h-[480px] sm:h-[560px] w-full overflow-hidden rounded-2xl bg-[#050a17]">
+                <div className="relative h-[480px] sm:h-[560px] w-full overflow-hidden rounded-2xl bg-[var(--text-main)]">
                   <ArchitecturalHero />
                 </div>
               </div>
@@ -183,22 +183,22 @@ export default function HomePage() {
           <div className="mt-14 border-y border-line py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div>
-                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#57875d] dark:text-[#a3caa6]">₹0</p>
+                <p className="font-serif text-2xl sm:text-3xl font-bold text-[var(--accent-forest)]">₹0</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">Brokerage Overhead</p>
                 <p className="text-[11px] text-ink-muted/80 mt-0.5">Direct tenant-owner contracts</p>
               </div>
               <div>
-                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#7ca982]">100%</p>
+                <p className="font-serif text-2xl sm:text-3xl font-bold text-[var(--primary-pista)]">100%</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">Itemized RentTruth™</p>
                 <p className="text-[11px] text-ink-muted/80 mt-0.5">Every rupee unbundled upfront</p>
               </div>
               <div>
-                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#96bd9b]">Day 0</p>
+                <p className="font-serif text-2xl sm:text-3xl font-bold text-[var(--secondary-sage)]">Day 0</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">Condition Passport</p>
                 <p className="text-[11px] text-ink-muted/80 mt-0.5">Dispute-proof move-in logs</p>
               </div>
               <div>
-                <p className="font-serif text-2xl sm:text-3xl font-bold text-[#57875d] dark:text-[#a3caa6]">Gemini 2.5</p>
+                <p className="font-serif text-2xl sm:text-3xl font-bold text-[var(--accent-forest)]">Gemini 2.5</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">AI Lease Audit</p>
                 <p className="text-[11px] text-ink-muted/80 mt-0.5">Automated clause risk analysis</p>
               </div>
@@ -214,7 +214,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista)]/15 px-3.5 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--primary-pista)]/30">
                 Core Innovations
               </div>
               <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-ink tracking-tight">
@@ -228,8 +228,8 @@ export default function HomePage() {
 
           <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Pillar 1: AI Match */}
-            <Reveal delay={0.1} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[#7ca982] transition-all group">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#7ca982]/15 text-[#23452b] dark:text-[#a3caa6] group-hover:scale-110 transition-transform">
+            <Reveal delay={0.1} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[var(--primary-pista)] transition-all group">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--primary-pista)]/15 text-[var(--text-main)] group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -241,7 +241,7 @@ export default function HomePage() {
             </Reveal>
 
             {/* Pillar 2: Verified Listings */}
-            <Reveal delay={0.15} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[#7ca982] transition-all group">
+            <Reveal delay={0.15} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[var(--primary-pista)] transition-all group">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -254,7 +254,7 @@ export default function HomePage() {
             </Reveal>
 
             {/* Pillar 3: Secure Rent Agreements */}
-            <Reveal delay={0.2} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[#7ca982] transition-all group">
+            <Reveal delay={0.2} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[var(--primary-pista)] transition-all group">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -267,7 +267,7 @@ export default function HomePage() {
             </Reveal>
 
             {/* Pillar 4: Direct Owner Connect */}
-            <Reveal delay={0.25} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[#7ca982] transition-all group">
+            <Reveal delay={0.25} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[var(--primary-pista)] transition-all group">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/15 text-amber-800 dark:text-amber-200 group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -286,7 +286,7 @@ export default function HomePage() {
           FLAGSHIP AI & FINTECH INNOVATION SUITE
       ======================================================== */}
       <section className="py-20 bg-gradient-to-b from-card/30 via-card/70 to-card/30 border-b border-line relative overflow-hidden">
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-to-r from-[#7ca982]/10 via-[#557e5b]/5 to-indigo-500/5 blur-3xl rounded-full -z-10" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-to-r from-[var(--primary-pista)]/10 via-[var(--accent-forest)]/5 to-indigo-500/5 blur-3xl rounded-full -z-10" />
 
         <div className="wrap">
           <div className="mx-auto max-w-3xl text-center">
@@ -306,7 +306,7 @@ export default function HomePage() {
 
           <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Card 1: Rental Risk Engine */}
-            <Reveal delay={0.05} className="rounded-3xl border border-line bg-card/80 p-6 shadow-card hover:border-[#7ca982] hover:shadow-xl transition-all group flex flex-col justify-between backdrop-blur-md">
+            <Reveal delay={0.05} className="rounded-3xl border border-line bg-card/80 p-6 shadow-card hover:border-[var(--primary-pista)] hover:shadow-xl transition-all group flex flex-col justify-between backdrop-blur-md">
               <div>
                 <div className="flex items-center justify-between">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
@@ -323,14 +323,14 @@ export default function HomePage() {
                   Deterministic multi-category scoring across financial, legal, physical, and market volatility with verified confidence factors.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Deposit Multiplier</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Title Clarity</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Fair Market Delta</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Deposit Multiplier</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Title Clarity</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Fair Market Delta</span>
                 </div>
               </div>
               <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
                 <span className="text-[11px] text-ink-muted font-medium">Included on every listing</span>
-                <Link href="/properties" className="text-xs font-bold text-[#57875d] dark:text-[#a3caa6] hover:underline inline-flex items-center gap-1">
+                <Link href="/properties" className="text-xs font-bold text-[var(--accent-forest)] hover:underline inline-flex items-center gap-1">
                   Explore Homes →
                 </Link>
               </div>
@@ -354,9 +354,9 @@ export default function HomePage() {
                   Deep scan flagging price anomalies, duplicate listings, phishing contact patterns, and suspicious security deposit requirements.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Duplicate Detection</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Anomaly Alerts</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Phone Pattern Guard</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Duplicate Detection</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Anomaly Alerts</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Phone Pattern Guard</span>
                 </div>
               </div>
               <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
@@ -386,9 +386,9 @@ export default function HomePage() {
                   Real-time urgency classification (Emergency to Low), automated trade assignment, actionable troubleshooting, and localized cost estimation in INR.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Urgency Score</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Trade Matching</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">INR Estimates</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Urgency Score</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Trade Matching</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">INR Estimates</span>
                 </div>
               </div>
               <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
@@ -417,9 +417,9 @@ export default function HomePage() {
                   Transparent household ledger supporting Rent, Utilities, Groceries, and Maintenance. Automated bilateral settlement algorithms eliminate roommate debt friction.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Equal & Custom Splits</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">UPI Settlement</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Monthly Ledgers</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Equal & Custom Splits</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">UPI Settlement</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Monthly Ledgers</span>
                 </div>
               </div>
               <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
@@ -452,9 +452,9 @@ export default function HomePage() {
                   Interactive SVG topological graph linking 8 verified entities: landlord track record, physical inspections, verified reviews, and listing provenance.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Interactive Pan & Zoom</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Evidence Inspector</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">8 Node Entities</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Interactive Pan & Zoom</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Evidence Inspector</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">8 Node Entities</span>
                 </div>
               </div>
               <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
@@ -483,9 +483,9 @@ export default function HomePage() {
                   Autonomous assistant strictly grounded in the authenticated user's role (Tenant vs Owner), Model Tenancy Act principles, and live platform listings.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Strict Role Context</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Legal Clause Advice</span>
-                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Streaming Responses</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Strict Role Context</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Legal Clause Advice</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[var(--bg-surface-elevated)] border border-line text-[10px] text-ink-muted">Streaming Responses</span>
                 </div>
               </div>
               <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
@@ -506,9 +506,9 @@ export default function HomePage() {
         <div className="wrap">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* For Tenants Card */}
-            <Reveal className="rounded-3xl border border-[#7ca982]/30 bg-card p-8 sm:p-10 shadow-card flex flex-col justify-between">
+            <Reveal className="rounded-3xl border border-[var(--primary-pista)]/30 bg-card p-8 sm:p-10 shadow-card flex flex-col justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista)]/15 px-3 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--primary-pista)]/30">
                   For Tenants
                 </div>
                 <h3 className="mt-4 text-2xl sm:text-3xl font-serif font-bold text-ink">
@@ -520,23 +520,23 @@ export default function HomePage() {
 
                 <ul className="mt-6 space-y-3 text-xs text-ink">
                   <li className="flex items-start gap-2.5">
-                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span className="text-[var(--primary-pista)] font-bold text-sm">✓</span>
                     <span><strong>₹0 Brokerage Fees:</strong> Save ₹25,000–₹60,000 upfront on every move.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span className="text-[var(--primary-pista)] font-bold text-sm">✓</span>
                     <span><strong>RentTruth™ Itemized Outlay:</strong> Know the exact society maintenance, water, and parking costs upfront.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span className="text-[var(--primary-pista)] font-bold text-sm">✓</span>
                     <span><strong>Digital Condition Passport:</strong> Mutual move-in photo audit that dispute-proofs your security deposit.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span className="text-[var(--primary-pista)] font-bold text-sm">✓</span>
                     <span><strong>AI Lease Audit:</strong> Scan drafts automatically to flag unfair escalation and lock-in clauses.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span className="text-[var(--primary-pista)] font-bold text-sm">✓</span>
                     <span><strong>Roommate Compatibility Matcher:</strong> Find verified flatmates matching your sleep and work rhythm.</span>
                   </li>
                 </ul>
@@ -545,12 +545,12 @@ export default function HomePage() {
               <div className="mt-8 pt-6 border-t border-line flex items-center justify-between">
                 <Link
                   href="/properties"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#7ca982] text-white px-5 py-2.5 text-xs font-bold shadow-xs hover:bg-[#68946e] transition-all"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista)] text-white px-5 py-2.5 text-xs font-bold shadow-xs hover:bg-[var(--primary-pista-hover)] transition-all"
                 >
                   <span>Browse Homes</span>
                   <span>→</span>
                 </Link>
-                <Link href="/login?intent=tenant" className="text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline">
+                <Link href="/login?intent=tenant" className="text-xs font-semibold text-[var(--accent-forest)] hover:underline">
                   Sign in as Tenant →
                 </Link>
               </div>
@@ -617,7 +617,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="mx-auto max-w-2xl text-center">
             <Reveal>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista)]/15 px-3 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--primary-pista)]/30">
                 Simple & Transparent
               </div>
               <h2 className="mt-3 text-3xl sm:text-4xl font-serif font-bold text-ink tracking-tight">
@@ -631,7 +631,7 @@ export default function HomePage() {
 
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <Reveal delay={0.1} className="relative rounded-3xl border border-line bg-paper p-6 shadow-xs">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982] text-white text-xs font-bold">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary-pista)] text-white text-xs font-bold">
                 1
               </span>
               <h3 className="mt-4 text-base font-bold font-serif text-ink">Discover & AI Match</h3>
@@ -641,7 +641,7 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={0.2} className="relative rounded-3xl border border-line bg-paper p-6 shadow-xs">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982] text-white text-xs font-bold">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary-pista)] text-white text-xs font-bold">
                 2
               </span>
               <h3 className="mt-4 text-base font-bold font-serif text-ink">Direct Connect & Visit</h3>
@@ -651,17 +651,17 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={0.3} className="relative rounded-3xl border border-line bg-paper p-6 shadow-xs">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982] text-white text-xs font-bold">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary-pista)] text-white text-xs font-bold">
                 3
               </span>
               <h3 className="mt-4 text-base font-bold font-serif text-ink">Smart Agreement & Passport</h3>
               <p className="mt-2 text-xs text-ink-muted leading-relaxed">
-                Sign digitally with Aadhaar e-Sign. Mutually record and freeze move-in condition photos to secure your deposit.
+                Sign digitally with Aadhaar e-Sign. Complete your move-in Condition Passport to protect your deposit.
               </p>
             </Reveal>
 
             <Reveal delay={0.4} className="relative rounded-3xl border border-line bg-paper p-6 shadow-xs">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982] text-white text-xs font-bold">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary-pista)] text-white text-xs font-bold">
                 4
               </span>
               <h3 className="mt-4 text-base font-bold font-serif text-ink">Move In & Shared Ledger</h3>
@@ -696,7 +696,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-10 border-b border-line">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--accent-forest)]/15 px-3.5 py-1 text-xs font-semibold text-[var(--accent-forest)] border border-[var(--accent-forest)]/30">
                 Selected Residences
               </div>
               <h2 className="mt-3 text-3xl sm:text-4xl font-serif font-bold text-ink tracking-tight">
@@ -731,7 +731,7 @@ export default function HomePage() {
         <div className="wrap">
           <Reveal>
             <div className="mx-auto max-w-4xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#7ca982]/30 bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#23452b] dark:text-[#a3caa6]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--primary-pista)]/30 bg-[var(--primary-pista)]/15 px-3.5 py-1 text-xs font-semibold text-[var(--text-main)]">
                 Join the Network
               </div>
               <h2 className="mt-4 text-4xl sm:text-5xl font-serif font-bold text-ink tracking-tight">

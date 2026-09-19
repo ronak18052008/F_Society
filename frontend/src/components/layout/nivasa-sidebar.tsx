@@ -400,7 +400,7 @@ export function NivasaSidebar({
     <div className="flex h-full flex-col justify-between overflow-hidden">
       {/* Top: Brand Header & Mode Switcher */}
       <div className="flex flex-col">
-        <div className="flex h-16 items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] px-4">
+        <div className="flex h-16 items-center justify-between border-b border-[var(--border)] px-4">
           <Link
             href="/"
             onClick={() => {
@@ -420,7 +420,7 @@ export function NivasaSidebar({
             <button
               type="button"
               onClick={onCloseMobile}
-              className="flex h-8 w-8 items-center justify-center rounded-xl border border-[#e5dfc5] dark:border-[#2a3f31] text-ink-muted hover:text-ink hover:bg-[#7ca982]/10 transition-colors"
+              className="flex h-8 w-8 items-center justify-center rounded-xl border border-[var(--border)] text-ink-muted hover:text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
               aria-label="Close navigation"
             >
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -433,10 +433,10 @@ export function NivasaSidebar({
 
         {/* 16 & 19: Role Badge */}
         {(!collapsed || isMobile) && (
-          <div className="mx-3 mt-3 rounded-2xl bg-[#7ca982]/10 dark:bg-[#1d2d22] p-2.5 border border-[#7ca982]/25">
+          <div className="mx-3 mt-3 rounded-2xl bg-[var(--primary-pista)]/10 dark:bg-[var(--bg-surface-elevated)] p-2.5 border border-[var(--primary-pista)]/25">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold text-ink flex items-center gap-1.5">
-                <span className={cn("h-2 w-2 rounded-full", isOwner ? "bg-amber-500" : "bg-[#7ca982]")} />
+                <span className={cn("h-2 w-2 rounded-full", isOwner ? "bg-amber-500" : "bg-[var(--primary-pista)]")} />
                 <span className="text-[10px] font-bold tracking-wider uppercase">{isOwner ? "OWNER PORTAL" : "TENANT PORTAL"}</span>
               </span>
               <span className="text-[10px] font-semibold text-ink-muted">
@@ -448,7 +448,7 @@ export function NivasaSidebar({
       </div>
 
       {/* Center: Scrollable Navigation List */}
-      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-6 scrollbar-thin scrollbar-thumb-[#7ca982]/20">
+      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-6 scrollbar-thin scrollbar-thumb-[var(--primary-pista)]/20">
         <div className="space-y-6">
           {navSections.map((section, idx) => (
             <div key={idx} className="space-y-1">
@@ -474,8 +474,8 @@ export function NivasaSidebar({
                       className={cn(
                         "group relative flex items-center rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-150",
                         active
-                          ? "bg-[#7ca982] text-white shadow-xs"
-                          : "text-ink/80 hover:bg-[#7ca982]/10 hover:text-ink",
+                          ? "bg-[var(--primary-pista)] text-white shadow-xs"
+                          : "text-ink/80 hover:bg-[var(--primary-pista)]/10 hover:text-ink",
                         collapsed && !isMobile && "justify-center px-2 py-2.5"
                       )}
                       title={collapsed && !isMobile ? item.label : undefined}
@@ -500,7 +500,7 @@ export function NivasaSidebar({
                                   ? "bg-rose-500 text-white"
                                   : item.badgeColor === "indigo"
                                   ? "bg-indigo-500/20 text-indigo-700 dark:text-indigo-300"
-                                  : "bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]"
+                                  : "bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]"
                               )}
                             >
                               {item.badge}
@@ -520,7 +520,7 @@ export function NivasaSidebar({
       </div>
 
       {/* Bottom Controls: User Profile & Collapse Toggle */}
-      <div className="p-3 border-t border-[#e5dfc5] dark:border-[#2a3f31] bg-white/40 dark:bg-[#142018]/40 backdrop-blur-md">
+      <div className="p-3 border-t border-[var(--border)] bg-white/40 dark:bg-[var(--bg-canvas)]/40 backdrop-blur-md">
         {/* User Card */}
         {user ? (
           <div className="mb-2">
@@ -530,12 +530,12 @@ export function NivasaSidebar({
                 if (isMobile) onCloseMobile();
               }}
               className={cn(
-                "flex items-center gap-2.5 rounded-2xl p-2 hover:bg-[#7ca982]/10 transition-colors",
+                "flex items-center gap-2.5 rounded-2xl p-2 hover:bg-[var(--primary-pista)]/10 transition-colors",
                 collapsed && !isMobile && "justify-center p-1"
               )}
               title={collapsed && !isMobile ? user.name || user.email : undefined}
             >
-              <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white text-xs font-bold shadow-xs", isOwner ? "bg-amber-600" : "bg-[#7ca982]")}>
+              <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white text-xs font-bold shadow-xs", isOwner ? "bg-amber-600" : "bg-[var(--primary-pista)]")}>
                 {user.name ? user.name[0].toUpperCase() : "U"}
               </div>
               {(!collapsed || isMobile) && (
@@ -553,7 +553,7 @@ export function NivasaSidebar({
               if (isMobile) onCloseMobile();
             }}
             className={cn(
-              "flex items-center gap-2 rounded-2xl p-2 text-xs font-semibold text-ink-muted hover:text-ink hover:bg-[#7ca982]/10 transition-colors mb-2",
+              "flex items-center gap-2 rounded-2xl p-2 text-xs font-semibold text-ink-muted hover:text-ink hover:bg-[var(--primary-pista)]/10 transition-colors mb-2",
               collapsed && !isMobile && "justify-center"
             )}
             title="Sign in to your Nivasa account"
@@ -570,7 +570,7 @@ export function NivasaSidebar({
           <button
             type="button"
             onClick={onToggleCollapse}
-            className="w-full flex items-center justify-center gap-2 rounded-xl border border-[#e5dfc5] dark:border-[#2a3f31] py-1.5 text-xs text-ink-muted hover:text-ink hover:border-[#7ca982] transition-colors cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] py-1.5 text-xs text-ink-muted hover:text-ink hover:border-[var(--primary-pista)] transition-colors cursor-pointer"
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
@@ -596,7 +596,7 @@ export function NivasaSidebar({
       <aside
         aria-label="Desktop Nivasa Sidebar"
         className={cn(
-          "fixed top-0 bottom-0 left-0 z-40 hidden lg:flex flex-col border-r border-[#e5dfc5] dark:border-[#2a3f31] bg-[#ffffff] dark:bg-[#142018] transition-all duration-300 ease-in-out shadow-sm",
+          "fixed top-0 bottom-0 left-0 z-40 hidden lg:flex flex-col border-r border-[var(--border)] bg-[var(--bg-surface)] dark:bg-[var(--bg-canvas)] transition-all duration-300 ease-in-out shadow-sm",
           collapsed ? "w-20" : "w-64"
         )}
       >
@@ -616,7 +616,7 @@ export function NivasaSidebar({
       <aside
         aria-label="Mobile Nivasa Navigation"
         className={cn(
-          "fixed top-0 bottom-0 left-0 z-50 w-72 max-w-[85vw] bg-[#ffffff] dark:bg-[#142018] border-r border-[#e5dfc5] dark:border-[#2a3f31] shadow-2xl transition-transform duration-300 ease-out lg:hidden",
+          "fixed top-0 bottom-0 left-0 z-50 w-72 max-w-[85vw] bg-[var(--bg-surface)] dark:bg-[var(--bg-canvas)] border-r border-[var(--border)] shadow-2xl transition-transform duration-300 ease-out lg:hidden",
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >

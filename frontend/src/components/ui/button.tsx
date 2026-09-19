@@ -37,23 +37,23 @@ export function Button({
 
   const variantStyles = {
     primary:
-      "bg-gradient-to-r from-[#7ca982] to-[#68996e] text-white shadow-md shadow-[#7ca982]/25 hover:from-[#6b9a71] hover:to-[#57875d] hover:shadow-lg hover:shadow-[#7ca982]/30 active:scale-[0.98] font-medium",
+      "bg-[var(--accent-forest)] text-white shadow-md shadow-[var(--accent-forest)]/20 hover:bg-[var(--accent-forest-hover)] hover:shadow-lg hover:shadow-[var(--accent-forest)]/25 active:scale-[0.98] font-medium",
     secondary:
-      "bg-[#f4efe6] text-[#1d3122] hover:bg-[#eae3d6] border border-[#e5dfc5] dark:bg-[#1d2d22] dark:text-[#f5f9f6] dark:border-[#2a3f31] dark:hover:bg-[#24362a] active:scale-[0.98]",
+      "bg-[var(--bg-surface-elevated)] text-[var(--text-main)] hover:bg-[var(--border)] border border-[var(--border)] active:scale-[0.98]",
     line:
-      "border border-[#d9d2be] bg-white/90 backdrop-blur-md text-[#1d3122] hover:border-[#7ca982] hover:bg-[#faf7f0] hover:text-[#57875d] dark:border-[#2a3f31] dark:bg-[#152219]/80 dark:text-[#f5f9f6] dark:hover:border-[#8fb893] active:scale-[0.98]",
+      "border border-[var(--border)] bg-[var(--bg-surface)]/90 backdrop-blur-md text-[var(--text-main)] hover:border-[var(--primary-pista)] hover:bg-[var(--bg-canvas)] hover:text-[var(--accent-forest)] active:scale-[0.98]",
     outline:
-      "border border-[#d9d2be] bg-white/90 backdrop-blur-md text-[#1d3122] hover:border-[#7ca982] hover:bg-[#faf7f0] hover:text-[#57875d] dark:border-[#2a3f31] dark:bg-[#152219]/80 dark:text-[#f5f9f6] dark:hover:border-[#8fb893] active:scale-[0.98]",
+      "border border-[var(--border)] bg-[var(--bg-surface)]/90 backdrop-blur-md text-[var(--text-main)] hover:border-[var(--primary-pista)] hover:bg-[var(--bg-canvas)] hover:text-[var(--accent-forest)] active:scale-[0.98]",
     ghost:
-      "bg-transparent text-[#4e6853] hover:bg-[#f4efe6] hover:text-[#1d3122] dark:text-[#a5b8aa] dark:hover:bg-[#1d2d22] dark:hover:text-[#f5f9f6]",
+      "bg-transparent text-[var(--text-muted)] hover:bg-[var(--bg-surface-elevated)] hover:text-[var(--text-main)]",
     danger:
-      "bg-[#c24b4b] text-white shadow-md shadow-[#c24b4b]/20 hover:bg-[#af3f3f] hover:shadow-lg active:scale-[0.98]",
+      "bg-[var(--error)] text-white shadow-md shadow-[var(--error)]/20 hover:brightness-110 hover:shadow-lg active:scale-[0.98]",
   }[variant];
 
   const styles = cn(
     "inline-flex items-center justify-center gap-2 font-sans select-none rounded-full cursor-pointer",
     "transition-all duration-200 ease-out",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7ca982] focus-visible:ring-offset-2",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-pista)] focus-visible:ring-offset-2",
     "disabled:pointer-events-none disabled:opacity-40",
     sizeStyles,
     variantStyles,

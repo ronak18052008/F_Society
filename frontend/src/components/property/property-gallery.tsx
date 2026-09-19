@@ -13,7 +13,7 @@ export function PropertyGallery({ images, title }: { images: string[]; title: st
   return (
     <div className="space-y-3">
       {/* Main Showcase Viewport */}
-      <div className="group relative h-[50vh] min-h-[380px] max-h-[560px] w-full overflow-hidden rounded-3xl border border-line bg-card shadow-card">
+      <div className="group relative h-[50vh] min-h-[380px] max-h-[560px] w-full overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg-surface)] shadow-card">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
@@ -52,7 +52,7 @@ export function PropertyGallery({ images, title }: { images: string[]; title: st
               type="button"
               onClick={prev}
               aria-label="Previous photograph"
-              className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-card/90 backdrop-blur-md text-ink opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-95 shadow-md cursor-pointer border border-line/60"
+              className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--bg-surface)]/90 backdrop-blur-md text-[var(--text-main)] opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-95 shadow-md cursor-pointer border border-[var(--border)]"
             >
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -62,7 +62,7 @@ export function PropertyGallery({ images, title }: { images: string[]; title: st
               type="button"
               onClick={next}
               aria-label="Next photograph"
-              className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-card/90 backdrop-blur-md text-ink opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-95 shadow-md cursor-pointer border border-line/60"
+              className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--bg-surface)]/90 backdrop-blur-md text-[var(--text-main)] opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-95 shadow-md cursor-pointer border border-[var(--border)]"
             >
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -83,7 +83,7 @@ export function PropertyGallery({ images, title }: { images: string[]; title: st
               aria-label={`Switch to photograph ${index + 1}`}
               className={`group relative h-16 w-24 shrink-0 overflow-hidden rounded-2xl border-2 transition-all cursor-pointer ${
                 index === active
-                  ? "border-[#6E9271] ring-2 ring-[#6E9271]/20 shadow-md"
+                  ? "border-[var(--accent-forest)] ring-2 ring-[var(--accent-forest-subtle)] shadow-md"
                   : "border-transparent opacity-60 hover:opacity-100"
               }`}
             >

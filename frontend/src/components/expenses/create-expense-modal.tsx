@@ -233,7 +233,7 @@ export function CreateExpenseModal({
               placeholder="e.g. WiFi Bill, Weekly Groceries, Gas Refill"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[#7ca982] focus:outline-none"
+              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[var(--primary-pista)] focus:outline-none"
             />
           </div>
           <div className="space-y-1">
@@ -248,7 +248,7 @@ export function CreateExpenseModal({
               placeholder="0.00"
               value={amountStr}
               onChange={(e) => setAmountStr(e.target.value)}
-              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs font-mono font-bold text-ink focus:border-[#7ca982] focus:outline-none"
+              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs font-mono font-bold text-ink focus:border-[var(--primary-pista)] focus:outline-none"
             />
           </div>
         </div>
@@ -261,7 +261,7 @@ export function CreateExpenseModal({
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as ExpenseCategory)}
-              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[#7ca982] focus:outline-none"
+              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[var(--primary-pista)] focus:outline-none"
             >
               {CATEGORIES.map((c) => (
                 <option key={c.value} value={c.value}>
@@ -278,7 +278,7 @@ export function CreateExpenseModal({
             <select
               value={paidBy}
               onChange={(e) => setPaidBy(e.target.value)}
-              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[#7ca982] focus:outline-none"
+              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[var(--primary-pista)] focus:outline-none"
             >
               {roommates.map((r) => (
                 <option key={r.id} value={r.id}>
@@ -296,7 +296,7 @@ export function CreateExpenseModal({
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[#7ca982] focus:outline-none"
+              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[var(--primary-pista)] focus:outline-none"
             />
           </div>
         </div>
@@ -313,7 +313,7 @@ export function CreateExpenseModal({
                 onClick={() => setSplitMethod(method.value)}
                 className={`rounded-xl border p-2.5 text-left transition-all ${
                   splitMethod === method.value
-                    ? "border-[#7ca982] bg-[#7ca982]/10 text-ink shadow-xs"
+                    ? "border-[var(--primary-pista)] bg-[var(--primary-pista)]/10 text-ink shadow-xs"
                     : "border-line bg-card text-ink-muted hover:border-line/80"
                 }`}
               >
@@ -435,8 +435,8 @@ export function CreateExpenseModal({
         )}
 
         {preview && (
-          <div className="rounded-xl border border-[#7ca982]/30 bg-[#7ca982]/10 p-3 space-y-2">
-            <div className="flex items-center justify-between text-[11px] font-bold text-[#1d3122] dark:text-[#a3caa6]">
+          <div className="rounded-xl border border-[var(--primary-pista)]/30 bg-[var(--primary-pista)]/10 p-3 space-y-2">
+            <div className="flex items-center justify-between text-[11px] font-bold text-[var(--text-main)]">
               <span>Transparent Split Breakdown</span>
               <span className="font-mono">Sum: ₹{preview.shares.reduce((s, i) => s + i.shareAmount, 0).toFixed(2)}</span>
             </div>
@@ -451,7 +451,7 @@ export function CreateExpenseModal({
                 </div>
               ))}
             </div>
-            <p className="text-[10px] text-ink-muted pt-1 border-t border-[#7ca982]/20 leading-tight">
+            <p className="text-[10px] text-ink-muted pt-1 border-t border-[var(--primary-pista)]/20 leading-tight">
               {preview.explanation}
             </p>
           </div>
@@ -466,7 +466,7 @@ export function CreateExpenseModal({
             placeholder="e.g. Electricity meter reading: 4520–4820"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[#7ca982] focus:outline-none"
+            className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-xs text-ink focus:border-[var(--primary-pista)] focus:outline-none"
           />
         </div>
 
@@ -478,7 +478,7 @@ export function CreateExpenseModal({
             type="submit"
             size="sm"
             disabled={submitting || amount <= 0 || !title.trim()}
-            className="bg-[#7ca982] hover:bg-[#6b9a71] text-white"
+            className="bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white"
           >
             {submitting ? "Splitting..." : "Save & Split Expense"}
           </Button>

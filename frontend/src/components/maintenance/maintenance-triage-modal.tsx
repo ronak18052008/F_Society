@@ -213,7 +213,7 @@ export function MaintenanceTriageModal({
               {effectivePropertyName ? `Context: ${effectivePropertyName}` : "Residential Triage & Safety Diagnostic"}
             </span>
           </div>
-          <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#1d3122] dark:text-[#a3caa6]">
+          <span className="rounded-full bg-[var(--primary-pista)]/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--text-main)]">
             Smart Triage
           </span>
         </div>
@@ -275,8 +275,8 @@ export function MaintenanceTriageModal({
             </div>
 
             {/* Recommended Next Step Callout */}
-            <div className="rounded-2xl border border-[#7ca982]/40 bg-[#7ca982]/10 p-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#1d3122] dark:text-[#a3caa6] block mb-1">
+            <div className="rounded-2xl border border-[var(--primary-pista)]/40 bg-[var(--primary-pista)]/10 p-4">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-main)] block mb-1">
                 Recommended Immediate Next Step
               </span>
               <p className="text-sm font-semibold text-ink leading-snug">{result.recommendedNextStep}</p>
@@ -296,7 +296,7 @@ export function MaintenanceTriageModal({
                 <ul className="space-y-2">
                   {result.suggestedActions.map((action, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs text-ink leading-relaxed">
-                      <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6]">
+                      <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista)]/20 text-[10px] font-bold text-[var(--text-main)]">
                         {i + 1}
                       </span>
                       <span>{action}</span>
@@ -323,7 +323,7 @@ export function MaintenanceTriageModal({
                 </Button>
                 <Button
                   size="sm"
-                  className="bg-[#7ca982] hover:bg-[#6b9a71] text-white"
+                  className="bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white"
                   onClick={() => {
                     if (onTicketCreated) onTicketCreated(result);
                     handleClose();
@@ -351,7 +351,7 @@ export function MaintenanceTriageModal({
               <select
                 value={room}
                 onChange={(e) => setRoom(e.target.value)}
-                className="w-full rounded-xl border border-line bg-card px-3 py-2 text-xs text-ink focus:border-[#7ca982] focus:outline-none"
+                className="w-full rounded-xl border border-line bg-card px-3 py-2 text-xs text-ink focus:border-[var(--primary-pista)] focus:outline-none"
               >
                 {ROOM_OPTIONS.map((r) => (
                   <option key={r} value={r}>
@@ -369,7 +369,7 @@ export function MaintenanceTriageModal({
               <select
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
-                className="w-full rounded-xl border border-line bg-card px-3 py-2 text-xs text-ink focus:border-[#7ca982] focus:outline-none"
+                className="w-full rounded-xl border border-line bg-card px-3 py-2 text-xs text-ink focus:border-[var(--primary-pista)] focus:outline-none"
               >
                 {DURATION_OPTIONS.map((d) => (
                   <option key={d} value={d}>
@@ -394,7 +394,7 @@ export function MaintenanceTriageModal({
                 maxLength={2000}
                 required
                 placeholder="Describe what happened in detail (e.g. Water leaking rapidly beneath bathroom washbasin tap; sparking sound when turning on kitchen exhaust fan)..."
-                className="w-full rounded-xl border border-line bg-card p-3 text-xs text-ink placeholder:text-ink-muted/60 focus:border-[#7ca982] focus:outline-none leading-relaxed"
+                className="w-full rounded-xl border border-line bg-card p-3 text-xs text-ink placeholder:text-ink-muted/60 focus:border-[var(--primary-pista)] focus:outline-none leading-relaxed"
               />
             </div>
 
@@ -429,7 +429,7 @@ export function MaintenanceTriageModal({
               ) : (
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="rounded-2xl border-2 border-dashed border-line hover:border-[#7ca982] p-4 text-center cursor-pointer transition bg-black/2 dark:bg-white/2"
+                  className="rounded-2xl border-2 border-dashed border-line hover:border-[var(--primary-pista)] p-4 text-center cursor-pointer transition bg-black/2 dark:bg-white/2"
                 >
                   <input
                     ref={fileInputRef}
@@ -465,7 +465,7 @@ export function MaintenanceTriageModal({
                 type="submit"
                 size="sm"
                 disabled={submitting || description.trim().length < 5}
-                className="bg-[#7ca982] hover:bg-[#6b9a71] text-white"
+                className="bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white"
               >
                 {submitting ? (
                   <span className="flex items-center gap-2">

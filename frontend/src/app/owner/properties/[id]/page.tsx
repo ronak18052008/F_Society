@@ -109,7 +109,7 @@ export default function ManagePropertyPage() {
               id="listing-status"
               value={status}
               onChange={(event) => setStatus(event.target.value)}
-              className="w-full rounded-xl border border-line bg-paper px-3.5 py-2.5 text-sm font-medium text-ink focus:border-[#6E9271] focus:outline-none cursor-pointer"
+              className="w-full rounded-xl border border-line bg-paper px-3.5 py-2.5 text-sm font-medium text-ink focus:border-[var(--primary-pista)] focus:outline-none cursor-pointer"
             >
               <option value="available">Available for Enquiries</option>
               <option value="paused">Paused / Under Negotiation</option>
@@ -144,13 +144,13 @@ export default function ManagePropertyPage() {
       </div>
 
       {/* Linked Workspace */}
-      <div className="mt-10 rounded-2xl border border-[#7ca982]/30 bg-[#7ca982]/10 p-5">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-[#23452b] dark:text-[#a3caa6]">
+      <div className="mt-10 rounded-2xl border border-[var(--primary-pista)]/30 bg-[var(--primary-pista)]/10 p-5">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-forest)]">
           Connected Tenancy Workspace
         </span>
         <p className="mt-1 text-sm font-semibold text-ink">
           Shared Tenancy Ledger:{" "}
-          <Link className="text-[#7ca982] hover:underline" href="/rental/rent-navrang">
+          <Link className="text-[var(--accent-forest)] hover:underline" href="/rental/rent-navrang">
             Navrangpura Courtyard Workspace →
           </Link>
         </p>

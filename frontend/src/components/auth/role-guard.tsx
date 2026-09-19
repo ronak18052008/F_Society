@@ -39,7 +39,7 @@ export function RoleGuard({ children, allowedRole }: RoleGuardProps) {
   if (!mounted || !user || user.role !== allowedRole) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center p-8 text-center">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#7ca982]/20 text-[#5a835f] dark:text-[#a8cca9] animate-pulse mb-4">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--accent-forest-subtle)] text-[var(--accent-forest)] animate-pulse mb-4">
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               strokeLinecap="round"
@@ -49,10 +49,10 @@ export function RoleGuard({ children, allowedRole }: RoleGuardProps) {
             />
           </svg>
         </div>
-        <p className="text-sm font-semibold text-[#1d3122] dark:text-[#f5f9f6]">
+        <p className="text-sm font-semibold text-[var(--text-main)]">
           Verifying {allowedRole === "owner" ? "Owner" : "Tenant"} Credentials...
         </p>
-        <p className="text-xs text-[#4e6853] dark:text-[#9bb3a0] mt-1">
+        <p className="text-xs text-[var(--text-muted)] mt-1">
           Checking permissions and access controls
         </p>
       </div>

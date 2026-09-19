@@ -20,7 +20,7 @@ export function FloatingCopilot() {
               setMinimized(false);
             }}
             aria-label="Open AI Rental Copilot"
-            className="group relative flex items-center gap-2.5 rounded-full bg-[#7ca982] hover:bg-[#6b9a71] text-white px-4 py-3 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 cursor-pointer border border-white/20"
+            className="group relative flex items-center gap-2.5 rounded-full bg-[var(--accent-forest)] hover:bg-[var(--accent-forest-hover)] text-white px-4 py-3 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 cursor-pointer border border-white/20"
           >
             {/* Pulsing indicator ring */}
             <span className="relative flex h-2.5 w-2.5">
@@ -59,10 +59,10 @@ export function FloatingCopilot() {
           )}
         >
           {minimized ? (
-            <div className="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] shadow-xl">
+            <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] shadow-xl">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
-                <span className="font-serif font-bold text-xs text-[#1d3122] dark:text-[#f5f9f6]">
+                <span className="h-2 w-2 rounded-full bg-[var(--accent-forest)]" />
+                <span className="font-serif font-bold text-xs text-[var(--text-main)]">
                   Nivasa AI Copilot
                 </span>
               </div>
@@ -70,7 +70,7 @@ export function FloatingCopilot() {
                 <button
                   type="button"
                   onClick={() => setMinimized(false)}
-                  className="p-1 text-xs text-[#4e6853] hover:text-[#1d3122]"
+                  className="p-1 text-xs text-[var(--text-muted)] hover:text-[var(--text-main)]"
                   title="Expand"
                 >
                   ⤢
@@ -78,7 +78,7 @@ export function FloatingCopilot() {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="p-1 text-xs text-[#4e6853] hover:text-[#1d3122]"
+                  className="p-1 text-xs text-[var(--text-muted)] hover:text-[var(--text-main)]"
                   title="Close"
                 >
                   ✕

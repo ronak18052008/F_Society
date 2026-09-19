@@ -1,52 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  /* Nivasa Natural Cream + Light Pista Green Palette — Light (Default) */
-  --bg-canvas: #faf7f0;            /* warm radiant cream / off-white */
-  --bg-surface: #ffffff;           /* soft ivory card background */
-  --bg-surface-elevated: #fcfaf5;  /* warm elevated cream surface */
-  --bg-surface-subtle: #f4efe6;    /* subtle warm stone cream */
-  --bg-glass: rgba(250, 247, 240, 0.90);
+  /* NIVASA Pistachio-and-Cream Design System — Light (Default) */
+  --bg-canvas: #FAF7EF;            /* Cream Background */
+  --bg-surface: #FFFDF8;           /* Soft Ivory */
+  --bg-surface-elevated: #F1EBDD;  /* Warm Sand */
+  --bg-surface-subtle: #F1EBDD;    /* Warm Sand Subtle */
+  --bg-glass: rgba(255, 253, 248, 0.90);
   
-  --primary-pista: #7ca982;        /* fresh light pista green */
-  --primary-pista-hover: #6b9a71;  /* richer pista hover */
-  --primary-pista-subtle: rgba(124, 169, 130, 0.16);
+  --primary-pista: #B7C99A;        /* Pistachio Accent */
+  --primary-pista-hover: #81966A;  /* Deep Pistachio */
+  --primary-pista-subtle: rgba(183, 201, 154, 0.20);
   
-  --secondary-sage: #96bd9b;       /* soft sage / pistachio tint */
-  --secondary-sage-hover: #83ac89;
-  --secondary-sage-subtle: rgba(150, 189, 155, 0.18);
+  --secondary-sage: #A8B89A;       /* Sage */
+  --secondary-sage-hover: #81966A;
+  --secondary-sage-subtle: rgba(168, 184, 154, 0.20);
 
-  --accent-forest: #7ca982;        /* light pista green accent */
-  --accent-forest-hover: #6b9a71;
-  --accent-forest-subtle: rgba(124, 169, 130, 0.14);
+  --accent-forest: #81966A;        /* Deep Pistachio */
+  --accent-forest-hover: #668B5B;
+  --accent-forest-subtle: rgba(129, 150, 106, 0.16);
 
-  --text-main: #1d3122;            /* botanical charcoal — crisp readable typography */
-  --text-muted: #4e6853;           /* soft botanical sage */
-  --text-faint: #7d9782;           /* muted warm pista */
+  --text-main: #283126;            /* Dark Forest Text */
+  --text-muted: #596254;           /* Secondary Text */
+  --text-faint: #7e8c79;           /* Muted Sage */
 
-  --border: #e5dfc5;               /* delicate warm cream-pista border */
-  --border-subtle: #efe9dc;
-  --border-hover: rgba(124, 169, 130, 0.35);
+  --border: #DDE3D5;               /* Muted Border */
+  --border-subtle: #e9eee3;
+  --border-hover: rgba(129, 150, 106, 0.40);
 
-  --success: #4e9b5f;              /* natural pista green */
-  --warning: #d9822b;              /* warm amber */
-  --error: #c24b4b;                /* muted red */
+  --success: #668B5B;              /* Success Green */
+  --warning: #B88A4A;              /* Warning Amber */
+  --error: #B85C55;                /* Error Red */
 
-  --shadow-card: 0 10px 30px -8px rgba(124, 169, 130, 0.10), 0 2px 6px rgba(29, 49, 34, 0.03);
-  --shadow-glow: 0 0 45px -8px rgba(124, 169, 130, 0.35);
+  --shadow-card: 0 10px 30px -8px rgba(40, 49, 38, 0.06), 0 2px 6px rgba(40, 49, 38, 0.02);
+  --shadow-glow: 0 0 45px -8px rgba(183, 201, 154, 0.35);
 
   /* Semantic Aliases */
   --ink: var(--text-main);
   --ink-soft: var(--text-muted);
   --paper: var(--bg-canvas);
   --paper-2: var(--bg-surface-elevated);
+  --card: var(--bg-surface);
   --line: var(--border);
   --accent: var(--primary-pista);
   --accent-hover: var(--primary-pista-hover);
   --teal: var(--secondary-sage);
   --bronze: var(--accent-forest);
-  --bronze-2: var(--primary-pista);
-  --moss: var(--primary-pista);
+  --bronze-2: var(--primary-pista-hover);
+  --moss: var(--accent-forest);
   --danger: var(--error);
   --ok: var(--success);
   --shadow: var(--shadow-card);
@@ -110,16 +111,24 @@
 @theme inline {
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--text-faint);
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-sand: var(--bg-surface-elevated);
+  --color-glass: var(--bg-glass);
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-pista: var(--primary-pista);
+  --color-pista-subtle: var(--primary-pista-subtle);
   --color-sage: var(--secondary-sage);
   --color-forest: var(--accent-forest);
   --color-cream: var(--bg-canvas);
   --color-ivory: var(--bg-surface);
+  --color-teal: var(--teal);
+  --color-bronze: var(--bronze);
+  --color-moss: var(--moss);
   --color-danger: var(--danger);
   --color-ok: var(--ok);
   --color-warning: var(--warning);
@@ -211,7 +220,7 @@ a {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #4d7a55 0%, #7ca982 100%);
+  background: linear-gradient(135deg, var(--accent-forest) 0%, var(--primary-pista) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

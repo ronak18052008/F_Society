@@ -81,12 +81,12 @@ export function FilterPanel({
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-12 items-end">
         {/* Search Keyword / Locality */}
         <div className="sm:col-span-2 lg:col-span-4">
-          <label htmlFor="filter-query" className="block text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-1.5">
+          <label htmlFor="filter-query" className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
             Search Locality / Residence
           </label>
           <div className="relative">
             <svg
-              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-muted"
+              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--text-muted)]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -98,21 +98,21 @@ export function FilterPanel({
               value={value.query}
               onChange={(e) => set({ query: e.target.value })}
               placeholder="e.g. Bandra, Whitefield, Salt Lake, Gachibowli..."
-              className="w-full rounded-xl border border-line bg-paper pl-10 pr-4 py-2.5 text-sm text-ink placeholder:text-ink-muted/50 focus:border-[#6E9271] focus:bg-card focus:ring-2 focus:ring-[#6E9271]/20 focus:outline-none transition-all"
+              className="w-full rounded-xl border border-line bg-paper pl-10 pr-4 py-2.5 text-sm text-[var(--text-main)] placeholder:text-[var(--text-muted)]/50 focus:border-[var(--accent-forest)] focus:bg-card focus:ring-2 focus:ring-[var(--accent-forest-subtle)] focus:outline-none transition-all"
             />
           </div>
         </div>
 
         {/* City Hub */}
         <div className="lg:col-span-2">
-          <label htmlFor="filter-city" className="block text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-1.5">
+          <label htmlFor="filter-city" className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
             Metro City
           </label>
           <select
             id="filter-city"
             value={value.city}
             onChange={(e) => set({ city: e.target.value })}
-            className="w-full rounded-xl border border-line bg-paper px-3.5 py-2.5 text-sm font-medium text-ink focus:border-[#6E9271] focus:ring-2 focus:ring-[#6E9271]/20 focus:outline-none transition-all cursor-pointer"
+            className="w-full rounded-xl border border-line bg-paper px-3.5 py-2.5 text-sm font-medium text-[var(--text-main)] focus:border-[var(--accent-forest)] focus:ring-2 focus:ring-[var(--accent-forest-subtle)] focus:outline-none transition-all cursor-pointer"
           >
             {CITIES.map((c) => (
               <option key={c} value={c}>
@@ -124,7 +124,7 @@ export function FilterPanel({
 
         {/* BHK Quick Selector */}
         <div className="lg:col-span-3">
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-1.5">
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
             Bedrooms / BHK
           </label>
           <div className="flex items-center gap-1 rounded-xl border border-line bg-paper p-1">
@@ -143,8 +143,8 @@ export function FilterPanel({
                   onClick={() => set({ bhk: item.val })}
                   className={`flex-1 rounded-lg py-1.5 text-xs font-semibold transition-all cursor-pointer ${
                     active
-                      ? "bg-[#7ca982] text-white shadow-xs"
-                      : "text-ink-muted hover:text-ink hover:bg-card/50"
+                      ? "bg-[var(--accent-forest)] text-white shadow-xs"
+                      : "text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-card/50"
                   }`}
                 >
                   {item.label}
@@ -156,14 +156,14 @@ export function FilterPanel({
 
         {/* Sort Selector */}
         <div className="lg:col-span-2">
-          <label htmlFor="filter-sort" className="block text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-1.5">
+          <label htmlFor="filter-sort" className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
             Sort Order
           </label>
           <select
             id="filter-sort"
             value={value.sort}
             onChange={(e) => set({ sort: e.target.value as Filters["sort"] })}
-            className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-xs font-semibold text-ink focus:border-[#7ca982] focus:ring-2 focus:ring-[#7ca982]/20 focus:outline-none transition-all cursor-pointer"
+            className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-xs font-semibold text-[var(--text-main)] focus:border-[var(--accent-forest)] focus:ring-2 focus:ring-[var(--accent-forest-subtle)] focus:outline-none transition-all cursor-pointer"
           >
             <option value="newest">Latest First</option>
             <option value="oldest">Oldest First</option>
@@ -182,8 +182,8 @@ export function FilterPanel({
             onClick={() => setExpanded(!expanded)}
             className={`w-full h-[42px] rounded-xl border flex items-center justify-center gap-1.5 text-xs font-semibold transition-all cursor-pointer ${
               expanded
-                ? "border-[#7ca982] bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6]"
-                : "border-line bg-paper text-ink-muted hover:text-ink hover:border-[#7ca982]/40"
+                ? "border-[var(--accent-forest)] bg-[var(--accent-forest-subtle)] text-[var(--text-main)]"
+                : "border-line bg-paper text-[var(--text-muted)] hover:text-[var(--text-main)] hover:border-[var(--border-hover)]"
             }`}
           >
             <svg
@@ -206,10 +206,10 @@ export function FilterPanel({
           {/* Budget Range Presets & Max Rent */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label htmlFor="filter-budget" className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+              <label htmlFor="filter-budget" className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                 Monthly Budget
               </label>
-              <span className="text-xs font-bold text-[#7ca982] dark:text-[#a3caa6] font-tabular">
+              <span className="text-xs font-bold text-[var(--accent-forest)] font-tabular">
                 ₹{value.maxRent.toLocaleString("en-IN")}
               </span>
             </div>
@@ -221,7 +221,7 @@ export function FilterPanel({
               step={5000}
               value={value.maxRent}
               onChange={(e) => set({ maxRent: Number(e.target.value) })}
-              className="w-full h-2 bg-[#e5dfc5] dark:bg-[#7ca982]/30 rounded-lg appearance-none cursor-pointer accent-[#7ca982] my-2"
+              className="w-full h-2 bg-[var(--border)] rounded-lg appearance-none cursor-pointer accent-[var(--accent-forest)] my-2"
             />
             <div className="flex flex-wrap gap-1 mt-1">
               {[
@@ -234,7 +234,7 @@ export function FilterPanel({
                   key={p.label}
                   type="button"
                   onClick={() => set({ maxRent: p.max })}
-                  className="rounded-md border border-line/60 bg-paper px-2 py-0.5 text-[10px] font-medium text-ink-muted hover:text-ink hover:border-[#6E9271]/40 transition"
+                  className="rounded-md border border-line/60 bg-paper px-2 py-0.5 text-[10px] font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] hover:border-[var(--border-hover)] transition"
                 >
                   {p.label}
                 </button>
@@ -244,14 +244,14 @@ export function FilterPanel({
 
           {/* Furnishing Status */}
           <div>
-            <label htmlFor="filter-furnishing" className="block text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-1.5">
+            <label htmlFor="filter-furnishing" className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
               Furnishing
             </label>
             <select
               id="filter-furnishing"
               value={value.furnishing}
               onChange={(e) => set({ furnishing: e.target.value as Filters["furnishing"] })}
-              className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-xs font-medium text-ink focus:border-[#6E9271] focus:outline-none transition cursor-pointer"
+              className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-xs font-medium text-[var(--text-main)] focus:border-[var(--accent-forest)] focus:outline-none transition cursor-pointer"
             >
               <option value="any">Any Furnishing</option>
               <option value="furnished">Furnished</option>
@@ -262,14 +262,14 @@ export function FilterPanel({
 
           {/* Tenant Preference */}
           <div>
-            <label htmlFor="filter-tenant" className="block text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-1.5">
+            <label htmlFor="filter-tenant" className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
               Tenant Preference
             </label>
             <select
               id="filter-tenant"
               value={value.tenantPreferred}
               onChange={(e) => set({ tenantPreferred: e.target.value })}
-              className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-xs font-medium text-ink focus:border-[#6E9271] focus:outline-none transition cursor-pointer"
+              className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-xs font-medium text-[var(--text-main)] focus:border-[var(--accent-forest)] focus:outline-none transition cursor-pointer"
             >
               <option value="any">Any Tenant</option>
               <option value="Bachelors">Bachelors Only</option>
@@ -280,7 +280,7 @@ export function FilterPanel({
 
           {/* Year Timeline (2025 vs 2026) */}
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-1.5">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
               Tenancy Year
             </label>
             <div className="flex items-center gap-1 rounded-xl border border-line bg-paper p-1">
@@ -295,8 +295,8 @@ export function FilterPanel({
                   onClick={() => set({ year: yr.val })}
                   className={`flex-1 rounded-lg py-1.5 text-xs font-semibold transition-all cursor-pointer ${
                     value.year === yr.val
-                      ? "bg-[#7ca982] text-white shadow-xs"
-                      : "text-ink-muted hover:text-ink"
+                      ? "bg-[var(--accent-forest)] text-white shadow-xs"
+                      : "text-[var(--text-muted)] hover:text-[var(--text-main)]"
                   }`}
                 >
                   {yr.label}
@@ -311,39 +311,39 @@ export function FilterPanel({
       {hasActiveFilters && (
         <div className="mt-4 pt-3 border-t border-line/60 flex flex-wrap items-center justify-between gap-2">
           <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            <span className="text-ink-muted font-medium text-[11px] uppercase tracking-wider">Active:</span>
+            <span className="text-[var(--text-muted)] font-medium text-[11px] uppercase tracking-wider">Active:</span>
             {value.query && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-ink">
+              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-[var(--text-main)]">
                 &ldquo;{value.query}&rdquo;
                 <button type="button" onClick={() => set({ query: "" })} className="hover:text-red-500 font-bold ml-1">×</button>
               </span>
             )}
             {value.city !== "any" && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30 px-2.5 py-0.5">
+              <span className="inline-flex items-center gap-1 rounded-full bg-[var(--accent-forest-subtle)] text-[var(--text-main)] border border-[var(--accent-forest)]/30 px-2.5 py-0.5">
                 City: {value.city}
                 <button type="button" onClick={() => set({ city: "any" })} className="hover:text-red-500 font-bold ml-1">×</button>
               </span>
             )}
             {value.bhk !== "any" && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-ink">
+              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-[var(--text-main)]">
                 {value.bhk} BHK
                 <button type="button" onClick={() => set({ bhk: "any" })} className="hover:text-red-500 font-bold ml-1">×</button>
               </span>
             )}
             {value.maxRent < 200000 && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-ink">
+              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-[var(--text-main)]">
                 Max ₹{value.maxRent.toLocaleString("en-IN")}
                 <button type="button" onClick={() => set({ maxRent: 200000 })} className="hover:text-red-500 font-bold ml-1">×</button>
               </span>
             )}
             {value.furnishing !== "any" && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-ink capitalize">
+              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-[var(--text-main)] capitalize">
                 {value.furnishing}
                 <button type="button" onClick={() => set({ furnishing: "any" })} className="hover:text-red-500 font-bold ml-1">×</button>
               </span>
             )}
             {value.year !== "all" && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-ink">
+              <span className="inline-flex items-center gap-1 rounded-full bg-paper border border-line px-2.5 py-0.5 text-[var(--text-main)]">
                 Year: {value.year}
                 <button type="button" onClick={() => set({ year: "all" })} className="hover:text-red-500 font-bold ml-1">×</button>
               </span>
@@ -353,7 +353,7 @@ export function FilterPanel({
           <button
             type="button"
             onClick={handleReset}
-            className="text-xs font-semibold text-[#7ca982] hover:text-[#6b9a71] dark:text-[#a3caa6] hover:underline cursor-pointer ml-auto"
+            className="text-xs font-semibold text-[var(--accent-forest)] hover:text-[var(--accent-forest-hover)] hover:underline cursor-pointer ml-auto"
           >
             Clear all filters
           </button>

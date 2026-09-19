@@ -28,11 +28,11 @@ export default function TenantHubPage() {
       <SiteShell>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-16 space-y-12">
           {/* 1. Hub Header & Greeting */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[var(--border)] pb-8">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista)]/15 px-3 py-1 text-xs font-semibold text-[var(--accent-forest)] border border-[var(--primary-pista)]/30">
                 <span>Tenant Portal</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary-pista)]" />
                 <span>TENANT</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-ink tracking-tight">
@@ -46,7 +46,7 @@ export default function TenantHubPage() {
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 href="/tenant/dashboard"
-                className="rounded-full bg-[#7ca982] hover:bg-[#68946e] text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all flex items-center gap-2 cursor-pointer"
+                className="rounded-full bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all flex items-center gap-2 cursor-pointer"
               >
                 <span>Open Tenancy Workspace</span>
                 <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -55,7 +55,7 @@ export default function TenantHubPage() {
               </Link>
               <Link
                 href="/properties"
-                className="rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:bg-[#7ca982]/10 px-4 py-2.5 text-xs font-semibold text-ink transition-colors cursor-pointer"
+                className="rounded-full border border-[var(--border)] bg-card hover:bg-[var(--primary-pista)]/10 px-4 py-2.5 text-xs font-semibold text-ink transition-colors cursor-pointer"
               >
                 Browse All Homes →
               </Link>
@@ -68,9 +68,9 @@ export default function TenantHubPage() {
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
               <Link
                 href="/properties"
-                className="flex flex-col items-center justify-center p-4 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:border-[#7ca982] hover:shadow-sm transition-all text-center group"
+                className="flex flex-col items-center justify-center p-4 rounded-2xl border border-[var(--border)] bg-card hover:border-[var(--primary-pista)] hover:shadow-sm transition-all text-center group"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#7ca982]/15 text-[#23452b] dark:text-[#a3caa6] group-hover:scale-110 transition-transform">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--primary-pista)]/15 text-[var(--accent-forest)] group-hover:scale-110 transition-transform">
                   <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                   </svg>
@@ -81,7 +81,7 @@ export default function TenantHubPage() {
 
               <Link
                 href="/properties?saved=true"
-                className="flex flex-col items-center justify-center p-4 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:border-rose-400 hover:shadow-sm transition-all text-center group"
+                className="flex flex-col items-center justify-center p-4 rounded-2xl border border-[var(--border)] bg-card hover:border-rose-400 hover:shadow-sm transition-all text-center group"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-500/15 text-rose-600 group-hover:scale-110 transition-transform">
                   <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -94,7 +94,7 @@ export default function TenantHubPage() {
 
               <Link
                 href="/tenant/roommates"
-                className="flex flex-col items-center justify-center p-4 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:border-indigo-400 hover:shadow-sm transition-all text-center group"
+                className="flex flex-col items-center justify-center p-4 rounded-2xl border border-[var(--border)] bg-card hover:border-indigo-400 hover:shadow-sm transition-all text-center group"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 group-hover:scale-110 transition-transform">
                   <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -108,7 +108,7 @@ export default function TenantHubPage() {
 
               <Link
                 href="/rental/rent-navrang"
-                className="flex flex-col items-center justify-center p-4 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:border-amber-400 hover:shadow-sm transition-all text-center group"
+                className="flex flex-col items-center justify-center p-4 rounded-2xl border border-[var(--border)] bg-card hover:border-amber-400 hover:shadow-sm transition-all text-center group"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/15 text-amber-800 dark:text-amber-200 group-hover:scale-110 transition-transform">
                   <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -121,24 +121,24 @@ export default function TenantHubPage() {
 
               <Link
                 href="/copilot"
-                className="col-span-2 sm:col-span-1 flex flex-col items-center justify-center p-4 rounded-2xl border border-[#7ca982]/40 bg-[#7ca982]/10 hover:bg-[#7ca982]/20 hover:shadow-sm transition-all text-center group"
+                className="col-span-2 sm:col-span-1 flex flex-col items-center justify-center p-4 rounded-2xl border border-[var(--primary-pista)]/40 bg-[var(--primary-pista)]/10 hover:bg-[var(--primary-pista)]/20 hover:shadow-sm transition-all text-center group"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#7ca982] text-white group-hover:scale-110 transition-transform">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--primary-pista)] text-white group-hover:scale-110 transition-transform">
                   <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <span className="mt-2 text-xs font-bold text-ink">AI Copilot</span>
-                <span className="text-[10px] text-[#23452b] dark:text-[#a3caa6] font-semibold">24/7 assistant</span>
+                <span className="text-[10px] text-[var(--accent-forest)] font-semibold">24/7 assistant</span>
               </Link>
             </div>
           </div>
 
           {/* 3. My Tenancy Section */}
-          <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-6 sm:p-8 shadow-xs">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-6">
+          <div className="rounded-3xl border border-[var(--border)] bg-card p-6 sm:p-8 shadow-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border)] pb-6">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#57875d] dark:text-[#a3caa6]">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-forest)]">
                   Active Tenancy Ledger
                 </span>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-ink mt-1">
@@ -153,7 +153,7 @@ export default function TenantHubPage() {
                 </span>
                 <Link
                   href="/rental/rent-navrang"
-                  className="rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] px-3.5 py-1 text-xs font-semibold text-ink hover:bg-[#7ca982]/10 transition-colors"
+                  className="rounded-full border border-[var(--border)] px-3.5 py-1 text-xs font-semibold text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                 >
                   Manage Ledger →
                 </Link>
@@ -191,7 +191,7 @@ export default function TenantHubPage() {
                 <h2 className="text-xl font-bold font-serif text-ink">Saved Residences</h2>
                 <p className="text-xs text-ink-muted">Properties you bookmarked for review or direct owner contact</p>
               </div>
-              <Link href="/properties?saved=true" className="text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline">
+              <Link href="/properties?saved=true" className="text-xs font-semibold text-[var(--accent-forest)] hover:underline">
                 View all ({savedIds.length}) →
               </Link>
             </div>
@@ -203,12 +203,12 @@ export default function TenantHubPage() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-2xl border border-dashed border-[#e5dfc5] dark:border-[#2a3f31] p-8 text-center bg-card/50">
+              <div className="rounded-2xl border border-dashed border-[var(--border)] p-8 text-center bg-card/50">
                 <p className="text-sm font-semibold text-ink">No saved residences yet</p>
                 <p className="text-xs text-ink-muted mt-1">Explore verified direct listings and click the heart icon to save.</p>
                 <Link
                   href="/properties"
-                  className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[#7ca982] text-white px-4 py-2 text-xs font-bold shadow-xs hover:bg-[#68946e] transition-colors"
+                  className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[var(--primary-pista)] text-white px-4 py-2 text-xs font-bold shadow-xs hover:bg-[var(--primary-pista-hover)] transition-colors"
                 >
                   Discover Residences →
                 </Link>
@@ -223,7 +223,7 @@ export default function TenantHubPage() {
                 <h2 className="text-xl font-bold font-serif text-ink">Recommended For You</h2>
                 <p className="text-xs text-ink-muted">Curated homes matching verified zero-brokerage criteria</p>
               </div>
-              <Link href="/ai/recommend" className="text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline">
+              <Link href="/ai/recommend" className="text-xs font-semibold text-[var(--accent-forest)] hover:underline">
                 Tune AI Preferences →
               </Link>
             </div>
@@ -237,8 +237,8 @@ export default function TenantHubPage() {
 
           {/* 6. Maintenance & Condition Passport Status */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-6 shadow-xs">
-              <div className="flex items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-4">
+            <div className="rounded-3xl border border-[var(--border)] bg-card p-6 shadow-xs">
+              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
                 <div className="flex items-center gap-2.5">
                   <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500/15 text-amber-800 dark:text-amber-200">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -250,13 +250,13 @@ export default function TenantHubPage() {
                     <p className="text-[11px] text-ink-muted">Courtyard Villa 2B</p>
                   </div>
                 </div>
-                <Link href="/rental/rent-navrang" className="text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline">
+                <Link href="/rental/rent-navrang" className="text-xs font-semibold text-[var(--accent-forest)] hover:underline">
                   + New Ticket
                 </Link>
               </div>
 
               <div className="mt-4 space-y-3">
-                <div className="flex items-center justify-between p-3 rounded-xl bg-paper dark:bg-[#1d2d22] text-xs">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-paper text-xs">
                   <div>
                     <span className="font-semibold text-ink block">Water purifier filter replacement</span>
                     <span className="text-[10px] text-ink-muted">Scheduled for tomorrow, 11:00 AM</span>
@@ -265,7 +265,7 @@ export default function TenantHubPage() {
                     In Progress
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-xl bg-paper dark:bg-[#1d2d22] text-xs">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-paper text-xs">
                   <div>
                     <span className="font-semibold text-ink block">Balcony slider latch adjustment</span>
                     <span className="text-[10px] text-ink-muted">Resolved on Sep 12</span>
@@ -277,8 +277,8 @@ export default function TenantHubPage() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-6 shadow-xs">
-              <div className="flex items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-4">
+            <div className="rounded-3xl border border-[var(--border)] bg-card p-6 shadow-xs">
+              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
                 <div className="flex items-center gap-2.5">
                   <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -296,7 +296,7 @@ export default function TenantHubPage() {
               </div>
 
               <div className="mt-4 space-y-3">
-                <div className="p-3 rounded-xl bg-paper dark:bg-[#1d2d22] text-xs">
+                <div className="p-3 rounded-xl bg-paper text-xs">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-ink">Move-In Inspection Photos</span>
                     <span className="text-ink-muted text-[10px]">16 Photos Logged</span>
@@ -307,7 +307,7 @@ export default function TenantHubPage() {
                 </div>
                 <Link
                   href="/rental/rent-navrang/passport"
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] py-2 text-xs font-bold transition-all cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-[var(--primary-pista)]/15 hover:bg-[var(--primary-pista)] hover:text-white text-[var(--accent-forest)] py-2 text-xs font-bold transition-all cursor-pointer"
                 >
                   View Cryptographic Move-In Report →
                 </Link>

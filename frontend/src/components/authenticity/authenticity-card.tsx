@@ -54,7 +54,7 @@ export function AuthenticityCard({ propertyId, property, className }: Authentici
 
   if (loading) {
     return (
-      <div className={cn("rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card p-6 shadow-card animate-pulse", className)}>
+      <div className={cn("rounded-3xl border border-[var(--border)] bg-card p-6 shadow-card animate-pulse", className)}>
         <div className="flex items-center justify-between">
           <div className="h-5 w-48 rounded bg-black/10 dark:bg-white/10" />
           <div className="h-6 w-24 rounded-full bg-black/10 dark:bg-white/10" />
@@ -117,7 +117,7 @@ export function AuthenticityCard({ propertyId, property, className }: Authentici
       {/* Header with Title and Status Badge */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] font-bold text-base">
+          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[var(--accent-forest)]/15 text-[var(--text-main)] font-bold text-base">
             {currentStatus.icon}
           </div>
           <div>
@@ -137,7 +137,7 @@ export function AuthenticityCard({ propertyId, property, className }: Authentici
           </span>
           <button
             onClick={() => setShowWhyModal(true)}
-            className="rounded-full border border-[#7ca982]/40 bg-[#7ca982]/10 hover:bg-[#7ca982]/20 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] transition shadow-2xs"
+            className="rounded-full border border-[var(--accent-forest)]/40 bg-[var(--accent-forest)]/10 hover:bg-[var(--accent-forest)]/20 px-3 py-1 text-xs font-semibold text-[var(--text-main)] transition shadow-2xs"
           >
             Why this result?
           </button>
@@ -157,7 +157,7 @@ export function AuthenticityCard({ propertyId, property, className }: Authentici
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-black/5 dark:bg-white/5">
             <div
               className={cn("h-full rounded-full transition-all duration-500",
-                score >= 85 ? "bg-emerald-500" : score >= 65 ? "bg-amber-500" : score >= 40 ? "bg-orange-500" : "bg-rose-500"
+                score >= 85 ? "bg-[var(--success)]" : score >= 65 ? "bg-[var(--warning)]" : score >= 40 ? "bg-orange-500" : "bg-[var(--error)]"
               )}
               style={{ width: `${score}%` }}
             />
@@ -277,7 +277,7 @@ export function AuthenticityCard({ propertyId, property, className }: Authentici
             {analysis.signals.map((sig) => (
               <div
                 key={sig.id}
-                className="rounded-xl border border-line bg-card/70 p-3 shadow-2xs hover:border-[#7ca982]/50 transition"
+                className="rounded-xl border border-line bg-card/70 p-3 shadow-2xs hover:border-[var(--accent-forest)]/50 transition"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
@@ -361,8 +361,8 @@ export function AuthenticityCard({ propertyId, property, className }: Authentici
                 </h5>
                 <div className="space-y-2">
                   {analysis.whyThisResult.safetyCredits.map((c, i) => (
-                    <div key={i} className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-3">
-                      <div className="flex items-center justify-between font-semibold text-emerald-800 dark:text-emerald-300">
+                    <div key={i} className="rounded-xl border border-[var(--success)]/20 bg-[var(--success)]/5 p-3">
+                      <div className="flex items-center justify-between font-semibold text-[var(--success)]">
                         <span>{c.title}</span>
                         <span className="font-mono">+{c.pointsCredited} pts</span>
                       </div>

@@ -95,15 +95,15 @@ export default function TenantDashboardPage() {
       <div className="grid gap-4 sm:grid-cols-3">
         <Link
           href="/rental/rent-navrang"
-          className="group relative rounded-2xl border border-line bg-card p-5 shadow-card hover:shadow-card-hover hover:border-[#7ca982]/50 transition-all duration-200"
+          className="group relative rounded-2xl border border-line bg-card p-5 shadow-card hover:shadow-card-hover hover:border-[var(--primary-pista)]/50 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
               Active Tenancy
             </span>
-            <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
+            <span className="h-2 w-2 rounded-full bg-[var(--primary-pista)]" />
           </div>
-          <p className="mt-2 text-xl font-serif font-bold text-ink group-hover:text-[#57875d] dark:group-hover:text-[#a3caa6] transition-colors">
+          <p className="mt-2 text-xl font-serif font-bold text-ink group-hover:text-[var(--accent-forest)] transition-colors">
             Navrangpura Courtyard
           </p>
           <p className="mt-1 text-xs text-ink-muted">Ahmedabad · Verified Workspace →</p>
@@ -111,7 +111,7 @@ export default function TenantDashboardPage() {
 
         <Link
           href="/rental/rent-navrang/payments"
-          className="group relative rounded-2xl border border-line bg-card p-5 shadow-card hover:shadow-card-hover hover:border-[#7ca982]/50 transition-all duration-200"
+          className="group relative rounded-2xl border border-line bg-card p-5 shadow-card hover:shadow-card-hover hover:border-[var(--primary-pista)]/50 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
@@ -121,7 +121,7 @@ export default function TenantDashboardPage() {
               {unpaid.length} Pending
             </span>
           </div>
-          <p className="mt-2 text-xl font-serif font-bold text-ink group-hover:text-[#57875d] dark:group-hover:text-[#a3caa6] transition-colors">
+          <p className="mt-2 text-xl font-serif font-bold text-ink group-hover:text-[var(--accent-forest)] transition-colors">
             {unpaid.length ? "Payment Due" : "All Clear"}
           </p>
           <p className="mt-1 text-xs text-ink-muted">RentTruth™ itemized receipts →</p>
@@ -129,17 +129,17 @@ export default function TenantDashboardPage() {
 
         <Link
           href="/rental/rent-navrang"
-          className="group relative rounded-2xl border border-line bg-card p-5 shadow-card hover:shadow-card-hover hover:border-[#7ca982]/50 transition-all duration-200"
+          className="group relative rounded-2xl border border-line bg-card p-5 shadow-card hover:shadow-card-hover hover:border-[var(--primary-pista)]/50 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
               Maintenance
             </span>
-            <span className="rounded-full bg-[#7ca982]/15 px-2 py-0.5 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6]">
+            <span className="rounded-full bg-[var(--primary-pista)]/15 px-2 py-0.5 text-[10px] font-bold text-[var(--accent-forest)]">
               {workspaceMaintenance.filter((item) => item.status !== "resolved").length} In Progress
             </span>
           </div>
-          <p className="mt-2 text-xl font-serif font-bold text-ink group-hover:text-[#57875d] dark:group-hover:text-[#a3caa6] transition-colors">
+          <p className="mt-2 text-xl font-serif font-bold text-ink group-hover:text-[var(--accent-forest)] transition-colors">
             Ticket Records
           </p>
           <p className="mt-1 text-xs text-ink-muted">Condition Passport & repairs →</p>
@@ -207,7 +207,7 @@ export default function TenantDashboardPage() {
           </div>
           <div className="flex items-center justify-between rounded-xl border border-line bg-card px-4 py-3 shadow-xs">
             <div className="flex items-center gap-3">
-              <span className="flex h-2 w-2 rounded-full bg-[#6E9271]" />
+              <span className="flex h-2 w-2 rounded-full bg-[var(--primary-pista)]" />
               <span className="text-xs sm:text-sm font-medium text-ink">
                 Plumbing / kitchen tap repair ticket acknowledged by owner.
               </span>
@@ -255,7 +255,7 @@ export default function TenantDashboardPage() {
       </div>
 
       {/* AI Tenancy Assistant Banner */}
-      <div className="mt-10 rounded-2xl border border-[#6E9271]/30 bg-gradient-to-r from-[#6E9271]/10 via-[#8FA89B]/5 to-transparent p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="mt-10 rounded-2xl border border-[var(--primary-pista)]/30 bg-gradient-to-r from-[var(--primary-pista)]/10 via-[var(--secondary-sage)]/5 to-transparent p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <h3 className="text-base font-serif font-bold text-ink">Need tailored rental suggestions?</h3>
           <p className="text-xs text-ink-muted mt-1">

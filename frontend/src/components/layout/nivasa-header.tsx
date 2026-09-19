@@ -295,7 +295,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
   const unreadNotifCount = NOTIFICATIONS.filter((n) => n.unread).length;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#e5dfc5]/90 dark:border-[#243828]/90 bg-white/85 dark:bg-[#111c15]/85 backdrop-blur-xl shadow-xs transition-colors">
+    <header className="sticky top-0 z-40 w-full border-b border-[var(--border)]/90 dark:border-[var(--border)]/90 bg-white/85 dark:bg-[var(--bg-canvas)]/85 backdrop-blur-xl shadow-xs transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-3 sm:px-6 gap-3">
         {/* ========================================================================= */}
         {/* Left: Hamburger (mobile), Collapse (desktop), Brand Logo, Page Breadcrumb */}
@@ -305,7 +305,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           <button
             type="button"
             onClick={onOpenMobile}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#e5dfc5] dark:border-[#2a3f31] text-[#1d3122] dark:text-[#f5f9f6] hover:bg-[#7ca982]/10 lg:hidden transition-colors cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border)] dark:border-[var(--border)] text-[var(--text-main)] dark:text-[var(--bg-surface)] hover:bg-[var(--primary-pista)]/10 lg:hidden transition-colors cursor-pointer"
             aria-label="Open Nivasa navigation menu"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -317,7 +317,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           <button
             type="button"
             onClick={onToggleCollapse}
-            className="hidden lg:flex h-9 w-9 items-center justify-center rounded-xl border border-[#e5dfc5] dark:border-[#2a3f31] text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] hover:bg-[#7ca982]/10 transition-colors cursor-pointer"
+            className="hidden lg:flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border)] dark:border-[var(--border)] text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] hover:bg-[var(--primary-pista)]/10 transition-colors cursor-pointer"
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
@@ -335,12 +335,12 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           {/* Brand Mark & Title */}
           <div className="flex items-center gap-2 sm:gap-3">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[#7ca982] to-[#557e5b] text-white shadow-xs group-hover:scale-105 transition-transform">
+              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--primary-pista)] to-[var(--accent-forest)] text-white shadow-xs group-hover:scale-105 transition-transform">
                 <span className="font-serif font-bold text-sm tracking-tight">N</span>
               </div>
               <div className="hidden xl:flex flex-col">
                 <span className="text-xs font-serif font-extrabold tracking-wider text-ink uppercase leading-none">Nivasa</span>
-                <span className="text-[9px] text-[#7ca982] dark:text-[#a3caa6] font-semibold tracking-widest leading-none mt-0.5">RESIDENTIAL OS</span>
+                <span className="text-[9px] text-[var(--primary-pista)] dark:text-[var(--secondary-sage)] font-semibold tracking-widest leading-none mt-0.5">RESIDENTIAL OS</span>
               </div>
             </Link>
 
@@ -358,10 +358,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                   "hidden sm:inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider shadow-2xs",
                   isOwner
                     ? "bg-amber-500/15 text-amber-900 dark:text-amber-200 border border-amber-500/30"
-                    : "bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30"
+                    : "bg-[var(--primary-pista)]/15 text-[var(--text-main)] dark:text-[var(--secondary-sage)] border border-[var(--primary-pista)]/30"
                 )}
               >
-                <span className={cn("h-1.5 w-1.5 rounded-full", isOwner ? "bg-amber-500" : "bg-[#7ca982]")} />
+                <span className={cn("h-1.5 w-1.5 rounded-full", isOwner ? "bg-amber-500" : "bg-[var(--primary-pista)]")} />
                 <span>{isOwner ? "OWNER" : "TENANT"}</span>
               </span>
             )}
@@ -376,10 +376,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           <Link
             href="/properties"
             className={cn(
-              "px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[#7ca982]/10",
+              "px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[var(--primary-pista)]/10",
               pathname.startsWith("/properties")
-                ? "text-[#47704c] dark:text-[#a3caa6] bg-[#7ca982]/15 font-bold"
-                : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6]"
+                ? "text-[var(--accent-forest-hover)] dark:text-[var(--secondary-sage)] bg-[var(--primary-pista)]/15 font-bold"
+                : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)]"
             )}
           >
             Residences
@@ -391,10 +391,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
               type="button"
               onClick={() => setFeaturesOpen((prev) => !prev)}
               className={cn(
-                "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[#7ca982]/10 cursor-pointer",
+                "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[var(--primary-pista)]/10 cursor-pointer",
                 featuresOpen
-                  ? "bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6] border border-[#7ca982]/30"
-                  : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6]"
+                  ? "bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)] border border-[var(--primary-pista)]/30"
+                  : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)]"
               )}
             >
               <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -412,8 +412,8 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
 
             {/* AI Suite Mega-Flyout */}
             {featuresOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[480px] max-w-[90vw] rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white/95 dark:bg-[#121f16]/95 p-4 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-                <div className="flex items-center justify-between pb-3 border-b border-[#e5dfc5]/60 dark:border-[#2a3f31]/60">
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[480px] max-w-[90vw] rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-white/95 dark:bg-[var(--bg-canvas)]/95 p-4 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]/60 dark:border-[var(--border)]/60">
                   <div>
                     <span className="text-[11px] font-bold font-serif uppercase tracking-wider text-ink block">
                       Autonomous Rental Intelligence
@@ -422,7 +422,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       6 Deterministic AI Engines for Indian Tenancy & Security
                     </span>
                   </div>
-                  <span className="rounded-full bg-[#7ca982]/15 border border-[#7ca982]/30 px-2 py-0.5 text-[9px] font-bold text-[#23452b] dark:text-[#a3caa6]">
+                  <span className="rounded-full bg-[var(--primary-pista)]/15 border border-[var(--primary-pista)]/30 px-2 py-0.5 text-[9px] font-bold text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                     Nivasa v2.4
                   </span>
                 </div>
@@ -433,7 +433,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       key={feat.id}
                       href={feat.url}
                       onClick={() => setFeaturesOpen(false)}
-                      className="group flex flex-col justify-between p-2.5 rounded-2xl border border-transparent hover:border-[#7ca982]/30 hover:bg-[#7ca982]/10 transition-all text-left"
+                      className="group flex flex-col justify-between p-2.5 rounded-2xl border border-transparent hover:border-[var(--primary-pista)]/30 hover:bg-[var(--primary-pista)]/10 transition-all text-left"
                     >
                       <div className="flex items-start gap-2.5">
                         <div className="p-2 rounded-xl bg-card border border-line shrink-0 group-hover:scale-105 transition-transform">
@@ -441,7 +441,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                         </div>
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="text-xs font-bold text-ink group-hover:text-[#47704c] dark:group-hover:text-[#a3caa6] truncate">
+                            <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest-hover)] dark:group-hover:text-[var(--secondary-sage)] truncate">
                               {feat.name}
                             </span>
                           </div>
@@ -454,7 +454,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                         <span className={cn("rounded-md px-1.5 py-0.5 text-[9px] font-semibold border", feat.badgeColor)}>
                           {feat.badge}
                         </span>
-                        <span className="text-[10px] font-semibold text-[#57875d] opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-[10px] font-semibold text-[var(--accent-forest)] opacity-0 group-hover:opacity-100 transition-opacity">
                           Launch →
                         </span>
                       </div>
@@ -462,11 +462,11 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                   ))}
                 </div>
 
-                <div className="mt-3 pt-2.5 border-t border-[#e5dfc5]/60 dark:border-[#2a3f31]/60 flex items-center justify-between text-[11px]">
+                <div className="mt-3 pt-2.5 border-t border-[var(--border)]/60 dark:border-[var(--border)]/60 flex items-center justify-between text-[11px]">
                   <Link
                     href="/maintenance/triage"
                     onClick={() => setFeaturesOpen(false)}
-                    className="text-[#47704c] dark:text-[#a3caa6] font-semibold hover:underline flex items-center gap-1"
+                    className="text-[var(--accent-forest-hover)] dark:text-[var(--secondary-sage)] font-semibold hover:underline flex items-center gap-1"
                   >
                     <span>Try Maintenance Triage</span>
                     <span>→</span>
@@ -481,10 +481,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           <Link
             href="/maintenance/triage"
             className={cn(
-              "hidden lg:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[#7ca982]/10",
+              "hidden lg:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[var(--primary-pista)]/10",
               pathname.startsWith("/maintenance")
-                ? "text-[#47704c] dark:text-[#a3caa6] bg-[#7ca982]/15 font-bold"
-                : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6]"
+                ? "text-[var(--accent-forest-hover)] dark:text-[var(--secondary-sage)] bg-[var(--primary-pista)]/15 font-bold"
+                : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)]"
             )}
           >
             Maintenance Triage
@@ -494,10 +494,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           <Link
             href="/cities"
             className={cn(
-              "hidden xl:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[#7ca982]/10",
+              "hidden xl:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[var(--primary-pista)]/10",
               pathname.startsWith("/cities")
-                ? "text-[#47704c] dark:text-[#a3caa6] bg-[#7ca982]/15 font-bold"
-                : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6]"
+                ? "text-[var(--accent-forest-hover)] dark:text-[var(--secondary-sage)] bg-[var(--primary-pista)]/15 font-bold"
+                : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)]"
             )}
           >
             Metro Hubs
@@ -507,10 +507,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           <Link
             href="/how-it-works"
             className={cn(
-              "hidden xl:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[#7ca982]/10",
+              "hidden xl:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold transition-all hover:bg-[var(--primary-pista)]/10",
               pathname === "/how-it-works"
-                ? "text-[#47704c] dark:text-[#a3caa6] bg-[#7ca982]/15 font-bold"
-                : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6]"
+                ? "text-[var(--accent-forest-hover)] dark:text-[var(--secondary-sage)] bg-[var(--primary-pista)]/15 font-bold"
+                : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)]"
             )}
           >
             How It Works
@@ -529,10 +529,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setSearchOpen(true)}
               placeholder="Search homes, cities..."
-              className="w-full rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0]/80 dark:bg-[#1d2d22]/80 pl-8 pr-11 py-1.5 text-xs text-[#1d3122] dark:text-[#f5f9f6] placeholder:text-[#7d9782] focus:border-[#7ca982] focus:bg-white dark:focus:bg-[#142018] focus:ring-2 focus:ring-[#7ca982]/20 focus:outline-none transition-all shadow-2xs"
+              className="w-full rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)]/80 dark:bg-[var(--bg-canvas)]/80 pl-8 pr-11 py-1.5 text-xs text-[var(--text-main)] dark:text-[var(--bg-surface)] placeholder:text-[var(--text-faint)] focus:border-[var(--primary-pista)] focus:bg-white dark:focus:bg-[var(--bg-canvas)] focus:ring-2 focus:ring-[var(--primary-pista)]/20 focus:outline-none transition-all shadow-2xs"
             />
             <svg
-              className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#7ca982]"
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[var(--primary-pista)]"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -542,7 +542,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
               <path d="M21 21l-4.35-4.35" />
             </svg>
             <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center">
-              <kbd className="rounded border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#142018] px-1 text-[9px] text-[#7d9782] font-mono">
+              <kbd className="rounded border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--bg-canvas)] px-1 text-[9px] text-[var(--text-faint)] font-mono">
                 ⌘K
               </kbd>
             </div>
@@ -550,13 +550,13 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
 
           {/* Search Flyout Modal */}
           {searchOpen && (
-            <div className="absolute right-0 top-full mt-2 w-80 sm:w-96 rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#142018] p-3.5 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-              <div className="flex items-center justify-between px-2 pb-2 text-[10px] uppercase font-bold tracking-wider text-ink-muted border-b border-[#e5dfc5] dark:border-[#2a3f31]">
+            <div className="absolute right-0 top-full mt-2 w-80 sm:w-96 rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--bg-canvas)] p-3.5 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+              <div className="flex items-center justify-between px-2 pb-2 text-[10px] uppercase font-bold tracking-wider text-ink-muted border-b border-[var(--border)] dark:border-[var(--border)]">
                 <span>{searchQuery ? "Matching Results" : "Metropolitan Corridors"}</span>
-                {searchLoading && <span className="text-[#7ca982] animate-pulse">Searching...</span>}
+                {searchLoading && <span className="text-[var(--primary-pista)] animate-pulse">Searching...</span>}
               </div>
 
-              <div className="mt-2 max-h-72 overflow-y-auto space-y-1 divide-y divide-[#e5dfc5]/40 dark:divide-[#2a3f31]/40">
+              <div className="mt-2 max-h-72 overflow-y-auto space-y-1 divide-y divide-[var(--border)]/40 dark:divide-[var(--border)]/40">
                 {suggestions.length > 0 ? (
                   suggestions.map((item) => (
                     <Link
@@ -566,16 +566,16 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                         setSearchOpen(false);
                         setSearchQuery("");
                       }}
-                      className="group flex items-center justify-between rounded-xl px-2.5 py-2 hover:bg-[#7ca982]/10 transition-colors pt-2"
+                      className="group flex items-center justify-between rounded-xl px-2.5 py-2 hover:bg-[var(--primary-pista)]/10 transition-colors pt-2"
                     >
                       <div className="flex items-center gap-2.5 overflow-hidden pr-2">
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#7ca982]/15 text-[#23452b] dark:text-[#a3caa6]">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--primary-pista)]/15 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                           <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" />
                           </svg>
                         </div>
                         <div className="truncate">
-                          <span className="text-xs font-semibold text-ink group-hover:text-[#57875d] block truncate">
+                          <span className="text-xs font-semibold text-ink group-hover:text-[var(--accent-forest)] block truncate">
                             {item.title}
                           </span>
                           <span className="text-[10px] text-ink-muted truncate block">
@@ -584,7 +584,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                         </div>
                       </div>
                       {item.badge && (
-                        <span className="shrink-0 rounded-full bg-[#7ca982]/15 border border-[#7ca982]/30 px-2 py-0.5 text-[9px] font-semibold text-[#1d3122] dark:text-[#a3caa6]">
+                        <span className="shrink-0 rounded-full bg-[var(--primary-pista)]/15 border border-[var(--primary-pista)]/30 px-2 py-0.5 text-[9px] font-semibold text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                           {item.badge}
                         </span>
                       )}
@@ -597,11 +597,11 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                 )}
               </div>
 
-              <div className="mt-3 pt-2 border-t border-[#e5dfc5] dark:border-[#2a3f31] flex items-center justify-between text-[11px]">
+              <div className="mt-3 pt-2 border-t border-[var(--border)] dark:border-[var(--border)] flex items-center justify-between text-[11px]">
                 <Link
                   href="/properties"
                   onClick={() => setSearchOpen(false)}
-                  className="text-[#47704c] dark:text-[#a3caa6] font-semibold hover:underline"
+                  className="text-[var(--accent-forest-hover)] dark:text-[var(--secondary-sage)] font-semibold hover:underline"
                 >
                   Explore All 4,750+ Listings →
                 </Link>
@@ -620,7 +620,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
             <button
               type="button"
               onClick={() => setNotificationsOpen((prev) => !prev)}
-              className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] hover:border-[#7ca982] hover:text-[#1d3122] dark:hover:text-white transition-colors cursor-pointer"
+              className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:border-[var(--primary-pista)] hover:text-[var(--text-main)] dark:hover:text-white transition-colors cursor-pointer"
               aria-label="View platform notifications"
               title="Notifications & Alerts"
             >
@@ -636,10 +636,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
 
             {/* Notifications Menu */}
             {notificationsOpen && (
-              <div className="absolute right-0 top-full mt-2 w-80 sm:w-88 rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#142018] p-3 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+              <div className="absolute right-0 top-full mt-2 w-80 sm:w-88 rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--bg-canvas)] p-3 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
                 <div className="flex items-center justify-between px-2 pb-2 border-b border-line">
                   <span className="text-xs font-serif font-bold text-ink">Platform Signals & Alerts</span>
-                  <span className="text-[10px] font-semibold text-[#7ca982]">Live Telemetry</span>
+                  <span className="text-[10px] font-semibold text-[var(--primary-pista)]">Live Telemetry</span>
                 </div>
                 <div className="mt-2 space-y-1 divide-y divide-line/40 max-h-64 overflow-y-auto">
                   {NOTIFICATIONS.map((notif) => (
@@ -647,7 +647,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       key={notif.id}
                       href={notif.url}
                       onClick={() => setNotificationsOpen(false)}
-                      className="block p-2 rounded-xl hover:bg-[#7ca982]/10 transition-colors pt-2 text-left"
+                      className="block p-2 rounded-xl hover:bg-[var(--primary-pista)]/10 transition-colors pt-2 text-left"
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-[11px] font-bold text-ink truncate">{notif.title}</span>
@@ -664,12 +664,12 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           {/* AI Copilot Quick Button */}
           <Link
             href="/copilot"
-            className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#7ca982]/15 to-[#557e5b]/15 hover:from-[#7ca982] hover:to-[#557e5b] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-2.5 sm:px-3 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-2xs group"
+            className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[var(--primary-pista)]/15 to-[var(--accent-forest)]/15 hover:from-[var(--primary-pista)] hover:to-[var(--accent-forest)] hover:text-white text-[var(--text-main)] dark:text-[var(--secondary-sage)] px-2.5 sm:px-3 py-1.5 text-xs font-semibold border border-[var(--primary-pista)]/30 transition-all cursor-pointer shadow-2xs group"
             title="Nivasa AI Rental Copilot"
           >
             <span className="h-2 w-2 rounded-full bg-emerald-500 group-hover:bg-white animate-pulse" />
             <span className="hidden sm:inline font-serif font-medium">AI Copilot</span>
-            <span className="rounded-full bg-[#7ca982]/20 group-hover:bg-white/20 px-1 py-0.2 text-[9px] font-bold">2.4</span>
+            <span className="rounded-full bg-[var(--primary-pista)]/20 group-hover:bg-white/20 px-1 py-0.2 text-[9px] font-bold">2.4</span>
           </Link>
 
           {/* Contextual Role Actions (Only when logged in) */}
@@ -691,7 +691,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                 {/* Tenant: Saved Homes */}
                 <Link
                   href="/properties?saved=true"
-                  className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] hover:border-[#7ca982] hover:text-rose-500 transition-colors"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:border-[var(--primary-pista)] hover:text-rose-500 transition-colors"
                   title="Saved Residences"
                   aria-label="View saved residences"
                 >
@@ -732,7 +732,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
           <button
             type="button"
             onClick={toggle}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] transition-all hover:scale-105 hover:text-[#1d3122] dark:hover:text-[#f5f9f6] focus-visible:outline-none cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] text-[var(--text-muted)] dark:text-[var(--text-faint)] transition-all hover:scale-105 hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)] focus-visible:outline-none cursor-pointer"
             aria-label="Toggle theme"
             title="Toggle theme"
           >
@@ -742,7 +742,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                 <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
               </svg>
             ) : (
-              <svg className="h-4 w-4 text-[#4e6853]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4 text-[var(--text-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
             )}
@@ -754,22 +754,22 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
               <button
                 type="button"
                 onClick={() => setUserMenuOpen((prev) => !prev)}
-                className="flex items-center gap-1.5 rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] pl-1 pr-2.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#8fb893] hover:border-[#7ca982] transition-colors cursor-pointer shadow-2xs"
+                className="flex items-center gap-1.5 rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] pl-1 pr-2.5 py-1 text-xs font-semibold text-[var(--text-main)] dark:text-[var(--secondary-sage)] hover:border-[var(--primary-pista)] transition-colors cursor-pointer shadow-2xs"
               >
-                <div className={cn("flex h-6 w-6 items-center justify-center rounded-full text-white text-[11px] font-bold", isOwner ? "bg-amber-600" : "bg-[#7ca982]")}>
+                <div className={cn("flex h-6 w-6 items-center justify-center rounded-full text-white text-[11px] font-bold", isOwner ? "bg-amber-600" : "bg-[var(--primary-pista)]")}>
                   {user.name ? user.name[0].toUpperCase() : "U"}
                 </div>
                 <span className="hidden sm:inline max-w-[70px] truncate">{user.name || "Account"}</span>
               </button>
 
               {userMenuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-64 rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#142018] p-2.5 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                <div className="absolute right-0 top-full mt-2 w-64 rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--bg-canvas)] p-2.5 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
                   <div className="px-3 py-2.5 border-b border-line">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-bold text-ink block truncate">{user.name || "Member"}</span>
                       <span className={cn(
                         "rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider",
-                        isOwner ? "bg-amber-500/20 text-amber-900 dark:text-amber-200 border border-amber-500/30" : "bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30"
+                        isOwner ? "bg-amber-500/20 text-amber-900 dark:text-amber-200 border border-amber-500/30" : "bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)] border border-[var(--primary-pista)]/30"
                       )}>
                         {isOwner ? "OWNER" : "TENANT"}
                       </span>
@@ -781,10 +781,10 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                     <Link
                       href={appDashboard}
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
                       <span>{isOwner ? "Owner Portal" : "Tenant Portal"}</span>
-                      <span className="text-[10px] font-bold text-[#7ca982]">Hub</span>
+                      <span className="text-[10px] font-bold text-[var(--primary-pista)]">Hub</span>
                     </Link>
 
                     {/* Role-Specific Direct Tools */}
@@ -792,7 +792,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       <Link
                         href="/tenant/expenses"
                         onClick={() => setUserMenuOpen(false)}
-                        className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                        className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                       >
                         <span>Roommate Expenses</span>
                         <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-teal-500/15 text-teal-800 dark:text-teal-300">Split</span>
@@ -801,7 +801,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                       <Link
                         href="/owner/properties/new"
                         onClick={() => setUserMenuOpen(false)}
-                        className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                        className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                       >
                         <span>Post New Listing</span>
                         <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-800 dark:text-amber-300">+ Add</span>
@@ -811,7 +811,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                     <Link
                       href="/maintenance/triage"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
                       <span>Maintenance Triage</span>
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-800 dark:text-amber-300">AI</span>
@@ -820,7 +820,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
                     <Link
                       href="/profile"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                      className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
                       Profile & Settings
                     </Link>
@@ -845,7 +845,7 @@ export function NivasaHeader({ collapsed, onToggleCollapse, onOpenMobile }: Niva
             <div className="flex items-center gap-1 sm:gap-2">
               <Link
                 href="/login"
-                className="rounded-full px-3 py-1.5 text-xs font-medium text-[#4a5e50] dark:text-[#a5b8aa] hover:text-[#1a281f] dark:hover:text-[#f5f9f6] transition-colors"
+                className="rounded-full px-3 py-1.5 text-xs font-medium text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)] transition-colors"
               >
                 Sign in
               </Link>

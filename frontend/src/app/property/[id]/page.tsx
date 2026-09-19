@@ -64,8 +64,8 @@ export default function PropertyDetailPage() {
     return (
       <SiteShell>
         <div className="mx-auto max-w-7xl px-4 py-28 text-center">
-          <div className="inline-flex h-12 w-12 animate-spin rounded-full border-4 border-[#6E9271] border-t-transparent mb-4" />
-          <p className="text-xs font-bold uppercase tracking-wider text-[#6E9271] dark:text-[#A3B899]">
+          <div className="inline-flex h-12 w-12 animate-spin rounded-full border-4 border-[var(--accent-forest)] border-t-transparent mb-4" />
+          <p className="text-xs font-bold uppercase tracking-wider text-[var(--accent-forest)]">
             Loading Residence Telemetry...
           </p>
         </div>
@@ -77,7 +77,7 @@ export default function PropertyDetailPage() {
     return (
       <SiteShell>
         <div className="mx-auto max-w-xl px-4 py-28 text-center">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6]">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--primary-pista)]/15 text-[var(--text-main)]">
             <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
@@ -89,7 +89,7 @@ export default function PropertyDetailPage() {
           <div className="mt-6">
             <Link
               href="/properties"
-              className="inline-flex items-center gap-2 rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:shadow-md transition"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:shadow-md transition"
             >
               Browse 4,746+ Residences
             </Link>
@@ -121,9 +121,9 @@ export default function PropertyDetailPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Navigation Breadcrumb */}
         <div className="mb-6 flex items-center gap-2 text-xs font-medium text-ink-muted">
-          <Link href="/properties" className="hover:text-[#7ca982] transition">Residences</Link>
+          <Link href="/properties" className="hover:text-[var(--primary-pista)] transition">Residences</Link>
           <span>/</span>
-          <Link href={`/properties?city=${property.city}`} className="hover:text-[#7ca982] transition">
+          <Link href={`/properties?city=${property.city}`} className="hover:text-[var(--primary-pista)] transition">
             {property.city}
           </Link>
           <span>/</span>
@@ -142,8 +142,8 @@ export default function PropertyDetailPage() {
               <div className="flex flex-wrap items-center gap-2.5">
                 <StatusBadge tone="ok">Nivasa Verified Residence</StatusBadge>
                 {property.pointOfContact && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#faf7f0]/95 dark:bg-[#142018]/95 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#f5f9f6] border border-[#e5dfc5] dark:border-[#2a3f31] shadow-xs">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-surface-elevated)]/95 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--border)] shadow-xs">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary-pista)]" />
                     {property.pointOfContact}
                   </span>
                 )}
@@ -157,7 +157,7 @@ export default function PropertyDetailPage() {
                 </span>
 
                 {property.tenantPreferred && (
-                  <span className="rounded-full bg-[#7ca982]/15 border border-[#7ca982]/30 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6]">
+                  <span className="rounded-full bg-[var(--primary-pista)]/15 border border-[var(--primary-pista)]/30 px-3 py-1 text-xs font-semibold text-[var(--text-main)]">
                     Tenant: {property.tenantPreferred}
                   </span>
                 )}
@@ -168,7 +168,7 @@ export default function PropertyDetailPage() {
               </h1>
 
               <p className="mt-2 text-sm sm:text-base text-ink-muted flex items-center gap-1.5">
-                <svg className="w-4 h-4 text-[#6E9271] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4 text-[var(--accent-forest)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -227,9 +227,9 @@ export default function PropertyDetailPage() {
             </div>
 
             {/* Residence Verification & Tenancy Details */}
-            <div className="rounded-3xl border border-[#7ca982]/30 bg-[#7ca982]/5 p-6 shadow-card">
+            <div className="rounded-3xl border border-[var(--primary-pista)]/30 bg-[var(--primary-pista)]/5 p-6 shadow-card">
               <div className="flex items-center gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary-pista)]/20 text-[var(--text-main)]">
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
@@ -247,7 +247,7 @@ export default function PropertyDetailPage() {
                 </div>
                 <div className="rounded-xl border border-line bg-card p-3">
                   <span className="text-ink-muted block text-[11px]">Availability Status:</span>
-                  <strong className="text-[#57875d] dark:text-[#a3caa6] font-tabular">{property.displayPostedOn ? `Listed ${property.displayPostedOn}` : "Immediate Move-in"}</strong>
+                  <strong className="text-[var(--accent-forest)] font-tabular">{property.displayPostedOn ? `Listed ${property.displayPostedOn}` : "Immediate Move-in"}</strong>
                 </div>
               </div>
 
@@ -281,7 +281,7 @@ export default function PropertyDetailPage() {
                     key={item}
                     className="inline-flex items-center gap-2 rounded-xl border border-line bg-card px-3.5 py-2 text-xs font-semibold text-ink shadow-xs"
                   >
-                    <svg className="w-4 h-4 text-[#7ca982] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-4 h-4 text-[var(--primary-pista)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>{item}</span>
@@ -303,7 +303,7 @@ export default function PropertyDetailPage() {
                     </span>
                     <span className="text-xs text-ink-muted ml-1.5">/ month</span>
                   </div>
-                  <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-1 text-[11px] font-bold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                  <span className="rounded-full bg-[var(--primary-pista)]/15 px-2.5 py-1 text-[11px] font-bold text-[var(--text-main)] border border-[var(--primary-pista)]/30">
                     Direct Listing
                   </span>
                 </div>
@@ -317,7 +317,7 @@ export default function PropertyDetailPage() {
                   <button
                     type="button"
                     onClick={() => setOpenEnquiry(true)}
-                    className="w-full rounded-2xl bg-[#7ca982] hover:bg-[#6b9a71] py-3.5 px-4 text-sm font-semibold text-white shadow-card hover:shadow-md transition cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full rounded-2xl bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] py-3.5 px-4 text-sm font-semibold text-white shadow-card hover:shadow-md transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Connect With {property.pointOfContact || "Owner"}</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -328,7 +328,7 @@ export default function PropertyDetailPage() {
                   <button
                     type="button"
                     onClick={() => toggleSave(property.id)}
-                    className="w-full rounded-2xl border border-line bg-paper py-3 px-4 text-xs font-semibold text-ink hover:border-[#7ca982] transition cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full rounded-2xl border border-line bg-paper py-3 px-4 text-xs font-semibold text-ink hover:border-[var(--primary-pista)] transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <svg
                       className={`w-4 h-4 ${saved ? "fill-rose-500 text-rose-500" : "fill-none text-ink-muted"}`}
@@ -349,7 +349,7 @@ export default function PropertyDetailPage() {
                   </div>
                   <div>
                     <span className="text-[11px] text-ink-muted block">Brokerage Fee</span>
-                    <strong className="text-[#6E9271] dark:text-[#A3B899]">₹0 (Direct)</strong>
+                    <strong className="text-[var(--accent-forest)]">₹0 (Direct)</strong>
                   </div>
                 </div>
               </div>
@@ -365,7 +365,7 @@ export default function PropertyDetailPage() {
           <div className="mt-20 pt-10 border-t border-line">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#6E9271] dark:text-[#A3B899]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[var(--accent-forest)]">
                   Curated Matches
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-serif font-bold text-ink mt-1">
@@ -375,7 +375,7 @@ export default function PropertyDetailPage() {
 
               <Link
                 href={`/properties?city=${property.city}&bhk=${property.bhk || property.bedrooms}`}
-                className="text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] hover:underline hidden sm:inline"
+                className="text-xs font-semibold text-[var(--accent-forest)] hover:underline hidden sm:inline"
               >
                 View all in {property.city} →
               </Link>
@@ -394,7 +394,7 @@ export default function PropertyDetailPage() {
       <Modal open={openEnquiry} onClose={() => setOpenEnquiry(false)} title="Connect With Residence Host">
         {submitted ? (
           <div className="py-8 text-center">
-            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#6E9271]/20 text-[#6E9271]">
+            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-forest)]/20 text-[var(--accent-forest)]">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
               </svg>
@@ -447,7 +447,7 @@ export default function PropertyDetailPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="rounded-xl bg-[#7ca982] hover:bg-[#6b9a71] px-5 py-2 text-xs font-semibold text-white hover:shadow-xs transition disabled:opacity-50 cursor-pointer"
+                className="rounded-xl bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] px-5 py-2 text-xs font-semibold text-white hover:shadow-xs transition disabled:opacity-50 cursor-pointer"
               >
                 {submitting ? "Sending..." : "Submit Inquiry"}
               </button>

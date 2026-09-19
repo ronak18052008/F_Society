@@ -88,7 +88,7 @@ export default function OwnerDashboardPage() {
             <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
               Active Inventory
             </span>
-            <span className="h-2 w-2 rounded-full bg-[#6E9271]" />
+            <span className="h-2 w-2 rounded-full bg-[var(--primary-pista)]" />
           </div>
           <p className="mt-2 text-3xl font-serif font-bold text-ink">
             {listed.length + drafts.length}
@@ -103,7 +103,7 @@ export default function OwnerDashboardPage() {
             <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
               Tenant Enquiries
             </span>
-            <span className="rounded-full bg-[#6E9271]/15 px-2 py-0.5 text-[10px] font-bold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
+            <span className="rounded-full bg-[var(--primary-pista)]/15 px-2 py-0.5 text-[10px] font-bold text-[var(--accent-forest)] border border-[var(--primary-pista)]/30">
               {allEnquiries.filter((e) => e.status !== "replied").length} Pending
             </span>
           </div>
@@ -149,7 +149,7 @@ export default function OwnerDashboardPage() {
                 <div>
                   <Link
                     href={`/owner/properties/${item.id}`}
-                    className="text-sm font-semibold text-ink hover:text-[#6E9271] transition-colors"
+                    className="text-sm font-semibold text-ink hover:text-[var(--accent-forest)] transition-colors"
                   >
                     {item.title}
                   </Link>
@@ -163,7 +163,7 @@ export default function OwnerDashboardPage() {
                   </StatusBadge>
                   <Link
                     href={`/owner/properties/${item.id}`}
-                    className="rounded-lg border border-line bg-paper px-3 py-1 text-xs font-semibold text-ink hover:border-[#6E9271] hover:text-[#6E9271] transition"
+                    className="rounded-lg border border-line bg-paper px-3 py-1 text-xs font-semibold text-ink hover:border-[var(--primary-pista)] hover:text-[var(--accent-forest)] transition"
                   >
                     Manage
                   </Link>
@@ -216,7 +216,7 @@ export default function OwnerDashboardPage() {
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-bold text-ink">{item.fromName}</span>
                       <span className="text-ink-muted/40">·</span>
-                      <span className="text-xs font-medium text-[#6E9271] dark:text-[#A3B899]">
+                      <span className="text-xs font-medium text-[var(--accent-forest)]">
                         {getProperty(item.propertyId)?.title ?? item.propertyId}
                       </span>
                     </div>
@@ -253,7 +253,7 @@ export default function OwnerDashboardPage() {
                           );
                           toast(`Enquiry marked as ${nextStatus}`);
                         }}
-                        className="cursor-pointer rounded-lg bg-[#7ca982]/15 px-2.5 py-1 text-[11px] font-semibold text-[#1d3122] dark:text-[#a3caa6] hover:bg-[#7ca982]/25 transition"
+                        className="cursor-pointer rounded-lg bg-[var(--primary-pista)]/15 px-2.5 py-1 text-[11px] font-semibold text-[var(--accent-forest)] hover:bg-[var(--primary-pista)]/25 transition"
                       >
                         Mark {item.status === "sent" ? "seen" : "replied"}
                       </button>
@@ -279,7 +279,7 @@ export default function OwnerDashboardPage() {
         <div className="mt-4">
           <Link
             href="/rental/rent-navrang/payments"
-            className="text-xs font-semibold text-[#6E9271] hover:underline"
+            className="text-xs font-semibold text-[var(--accent-forest)] hover:underline"
           >
             Audit active workspace payment streams →
           </Link>

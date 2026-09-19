@@ -260,8 +260,8 @@ export function RentalCopilot({
       GENERAL_HELP: {
         label: "Rental Assistance",
         icon: "💡",
-        bg: "bg-[#faf7f0] dark:bg-[#1f2d24] border-[#e5dfc5] dark:border-[#2f4336]",
-        text: "text-[#1d3122] dark:text-[#f5f9f6]",
+        bg: "bg-[var(--bg-canvas)] border-[var(--border)]",
+        text: "text-[var(--text-main)]",
       },
     };
 
@@ -283,14 +283,14 @@ export function RentalCopilot({
   return (
     <div
       className={cn(
-        "flex flex-col h-full bg-[#faf7f0] dark:bg-[#142018] text-[#1d3122] dark:text-[#f5f9f6] rounded-2xl overflow-hidden border border-[#e5dfc5] dark:border-[#2a3f31] shadow-xl",
+        "flex flex-col h-full bg-[var(--bg-canvas)] text-[var(--text-main)] rounded-2xl overflow-hidden border border-[var(--border)] shadow-xl",
         compact ? "max-h-[640px]" : "min-h-[600px]"
       )}
     >
       {/* Copilot Header */}
-      <div className="flex items-center justify-between px-5 py-4 bg-white/80 dark:bg-[#1a281f]/80 backdrop-blur-md border-b border-[#e5dfc5] dark:border-[#2a3f31]">
+      <div className="flex items-center justify-between px-5 py-4 bg-[var(--bg-surface)]/80 backdrop-blur-md border-b border-[var(--border)]">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#7ca982] text-white shadow-xs">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-forest)] text-white shadow-xs">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -302,14 +302,14 @@ export function RentalCopilot({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="font-serif font-bold text-base tracking-tight text-[#1d3122] dark:text-[#f5f9f6]">
+              <h2 className="font-serif font-bold text-base tracking-tight text-[var(--text-main)]">
                 Nivasa AI Copilot
               </h2>
-              <span className="inline-flex items-center rounded-full bg-[#7ca982]/15 px-2 py-0.5 text-[10px] font-bold text-[#5a835f] dark:text-[#a8cca9] uppercase tracking-wider">
+              <span className="inline-flex items-center rounded-full bg-[var(--accent-forest-subtle)] px-2 py-0.5 text-[10px] font-bold text-[var(--accent-forest)] uppercase tracking-wider">
                 Active
               </span>
             </div>
-            <p className="text-xs text-[#4e6853] dark:text-[#9bb3a0]">
+            <p className="text-xs text-[var(--text-muted)]">
               Rental intelligence, risk audits & instant comparisons
             </p>
           </div>
@@ -320,7 +320,7 @@ export function RentalCopilot({
             type="button"
             onClick={onClose}
             aria-label="Close Copilot"
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#4e6853] hover:bg-[#f3efe6] dark:hover:bg-[#25362b] transition-colors cursor-pointer"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--text-muted)] hover:bg-[var(--bg-surface-elevated)] transition-colors cursor-pointer"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -344,8 +344,8 @@ export function RentalCopilot({
               className={cn(
                 "rounded-2xl p-4 sm:p-5 shadow-xs text-sm leading-relaxed",
                 msg.role === "user"
-                  ? "bg-[#7ca982] text-white rounded-br-none"
-                  : "bg-white dark:bg-[#1a281f] text-[#1d3122] dark:text-[#f5f9f6] border border-[#e5dfc5] dark:border-[#2a3f31] rounded-bl-none"
+                  ? "bg-[var(--accent-forest)] text-white rounded-br-none"
+                  : "bg-[var(--bg-surface)] text-[var(--text-main)] border border-[var(--border)] rounded-bl-none"
               )}
             >
               {msg.role === "assistant" && getIntentBadge(msg.intent)}
@@ -377,7 +377,7 @@ export function RentalCopilot({
               <div
                 className={cn(
                   "text-[10px] mt-2 font-mono text-right",
-                  msg.role === "user" ? "text-white/70" : "text-[#7d9782] dark:text-[#6a8471]"
+                  msg.role === "user" ? "text-white/70" : "text-[var(--text-faint)]"
                 )}
               >
                 {new Date(msg.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
@@ -387,7 +387,7 @@ export function RentalCopilot({
             {/* Contextual Recommendations (Property Cards) */}
             {msg.recommendations && msg.recommendations.length > 0 && (
               <div className="w-full mt-2 space-y-3">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#4e6853] dark:text-[#9bb3a0] flex items-center gap-1.5">
+                <div className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] flex items-center gap-1.5">
                   <span>🏡 Matched Properties ({msg.recommendations.length})</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
@@ -396,9 +396,9 @@ export function RentalCopilot({
                     return (
                       <div
                         key={property.id}
-                        className="rounded-xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#1a281f] overflow-hidden shadow-xs hover:border-[#7ca982] transition-all flex flex-col"
+                        className="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden shadow-xs hover:border-[var(--accent-forest)] transition-all flex flex-col"
                       >
-                        <div className="relative aspect-[16/9] w-full bg-[#f3efe6] dark:bg-[#25362b]">
+                        <div className="relative aspect-[16/9] w-full bg-[var(--bg-surface-elevated)]">
                           <Image
                             src={
                               property.images?.[0] ||
@@ -415,10 +415,10 @@ export function RentalCopilot({
                               type="button"
                               onClick={() => toggleSave(property.id)}
                               aria-label={isSaved ? "Remove from saved" : "Save property"}
-                              className="flex h-7 w-7 items-center justify-center rounded-full bg-white/90 dark:bg-[#142018]/90 backdrop-blur-md shadow-xs transition-transform hover:scale-110 active:scale-95 cursor-pointer"
+                              className="flex h-7 w-7 items-center justify-center rounded-full bg-white/90 dark:bg-[var(--bg-surface)]/90 backdrop-blur-md shadow-xs transition-transform hover:scale-110 active:scale-95 cursor-pointer"
                             >
                               <svg
-                                className={cn("h-3.5 w-3.5", isSaved ? "fill-rose-500 text-rose-500" : "fill-none text-[#7d9782]")}
+                                className={cn("h-3.5 w-3.5", isSaved ? "fill-[var(--error)] text-[var(--error)]" : "fill-none text-[var(--text-faint)]")}
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 strokeWidth="2"
@@ -440,24 +440,24 @@ export function RentalCopilot({
 
                         <div className="p-3 flex-1 flex flex-col justify-between">
                           <div>
-                            <h4 className="font-serif font-bold text-sm text-[#1d3122] dark:text-[#f5f9f6] line-clamp-1">
+                            <h4 className="font-serif font-bold text-sm text-[var(--text-main)] line-clamp-1">
                               {property.title}
                             </h4>
-                            <p className="text-xs text-[#4e6853] dark:text-[#9bb3a0] line-clamp-1">
+                            <p className="text-xs text-[var(--text-muted)] line-clamp-1">
                               {property.bhk || property.bedrooms} BHK · {property.locality}, {property.city}
                             </p>
                           </div>
 
-                          <div className="mt-3 pt-2 border-t border-[#f3efe6] dark:border-[#25362b] flex items-center justify-between gap-2">
+                          <div className="mt-3 pt-2 border-t border-[var(--bg-surface-elevated)] flex items-center justify-between gap-2">
                             <Link
                               href={`/property/${property.id}`}
-                              className="flex-1 text-center py-1.5 px-2.5 rounded-lg bg-[#7ca982] text-white text-xs font-semibold hover:bg-[#6b9a71] transition-colors"
+                              className="flex-1 text-center py-1.5 px-2.5 rounded-lg bg-[var(--accent-forest)] text-white text-xs font-semibold hover:bg-[var(--accent-forest-hover)] transition-colors"
                             >
                               View Property
                             </Link>
                             <Link
                               href={`/renttruth/${property.id}`}
-                              className="py-1.5 px-2 rounded-lg bg-[#f3efe6] dark:bg-[#25362b] text-[#1d3122] dark:text-[#f5f9f6] text-[11px] font-semibold hover:bg-[#e5dfc5] transition-colors"
+                              className="py-1.5 px-2 rounded-lg bg-[var(--bg-surface-elevated)] text-[var(--text-main)] text-[11px] font-semibold hover:bg-[var(--border)] transition-colors"
                               title="Check Risk"
                             >
                               🛡️ Risk
@@ -473,15 +473,15 @@ export function RentalCopilot({
 
             {/* Contextual Comparison Matrix */}
             {msg.comparison && (
-              <div className="w-full mt-2 rounded-xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#1a281f] p-4 shadow-xs">
+              <div className="w-full mt-2 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4 shadow-xs">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-base">⚖️</span>
-                    <h4 className="font-serif font-bold text-sm text-[#1d3122] dark:text-[#f5f9f6]">
+                    <h4 className="font-serif font-bold text-sm text-[var(--text-main)]">
                       Side-by-Side Comparison Matrix
                     </h4>
                   </div>
-                  <span className="text-[10px] font-bold text-[#5a835f] bg-[#7ca982]/10 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold text-[var(--accent-forest)] bg-[var(--accent-forest-subtle)] px-2 py-0.5 rounded-full">
                     Best Value Highlighted
                   </span>
                 </div>
@@ -489,7 +489,7 @@ export function RentalCopilot({
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs text-left">
                     <thead>
-                      <tr className="border-b border-[#e5dfc5] dark:border-[#2a3f31] text-[#4e6853] dark:text-[#9bb3a0]">
+                      <tr className="border-b border-[var(--border)] text-[var(--text-muted)]">
                         <th className="py-2 pr-3 font-semibold">Metric</th>
                         {msg.comparison.properties.map((p) => (
                           <th
@@ -497,7 +497,7 @@ export function RentalCopilot({
                             className={cn(
                               "py-2 px-3 font-semibold",
                               p.id === msg.comparison?.bestValueId
-                                ? "text-[#5a835f] dark:text-[#a8cca9] bg-[#7ca982]/10 rounded-t-lg"
+                                ? "text-[var(--accent-forest)] bg-[var(--accent-forest-subtle)] rounded-t-lg"
                                 : ""
                             )}
                           >
@@ -506,17 +506,17 @@ export function RentalCopilot({
                         ))}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#f3efe6] dark:divide-[#25362b]">
+                    <tbody className="divide-y divide-[var(--bg-surface-elevated)]">
                       <tr>
-                        <td className="py-2 pr-3 font-medium text-[#4e6853]">Monthly Rent</td>
+                        <td className="py-2 pr-3 font-medium text-[var(--text-muted)]">Monthly Rent</td>
                         {msg.comparison.properties.map((p) => (
-                          <td key={p.id} className="py-2 px-3 font-bold text-[#1d3122] dark:text-[#f5f9f6]">
+                          <td key={p.id} className="py-2 px-3 font-bold text-[var(--text-main)]">
                             ₹{formatInr(p.rent)}
                           </td>
                         ))}
                       </tr>
                       <tr>
-                        <td className="py-2 pr-3 font-medium text-[#4e6853]">Deposit</td>
+                        <td className="py-2 pr-3 font-medium text-[var(--text-muted)]">Deposit</td>
                         {msg.comparison.properties.map((p) => (
                           <td key={p.id} className="py-2 px-3">
                             ₹{formatInr(p.deposit)}
@@ -524,7 +524,7 @@ export function RentalCopilot({
                         ))}
                       </tr>
                       <tr>
-                        <td className="py-2 pr-3 font-medium text-[#4e6853]">Rate / sqft</td>
+                        <td className="py-2 pr-3 font-medium text-[var(--text-muted)]">Rate / sqft</td>
                         {msg.comparison.properties.map((p) => (
                           <td key={p.id} className="py-2 px-3">
                             ₹{Math.round(p.rent / p.sizeSqft)}/sqft
@@ -532,7 +532,7 @@ export function RentalCopilot({
                         ))}
                       </tr>
                       <tr>
-                        <td className="py-2 pr-3 font-medium text-[#4e6853]">Furnishing</td>
+                        <td className="py-2 pr-3 font-medium text-[var(--text-muted)]">Furnishing</td>
                         {msg.comparison.properties.map((p) => (
                           <td key={p.id} className="py-2 px-3">
                             {p.furnishing}
@@ -540,20 +540,20 @@ export function RentalCopilot({
                         ))}
                       </tr>
                       <tr>
-                        <td className="py-2 pr-3 font-medium text-[#4e6853]">Trust Score</td>
+                        <td className="py-2 pr-3 font-medium text-[var(--text-muted)]">Trust Score</td>
                         {msg.comparison.properties.map((p) => (
-                          <td key={p.id} className="py-2 px-3 font-bold text-emerald-600">
+                          <td key={p.id} className="py-2 px-3 font-bold text-[var(--success)]">
                             {p.trustScore}/100
                           </td>
                         ))}
                       </tr>
                       <tr>
-                        <td className="py-2 pr-3 font-medium text-[#4e6853]">Action</td>
+                        <td className="py-2 pr-3 font-medium text-[var(--text-muted)]">Action</td>
                         {msg.comparison.properties.map((p) => (
                           <td key={p.id} className="py-2 px-3">
                             <Link
                               href={`/property/${p.id}`}
-                              className="inline-block px-2.5 py-1 rounded bg-[#7ca982] text-white text-[11px] font-semibold hover:bg-[#6b9a71]"
+                              className="inline-block px-2.5 py-1 rounded bg-[var(--accent-forest)] text-white text-[11px] font-semibold hover:bg-[var(--accent-forest-hover)]"
                             >
                               View
                             </Link>
@@ -564,7 +564,7 @@ export function RentalCopilot({
                   </table>
                 </div>
 
-                <div className="mt-3 p-2.5 rounded-lg bg-[#faf7f0] dark:bg-[#142018] border border-[#e5dfc5] dark:border-[#2a3f31] text-xs text-[#4e6853] dark:text-[#9bb3a0]">
+                <div className="mt-3 p-2.5 rounded-lg bg-[var(--bg-canvas)] border border-[var(--border)] text-xs text-[var(--text-muted)]">
                   <strong>Copilot Verdict:</strong> {msg.comparison.verdict}
                 </div>
               </div>
@@ -572,11 +572,11 @@ export function RentalCopilot({
 
             {/* Contextual Risk Audit Card */}
             {msg.riskAudit && (
-              <div className="w-full mt-2 rounded-xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#1a281f] p-4 shadow-xs">
+              <div className="w-full mt-2 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-4 shadow-xs">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-base">🛡️</span>
-                    <h4 className="font-serif font-bold text-sm text-[#1d3122] dark:text-[#f5f9f6]">
+                    <h4 className="font-serif font-bold text-sm text-[var(--text-main)]">
                       RentTruth™ Risk & Safety Assessment
                     </h4>
                   </div>
@@ -584,10 +584,10 @@ export function RentalCopilot({
                     className={cn(
                       "px-2.5 py-0.5 rounded-full text-xs font-bold uppercase",
                       msg.riskAudit.level === "Low"
-                        ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300"
+                        ? "bg-[var(--success)]/20 text-[var(--success)]"
                         : msg.riskAudit.level === "Moderate"
-                        ? "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300"
-                        : "bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300"
+                        ? "bg-[var(--warning)]/20 text-[var(--warning)]"
+                        : "bg-[var(--error)]/20 text-[var(--error)]"
                     )}
                   >
                     {msg.riskAudit.level} Risk ({msg.riskAudit.score}/100)
@@ -598,20 +598,20 @@ export function RentalCopilot({
                   {msg.riskAudit.factors.map((f, fIdx) => (
                     <div
                       key={fIdx}
-                      className="p-2.5 rounded-lg bg-[#faf7f0] dark:bg-[#142018] border border-[#e5dfc5]/60 dark:border-[#2a3f31]/60 flex items-start gap-2.5"
+                      className="p-2.5 rounded-lg bg-[var(--bg-canvas)] border border-[var(--border)] flex items-start gap-2.5"
                     >
                       <span className="text-sm">
                         {f.status === "pass" ? "✅" : f.status === "warning" ? "⚠️" : "❌"}
                       </span>
                       <div>
-                        <div className="font-semibold text-[#1d3122] dark:text-[#f5f9f6]">{f.title}</div>
-                        <div className="text-[#4e6853] dark:text-[#9bb3a0] mt-0.5">{f.detail}</div>
+                        <div className="font-semibold text-[var(--text-main)]">{f.title}</div>
+                        <div className="text-[var(--text-muted)] mt-0.5">{f.detail}</div>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-3 p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-xs text-emerald-900 dark:text-emerald-200">
+                <div className="mt-3 p-2.5 rounded-lg bg-[var(--success)]/10 border border-[var(--success)]/30 text-xs text-[var(--success)]">
                   <strong>Legal Benchmark:</strong> {msg.riskAudit.legalGuidance}
                 </div>
               </div>
@@ -620,33 +620,33 @@ export function RentalCopilot({
             {/* Contextual Roommate Cards */}
             {msg.roommates && msg.roommates.length > 0 && (
               <div className="w-full mt-2 space-y-2">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#4e6853] dark:text-[#9bb3a0]">
+                <div className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
                   Verified Roommate Matches
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {msg.roommates.map((r) => (
                     <div
                       key={r.id}
-                      className="p-3 rounded-xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#1a281f] text-xs space-y-1.5"
+                      className="p-3 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] text-xs space-y-1.5"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-bold text-[#1d3122] dark:text-[#f5f9f6]">{r.displayName}</span>
-                        <span className="font-mono text-[#7ca982] font-semibold">₹{r.budget.toLocaleString("en-IN")}/mo</span>
+                        <span className="font-bold text-[var(--text-main)]">{r.displayName}</span>
+                        <span className="font-mono text-[var(--accent-forest)] font-semibold">₹{r.budget.toLocaleString("en-IN")}/mo</span>
                       </div>
-                      <div className="text-[#4e6853] dark:text-[#9bb3a0] flex flex-wrap gap-1">
-                        <span className="px-1.5 py-0.5 rounded bg-[#f3efe6] dark:bg-[#25362b]">
+                      <div className="text-[var(--text-muted)] flex flex-wrap gap-1">
+                        <span className="px-1.5 py-0.5 rounded bg-[var(--bg-surface-elevated)]">
                           {r.occupation}
                         </span>
-                        <span className="px-1.5 py-0.5 rounded bg-[#f3efe6] dark:bg-[#25362b]">
+                        <span className="px-1.5 py-0.5 rounded bg-[var(--bg-surface-elevated)]">
                           {r.food} diet
                         </span>
-                        <span className="px-1.5 py-0.5 rounded bg-[#f3efe6] dark:bg-[#25362b]">
+                        <span className="px-1.5 py-0.5 rounded bg-[var(--bg-surface-elevated)]">
                           {r.cleanliness} clean
                         </span>
                       </div>
                       <Link
                         href="/tenant/roommates"
-                        className="inline-block mt-1 text-[11px] font-semibold text-[#5a835f] hover:underline"
+                        className="inline-block mt-1 text-[11px] font-semibold text-[var(--accent-forest)] hover:underline"
                       >
                         Connect via Roommate Hub →
                       </Link>
@@ -664,7 +664,7 @@ export function RentalCopilot({
                     key={pIdx}
                     type="button"
                     onClick={() => handleSendMessage(prompt)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] text-[#1d3122] dark:text-[#f5f9f6] hover:border-[#7ca982] hover:bg-[#7ca982]/10 transition-colors shadow-xs cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-main)] hover:border-[var(--accent-forest)] hover:bg-[var(--accent-forest-subtle)] transition-colors shadow-xs cursor-pointer"
                   >
                     <span>💬</span>
                     <span>{prompt}</span>
@@ -677,21 +677,21 @@ export function RentalCopilot({
 
         {/* Typing Indicator */}
         {loading && (
-          <div className="mr-auto flex items-center gap-2 rounded-2xl rounded-bl-none bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] px-4 py-3 shadow-xs">
-            <span className="text-xs text-[#4e6853] dark:text-[#9bb3a0] font-medium">
+          <div className="mr-auto flex items-center gap-2 rounded-2xl rounded-bl-none bg-[var(--bg-surface)] border border-[var(--border)] px-4 py-3 shadow-xs">
+            <span className="text-xs text-[var(--text-muted)] font-medium">
               Copilot is analyzing...
             </span>
             <div className="flex items-center gap-1">
-              <span className="h-2 w-2 rounded-full bg-[#7ca982] animate-bounce" style={{ animationDelay: "0ms" }} />
-              <span className="h-2 w-2 rounded-full bg-[#7ca982] animate-bounce" style={{ animationDelay: "150ms" }} />
-              <span className="h-2 w-2 rounded-full bg-[#7ca982] animate-bounce" style={{ animationDelay: "300ms" }} />
+              <span className="h-2 w-2 rounded-full bg-[var(--accent-forest)] animate-bounce" style={{ animationDelay: "0ms" }} />
+              <span className="h-2 w-2 rounded-full bg-[var(--accent-forest)] animate-bounce" style={{ animationDelay: "150ms" }} />
+              <span className="h-2 w-2 rounded-full bg-[var(--accent-forest)] animate-bounce" style={{ animationDelay: "300ms" }} />
             </div>
           </div>
         )}
 
         {/* Error State with Retry Button */}
         {error && (
-          <div className="w-full rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 p-4 flex items-center justify-between gap-3 text-xs text-rose-800 dark:text-rose-200">
+          <div className="w-full rounded-xl bg-rose-50 dark:bg-[var(--error)]/10 border border-[var(--error)]/30 p-4 flex items-center justify-between gap-3 text-xs text-[var(--error)]">
             <div className="flex items-center gap-2">
               <span>⚠️</span>
               <span>{error}</span>
@@ -700,7 +700,7 @@ export function RentalCopilot({
               <button
                 type="button"
                 onClick={() => handleSendMessage(lastFailedMessage)}
-                className="px-3 py-1 rounded-lg bg-rose-600 text-white font-semibold hover:bg-rose-700 transition-colors cursor-pointer"
+                className="px-3 py-1 rounded-lg bg-[var(--error)] text-white font-semibold hover:bg-rose-700 transition-colors cursor-pointer"
               >
                 Retry
               </button>
@@ -712,8 +712,8 @@ export function RentalCopilot({
       </div>
 
       {/* Input Form Bar */}
-      <div className="p-3 sm:p-4 bg-white/90 dark:bg-[#1a281f]/90 backdrop-blur-md border-t border-[#e5dfc5] dark:border-[#2a3f31]">
-        <div className="relative flex items-center rounded-xl bg-[#faf7f0] dark:bg-[#142018] border border-[#e5dfc5] dark:border-[#2a3f31] focus-within:border-[#7ca982] focus-within:ring-1 focus-within:ring-[#7ca982] transition-all">
+      <div className="p-3 sm:p-4 bg-[var(--bg-surface)]/90 backdrop-blur-md border-t border-[var(--border)]">
+        <div className="relative flex items-center rounded-xl bg-[var(--bg-canvas)] border border-[var(--border)] focus-within:border-[var(--accent-forest)] focus-within:ring-1 focus-within:ring-[var(--accent-forest)] transition-all">
           <textarea
             ref={textareaRef}
             rows={1}
@@ -721,7 +721,7 @@ export function RentalCopilot({
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask about properties, compare rent, audit deposit risks, or find roommates..."
-            className="flex-1 max-h-32 min-h-[44px] py-2.5 px-3.5 bg-transparent text-xs sm:text-sm text-[#1d3122] dark:text-[#f5f9f6] placeholder-[#7d9782] dark:placeholder-[#6a8471] focus:outline-hidden resize-none"
+            className="flex-1 max-h-32 min-h-[44px] py-2.5 px-3.5 bg-transparent text-xs sm:text-sm text-[var(--text-main)] placeholder-[var(--text-faint)] focus:outline-hidden resize-none"
           />
 
           <div className="pr-2 flex items-center gap-1.5">
@@ -733,8 +733,8 @@ export function RentalCopilot({
               className={cn(
                 "flex h-8 w-8 items-center justify-center rounded-lg text-white transition-all cursor-pointer",
                 input.trim() && !loading
-                  ? "bg-[#7ca982] hover:bg-[#6b9a71] shadow-xs active:scale-95"
-                  : "bg-[#e5dfc5] dark:bg-[#2a3f31] text-[#7d9782] cursor-not-allowed"
+                  ? "bg-[var(--accent-forest)] hover:bg-[var(--accent-forest-hover)] shadow-xs active:scale-95"
+                  : "bg-[var(--border)] text-[var(--text-faint)] cursor-not-allowed"
               )}
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -749,7 +749,7 @@ export function RentalCopilot({
           </div>
         </div>
 
-        <div className="mt-2 flex items-center justify-between text-[10px] text-[#7d9782] dark:text-[#6a8471] px-1">
+        <div className="mt-2 flex items-center justify-between text-[10px] text-[var(--text-faint)] px-1">
           <span>Press Enter to send · Shift+Enter for new line</span>
           <span>Zero-Brokerage · Model Tenancy Act Compliant</span>
         </div>

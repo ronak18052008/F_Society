@@ -29,9 +29,9 @@ export function Field({
 }) {
   return (
     <label className={cn("block", className)}>
-      <span className="block text-xs font-semibold uppercase tracking-wider text-[#3e5244] dark:text-[#a5b8aa] mb-1.5">
+      <span className="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
         {label}
-        {required ? <span className="text-[#c24b4b] ml-0.5">*</span> : null}
+        {required ? <span className="text-[var(--error)] ml-0.5">*</span> : null}
       </span>
       <input
         id={id}
@@ -43,15 +43,15 @@ export function Field({
         disabled={disabled}
         onChange={(event) => onChange?.(event.target.value)}
         className={cn(
-          "w-full rounded-xl border bg-[#fdfcf9] dark:bg-[#152219] px-4 py-2.5 text-sm text-[#1a281f] dark:text-[#f5f9f6] placeholder:text-[#8fa89b] transition-all outline-none focus:border-[#6e9271] focus:ring-2 focus:ring-[#6e9271]/20",
-          disabled && "opacity-60 cursor-not-allowed bg-[#f3efe6]/40 dark:bg-[#1d2d22]/40",
+          "w-full rounded-xl border bg-[var(--bg-surface)] px-4 py-2.5 text-sm text-[var(--text-main)] placeholder:text-[var(--text-faint)] transition-all outline-none focus:border-[var(--primary-pista)] focus:ring-2 focus:ring-[var(--primary-pista-subtle)]",
+          disabled && "opacity-60 cursor-not-allowed bg-[var(--bg-surface-elevated)]/40",
           error
-            ? "border-[#e08b8b] dark:border-[#963737] focus:ring-[#c24b4b]/20"
-            : "border-[#e3dfd5] dark:border-[#2a3f31]",
+            ? "border-[var(--error)]/60 focus:ring-[var(--error)]/20"
+            : "border-[var(--border)]",
         )}
       />
-      {hint ? <p className="mt-1.5 text-xs text-[#5e7565] dark:text-[#8ea393]">{hint}</p> : null}
-      {error ? <p className="mt-1.5 text-xs text-[#c24b4b] font-medium">{error}</p> : null}
+      {hint ? <p className="mt-1.5 text-xs text-[var(--text-faint)]">{hint}</p> : null}
+      {error ? <p className="mt-1.5 text-xs text-[var(--error)] font-medium">{error}</p> : null}
     </label>
   );
 }
@@ -80,7 +80,7 @@ export function TextArea({
   return (
     <label className={cn("block", className)}>
       {label ? (
-        <span className="block text-xs font-semibold uppercase tracking-wider text-[#3e5244] dark:text-[#a5b8aa] mb-1.5">
+        <span className="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
           {label}
         </span>
       ) : null}
@@ -92,13 +92,13 @@ export function TextArea({
         placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
         className={cn(
-          "w-full rounded-xl border bg-[#fdfcf9] dark:bg-[#152219] px-4 py-3 text-sm text-[#1a281f] dark:text-[#f5f9f6] placeholder:text-[#8fa89b] transition-all outline-none focus:border-[#6e9271] focus:ring-2 focus:ring-[#6e9271]/20",
+          "w-full rounded-xl border bg-[var(--bg-surface)] px-4 py-3 text-sm text-[var(--text-main)] placeholder:text-[var(--text-faint)] transition-all outline-none focus:border-[var(--primary-pista)] focus:ring-2 focus:ring-[var(--primary-pista-subtle)]",
           error
-            ? "border-[#e08b8b] dark:border-[#963737] focus:ring-[#c24b4b]/20"
-            : "border-[#e3dfd5] dark:border-[#2a3f31]",
+            ? "border-[var(--error)]/60 focus:ring-[var(--error)]/20"
+            : "border-[var(--border)]",
         )}
       />
-      {error ? <p className="mt-1.5 text-xs text-[#c24b4b] font-medium">{error}</p> : null}
+      {error ? <p className="mt-1.5 text-xs text-[var(--error)] font-medium">{error}</p> : null}
     </label>
   );
 }
@@ -118,13 +118,13 @@ export function SelectField({
 }) {
   return (
     <label className={cn("block", className)}>
-      <span className="block text-xs font-semibold uppercase tracking-wider text-[#3e5244] dark:text-[#a5b8aa] mb-1.5">
+      <span className="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
         {label}
       </span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-xl border border-[#e3dfd5] dark:border-[#2a3f31] bg-[#fdfcf9] dark:bg-[#152219] px-4 py-2.5 text-sm text-[#1a281f] dark:text-[#f5f9f6] transition-all outline-none focus:border-[#6e9271] focus:ring-2 focus:ring-[#6e9271]/20 cursor-pointer"
+        className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] px-4 py-2.5 text-sm text-[var(--text-main)] transition-all outline-none focus:border-[var(--primary-pista)] focus:ring-2 focus:ring-[var(--primary-pista-subtle)] cursor-pointer"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

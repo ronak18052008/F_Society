@@ -215,8 +215,8 @@ export function PropertyReputationGraph({
     switch (source) {
       case "VERIFIED DATA":
         return (
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-bold tracking-wider text-emerald-800 dark:text-emerald-300 border border-emerald-500/30">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--success)]/15 px-2.5 py-0.5 text-[10px] font-bold tracking-wider text-[var(--success)] border border-[var(--success)]/30">
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" />
             VERIFIED DATA
           </span>
         );
@@ -239,7 +239,7 @@ export function PropertyReputationGraph({
 
   if (loading) {
     return (
-      <div className={cn("rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card p-6 shadow-card animate-pulse", className)}>
+      <div className={cn("rounded-3xl border border-[var(--border)] bg-card p-6 shadow-card animate-pulse", className)}>
         <div className="flex items-center justify-between">
           <div className="h-6 w-56 rounded bg-black/10 dark:bg-white/10" />
           <div className="h-7 w-32 rounded-full bg-black/10 dark:bg-white/10" />
@@ -268,12 +268,12 @@ export function PropertyReputationGraph({
   };
 
   return (
-    <div className={cn("rounded-3xl border border-[#7ca982]/30 bg-card p-6 shadow-card transition-all", className)}>
+    <div className={cn("rounded-3xl border border-[var(--accent-forest)]/30 bg-card p-6 shadow-card transition-all", className)}>
       {/* Header & Graph Metadata */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[var(--accent-forest)]/20 text-[var(--text-main)]">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
@@ -281,7 +281,7 @@ export function PropertyReputationGraph({
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-lg font-serif font-bold text-ink">Property Reputation Graph</h3>
-                <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                <span className="rounded-full bg-[var(--accent-forest)]/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--text-main)] border border-[var(--accent-forest)]/30">
                   Feature 6
                 </span>
               </div>
@@ -301,9 +301,9 @@ export function PropertyReputationGraph({
             </span>
           </div>
 
-          <div className="flex items-center gap-2 rounded-2xl border border-[#7ca982]/40 bg-[#7ca982]/10 px-3.5 py-1.5 text-xs">
-            <span className="text-ink-muted text-[11px]">Confidence:</span>
-            <span className="font-bold text-[#1d3122] dark:text-[#a3caa6]">
+          <div className="flex items-center gap-2 rounded-2xl border border-[var(--accent-forest)]/40 bg-[var(--accent-forest)]/10 px-3.5 py-1.5 text-xs">
+            <span className="text-[var(--text-muted)] text-[11px]">Confidence:</span>
+            <span className="font-bold text-[var(--text-main)]">
               {graph.overallConfidence} ({Math.round(graph.confidenceScore * 100)}%)
             </span>
           </div>
@@ -329,7 +329,7 @@ export function PropertyReputationGraph({
             className={cn(
               "rounded-full px-3 py-1 text-xs font-semibold transition shadow-xs",
               filterSource === "ALL"
-                ? "bg-[#7ca982] text-white"
+                ? "bg-[var(--accent-forest)] text-white"
                 : "bg-surface hover:bg-line border border-line text-ink"
             )}
           >
@@ -408,18 +408,18 @@ export function PropertyReputationGraph({
       {/* Main Graph Viewport & Inspector Side-by-Side */}
       <div className="mt-5 grid gap-6 lg:grid-cols-[1.3fr_0.9fr]">
         {/* SVG Canvas Area */}
-        <div className="relative overflow-hidden rounded-2xl border border-line bg-[#faf7f0]/60 dark:bg-[#111a14]/60 shadow-inner h-[480px]">
+        <div className="relative overflow-hidden rounded-2xl border border-line bg-[var(--bg-canvas)]/60 shadow-inner h-[480px]">
           {/* Subtle Grid Pattern */}
           <div
             className="absolute inset-0 opacity-20 pointer-events-none"
             style={{
-              backgroundImage: "radial-gradient(#7ca982 1px, transparent 1px)",
+              backgroundImage: "radial-gradient(var(--accent-forest) 1px, transparent 1px)",
               backgroundSize: "24px 24px",
             }}
           />
 
           {/* Pan / Drag Hint */}
-          <div className="absolute top-3 left-3 pointer-events-none rounded-xl bg-card/85 backdrop-blur-md px-3 py-1 text-[11px] font-medium text-ink-muted border border-line/60 shadow-xs">
+          <div className="absolute top-3 left-3 pointer-events-none rounded-xl bg-card/85 backdrop-blur-md px-3 py-1 text-[11px] font-medium text-[var(--text-muted)] border border-line/60 shadow-xs">
             Drag to pan · Scroll to zoom · Click node to inspect
           </div>
 
@@ -438,8 +438,8 @@ export function PropertyReputationGraph({
           >
             <defs>
               <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#7ca982" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#94b899" stopOpacity="0.4" />
+                <stop offset="0%" stopColor="var(--accent-forest)" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="var(--accent-forest-hover)" stopOpacity="0.4" />
               </linearGradient>
               <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="3" result="blur" />
@@ -478,7 +478,7 @@ export function PropertyReputationGraph({
                       y2={target.y}
                       stroke={
                         rel.sourceClassification === "VERIFIED DATA"
-                          ? "#10b981"
+                          ? "var(--success)"
                           : rel.sourceClassification === "USER-GENERATED DATA"
                           ? "#0ea5e9"
                           : "#8b5cf6"
@@ -511,8 +511,8 @@ export function PropertyReputationGraph({
                         className={cn(
                           "transition-all",
                           rel.id === selectedRelationshipId
-                            ? "fill-[#7ca982] stroke-white stroke-1 shadow-md"
-                            : "fill-white dark:fill-[#1e2a22] stroke-line/60 stroke-1"
+                            ? "fill-[var(--accent-forest)] stroke-white stroke-1 shadow-md"
+                            : "fill-white dark:fill-[var(--bg-surface-elevated)] stroke-line/60 stroke-1"
                         )}
                         opacity={isDimmed ? 0.2 : isConnected ? 1 : 0.85}
                       />
@@ -561,7 +561,7 @@ export function PropertyReputationGraph({
                     {isSelected && (
                       <circle
                         r={isProperty ? 44 : 34}
-                        className="fill-[#7ca982]/20 stroke-[#7ca982] stroke-2 animate-pulse"
+                        className="fill-[var(--accent-forest)]/20 stroke-[var(--accent-forest)] stroke-2 animate-pulse"
                       />
                     )}
 
@@ -571,9 +571,9 @@ export function PropertyReputationGraph({
                       className={cn(
                         "transition-all",
                         isInsufficient
-                          ? "fill-amber-50 dark:fill-amber-950/40 stroke-amber-500 stroke-2 stroke-dasharray-4"
+                          ? "fill-[var(--warning)]/10 stroke-[var(--warning)] stroke-2 stroke-dasharray-4"
                           : node.dataSource === "VERIFIED DATA"
-                          ? "fill-emerald-50 dark:fill-emerald-950/40 stroke-emerald-500 stroke-2"
+                          ? "fill-[var(--success)]/10 stroke-[var(--success)] stroke-2"
                           : node.dataSource === "USER-GENERATED DATA"
                           ? "fill-sky-50 dark:fill-sky-950/40 stroke-sky-500 stroke-2"
                           : "fill-purple-50 dark:fill-purple-950/40 stroke-purple-500 stroke-2"
@@ -586,9 +586,9 @@ export function PropertyReputationGraph({
                       transform={isProperty ? "translate(-12, -12)" : "translate(-9, -9)"}
                       className={cn(
                         isInsufficient
-                          ? "text-amber-600 dark:text-amber-400"
+                          ? "text-[var(--warning)]"
                           : node.dataSource === "VERIFIED DATA"
-                          ? "text-emerald-700 dark:text-emerald-400"
+                          ? "text-[var(--success)]"
                           : node.dataSource === "USER-GENERATED DATA"
                           ? "text-sky-700 dark:text-sky-400"
                           : "text-purple-700 dark:text-purple-400"
@@ -625,7 +625,7 @@ export function PropertyReputationGraph({
                       fontWeight="500"
                       className={cn(
                         isInsufficient
-                          ? "fill-amber-600 dark:fill-amber-400 font-bold"
+                          ? "fill-[var(--warning)] font-bold"
                           : "fill-ink-muted"
                       )}
                     >
@@ -648,13 +648,13 @@ export function PropertyReputationGraph({
             // Relationship Inspector View
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b border-line pb-3">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                   Relationship Inspection
                 </span>
                 <button
                   type="button"
                   onClick={() => setSelectedRelationshipId(null)}
-                  className="text-xs font-semibold text-[#7ca982] hover:underline"
+                  className="text-xs font-semibold text-[var(--accent-forest)] hover:underline"
                 >
                   Close
                 </button>
@@ -664,7 +664,7 @@ export function PropertyReputationGraph({
                 <h4 className="text-base font-serif font-bold text-ink">
                   {selectedRelationship.label}
                 </h4>
-                <p className="text-xs text-ink-muted mt-1 font-mono">
+                <p className="text-xs text-[var(--text-muted)] mt-1 font-mono">
                   {selectedRelationship.relationshipType}
                 </p>
               </div>
@@ -685,7 +685,7 @@ export function PropertyReputationGraph({
 
               {/* Evidence for this relationship */}
               <div>
-                <h5 className="text-xs font-bold uppercase tracking-wider text-ink-muted mb-2">
+                <h5 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                   Verifiable Evidence & Source
                 </h5>
                 <div className="space-y-2">
@@ -694,12 +694,12 @@ export function PropertyReputationGraph({
                       <div className="flex items-center justify-between font-semibold text-ink">
                         <span>{ev.source}</span>
                         {ev.verified ? (
-                          <span className="text-emerald-600 dark:text-emerald-400 text-[10px]">✓ Certified</span>
+                          <span className="text-[var(--success)] text-[10px]">✓ Certified</span>
                         ) : (
-                          <span className="text-amber-600 dark:text-amber-400 text-[10px]">Uncertified</span>
+                          <span className="text-[var(--warning)] text-[10px]">Uncertified</span>
                         )}
                       </div>
-                      <p className="mt-1 text-ink-muted leading-relaxed">{ev.description}</p>
+                      <p className="mt-1 text-[var(--text-muted)] leading-relaxed">{ev.description}</p>
                     </div>
                   ))}
                 </div>
@@ -709,36 +709,36 @@ export function PropertyReputationGraph({
             // Node Inspector View
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b border-line pb-3">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                   Entity Inspector · {selectedNode.entityType}
                 </span>
                 {selectedNode.score !== undefined && (
-                  <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-xs font-bold text-[#1d3122] dark:text-[#a3caa6]">
+                  <span className="rounded-full bg-[var(--accent-forest)]/15 px-2.5 py-0.5 text-xs font-bold text-[var(--text-main)]">
                     Entity Score: {selectedNode.score}/100
                   </span>
                 )}
               </div>
 
               <div>
-                <h4 className="text-base font-serif font-bold text-ink">
+                <h4 className="text-base font-serif font-bold text-[var(--text-main)]">
                   {selectedNode.label}
                 </h4>
                 {selectedNode.sublabel && (
-                  <p className="text-xs text-ink-muted mt-0.5">{selectedNode.sublabel}</p>
+                  <p className="text-xs text-[var(--text-muted)] mt-0.5">{selectedNode.sublabel}</p>
                 )}
               </div>
 
               {/* Classification & Confidence Badges */}
               <div className="flex flex-wrap items-center gap-2">
                 {getClassificationBadge(selectedNode.dataSource)}
-                <span className="rounded-full bg-surface border border-line px-2.5 py-0.5 text-[10px] font-bold text-ink">
+                <span className="rounded-full bg-surface border border-line px-2.5 py-0.5 text-[10px] font-bold text-[var(--text-main)]">
                   Confidence: {selectedNode.confidence} ({Math.round(selectedNode.confidenceScore * 100)}%)
                 </span>
               </div>
 
               {/* Zero-Fabrication Alert for Insufficient Data */}
               {(selectedNode.insufficientData || selectedNode.status === "insufficient_data") && (
-                <div className="rounded-xl border border-amber-300 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-900/50 p-3 text-xs text-amber-900 dark:text-amber-200">
+                <div className="rounded-xl border border-[var(--warning)]/50 bg-[var(--warning)]/10 p-3 text-xs text-[var(--warning)]">
                   <div className="flex items-center gap-1.5 font-bold mb-1">
                     <span>⚠️</span>
                     <span>Insufficient Verified Data</span>
@@ -750,13 +750,13 @@ export function PropertyReputationGraph({
               )}
 
               {/* Node Summary Description */}
-              <p className="text-xs text-ink leading-relaxed bg-surface/70 border border-line/60 rounded-xl p-3">
+              <p className="text-xs text-[var(--text-main)] leading-relaxed bg-surface/70 border border-line/60 rounded-xl p-3">
                 {selectedNode.description}
               </p>
 
               {/* Connected Relationships with click-to-inspect */}
               <div>
-                <h5 className="text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-2">
+                <h5 className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                   Connected Relationships ({connectedRelationships.length})
                 </h5>
                 <div className="flex flex-wrap gap-1.5">
@@ -768,10 +768,10 @@ export function PropertyReputationGraph({
                         key={rel.id}
                         type="button"
                         onClick={() => setSelectedRelationshipId(rel.id)}
-                        className="rounded-lg border border-line bg-surface hover:bg-line/80 px-2.5 py-1 text-[11px] font-medium text-ink transition shadow-2xs"
+                        className="rounded-lg border border-line bg-surface hover:bg-line/80 px-2.5 py-1 text-[11px] font-medium text-[var(--text-main)] transition shadow-2xs"
                       >
                         <span>{rel.label}</span>
-                        <span className="text-ink-muted ml-1">({otherNode?.entityType})</span>
+                        <span className="text-[var(--text-muted)] ml-1">({otherNode?.entityType})</span>
                       </button>
                     );
                   })}
@@ -780,7 +780,7 @@ export function PropertyReputationGraph({
 
               {/* Traceable Evidence Drawer */}
               <div>
-                <h5 className="text-[11px] font-bold uppercase tracking-wider text-ink-muted mb-2">
+                <h5 className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-2">
                   Verifiable Evidence & Audit Trail
                 </h5>
                 <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
@@ -789,10 +789,10 @@ export function PropertyReputationGraph({
                       <div className="flex items-center justify-between font-semibold text-ink">
                         <span>{ev.source}</span>
                         {ev.timestamp && (
-                          <span className="text-[10px] text-ink-muted font-tabular">{ev.timestamp}</span>
+                          <span className="text-[10px] text-[var(--text-muted)] font-tabular">{ev.timestamp}</span>
                         )}
                       </div>
-                      <p className="mt-1 text-ink-muted leading-relaxed">{ev.description}</p>
+                      <p className="mt-1 text-[var(--text-muted)] leading-relaxed">{ev.description}</p>
                     </div>
                   ))}
                 </div>
@@ -801,7 +801,7 @@ export function PropertyReputationGraph({
           ) : (
             <div className="flex flex-col items-center justify-center h-full text-center p-6 text-ink-muted">
               <span className="text-2xl mb-2">🔍</span>
-              <p className="text-xs font-semibold text-ink">Select Any Graph Node</p>
+              <p className="text-xs font-semibold text-[var(--text-main)]">Select Any Graph Node</p>
               <p className="text-[11px] mt-1">
                 Click any of the 8 entities or connecting relationships to inspect verified evidence and confidence metrics.
               </p>
@@ -811,9 +811,9 @@ export function PropertyReputationGraph({
       </div>
 
       {/* FOOTER NOTICE ON ZERO-FABRICATION INTEGRITY */}
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 text-xs text-ink-muted">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 text-xs text-[var(--text-muted)]">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          <span className="h-2 w-2 rounded-full bg-[var(--success)]" />
           <span>
             Strict Provenance Audit Enabled · Zero Synthetic Feedback Guarantee
           </span>
@@ -830,7 +830,7 @@ export function PropertyReputationGraph({
         title="Traceable AI Signals & Provenance Audit"
       >
         <div className="space-y-4 text-xs">
-          <p className="text-ink-muted leading-relaxed">
+          <p className="text-[var(--text-muted)] leading-relaxed">
             Every signal influencing the property reputation index is strictly grounded in verifiable records, telemetry algorithms, or transparent zero-fabrication notices.
           </p>
 
@@ -842,32 +842,32 @@ export function PropertyReputationGraph({
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="font-serif font-bold text-ink text-sm">
+                    <span className="font-serif font-bold text-[var(--text-main)] text-sm">
                       {sig.title}
                     </span>
-                    <span className="rounded-full bg-surface border border-line px-2 py-0.5 text-[10px] font-mono text-ink-muted">
+                    <span className="rounded-full bg-surface border border-line px-2 py-0.5 text-[10px] font-mono text-[var(--text-muted)]">
                       {sig.code}
                     </span>
                   </div>
                   {getClassificationBadge(sig.classification)}
                 </div>
 
-                <p className="mt-2 text-ink leading-relaxed">{sig.description}</p>
+                <p className="mt-2 text-[var(--text-main)] leading-relaxed">{sig.description}</p>
 
                 <div className="mt-3 grid gap-2 rounded-xl bg-surface/70 border border-line/60 p-3 text-[11px]">
                   <div className="flex justify-between">
-                    <span className="text-ink-muted">Affected Entity:</span>
-                    <strong className="text-ink">{sig.entityType}</strong>
+                    <span className="text-[var(--text-muted)]">Affected Entity:</span>
+                    <strong className="text-[var(--text-main)]">{sig.entityType}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-ink-muted">Traceable Source:</span>
-                    <span className="font-mono text-ink text-right max-w-xs truncate">
+                    <span className="text-[var(--text-muted)]">Traceable Source:</span>
+                    <span className="font-mono text-[var(--text-main)] text-right max-w-xs truncate">
                       {sig.traceableSource}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-ink-muted">Signal Confidence:</span>
-                    <strong className="text-[#1d3122] dark:text-[#a3caa6]">
+                    <span className="text-[var(--text-muted)]">Signal Confidence:</span>
+                    <strong className="text-[var(--text-main)]">
                       {Math.round(sig.confidence * 100)}%
                     </strong>
                   </div>
@@ -880,7 +880,7 @@ export function PropertyReputationGraph({
             <button
               type="button"
               onClick={() => setShowSignalsModal(false)}
-              className="rounded-full bg-[#7ca982] hover:bg-[#6b9a71] px-5 py-2 text-xs font-semibold text-white shadow-xs transition"
+              className="rounded-full bg-[var(--accent-forest)] hover:bg-[var(--accent-forest-hover)] px-5 py-2 text-xs font-semibold text-white shadow-xs transition"
             >
               Close Audit
             </button>

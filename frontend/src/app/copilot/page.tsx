@@ -48,32 +48,32 @@ export default function CopilotPage() {
 
   return (
     <SiteShell>
-      <div className="min-h-[calc(100vh-80px)] bg-[#faf7f0] dark:bg-[#142018] py-6 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-[calc(100vh-80px)] bg-[var(--bg-canvas)] py-6 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           {/* Page Hero Header */}
-          <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-6">
+          <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-[var(--border)] pb-6">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-bold text-[#5a835f] dark:text-[#a8cca9] mb-2 border border-[#7ca982]/30">
-                <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista-subtle)] px-3 py-1 text-xs font-bold text-[var(--primary-pista-hover)] mb-2 border border-[var(--border-subtle)]">
+                <span className="h-2 w-2 rounded-full bg-[var(--primary-pista)]" />
                 Nivasa AI Rental Copilot · Active Intelligence
               </div>
-            <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#1d3122] dark:text-[#f5f9f6]">
+            <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-main)]">
               AI Rental Copilot
             </h1>
-            <p className="mt-1 text-sm text-[#4e6853] dark:text-[#9bb3a0] max-w-2xl">
+            <p className="mt-1 text-sm text-[var(--text-muted)] max-w-2xl">
               Conversational intelligence for verified property discovery, side-by-side metric comparison,
               RentTruth™ security deposit audits, and tenancy issue triage.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1 rounded-lg bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] px-3 py-1.5 text-xs font-semibold text-[#1d3122] dark:text-[#f5f9f6]">
+            <span className="inline-flex items-center gap-1 rounded-lg bg-[var(--bg-surface)] border border-[var(--border)] px-3 py-1.5 text-xs font-semibold text-[var(--text-main)]">
               🛡️ Zero Brokerage
             </span>
-            <span className="inline-flex items-center gap-1 rounded-lg bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] px-3 py-1.5 text-xs font-semibold text-[#1d3122] dark:text-[#f5f9f6]">
+            <span className="inline-flex items-center gap-1 rounded-lg bg-[var(--bg-surface)] border border-[var(--border)] px-3 py-1.5 text-xs font-semibold text-[var(--text-main)]">
               📜 MTA Compliant
             </span>
-            <span className="inline-flex items-center gap-1 rounded-lg bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] px-3 py-1.5 text-xs font-semibold text-[#1d3122] dark:text-[#f5f9f6]">
+            <span className="inline-flex items-center gap-1 rounded-lg bg-[var(--bg-surface)] border border-[var(--border)] px-3 py-1.5 text-xs font-semibold text-[var(--text-main)]">
               ⚡ Live Intelligence
             </span>
           </div>
@@ -87,7 +87,7 @@ export default function CopilotPage() {
             <button
               type="button"
               onClick={handleStartNewChat}
-              className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#7ca982] hover:bg-[#6b9a71] text-white font-semibold py-3 px-4 shadow-sm hover:shadow-md transition-all active:scale-[0.99] cursor-pointer text-sm"
+              className="w-full flex items-center justify-center gap-2 rounded-xl bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white font-semibold py-3 px-4 shadow-sm hover:shadow-md transition-all active:scale-[0.99] cursor-pointer text-sm"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -96,20 +96,20 @@ export default function CopilotPage() {
             </button>
 
             {/* Past Consultations Card */}
-            <div className="rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#1a281f] p-4 shadow-xs">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-surface-elevated)] p-4 shadow-xs">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-serif font-bold text-sm text-[#1d3122] dark:text-[#f5f9f6]">
+                <h3 className="font-serif font-bold text-sm text-[var(--text-main)]">
                   Recent Consultations
                 </h3>
-                <span className="text-[11px] font-mono text-[#7d9782]">
+                <span className="text-[11px] font-mono text-[var(--text-faint)]">
                   {conversations.length} saved
                 </span>
               </div>
 
               {loadingHistory ? (
-                <div className="py-6 text-center text-xs text-[#7d9782]">Loading history...</div>
+                <div className="py-6 text-center text-xs text-[var(--text-faint)]">Loading history...</div>
               ) : conversations.length === 0 ? (
-                <div className="py-6 text-center text-xs text-[#7d9782]">
+                <div className="py-6 text-center text-xs text-[var(--text-faint)]">
                   No past consultations yet. Start chatting to save your inquiries.
                 </div>
               ) : (
@@ -122,13 +122,13 @@ export default function CopilotPage() {
                       className={cn(
                         "w-full text-left p-2.5 rounded-xl text-xs transition-all flex items-center justify-between gap-2 cursor-pointer",
                         activeConvId === c.id
-                          ? "bg-[#7ca982]/15 text-[#1d3122] dark:text-[#f5f9f6] font-semibold border border-[#7ca982]/40"
-                          : "hover:bg-[#faf7f0] dark:hover:bg-[#142018] text-[#4e6853] dark:text-[#9bb3a0]"
+                          ? "bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-semibold border border-[var(--border)]"
+                          : "hover:bg-[var(--bg-canvas)] text-[var(--text-muted)]"
                       )}
                     >
                       <div className="truncate">
                         <div className="truncate">{c.title}</div>
-                        <div className="text-[10px] text-[#7d9782] font-mono mt-0.5">
+                        <div className="text-[10px] text-[var(--text-faint)] font-mono mt-0.5">
                           {new Date(c.updated_at).toLocaleDateString()}
                         </div>
                       </div>
@@ -144,56 +144,56 @@ export default function CopilotPage() {
             </div>
 
             {/* 7 Supported Domains Guide */}
-            <div className="rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#1a281f] p-4 shadow-xs space-y-3">
-              <h3 className="font-serif font-bold text-sm text-[#1d3122] dark:text-[#f5f9f6]">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-surface-elevated)] p-4 shadow-xs space-y-3">
+              <h3 className="font-serif font-bold text-sm text-[var(--text-main)]">
                 Copilot Capabilities
               </h3>
               <div className="space-y-2 text-xs">
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[#faf7f0] dark:bg-[#142018]">
+                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[var(--bg-canvas)]">
                   <span>🔍</span>
                   <div>
-                    <div className="font-semibold text-[#1d3122] dark:text-[#f5f9f6]">Property Discovery</div>
-                    <div className="text-[#4e6853] dark:text-[#9bb3a0]">Searches 4,750+ verified homes across 6 metros.</div>
+                    <div className="font-semibold text-[var(--text-main)]">Property Discovery</div>
+                    <div className="text-[var(--text-muted)]">Searches 4,750+ verified homes across 6 metros.</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[#faf7f0] dark:bg-[#142018]">
+                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[var(--bg-canvas)]">
                   <span>⚖️</span>
                   <div>
-                    <div className="font-semibold text-[#1d3122] dark:text-[#f5f9f6]">Comparison Matrices</div>
-                    <div className="text-[#4e6853] dark:text-[#9bb3a0]">Evaluates rent, deposits, rate/sqft, and trust metrics.</div>
+                    <div className="font-semibold text-[var(--text-main)]">Comparison Matrices</div>
+                    <div className="text-[var(--text-muted)]">Evaluates rent, deposits, rate/sqft, and trust metrics.</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[#faf7f0] dark:bg-[#142018]">
+                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[var(--bg-canvas)]">
                   <span>🛡️</span>
                   <div>
-                    <div className="font-semibold text-[#1d3122] dark:text-[#f5f9f6]">RentTruth™ Risk Audits</div>
-                    <div className="text-[#4e6853] dark:text-[#9bb3a0]">Identifies deposit inflations and unfair clauses.</div>
+                    <div className="font-semibold text-[var(--text-main)]">RentTruth™ Risk Audits</div>
+                    <div className="text-[var(--text-muted)]">Identifies deposit inflations and unfair clauses.</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[#faf7f0] dark:bg-[#142018]">
+                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[var(--bg-canvas)]">
                   <span>🤝</span>
                   <div>
-                    <div className="font-semibold text-[#1d3122] dark:text-[#f5f9f6]">Roommate Match</div>
-                    <div className="text-[#4e6853] dark:text-[#9bb3a0]">Matches verified roommates by dietary, sleep, and budget fit.</div>
+                    <div className="font-semibold text-[var(--text-main)]">Roommate Match</div>
+                    <div className="text-[var(--text-muted)]">Matches verified roommates by dietary, sleep, and budget fit.</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[#faf7f0] dark:bg-[#142018]">
+                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[var(--bg-canvas)]">
                   <span>🔧</span>
                   <div>
-                    <div className="font-semibold text-[#1d3122] dark:text-[#f5f9f6]">Maintenance Triage</div>
-                    <div className="text-[#4e6853] dark:text-[#9bb3a0]">Triages repairs and clarifies legal responsibilities.</div>
+                    <div className="font-semibold text-[var(--text-main)]">Maintenance Triage</div>
+                    <div className="text-[var(--text-muted)]">Triages repairs and clarifies legal responsibilities.</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[#faf7f0] dark:bg-[#142018]">
+                <div className="flex items-start gap-2.5 p-2 rounded-lg bg-[var(--bg-canvas)]">
                   <span>✅</span>
                   <div>
-                    <div className="font-semibold text-[#1d3122] dark:text-[#f5f9f6]">Verification Protocol</div>
-                    <div className="text-[#4e6853] dark:text-[#9bb3a0]">Guides Aadhaar KYC, title deeds, and condition passports.</div>
+                    <div className="font-semibold text-[var(--text-main)]">Verification Protocol</div>
+                    <div className="text-[var(--text-muted)]">Guides Aadhaar KYC, title deeds, and condition passports.</div>
                   </div>
                 </div>
               </div>

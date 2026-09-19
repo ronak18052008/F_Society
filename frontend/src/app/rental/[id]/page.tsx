@@ -115,7 +115,7 @@ export default function RentalDashboardPage() {
           href="/tenant/expenses"
           className="group relative rounded-2xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 shadow-xs hover:shadow-md hover:border-pista transition-all duration-200"
         >
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] mb-3 group-hover:scale-110 transition-transform">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--primary-pista)]/15 text-[var(--text-main)] mb-3 group-hover:scale-110 transition-transform">
             <span className="text-xl">💰</span>
           </div>
           <p className="text-lg font-serif font-bold text-ink dark:text-cream group-hover:text-forest dark:group-hover:text-pista transition-colors">Roommate Splits</p>

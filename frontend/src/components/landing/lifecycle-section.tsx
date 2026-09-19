@@ -99,7 +99,7 @@ export function LifecycleSection() {
         {/* Section Header */}
         <Reveal>
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--accent-forest)]/15 px-3.5 py-1 text-xs font-semibold text-[var(--accent-forest)] border border-[var(--accent-forest)]/30">
               The Tenancy Protocol
             </span>
             <h2 className="display mt-4 text-3xl sm:text-5xl font-serif font-bold tracking-tight text-ink">
@@ -124,8 +124,8 @@ export function LifecycleSection() {
                 key={step.number}
                 className={cn(
                   "lifecycle-card relative flex flex-col justify-between rounded-3xl border border-line bg-card p-6 sm:p-7 shadow-card transition-all duration-300",
-                  "hover:border-[#6E9271]/50 hover:shadow-card-hover hover:-translate-y-1",
-                  isHovered && "border-[#6E9271]/60",
+                  "hover:border-[var(--accent-forest)]/50 hover:shadow-card-hover hover:-translate-y-1",
+                  isHovered && "border-[var(--accent-forest)]/60",
                 )}
                 onMouseEnter={() => setActiveStep(index)}
                 onMouseLeave={() => setActiveStep(null)}
@@ -133,7 +133,7 @@ export function LifecycleSection() {
                 <div>
                   {/* Step Header Pill */}
                   <div className="flex items-center justify-between">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#6E9271]/15 text-xs font-bold text-[#6E9271] dark:text-[#A3B899] font-tabular border border-[#6E9271]/20">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--accent-forest)]/15 text-xs font-bold text-[var(--accent-forest)] font-tabular border border-[var(--accent-forest)]/20">
                       {step.number}
                     </span>
                     <span className="rounded-full bg-paper border border-line px-2.5 py-0.5 text-[10px] font-semibold text-ink-muted uppercase tracking-wider">
@@ -158,7 +158,7 @@ export function LifecycleSection() {
                   <div className="mt-6 pt-2">
                     <Link
                       href={step.href}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#57875d] dark:text-[#A3B899] hover:underline transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--accent-forest)] hover:underline transition-colors"
                     >
                       <span>{step.ctaText ?? "Learn more"}</span>
                       <span className="text-sm">→</span>
@@ -177,7 +177,7 @@ export function LifecycleSection() {
           </p>
           <Link
             href="/how-it-works"
-            className="font-medium text-[#6E9271] hover:underline underline-offset-2 whitespace-nowrap"
+            className="font-medium text-[var(--accent-forest)] hover:underline underline-offset-2 whitespace-nowrap"
           >
             Explore Complete Journey Guide →
           </Link>

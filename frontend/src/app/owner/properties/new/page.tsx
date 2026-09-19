@@ -153,8 +153,8 @@ export default function AddPropertyPage() {
           </div>
 
           {/* Section 2: Financial Terms */}
-          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">2. Financial Terms (RentTruth™)</h3>
+          <div className="pt-4 border-t border-line">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-ink-muted mb-3">2. Financial Terms (RentTruth™)</h3>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field
                 label="Monthly Base Rent (₹)"
@@ -175,8 +175,8 @@ export default function AddPropertyPage() {
           </div>
 
           {/* Section 3: Specs & Amenities */}
-          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">3. Specifications &amp; Move-in</h3>
+          <div className="pt-4 border-t border-line">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-ink-muted mb-3">3. Specifications &amp; Move-in</h3>
             <div className="grid gap-4 sm:grid-cols-2 mb-4">
               <SelectField
                 label="Furnishing Tier"
@@ -215,8 +215,8 @@ export default function AddPropertyPage() {
           </div>
 
           {/* Section 4: Imagery */}
-          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">4. Architectural Photography</h3>
+          <div className="pt-4 border-t border-line">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-ink-muted mb-3">4. Architectural Photography</h3>
             <UploadField
               label="Upload Primary Showcase Photograph"
               accept="image/*"

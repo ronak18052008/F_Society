@@ -85,63 +85,63 @@ export default function OwnerLoginPage() {
           <div className="lg:col-span-6 space-y-6">
             <div className="flex items-center gap-3">
               <NivasaLogo variant="mark" size="sm" />
-              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-200 border border-amber-500/30">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista-subtle)] px-3 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--primary-pista-subtle)]">
                 <span>Owner & Landlord Portal</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary-pista)]" />
                 <span>OWNER</span>
               </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-ink tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--text-main)] tracking-tight leading-tight">
               Owner & Landlord Portal
             </h1>
 
-            <p className="text-sm sm:text-base text-ink-muted leading-relaxed font-medium">
+            <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed font-medium">
               Manage properties, tenant inquiries, leases, and property operations with Nivasa.
             </p>
 
             {/* Feature Highlights per Section 7 */}
             <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-amber-900 dark:text-amber-200 font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Property listing management</span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-amber-900 dark:text-amber-200 font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Tenant inquiry management</span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-amber-900 dark:text-amber-200 font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>AI-assisted rental agreement drafting</span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-amber-900 dark:text-amber-200 font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Digital condition logging</span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-amber-900 dark:text-amber-200 font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Occupancy tracking</span>
               </div>
             </div>
 
-            <div className="pt-3 border-t border-[#e5dfc5] dark:border-[#2a3f31]">
+            <div className="pt-3 border-t border-[var(--border)]">
               <Link
                 href="/login/tenant"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--primary-pista)] hover:underline"
               >
                 <span>Looking for a residence? Sign in as Tenant →</span>
               </Link>
@@ -150,24 +150,24 @@ export default function OwnerLoginPage() {
 
           {/* Right Column: Owner Sign-in Form Card */}
           <div className="lg:col-span-6">
-            <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-7 sm:p-9 shadow-xl shadow-warm-300/20 dark:shadow-none">
-              <div className="flex items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-4 mb-6">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--bg-surface-elevated)] p-7 sm:p-9 shadow-xl">
+              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4 mb-6">
                 <div>
-                  <h2 className="text-xl font-bold font-serif text-ink">Owner Command Deck</h2>
-                  <p className="text-xs text-ink-muted mt-0.5">Asset & Tenancy Management</p>
+                  <h2 className="text-xl font-bold font-serif text-[var(--text-main)]">Owner Command Deck</h2>
+                  <p className="text-xs text-[var(--text-muted)] mt-0.5">Asset & Tenancy Management</p>
                 </div>
-                <span className="rounded-full bg-amber-500/15 px-2.5 py-1 text-[11px] font-bold text-amber-900 dark:text-amber-200">
+                <span className="rounded-full bg-[var(--primary-pista-subtle)] px-2.5 py-1 text-[11px] font-bold text-[var(--text-main)]">
                   OWNER
                 </span>
               </div>
 
               {/* 1-Click Demo Shortcut */}
-              <div className="mb-6 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-3.5 text-center">
-                <p className="text-xs text-ink-muted mb-2">Instant demo testing without typing credentials:</p>
+              <div className="mb-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--primary-pista-subtle)] p-3.5 text-center">
+                <p className="text-xs text-[var(--text-muted)] mb-2">Instant demo testing without typing credentials:</p>
                 <button
                   type="button"
                   onClick={handleDemoSignIn}
-                  className="w-full rounded-xl bg-amber-700 hover:bg-amber-800 text-white py-2 px-3 text-xs font-semibold shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full rounded-xl bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white py-2 px-3 text-xs font-semibold shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -178,15 +178,15 @@ export default function OwnerLoginPage() {
 
               <div className="relative my-4 flex items-center justify-center">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-[#e5dfc5] dark:border-[#2a3f31]" />
+                  <div className="w-full border-t border-[var(--border)]" />
                 </div>
-                <span className="relative bg-card dark:bg-card-dark px-3 text-[11px] font-semibold text-ink-muted uppercase">
+                <span className="relative bg-[var(--bg-surface-elevated)] px-3 text-[11px] font-semibold text-[var(--text-muted)] uppercase">
                   or enter credentials
                 </span>
               </div>
 
               {error && (
-                <div className="mb-4 rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-950/40 p-3 text-xs text-rose-600 dark:text-rose-300 font-medium">
+                <div className="mb-4 rounded-xl border border-[var(--error)] bg-rose-50 p-3 text-xs text-[var(--error)] font-medium">
                   {error}
                 </div>
               )}
@@ -220,24 +220,24 @@ export default function OwnerLoginPage() {
                     required
                   />
                   <div className="mt-1.5 text-right">
-                    <Link href="/forgot-password" className="text-xs text-amber-700 dark:text-amber-300 font-semibold hover:underline">
+                    <Link href="/forgot-password" className="text-xs text-[var(--primary-pista)] font-semibold hover:underline">
                       Forgot password?
                     </Link>
                   </div>
                 </div>
 
                 <div className="pt-2">
-                  <Button type="submit" size="lg" className="w-full bg-amber-700 hover:bg-amber-800" disabled={loading}>
+                  <Button type="submit" size="lg" className="w-full bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)]" disabled={loading}>
                     {loading ? "Authenticating..." : "Sign In to Owner Portal"}
                   </Button>
                 </div>
               </form>
 
-              <div className="mt-6 pt-5 border-t border-[#e5dfc5] dark:border-[#2a3f31] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-ink-muted">
-                <Link className="font-semibold text-amber-800 dark:text-amber-300 hover:underline" href="/owner/properties/new">
+              <div className="mt-6 pt-5 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[var(--text-muted)]">
+                <Link className="font-semibold text-[var(--primary-pista)] hover:underline" href="/owner/properties/new">
                   + List residence without account
                 </Link>
-                <Link className="font-semibold text-ink hover:underline" href="/register">
+                <Link className="font-semibold text-[var(--text-main)] hover:underline" href="/register">
                   Register owner profile
                 </Link>
               </div>

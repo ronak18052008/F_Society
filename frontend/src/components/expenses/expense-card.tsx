@@ -58,7 +58,7 @@ export function ExpenseCard({
   };
 
   return (
-    <div className="rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-xs hover:border-[#7ca982]/40 transition-colors">
+    <div className="rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-xs hover:border-[var(--primary-pista)]/40 transition-colors">
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
         {/* Left: Icon & Meta */}
         <div className="flex items-start gap-3">
@@ -97,7 +97,7 @@ export function ExpenseCard({
             </span>
             <div className="text-[10px] text-ink-muted">
               {isPayer ? (
-                <span className="text-[#6E9271] font-semibold">You paid</span>
+                <span className="text-[var(--accent-forest)] font-semibold">You paid</span>
               ) : myShare ? (
                 <span>Your share: <strong className="text-ink">{formatInr(myShare.shareAmount)}</strong></span>
               ) : null}
@@ -120,7 +120,7 @@ export function ExpenseCard({
           <button
             type="button"
             onClick={() => setExpanded(!expanded)}
-            className="text-[11px] text-[#6E9271] hover:underline font-semibold"
+            className="text-[11px] text-[var(--accent-forest)] hover:underline font-semibold"
           >
             {expanded ? "Hide Details ↑" : "View Split Formulas ↓"}
           </button>
@@ -164,7 +164,7 @@ export function ExpenseCard({
                       type="button"
                       disabled={settling === part.userId}
                       onClick={() => handleSettleParticipant(part.userId)}
-                      className="cursor-pointer rounded-lg bg-[#7ca982] hover:bg-[#6b9a71] px-2 py-1 text-[10px] font-bold text-white shadow-2xs transition"
+                      className="cursor-pointer rounded-lg bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] px-2 py-1 text-[10px] font-bold text-white shadow-2xs transition"
                     >
                       {settling === part.userId ? "Saving..." : "Mark Paid"}
                     </button>
@@ -197,7 +197,7 @@ export function ExpenseCard({
               type="button"
               disabled={settling === "all"}
               onClick={() => handleSettleParticipant("all")}
-              className="cursor-pointer text-xs font-semibold text-[#6E9271] hover:underline"
+              className="cursor-pointer text-xs font-semibold text-[var(--accent-forest)] hover:underline"
             >
               {settling === "all" ? "Settling all..." : "Settle Entire Bill"}
             </button>

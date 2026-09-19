@@ -107,43 +107,43 @@ function LoginForm() {
 
   return (
     <div className="mx-auto max-w-md px-4 sm:px-6 py-12 sm:py-20">
-      <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-[#1a281f] p-7 sm:p-9 shadow-xl shadow-warm-300/30 dark:shadow-none">
+      <div className="rounded-3xl border border-[var(--border)] bg-[var(--bg-surface-elevated)] p-7 sm:p-9 shadow-xl">
         {/* Header */}
         <div className="text-center">
           <div className="flex justify-center mb-3">
             <NivasaLogo variant="mark" size="sm" />
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista-subtle)] px-3 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--border-subtle)]">
             Nivasa Authentication
           </div>
-          <h1 className="mt-3 text-3xl font-serif font-bold tracking-tight text-ink dark:text-cream">
+          <h1 className="mt-3 text-3xl font-serif font-bold tracking-tight text-[var(--text-main)]">
             Welcome Back to Nivasa
           </h1>
-          <p className="mt-1.5 text-xs text-ink-muted">
+          <p className="mt-1.5 text-xs text-[var(--text-muted)]">
             Authenticate to access your role-specific dashboard and workspace.
           </p>
         </div>
 
         {/* Role-Based Automatic Detection Notice */}
-        <div className="mt-6 rounded-2xl bg-[#7ca982]/10 dark:bg-[#1d2d22] p-3 text-center border border-[#7ca982]/25">
-          <p className="text-xs font-bold text-[#1d3122] dark:text-[#f5f9f6]">
+        <div className="mt-6 rounded-2xl bg-[var(--primary-pista-subtle)] p-3 text-center border border-[var(--border-subtle)]">
+          <p className="text-xs font-bold text-[var(--text-main)]">
             Role-Based Authentication
           </p>
-          <p className="text-[11px] text-[#4e6853] dark:text-[#9bb3a0] mt-0.5">
+          <p className="text-[11px] text-[var(--text-muted)] mt-0.5">
             Your destination portal is automatically determined by your account role upon login.
           </p>
         </div>
 
         {/* Section 20: Pre-configured Development Demo Users */}
-        <div className="mt-4 rounded-2xl border border-[#7ca982]/30 bg-[#7ca982]/10 p-3">
-          <p className="text-[11px] font-semibold text-ink-muted mb-2 text-center">
+        <div className="mt-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--primary-pista-subtle)] p-3">
+          <p className="text-[11px] font-semibold text-[var(--text-muted)] mb-2 text-center">
             One-Click Development Demo Access:
           </p>
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
               onClick={() => handleDemoSignIn("tenant")}
-              className="rounded-xl bg-[#7ca982] hover:bg-[#6b9a71] text-white py-2 px-2.5 text-xs font-semibold shadow-xs transition-colors flex flex-col items-center justify-center text-center cursor-pointer"
+              className="rounded-xl bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white py-2 px-2.5 text-xs font-semibold shadow-xs transition-colors flex flex-col items-center justify-center text-center cursor-pointer"
             >
               <span className="font-bold">Tenant Demo</span>
               <span className="text-[9px] opacity-80">tenant@demo.nivasa</span>
@@ -161,15 +161,15 @@ function LoginForm() {
 
         <div className="relative my-5 flex items-center justify-center">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-[#e5dfc5] dark:border-[#2a3f31]" />
+            <div className="w-full border-t border-[var(--border)]" />
           </div>
-          <span className="relative bg-card dark:bg-[#1a281f] px-3 text-[10px] font-semibold text-ink-muted uppercase">
+          <span className="relative bg-[var(--bg-surface-elevated)] px-3 text-[10px] font-semibold text-[var(--text-muted)] uppercase">
             or enter credentials
           </span>
         </div>
 
         {error && (
-          <div className="mb-4 rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-950/40 p-3 text-xs text-rose-600 dark:text-rose-300 font-medium">
+          <div className="mb-4 rounded-xl border border-[var(--error)] bg-rose-50 p-3 text-xs text-[var(--error)] font-medium">
             {error}
           </div>
         )}
@@ -204,7 +204,7 @@ function LoginForm() {
               required
             />
             <div className="mt-1.5 text-right">
-              <Link href="/forgot-password" className="text-xs text-[#57875d] dark:text-[#a3caa6] font-semibold hover:underline">
+              <Link href="/forgot-password" className="text-xs text-[var(--primary-pista)] font-semibold hover:underline">
                 Forgot Password?
               </Link>
             </div>
@@ -217,9 +217,9 @@ function LoginForm() {
           </div>
         </form>
 
-        <div className="mt-6 text-center text-xs text-ink-muted">
+        <div className="mt-6 text-center text-xs text-[var(--text-muted)]">
           Don&apos;t have an account?{" "}
-          <Link className="font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline" href={`/register?role=${activeRole}`}>
+          <Link className="font-semibold text-[var(--primary-pista)] hover:underline" href={`/register?role=${activeRole}`}>
             Create Account
           </Link>
         </div>
@@ -231,7 +231,7 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <SiteShell>
-      <Suspense fallback={<div className="py-20 text-center text-xs text-ink-muted">Loading authentication...</div>}>
+      <Suspense fallback={<div className="py-20 text-center text-xs text-[var(--text-muted)]">Loading authentication...</div>}>
         <LoginForm />
       </Suspense>
     </SiteShell>

@@ -140,22 +140,22 @@ export function Navbar() {
     <header className="sticky top-3.5 z-50 px-3 sm:px-6 transition-all duration-300">
       <div
         ref={navRef}
-        className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#ffffff]/95 dark:bg-[#142018]/95 px-3 sm:px-5 py-2 backdrop-blur-xl shadow-lg shadow-[#7ca982]/[0.08] dark:shadow-black/[0.4]"
+        className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-surface)]/95 dark:bg-[var(--bg-canvas)]/95 px-3 sm:px-5 py-2 backdrop-blur-xl shadow-lg shadow-[var(--primary-pista)]/[0.08] dark:shadow-black/[0.4]"
       >
         {/* Brand Logo & Verification Pill */}
         <div className="flex items-center gap-4">
           <Link
             href="/"
-            className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7ca982] rounded-full"
+            className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-pista)] rounded-full"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-[#7ca982] to-[#5c8e63] text-white shadow-md shadow-[#7ca982]/20 transition-transform duration-200 group-hover:scale-105">
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-[var(--primary-pista)] to-[var(--accent-forest)] text-white shadow-md shadow-[var(--primary-pista)]/20 transition-transform duration-200 group-hover:scale-105">
               <span className="font-serif font-bold text-base tracking-tight">F</span>
             </div>
-            <span className="font-sans text-xl font-bold tracking-tight text-[#1d3122] dark:text-[#f5f9f6]">
+            <span className="font-sans text-xl font-bold tracking-tight text-[var(--text-main)] dark:text-[var(--bg-surface)]">
               Nivasa
             </span>
-            <span className="hidden xl:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-[10px] font-semibold text-[#23452b] dark:text-[#8fb893]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982] animate-pulse" />
+            <span className="hidden xl:inline-flex items-center gap-1.5 rounded-full bg-[var(--primary-pista)]/15 px-2.5 py-0.5 text-[10px] font-semibold text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary-pista)] animate-pulse" />
               Verified Hub
             </span>
           </Link>
@@ -170,8 +170,8 @@ export function Navbar() {
                 className={cn(
                   "flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer",
                   activeMenu === "rent" || pathname.startsWith("/properties") || pathname.startsWith("/cities")
-                    ? "bg-[#7ca982] text-white font-semibold shadow-xs"
-                    : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6] hover:bg-[#7ca982]/10"
+                    ? "bg-[var(--primary-pista)] text-white font-semibold shadow-xs"
+                    : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)] hover:bg-[var(--primary-pista)]/10"
                 )}
                 aria-expanded={activeMenu === "rent"}
               >
@@ -188,16 +188,16 @@ export function Navbar() {
               </button>
 
               {activeMenu === "rent" && (
-                <div className="absolute left-0 top-full mt-3 w-[560px] rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#ffffff] dark:bg-[#142018] p-5 shadow-2xl shadow-black/10 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#e5dfc5] dark:border-[#2a3f31]">
+                <div className="absolute left-0 top-full mt-3 w-[560px] rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-surface)] dark:bg-[var(--bg-canvas)] p-5 shadow-2xl shadow-black/10 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+                  <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] dark:border-[var(--border)]">
                     <div>
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#7ca982]">Metropolitan Directory</h4>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--primary-pista)]">Metropolitan Directory</h4>
                       <p className="text-xs text-ink-muted">4,750+ verified residential homes across India</p>
                     </div>
                     <Link
                       href="/properties"
                       onClick={() => setActiveMenu(null)}
-                      className="rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] hover:bg-[#7ca982] hover:text-white transition-colors"
+                      className="rounded-full bg-[var(--primary-pista)]/15 px-3 py-1 text-xs font-semibold text-[var(--text-main)] dark:text-[var(--secondary-sage)] hover:bg-[var(--primary-pista)] hover:text-white transition-colors"
                     >
                       Browse All Homes →
                     </Link>
@@ -213,9 +213,9 @@ export function Navbar() {
                             key={city.name}
                             href={"/properties?city=" + encodeURIComponent(city.name)}
                             onClick={() => setActiveMenu(null)}
-                            className="group flex flex-col rounded-xl border border-[#e5dfc5]/80 dark:border-[#2a3f31] bg-[#faf7f0]/70 dark:bg-[#1a281f]/60 p-2.5 hover:border-[#7ca982] hover:bg-[#ffffff] dark:hover:bg-[#1f3025] transition-all"
+                            className="group flex flex-col rounded-xl border border-[var(--border)]/80 dark:border-[var(--border)] bg-[var(--bg-canvas)]/70 dark:bg-[var(--bg-surface)]/60 p-2.5 hover:border-[var(--primary-pista)] hover:bg-[var(--bg-surface)] dark:hover:bg-[var(--bg-surface-elevated)] transition-all"
                           >
-                            <span className="text-xs font-bold text-ink group-hover:text-[#57875d] dark:group-hover:text-[#a3caa6]">
+                            <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] dark:group-hover:text-[var(--secondary-sage)]">
                               {city.name}
                             </span>
                             <span className="text-[10px] text-ink-muted">
@@ -241,7 +241,7 @@ export function Navbar() {
                               key={bhk.label}
                               href={bhk.href}
                               onClick={() => setActiveMenu(null)}
-                              className="rounded-lg border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1a281f] px-2.5 py-1 text-xs font-medium text-ink hover:border-[#7ca982] hover:bg-[#7ca982]/10 transition-colors"
+                              className="rounded-lg border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-surface)] px-2.5 py-1 text-xs font-medium text-ink hover:border-[var(--primary-pista)] hover:bg-[var(--primary-pista)]/10 transition-colors"
                             >
                               {bhk.label}
                             </Link>
@@ -255,7 +255,7 @@ export function Navbar() {
                           <Link
                             href="/properties?furnishing=Furnished"
                             onClick={() => setActiveMenu(null)}
-                            className="flex items-center justify-between text-xs text-ink hover:text-[#57875d] dark:hover:text-[#a3caa6] transition-colors py-0.5"
+                            className="flex items-center justify-between text-xs text-ink hover:text-[var(--accent-forest)] dark:hover:text-[var(--secondary-sage)] transition-colors py-0.5"
                           >
                             <span>Fully Furnished Homes</span>
                             <span className="text-[10px] text-ink-muted font-tabular">680 listings</span>
@@ -263,7 +263,7 @@ export function Navbar() {
                           <Link
                             href="/properties?tenant=Bachelors"
                             onClick={() => setActiveMenu(null)}
-                            className="flex items-center justify-between text-xs text-ink hover:text-[#57875d] dark:hover:text-[#a3caa6] transition-colors py-0.5"
+                            className="flex items-center justify-between text-xs text-ink hover:text-[var(--accent-forest)] dark:hover:text-[var(--secondary-sage)] transition-colors py-0.5"
                           >
                             <span>Bachelor Friendly</span>
                             <span className="text-[10px] text-ink-muted font-tabular">Direct Owner</span>
@@ -271,10 +271,10 @@ export function Navbar() {
                           <Link
                             href="/cities"
                             onClick={() => setActiveMenu(null)}
-                            className="flex items-center justify-between text-xs text-ink hover:text-[#57875d] dark:hover:text-[#a3caa6] transition-colors py-0.5"
+                            className="flex items-center justify-between text-xs text-ink hover:text-[var(--accent-forest)] dark:hover:text-[var(--secondary-sage)] transition-colors py-0.5"
                           >
                             <span>City Telemetry & Rental Index</span>
-                            <span className="text-[10px] text-[#7ca982] font-semibold">6 Metros →</span>
+                            <span className="text-[10px] text-[var(--primary-pista)] font-semibold">6 Metros →</span>
                           </Link>
                         </div>
                       </div>
@@ -292,8 +292,8 @@ export function Navbar() {
                 className={cn(
                   "flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer",
                   activeMenu === "owners" || pathname.startsWith("/owner")
-                    ? "bg-[#7ca982] text-white font-semibold shadow-xs"
-                    : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6] hover:bg-[#7ca982]/10"
+                    ? "bg-[var(--primary-pista)] text-white font-semibold shadow-xs"
+                    : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)] hover:bg-[var(--primary-pista)]/10"
                 )}
                 aria-expanded={activeMenu === "owners"}
               >
@@ -310,20 +310,20 @@ export function Navbar() {
               </button>
 
               {activeMenu === "owners" && (
-                <div className="absolute left-0 top-full mt-3 w-72 rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#ffffff] dark:bg-[#142018] p-4 shadow-2xl shadow-black/10 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+                <div className="absolute left-0 top-full mt-3 w-72 rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-surface)] dark:bg-[var(--bg-canvas)] p-4 shadow-2xl shadow-black/10 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
                   <div className="space-y-1.5">
                     <Link
                       href="/owner/properties/new"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           List Your Property
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -335,15 +335,15 @@ export function Navbar() {
                     <Link
                       href="/owner/dashboard"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           Owner Dashboard
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -355,15 +355,15 @@ export function Navbar() {
                     <Link
                       href="/ai/agreement"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           Digital Rental Agreement
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -384,8 +384,8 @@ export function Navbar() {
                 className={cn(
                   "flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer",
                   activeMenu === "tenants" || pathname.startsWith("/tenant")
-                    ? "bg-[#7ca982] text-white font-semibold shadow-xs"
-                    : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6] hover:bg-[#7ca982]/10"
+                    ? "bg-[var(--primary-pista)] text-white font-semibold shadow-xs"
+                    : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)] hover:bg-[var(--primary-pista)]/10"
                 )}
                 aria-expanded={activeMenu === "tenants"}
               >
@@ -402,12 +402,12 @@ export function Navbar() {
               </button>
 
               {activeMenu === "tenants" && (
-                <div className="absolute left-0 top-full mt-3 w-72 rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#ffffff] dark:bg-[#142018] p-4 shadow-2xl shadow-black/10 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+                <div className="absolute left-0 top-full mt-3 w-72 rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-surface)] dark:bg-[var(--bg-canvas)] p-4 shadow-2xl shadow-black/10 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
                   <div className="space-y-1.5">
                     <Link
                       href="/properties?saved=true"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-500">
                         <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -416,7 +416,7 @@ export function Navbar() {
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <span className="text-xs font-bold text-ink group-hover:text-[#57875d]">
+                          <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)]">
                             Saved Residences
                           </span>
                           <span className="rounded-full bg-rose-100 text-rose-700 px-1.5 py-0.2 text-[10px] font-bold">
@@ -432,15 +432,15 @@ export function Navbar() {
                     <Link
                       href="/tenant/roommates"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           Find Roommates
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -452,15 +452,15 @@ export function Navbar() {
                     <Link
                       href="/tenant/requirements"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           Rental Requirements
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -472,15 +472,15 @@ export function Navbar() {
                     <Link
                       href="/tenant/dashboard"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           Tenant Workspace
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -501,8 +501,8 @@ export function Navbar() {
                 className={cn(
                   "flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer",
                   activeMenu === "tools" || pathname === "/dashboard" || pathname.startsWith("/ai")
-                    ? "bg-[#7ca982] text-white font-semibold shadow-xs"
-                    : "text-[#4e6853] dark:text-[#a5b8aa] hover:text-[#1d3122] dark:hover:text-[#f5f9f6] hover:bg-[#7ca982]/10"
+                    ? "bg-[var(--primary-pista)] text-white font-semibold shadow-xs"
+                    : "text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)] hover:bg-[var(--primary-pista)]/10"
                 )}
                 aria-expanded={activeMenu === "tools"}
               >
@@ -519,20 +519,20 @@ export function Navbar() {
               </button>
 
               {activeMenu === "tools" && (
-                <div className="absolute left-0 top-full mt-3 w-72 rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#ffffff] dark:bg-[#142018] p-4 shadow-2xl shadow-black/10 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+                <div className="absolute left-0 top-full mt-3 w-72 rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-surface)] dark:bg-[var(--bg-canvas)] p-4 shadow-2xl shadow-black/10 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200 z-50">
                   <div className="space-y-1.5">
                     <Link
                       href="/dashboard"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           Market Price Index & Trends
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -544,15 +544,15 @@ export function Navbar() {
                     <Link
                       href="/renttruth/prop-navrang-02"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           RentTruth™ Passport
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -564,15 +564,15 @@ export function Navbar() {
                     <Link
                       href="/ai/recommend"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           AI Residence Matcher
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -584,15 +584,15 @@ export function Navbar() {
                     <Link
                       href="/how-it-works"
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#7ca982]/10 transition-colors"
+                      className="group flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/20 text-[#23452b] dark:text-[#a3caa6]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/20 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
                       <div>
-                        <span className="text-xs font-bold text-ink group-hover:text-[#57875d] block">
+                        <span className="text-xs font-bold text-ink group-hover:text-[var(--accent-forest)] block">
                           How It Works
                         </span>
                         <span className="text-[11px] text-ink-muted leading-tight block">
@@ -617,10 +617,10 @@ export function Navbar() {
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setSearchOpen(true)}
               placeholder="Search 4,750+ homes, cities..."
-              className="w-full rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] pl-8 pr-11 py-1.5 text-xs text-[#1d3122] dark:text-[#f5f9f6] placeholder:text-[#7d9782] focus:border-[#7ca982] focus:ring-2 focus:ring-[#7ca982]/20 focus:outline-none transition-all"
+              className="w-full rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] pl-8 pr-11 py-1.5 text-xs text-[var(--text-main)] dark:text-[var(--bg-surface)] placeholder:text-[var(--text-faint)] focus:border-[var(--primary-pista)] focus:ring-2 focus:ring-[var(--primary-pista)]/20 focus:outline-none transition-all"
             />
             <svg
-              className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#7ca982]"
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[var(--primary-pista)]"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -630,7 +630,7 @@ export function Navbar() {
               <path d="M21 21l-4.35-4.35" />
             </svg>
             <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
-              <kbd className="hidden xl:inline-block rounded border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#142018] px-1 text-[9px] text-[#7d9782]">
+              <kbd className="hidden xl:inline-block rounded border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--bg-canvas)] px-1 text-[9px] text-[var(--text-faint)]">
                 ⌘K
               </kbd>
             </div>
@@ -638,13 +638,13 @@ export function Navbar() {
 
           {/* Autocomplete Dropdown Flyout */}
           {searchOpen && (
-            <div className="absolute left-0 top-full mt-2 w-80 sm:w-96 rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#ffffff] dark:bg-[#142018] p-3.5 shadow-2xl shadow-black/15 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-              <div className="flex items-center justify-between px-2 pb-2 text-[10px] uppercase font-bold tracking-wider text-ink-muted border-b border-[#e5dfc5] dark:border-[#2a3f31]">
+            <div className="absolute left-0 top-full mt-2 w-80 sm:w-96 rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-surface)] dark:bg-[var(--bg-canvas)] p-3.5 shadow-2xl shadow-black/15 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+              <div className="flex items-center justify-between px-2 pb-2 text-[10px] uppercase font-bold tracking-wider text-ink-muted border-b border-[var(--border)] dark:border-[var(--border)]">
                 <span>{searchQuery ? "Search Matches" : "Metropolitan Corridors"}</span>
-                {searchLoading && <span className="text-[#7ca982] animate-pulse">Searching...</span>}
+                {searchLoading && <span className="text-[var(--primary-pista)] animate-pulse">Searching...</span>}
               </div>
 
-              <div className="mt-2 max-h-72 overflow-y-auto space-y-1 divide-y divide-[#e5dfc5]/40 dark:divide-[#2a3f31]/40">
+              <div className="mt-2 max-h-72 overflow-y-auto space-y-1 divide-y divide-[var(--border)]/40 dark:divide-[var(--border)]/40">
                 {suggestions.length > 0 ? (
                   suggestions.map((item) => (
                     <Link
@@ -654,10 +654,10 @@ export function Navbar() {
                         setSearchOpen(false)
                         setSearchQuery("");
                       }}
-                      className="group flex items-center justify-between rounded-xl px-2.5 py-2 hover:bg-[#7ca982]/10 transition-colors pt-2"
+                      className="group flex items-center justify-between rounded-xl px-2.5 py-2 hover:bg-[var(--primary-pista)]/10 transition-colors pt-2"
                     >
                       <div className="flex items-center gap-2.5 overflow-hidden pr-2">
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#7ca982]/15 text-[#23452b] dark:text-[#a3caa6]">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--primary-pista)]/15 text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                           {item.type === "city" ? (
                             <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" />
@@ -674,7 +674,7 @@ export function Navbar() {
                           )}
                         </div>
                         <div className="truncate">
-                          <span className="text-xs font-semibold text-ink group-hover:text-[#57875d] block truncate">
+                          <span className="text-xs font-semibold text-ink group-hover:text-[var(--accent-forest)] block truncate">
                             {item.title}
                           </span>
                           <span className="text-[10px] text-ink-muted truncate block">
@@ -683,7 +683,7 @@ export function Navbar() {
                         </div>
                       </div>
                       {item.badge && (
-                        <span className="shrink-0 rounded-full bg-[#7ca982]/15 border border-[#7ca982]/30 px-2 py-0.5 text-[9px] font-semibold text-[#1d3122] dark:text-[#a3caa6]">
+                        <span className="shrink-0 rounded-full bg-[var(--primary-pista)]/15 border border-[var(--primary-pista)]/30 px-2 py-0.5 text-[9px] font-semibold text-[var(--text-main)] dark:text-[var(--secondary-sage)]">
                           {item.badge}
                         </span>
                       )}
@@ -696,11 +696,11 @@ export function Navbar() {
                 )}
               </div>
 
-              <div className="mt-3 pt-2 border-t border-[#e5dfc5] dark:border-[#2a3f31] flex items-center justify-between text-[11px]">
+              <div className="mt-3 pt-2 border-t border-[var(--border)] dark:border-[var(--border)] flex items-center justify-between text-[11px]">
                 <Link
                   href="/properties"
                   onClick={() => setSearchOpen(false)}
-                  className="text-[#57875d] dark:text-[#a3caa6] font-semibold hover:underline"
+                  className="text-[var(--accent-forest)] dark:text-[var(--secondary-sage)] font-semibold hover:underline"
                 >
                   Explore All 4,750+ Listings →
                 </Link>
@@ -715,7 +715,7 @@ export function Navbar() {
           {/* Saved Homes (❤️) Badge Counter */}
           <Link
             href="/properties?saved=true"
-            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] hover:border-[#7ca982] hover:text-rose-500 transition-colors"
+            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:border-[var(--primary-pista)] hover:text-rose-500 transition-colors"
             title="View saved residences"
             aria-label="View saved residences"
           >
@@ -741,7 +741,7 @@ export function Navbar() {
           {/* "+ Post Property" Direct CTA */}
           <Link
             href="/owner/properties/new"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#7ca982]/15 hover:bg-[#7ca982] hover:text-white text-[#1d3122] dark:text-[#a3caa6] px-3.5 py-1.5 text-xs font-semibold border border-[#7ca982]/30 transition-all cursor-pointer shadow-xs"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[var(--primary-pista)]/15 hover:bg-[var(--primary-pista)] hover:text-white text-[var(--text-main)] dark:text-[var(--secondary-sage)] px-3.5 py-1.5 text-xs font-semibold border border-[var(--primary-pista)]/30 transition-all cursor-pointer shadow-xs"
           >
             <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M12 5v14M5 12h14" />
@@ -753,7 +753,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={toggle}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#4e6853] dark:text-[#a5b8aa] transition-all hover:scale-105 hover:text-[#1d3122] dark:hover:text-[#f5f9f6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7ca982] cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] text-[var(--text-muted)] dark:text-[var(--text-faint)] transition-all hover:scale-105 hover:text-[var(--text-main)] dark:hover:text-[var(--bg-surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-pista)] cursor-pointer"
             aria-label="Switch visual color theme"
             title="Switch visual color theme"
           >
@@ -763,7 +763,7 @@ export function Navbar() {
                 <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
               </svg>
             ) : (
-              <svg className="h-4 w-4 text-[#4e6853]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4 text-[var(--text-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
             )}
@@ -775,20 +775,20 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setUserMenuOpen((prev) => !prev)}
-                className="flex items-center gap-1.5 rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] pl-1 pr-2.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#8fb893] hover:border-[#7ca982] transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] pl-1 pr-2.5 py-1 text-xs font-semibold text-[var(--text-main)] dark:text-[var(--secondary-sage)] hover:border-[var(--primary-pista)] transition-colors cursor-pointer"
               >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#7ca982] text-white text-[11px] font-bold">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--primary-pista)] text-white text-[11px] font-bold">
                   {user.name ? user.name[0].toUpperCase() : "U"}
                 </div>
                 <span className="hidden sm:inline max-w-[70px] truncate">{user.name || "Account"}</span>
-                <span className="hidden md:inline rounded-full bg-[#7ca982]/15 px-1.5 py-0.2 text-[9px] uppercase font-bold text-[#23452b]">
+                <span className="hidden md:inline rounded-full bg-[var(--primary-pista)]/15 px-1.5 py-0.2 text-[9px] uppercase font-bold text-[var(--text-main)]">
                   {user.role}
                 </span>
               </button>
 
               {userMenuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#142018] p-2 shadow-xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-                  <div className="px-3 py-2 border-b border-[#e5dfc5] dark:border-[#2a3f31]">
+                <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--bg-canvas)] p-2 shadow-xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                  <div className="px-3 py-2 border-b border-[var(--border)] dark:border-[var(--border)]">
                     <span className="text-xs font-bold text-ink block truncate">{user.name || "Member"}</span>
                     <span className="text-[11px] text-ink-muted block truncate">{user.email}</span>
                   </div>
@@ -796,22 +796,22 @@ export function Navbar() {
                     <Link
                       href={appHome}
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
                       <span>Open Workspace</span>
-                      <span className="text-[10px] font-bold uppercase text-[#7ca982]">{user.role}</span>
+                      <span className="text-[10px] font-bold uppercase text-[var(--primary-pista)]">{user.role}</span>
                     </Link>
                     <Link
                       href="/profile"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                      className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
                       Profile & Settings
                     </Link>
                     <Link
                       href="/properties?saved=true"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[#7ca982]/10 transition-colors"
+                      className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-medium text-ink hover:bg-[var(--primary-pista)]/10 transition-colors"
                     >
                       <span>Saved Properties</span>
                       <span className="text-[10px] font-bold text-rose-500">{savedIds.length}</span>
@@ -834,7 +834,7 @@ export function Navbar() {
             <div className="flex items-center gap-1 sm:gap-2">
               <Link
                 href="/login"
-                className="rounded-full px-3 py-1.5 text-xs font-medium text-[#4a5e50] dark:text-[#a5b8aa] hover:text-[#1a281f] dark:hover:text-[#f5f9f6] transition-colors"
+                className="rounded-full px-3 py-1.5 text-xs font-medium text-[var(--text-muted)] dark:text-[var(--text-faint)] hover:text-[var(--bg-surface)] dark:hover:text-[var(--bg-surface)] transition-colors"
               >
                 Sign in
               </Link>
@@ -848,7 +848,7 @@ export function Navbar() {
           <div className="flex items-center lg:hidden">
             <button
               type="button"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#1d2d22] text-[#1d3122] dark:text-[#f5f9f6]"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)] dark:bg-[var(--bg-canvas)] text-[var(--text-main)] dark:text-[var(--bg-surface)]"
               aria-expanded={mobileOpen}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               onClick={() => setMobileOpen((value) => !value)}
@@ -867,7 +867,7 @@ export function Navbar() {
 
       {/* Mobile Drawer (Categorized & Accessible) */}
       {mobileOpen ? (
-        <div className="mx-auto mt-2 max-w-7xl rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0]/98 dark:bg-[#142018]/98 p-5 backdrop-blur-2xl shadow-xl lg:hidden animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="mx-auto mt-2 max-w-7xl rounded-3xl border border-[var(--border)] dark:border-[var(--border)] bg-[var(--bg-canvas)]/98 dark:bg-[var(--bg-canvas)]/98 p-5 backdrop-blur-2xl shadow-xl lg:hidden animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="space-y-4">
             {/* Mobile Search Form */}
             <form onSubmit={executeSearch} className="relative">
@@ -876,10 +876,10 @@ export function Navbar() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search 4,750+ homes across 6 metros..."
-                className="w-full rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#1d2d22] pl-9 pr-4 py-2 text-xs text-ink placeholder:text-[#7d9782] focus:border-[#7ca982] focus:outline-none"
+                className="w-full rounded-2xl border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--bg-canvas)] pl-9 pr-4 py-2 text-xs text-ink placeholder:text-[var(--text-faint)] focus:border-[var(--primary-pista)] focus:outline-none"
               />
               <svg
-                className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#7ca982]"
+                className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[var(--primary-pista)]"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -899,7 +899,7 @@ export function Navbar() {
                     key={c.name}
                     href={"/properties?city=" + encodeURIComponent(c.name)}
                     onClick={() => setMobileOpen(false)}
-                    className="shrink-0 rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-white dark:bg-[#1a281f] px-3 py-1 text-[11px] font-semibold text-ink hover:border-[#7ca982]"
+                    className="shrink-0 rounded-full border border-[var(--border)] dark:border-[var(--border)] bg-white dark:bg-[var(--bg-surface)] px-3 py-1 text-[11px] font-semibold text-ink hover:border-[var(--primary-pista)]"
                   >
                     {c.name} ({c.count})
                   </Link>
@@ -912,14 +912,14 @@ export function Navbar() {
               <Link
                 href="/properties"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] p-2.5 font-medium text-ink"
+                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[var(--bg-surface)] border border-[var(--border)] dark:border-[var(--border)] p-2.5 font-medium text-ink"
               >
                 <span>🏠 All Residences</span>
               </Link>
               <Link
                 href="/properties?saved=true"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between rounded-xl bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] p-2.5 font-medium text-ink"
+                className="flex items-center justify-between rounded-xl bg-white dark:bg-[var(--bg-surface)] border border-[var(--border)] dark:border-[var(--border)] p-2.5 font-medium text-ink"
               >
                 <span>❤️ Saved Homes</span>
                 <span className="rounded-full bg-rose-100 text-rose-700 px-1.5 py-0.2 text-[10px] font-bold">
@@ -929,58 +929,58 @@ export function Navbar() {
               <Link
                 href="/owner/properties/new"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 rounded-xl bg-[#7ca982]/15 border border-[#7ca982]/30 p-2.5 font-bold text-[#1d3122] dark:text-[#a3caa6]"
+                className="flex items-center gap-2 rounded-xl bg-[var(--primary-pista)]/15 border border-[var(--primary-pista)]/30 p-2.5 font-bold text-[var(--text-main)] dark:text-[var(--secondary-sage)]"
               >
                 <span>➕ Post Property</span>
               </Link>
               <Link
                 href="/cities"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] p-2.5 font-medium text-ink"
+                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[var(--bg-surface)] border border-[var(--border)] dark:border-[var(--border)] p-2.5 font-medium text-ink"
               >
                 <span>🏙️ City Hubs</span>
               </Link>
               <Link
                 href="/dashboard"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] p-2.5 font-medium text-ink"
+                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[var(--bg-surface)] border border-[var(--border)] dark:border-[var(--border)] p-2.5 font-medium text-ink"
               >
                 <span>📊 Market Trends</span>
               </Link>
               <Link
                 href="/tenant/roommates"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] p-2.5 font-medium text-ink"
+                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[var(--bg-surface)] border border-[var(--border)] dark:border-[var(--border)] p-2.5 font-medium text-ink"
               >
                 <span>👥 Roommates</span>
               </Link>
               <Link
                 href="/ai/agreement"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] p-2.5 font-medium text-ink"
+                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[var(--bg-surface)] border border-[var(--border)] dark:border-[var(--border)] p-2.5 font-medium text-ink"
               >
                 <span>📄 AI Agreement</span>
               </Link>
               <Link
                 href="/how-it-works"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[#1a281f] border border-[#e5dfc5] dark:border-[#2a3f31] p-2.5 font-medium text-ink"
+                className="flex items-center gap-2 rounded-xl bg-white dark:bg-[var(--bg-surface)] border border-[var(--border)] dark:border-[var(--border)] p-2.5 font-medium text-ink"
               >
                 <span>ℹ️ How It Works</span>
               </Link>
             </div>
 
             {/* Mobile User Actions */}
-            <div className="border-t border-[#e5dfc5] dark:border-[#2a3f31] pt-3 flex flex-col gap-2">
+            <div className="border-t border-[var(--border)] dark:border-[var(--border)] pt-3 flex flex-col gap-2">
               {user ? (
                 <>
                   <Link
                     href="/profile"
-                    className="flex items-center justify-between rounded-xl px-4 py-2.5 text-xs font-medium bg-white dark:bg-[#1d2d22] text-[#1d3122] dark:text-[#8fb893]"
+                    className="flex items-center justify-between rounded-xl px-4 py-2.5 text-xs font-medium bg-white dark:bg-[var(--bg-canvas)] text-[var(--text-main)] dark:text-[var(--secondary-sage)]"
                     onClick={() => setMobileOpen(false)}
                   >
                     <span>My Account ({user.email})</span>
-                    <span className="text-[10px] uppercase font-bold text-[#7ca982]">{user.role}</span>
+                    <span className="text-[10px] uppercase font-bold text-[var(--primary-pista)]">{user.role}</span>
                   </Link>
                   <Button href={appHome} fullWidth onClick={() => setMobileOpen(false)}>
                     Open Workspace ({user.role})

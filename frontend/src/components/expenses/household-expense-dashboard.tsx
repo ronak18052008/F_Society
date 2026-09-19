@@ -175,7 +175,7 @@ export function HouseholdExpenseDashboard({
         <div>
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-serif font-bold text-ink">{householdName}</h2>
-            <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6] uppercase tracking-wider">
+            <span className="rounded-full bg-[var(--primary-pista)]/15 px-2.5 py-0.5 text-[10px] font-bold text-[var(--text-main)] uppercase tracking-wider">
               Feature 5 · Split Engine
             </span>
           </div>
@@ -188,7 +188,7 @@ export function HouseholdExpenseDashboard({
           <Button
             size="sm"
             onClick={() => setIsCreateOpen(true)}
-            className="bg-[#7ca982] hover:bg-[#6b9a71] text-white shadow-2xs cursor-pointer font-bold inline-flex items-center gap-1.5"
+            className="bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white shadow-2xs cursor-pointer font-bold inline-flex items-center gap-1.5"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
@@ -273,7 +273,7 @@ export function HouseholdExpenseDashboard({
 
       {/* Debt Simplification & Settlement Suggestions */}
       {balances && balances.settlementSuggestions.length > 0 && (
-        <div className="rounded-2xl border border-[#7ca982]/40 bg-[#7ca982]/10 p-5 shadow-xs">
+        <div className="rounded-2xl border border-[var(--primary-pista)]/40 bg-[var(--primary-pista)]/10 p-5 shadow-xs">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <span className="text-base">🤝</span>
@@ -298,7 +298,7 @@ export function HouseholdExpenseDashboard({
                     <span className="text-ink-muted">→</span>
                     <span>{sugg.toUserName}</span>
                   </div>
-                  <span className="font-mono font-bold text-sm text-[#6E9271] block mt-0.5">
+                  <span className="font-mono font-bold text-sm text-[var(--accent-forest)] block mt-0.5">
                     {formatInr(sugg.amount)}
                   </span>
                 </div>
@@ -306,7 +306,7 @@ export function HouseholdExpenseDashboard({
                   type="button"
                   disabled={Boolean(settlingNote)}
                   onClick={() => handleQuickSettleSuggestion(sugg)}
-                  className="cursor-pointer rounded-lg bg-[#7ca982] hover:bg-[#6b9a71] text-white px-2.5 py-1 text-[11px] font-bold shadow-2xs transition"
+                  className="cursor-pointer rounded-lg bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white px-2.5 py-1 text-[11px] font-bold shadow-2xs transition"
                 >
                   Settle Up
                 </button>
@@ -332,8 +332,8 @@ export function HouseholdExpenseDashboard({
                 onClick={() => setActiveCategory(cat.value)}
                 className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition ${
                   activeCategory === cat.value
-                    ? "border-[#7ca982] bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6]"
-                    : "border-line bg-card text-ink-muted hover:border-[#7ca982]/40"
+                    ? "border-[var(--primary-pista)] bg-[var(--primary-pista)]/15 text-[var(--text-main)]"
+                    : "border-line bg-card text-ink-muted hover:border-[var(--primary-pista)]/40"
                 }`}
               >
                 <span>{cat.icon}</span>
@@ -354,7 +354,7 @@ export function HouseholdExpenseDashboard({
               onClick={() => setStatusFilter(s)}
               className={`rounded-lg px-2.5 py-1 text-[11px] font-bold transition ${
                 statusFilter === s
-                  ? "bg-[#7ca982] text-white"
+                  ? "bg-[var(--primary-pista)] text-white"
                   : "text-ink-muted hover:text-ink"
               }`}
             >
@@ -368,7 +368,7 @@ export function HouseholdExpenseDashboard({
       <div className="space-y-3">
         {loading ? (
           <div className="rounded-2xl border border-line p-12 text-center bg-card">
-            <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-[#7ca982] border-t-transparent mb-2" />
+            <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-[var(--primary-pista)] border-t-transparent mb-2" />
             <p className="text-xs text-ink-muted">Loading household expenses &amp; split calculations...</p>
           </div>
         ) : filtered.length === 0 ? (

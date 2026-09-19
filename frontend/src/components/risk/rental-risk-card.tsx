@@ -55,7 +55,7 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
 
   if (loading) {
     return (
-      <div className={cn("rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card p-6 shadow-card animate-pulse", className)}>
+      <div className={cn("rounded-3xl border border-[var(--border)] bg-card p-6 shadow-card animate-pulse", className)}>
         <div className="flex items-center justify-between">
           <div className="h-5 w-48 rounded bg-black/10 dark:bg-white/10" />
           <div className="h-6 w-20 rounded-full bg-black/10 dark:bg-white/10" />
@@ -84,10 +84,10 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
   // Handle Insufficient Data state
   if (analysis.insufficientData || analysis.riskLevel === "INSUFFICIENT_DATA") {
     return (
-      <div className={cn("rounded-3xl border border-amber-300 bg-amber-50/80 dark:bg-amber-950/25 dark:border-amber-900/50 p-6 shadow-card", className)}>
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-amber-200 dark:border-amber-900/50 pb-4">
+      <div className={cn("rounded-3xl border border-[var(--warning)]/50 bg-[var(--warning)]/10 p-6 shadow-card", className)}>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--warning)]/30 pb-4">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-amber-500/15 text-amber-700 dark:text-amber-400 font-bold text-lg">
+            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[var(--warning)]/15 text-[var(--warning)] font-bold text-lg">
               ⚠️
             </div>
             <div>
@@ -95,7 +95,7 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
               <p className="text-xs text-ink-muted">Deterministic Risk Evaluation Engine</p>
             </div>
           </div>
-          <span className="rounded-full bg-amber-500/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 border border-amber-500/30">
+          <span className="rounded-full bg-[var(--warning)]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[var(--warning)] border border-[var(--warning)]/30">
             Insufficient data
           </span>
         </div>
@@ -104,7 +104,7 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
           <p className="font-semibold text-ink mb-1">{analysis.explanation}</p>
           <p>
             Missing parameters:{" "}
-            <strong className="text-amber-700 dark:text-amber-400 font-mono">
+            <strong className="text-[var(--warning)] font-mono">
               {analysis.missingFields?.join(", ") || "essential financial or spatial details"}
             </strong>
           </p>
@@ -118,16 +118,16 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
 
   const riskBadgeStyles: Record<RiskLevel, { badge: string; ring: string; text: string; bg: string }> = {
     LOW: {
-      badge: "bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border-emerald-500/30",
-      ring: "border-emerald-500 text-emerald-700 dark:text-emerald-400",
+      badge: "bg-[var(--success)]/15 text-[var(--success)] border-[var(--success)]/30",
+      ring: "border-[var(--success)] text-[var(--success)]",
       text: "Low Risk · High Compliance",
-      bg: "bg-emerald-500/10",
+      bg: "bg-[var(--success)]/10",
     },
     MODERATE: {
-      badge: "bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-500/30",
-      ring: "border-amber-500 text-amber-700 dark:text-amber-400",
+      badge: "bg-[var(--warning)]/15 text-[var(--warning)] border-[var(--warning)]/30",
+      ring: "border-[var(--warning)] text-[var(--warning)]",
       text: "Moderate Risk · Standard Precautions",
-      bg: "bg-amber-500/10",
+      bg: "bg-[var(--warning)]/10",
     },
     HIGH: {
       badge: "bg-orange-500/15 text-orange-800 dark:text-orange-300 border-orange-500/30",
@@ -136,10 +136,10 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
       bg: "bg-orange-500/10",
     },
     CRITICAL: {
-      badge: "bg-rose-500/15 text-rose-800 dark:text-rose-300 border-rose-500/30",
-      ring: "border-rose-600 text-rose-700 dark:text-rose-400",
+      badge: "bg-[var(--error)]/15 text-[var(--error)] border-[var(--error)]/30",
+      ring: "border-[var(--error)] text-[var(--error)]",
       text: "Critical Risk · Severe Anomalies Detected",
-      bg: "bg-rose-500/10",
+      bg: "bg-[var(--error)]/10",
     },
     INSUFFICIENT_DATA: {
       badge: "bg-slate-500/15 text-slate-800 dark:text-slate-300 border-slate-500/30",
@@ -152,15 +152,15 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
   const severityBadge = (sev: RiskSeverity) => {
     switch (sev) {
       case "CRITICAL":
-        return "bg-rose-100 text-rose-800 dark:bg-rose-950/50 dark:text-rose-300 border-rose-300";
+        return "bg-[var(--error)]/10 text-[var(--error)] border-[var(--error)]/30";
       case "HIGH":
         return "bg-orange-100 text-orange-800 dark:bg-orange-950/50 dark:text-orange-300 border-orange-300";
       case "MEDIUM":
-        return "bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300 border-amber-300";
+        return "bg-[var(--warning)]/10 text-[var(--warning)] border-[var(--warning)]/30";
       case "LOW":
         return "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300 border-slate-200";
       case "SAFE":
-        return "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300 border-emerald-300";
+        return "bg-[var(--success)]/10 text-[var(--success)] border-[var(--success)]/30";
     }
   };
 
@@ -172,7 +172,7 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
       : analysis.signals.filter((s) => s.severity.toLowerCase() === activeSignalFilter.toLowerCase());
 
   return (
-    <div className={cn("rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card p-6 shadow-card space-y-6", className)}>
+    <div className={cn("rounded-3xl border border-[var(--border)] bg-card p-6 shadow-card space-y-6", className)}>
       {/* 1. Header: Risk Score & Level */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-line pb-6">
         <div className="flex items-center gap-3">
@@ -186,12 +186,12 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
 
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-serif text-lg font-bold text-ink">Rental Risk Engine</h3>
+              <h3 className="font-serif text-lg font-bold text-[var(--text-main)]">Rental Risk Engine</h3>
               <span className={cn("rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border", currentBadge.badge)}>
                 {analysis.riskLevel}
               </span>
             </div>
-            <p className="text-xs text-ink-muted mt-0.5">{currentBadge.text}</p>
+            <p className="text-xs text-[var(--text-muted)] mt-0.5">{currentBadge.text}</p>
           </div>
         </div>
 
@@ -200,7 +200,7 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
           <button
             type="button"
             onClick={() => setShowWhyModal(true)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#7ca982]/40 bg-[#7ca982]/10 hover:bg-[#7ca982]/20 px-3.5 py-1.5 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] transition-colors cursor-pointer shadow-xs"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[var(--accent-forest)]/40 bg-[var(--accent-forest)]/10 hover:bg-[var(--accent-forest)]/20 px-3.5 py-1.5 text-xs font-semibold text-[var(--text-main)] transition-colors cursor-pointer shadow-xs"
           >
             <span>Why this score?</span>
             <span className="text-xs">ℹ️</span>
@@ -219,7 +219,7 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
 
         <div className="rounded-2xl border border-line bg-paper/60 p-3">
           <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">Verification</span>
-          <strong className="mt-0.5 block font-semibold text-[#57875d] dark:text-[#a3caa6] truncate">
+          <strong className="mt-0.5 block font-semibold text-[var(--success)] truncate">
             {analysis.verificationStatus}
           </strong>
         </div>
@@ -240,15 +240,15 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
       </div>
 
       {/* 3. Narrative Explanation */}
-      <div className="rounded-2xl border border-[#7ca982]/20 bg-[#7ca982]/5 p-4 text-xs text-ink leading-relaxed">
+      <div className="rounded-2xl border border-[var(--accent-forest)]/20 bg-[var(--accent-forest)]/5 p-4 text-xs text-[var(--text-main)] leading-relaxed">
         <p className="font-semibold text-ink mb-1">Executive Summary:</p>
-        <p className="text-ink-muted">{analysis.explanation}</p>
+        <p className="text-[var(--text-muted)]">{analysis.explanation}</p>
       </div>
 
       {/* 4. Risk Signals Section */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-ink">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--text-main)]">
             Detected Risk Signals ({analysis.signals.length})
           </h4>
 
@@ -262,8 +262,8 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
                 className={cn(
                   "rounded-lg px-2 py-0.5 capitalize font-medium transition-colors cursor-pointer",
                   activeSignalFilter === filterKey
-                    ? "bg-[#7ca982] text-white"
-                    : "text-ink-muted hover:bg-black/5 dark:hover:bg-white/5"
+                    ? "bg-[var(--accent-forest)] text-white"
+                    : "text-[var(--text-muted)] hover:bg-black/5 dark:hover:bg-white/5"
                 )}
               >
                 {filterKey}
@@ -279,7 +279,7 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
             {filteredSignals.map((signal) => (
               <div
                 key={signal.id}
-                className="rounded-2xl border border-line bg-card p-4 transition-all hover:border-[#7ca982]/40 shadow-xs space-y-2"
+                className="rounded-2xl border border-line bg-card p-4 transition-all hover:border-[var(--accent-forest)]/40 shadow-xs space-y-2"
               >
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
@@ -290,25 +290,25 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
                   </div>
                   <span className={cn(
                     "text-xs font-mono font-bold shrink-0",
-                    signal.impactPoints > 0 ? "text-rose-600 dark:text-rose-400" : "text-emerald-600 dark:text-emerald-400"
+                    signal.impactPoints > 0 ? "text-[var(--error)]" : "text-[var(--success)]"
                   )}>
                     {signal.impactPoints > 0 ? `+${signal.impactPoints} pts` : `${signal.impactPoints} pts`}
                   </span>
                 </div>
 
-                <p className="text-xs text-ink-muted leading-relaxed">
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                   {signal.explanation}
                 </p>
 
                 {/* Evidence & Source Attribution */}
                 <div className="grid sm:grid-cols-2 gap-2 text-[11px] pt-1.5 border-t border-line/60">
                   <div>
-                    <span className="font-semibold text-ink-muted">Evidence: </span>
-                    <span className="text-ink font-mono">{signal.evidence}</span>
+                    <span className="font-semibold text-[var(--text-muted)]">Evidence: </span>
+                    <span className="text-[var(--text-main)] font-mono">{signal.evidence}</span>
                   </div>
                   <div>
-                    <span className="font-semibold text-ink-muted">Source: </span>
-                    <span className="text-[#57875d] dark:text-[#a3caa6]">{signal.source}</span>
+                    <span className="font-semibold text-[var(--text-muted)]">Source: </span>
+                    <span className="text-[var(--success)]">{signal.source}</span>
                   </div>
                 </div>
               </div>
@@ -330,12 +330,12 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
           </p>
 
           <div className="rounded-2xl border border-line bg-paper/60 p-3 space-y-2">
-            <div className="flex justify-between items-center font-semibold text-ink pb-1 border-b border-line">
+            <div className="flex justify-between items-center font-semibold text-[var(--text-main)] pb-1 border-b border-line">
               <span>Risk Factor / Signal</span>
               <span>Impact</span>
             </div>
 
-            <div className="flex justify-between text-ink-muted">
+            <div className="flex justify-between text-[var(--text-muted)]">
               <span>Base Tenancy Risk Baseline</span>
               <span className="font-mono font-semibold">+{analysis.whyThisScore?.baseScore ?? 10} pts</span>
             </div>
@@ -343,19 +343,19 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
             {analysis.whyThisScore?.signalContributions?.map((item, idx) => (
               <div key={idx} className="flex justify-between items-start gap-3 py-1 border-b border-line/40 last:border-b-0">
                 <div>
-                  <strong className="block text-ink font-semibold">{item.signalTitle}</strong>
-                  <span className="text-[11px] text-ink-muted">{item.rationale}</span>
+                  <strong className="block text-[var(--text-main)] font-semibold">{item.signalTitle}</strong>
+                  <span className="text-[11px] text-[var(--text-muted)]">{item.rationale}</span>
                 </div>
                 <span className={cn(
                   "font-mono font-bold shrink-0",
-                  item.points > 0 ? "text-rose-600" : "text-emerald-600"
+                  item.points > 0 ? "text-[var(--error)]" : "text-[var(--success)]"
                 )}>
                   {item.points > 0 ? `+${item.points}` : item.points} pts
                 </span>
               </div>
             ))}
 
-            <div className="flex justify-between items-center font-bold text-ink pt-2 border-t border-line text-sm">
+            <div className="flex justify-between items-center font-bold text-[var(--text-main)] pt-2 border-t border-line text-sm">
               <span>Final Risk Score:</span>
               <span className={cn("font-mono font-extrabold text-base", currentBadge.ring.split(" ")[1])}>
                 {analysis.score} / 100 ({analysis.riskLevel})
@@ -363,14 +363,14 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
             </div>
           </div>
 
-          <div className="rounded-2xl bg-[#7ca982]/10 p-3 border border-[#7ca982]/20">
-            <h5 className="font-bold text-ink text-xs mb-1">Risk Brackets:</h5>
+          <div className="rounded-2xl bg-[var(--accent-forest)]/10 p-3 border border-[var(--accent-forest)]/20">
+            <h5 className="font-bold text-[var(--text-main)] text-xs mb-1">Risk Brackets:</h5>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px]">
-              <div className="p-1.5 rounded bg-emerald-500/20 text-emerald-900 dark:text-emerald-300">
+              <div className="p-1.5 rounded bg-[var(--success)]/20 text-[var(--success)]">
                 <strong>0–25: LOW</strong>
                 <p>Safe & MTA Compliant</p>
               </div>
-              <div className="p-1.5 rounded bg-amber-500/20 text-amber-900 dark:text-amber-300">
+              <div className="p-1.5 rounded bg-[var(--warning)]/20 text-[var(--warning)]">
                 <strong>26–50: MODERATE</strong>
                 <p>Standard Precaution</p>
               </div>
@@ -378,14 +378,14 @@ export function RentalRiskCard({ propertyId, property, className }: RentalRiskCa
                 <strong>51–75: HIGH</strong>
                 <p>Review Deposit/Title</p>
               </div>
-              <div className="p-1.5 rounded bg-rose-500/20 text-rose-900 dark:text-rose-300">
+              <div className="p-1.5 rounded bg-[var(--error)]/20 text-[var(--error)]">
                 <strong>76–100: CRITICAL</strong>
                 <p>Severe Discrepancies</p>
               </div>
             </div>
           </div>
 
-          <div className="text-[11px] text-ink-muted">
+          <div className="text-[11px] text-[var(--text-muted)]">
             <strong>Legal Reference:</strong> Evaluated under the Model Tenancy Act (MTA), 2021 guidelines for residential leases in India.
           </div>
         </div>

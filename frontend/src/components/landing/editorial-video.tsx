@@ -67,7 +67,7 @@ export function EditorialVideo({
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--accent-forest)]/15 px-3.5 py-1 text-xs font-semibold text-[var(--accent-forest)] border border-[var(--accent-forest)]/30">
                 Visual Experience
               </span>
               <h2 className="display mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-ink">
@@ -81,7 +81,7 @@ export function EditorialVideo({
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="relative aspect-video w-full overflow-hidden rounded-3xl border border-line bg-[#060c18] shadow-card group">
+          <div className="relative aspect-video w-full overflow-hidden rounded-3xl border border-line bg-black shadow-card group">
             {/* Video element */}
             {src && !hasError ? (
               <video
@@ -114,7 +114,7 @@ export function EditorialVideo({
             <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10 pointer-events-none">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3.5 py-1 text-xs font-semibold text-white/90 backdrop-blur-md">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#6E9271] animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-forest)] animate-pulse" />
                   {src && !hasError ? "Walkthrough Film" : "Spatial Showcase · Verified Preview"}
                 </span>
 
@@ -135,8 +135,8 @@ export function EditorialVideo({
                   type="button"
                   onClick={togglePlay}
                   className={cn(
-                    "pointer-events-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-white/40 bg-[#7ca982]/95 text-white backdrop-blur-md shadow-xl transition-all duration-300",
-                    "hover:scale-110 hover:bg-[#6b9a71] hover:shadow-[#7ca982]/35 focus-visible:ring-2 focus-visible:ring-[#7ca982] focus-visible:outline-none cursor-pointer",
+                    "pointer-events-auto flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-white/40 bg-[var(--primary-pista)]/95 text-white backdrop-blur-md shadow-xl transition-all duration-300",
+                    "hover:scale-110 hover:bg-[var(--primary-pista-hover)] hover:shadow-[var(--primary-pista)]/35 focus-visible:ring-2 focus-visible:ring-[var(--primary-pista)] focus-visible:outline-none cursor-pointer",
                     isPlaying && "opacity-0 group-hover:opacity-100",
                   )}
                   aria-label={isPlaying ? "Pause video walkthrough" : "Play video walkthrough"}

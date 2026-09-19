@@ -118,7 +118,7 @@ export default function OwnerHubPage() {
       <SiteShell>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-16 space-y-12">
           {/* 1. Hub Header & Greeting */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[var(--border)] pb-8">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-200 border border-amber-500/30">
                 <span>Owner Portal</span>
@@ -145,7 +145,7 @@ export default function OwnerHubPage() {
               </Link>
               <Link
                 href="/owner/dashboard"
-                className="rounded-full border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:bg-[#7ca982]/10 px-4 py-2.5 text-xs font-semibold text-ink transition-colors cursor-pointer"
+                className="rounded-full border border-[var(--border)] bg-card hover:bg-[var(--primary-pista)]/10 px-4 py-2.5 text-xs font-semibold text-ink transition-colors cursor-pointer"
               >
                 Open Full Workspace →
               </Link>
@@ -154,7 +154,7 @@ export default function OwnerHubPage() {
 
           {/* 2. Overview Telemetry Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-5 shadow-xs">
+            <div className="rounded-2xl border border-[var(--border)] bg-card p-5 shadow-xs">
               <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">Active Properties</span>
               <div className="mt-2 flex items-baseline justify-between">
                 <span className="text-2xl font-bold font-serif text-ink">{listed.length} Published</span>
@@ -165,7 +165,7 @@ export default function OwnerHubPage() {
               <p className="mt-1 text-xs text-ink-muted">{drafts.length} drafts in preparation</p>
             </div>
 
-            <div className="rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-5 shadow-xs">
+            <div className="rounded-2xl border border-[var(--border)] bg-card p-5 shadow-xs">
               <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">Pending Applications</span>
               <div className="mt-2 flex items-baseline justify-between">
                 <span className="text-2xl font-bold font-serif text-ink">2 Applications</span>
@@ -174,7 +174,7 @@ export default function OwnerHubPage() {
               <p className="mt-1 text-xs text-ink-muted">Pre-screened verified profiles</p>
             </div>
 
-            <div className="rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-5 shadow-xs">
+            <div className="rounded-2xl border border-[var(--border)] bg-card p-5 shadow-xs">
               <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">Tenant Inquiries</span>
               <div className="mt-2 flex items-baseline justify-between">
                 <span className="text-2xl font-bold font-serif text-ink">4 Inquiries</span>
@@ -183,7 +183,7 @@ export default function OwnerHubPage() {
               <p className="mt-1 text-xs text-ink-muted">Direct prospective tenant chats</p>
             </div>
 
-            <div className="rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-5 shadow-xs">
+            <div className="rounded-2xl border border-[var(--border)] bg-card p-5 shadow-xs">
               <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">Occupied Units</span>
               <div className="mt-2 flex items-baseline justify-between">
                 <span className="text-2xl font-bold font-serif text-ink">100% Occupancy</span>
@@ -199,7 +199,7 @@ export default function OwnerHubPage() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <Link
                 href="/owner/properties/new"
-                className="group flex flex-col items-center justify-center p-5 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:border-amber-600 hover:shadow-md transition-all text-center"
+                className="group flex flex-col items-center justify-center p-5 rounded-2xl border border-[var(--border)] bg-card hover:border-amber-600 hover:shadow-md transition-all text-center"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/15 text-amber-800 dark:text-amber-200 group-hover:scale-110 transition-transform">
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -212,7 +212,7 @@ export default function OwnerHubPage() {
 
               <Link
                 href="/ai/agreement"
-                className="group flex flex-col items-center justify-center p-5 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:border-amber-600 hover:shadow-md transition-all text-center"
+                className="group flex flex-col items-center justify-center p-5 rounded-2xl border border-[var(--border)] bg-card hover:border-amber-600 hover:shadow-md transition-all text-center"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 group-hover:scale-110 transition-transform">
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -226,7 +226,7 @@ export default function OwnerHubPage() {
 
               <Link
                 href="/rental/rent-navrang/passport"
-                className="group flex flex-col items-center justify-center p-5 rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark hover:border-amber-600 hover:shadow-md transition-all text-center"
+                className="group flex flex-col items-center justify-center p-5 rounded-2xl border border-[var(--border)] bg-card hover:border-amber-600 hover:shadow-md transition-all text-center"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 group-hover:scale-110 transition-transform">
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -239,15 +239,15 @@ export default function OwnerHubPage() {
 
               <Link
                 href="/copilot"
-                className="group flex flex-col items-center justify-center p-5 rounded-2xl border border-[#7ca982]/40 bg-[#7ca982]/10 hover:bg-[#7ca982]/20 hover:shadow-md transition-all text-center"
+                className="group flex flex-col items-center justify-center p-5 rounded-2xl border border-[var(--primary-pista)]/40 bg-[var(--primary-pista)]/10 hover:bg-[var(--primary-pista)]/20 hover:shadow-md transition-all text-center"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#7ca982] text-white group-hover:scale-110 transition-transform">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--primary-pista)] text-white group-hover:scale-110 transition-transform">
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <span className="mt-2.5 text-xs font-bold text-ink group-hover:text-[#57875d]">AI Rental Copilot</span>
-                <span className="text-[10px] text-[#23452b] dark:text-[#a3caa6] font-semibold">Yield & lease queries</span>
+                <span className="mt-2.5 text-xs font-bold text-ink group-hover:text-[var(--accent-forest)]">AI Rental Copilot</span>
+                <span className="text-[10px] text-[var(--accent-forest)] font-semibold">Yield & lease queries</span>
               </Link>
             </div>
           </div>
@@ -272,7 +272,7 @@ export default function OwnerHubPage() {
                 {listed.map((item) => (
                   <div
                     key={item.id}
-                    className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-6 shadow-xs flex flex-col justify-between"
+                    className="rounded-3xl border border-[var(--border)] bg-card p-6 shadow-xs flex flex-col justify-between"
                   >
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
@@ -287,9 +287,9 @@ export default function OwnerHubPage() {
                       </p>
                     </div>
 
-                    <div className="mt-5 pt-4 border-t border-[#e5dfc5] dark:border-[#2a3f31] flex items-center justify-between text-xs">
+                    <div className="mt-5 pt-4 border-t border-[var(--border)] flex items-center justify-between text-xs">
                       <div className="flex items-center gap-3">
-                        <Link href={`/property/${item.id}`} className="font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline">
+                        <Link href={`/property/${item.id}`} className="font-semibold text-[var(--accent-forest)] hover:underline">
                           View
                         </Link>
                         <Link href={`/owner/properties/${item.id}`} className="font-semibold text-ink hover:underline">
@@ -305,7 +305,7 @@ export default function OwnerHubPage() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-3xl border border-dashed border-[#e5dfc5] dark:border-[#2a3f31] p-10 text-center">
+              <div className="rounded-3xl border border-dashed border-[var(--border)] p-10 text-center">
                 <p className="text-sm font-semibold text-ink">No properties listed yet.</p>
                 <p className="mt-1 text-xs text-ink-muted">Publish your first residence to start receiving verified tenant applications.</p>
                 <Link
@@ -319,8 +319,8 @@ export default function OwnerHubPage() {
           </div>
 
           {/* 5. Recent Applications Table */}
-          <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-6 sm:p-8 shadow-xs space-y-5">
-            <div className="flex items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-4">
+          <div className="rounded-3xl border border-[var(--border)] bg-card p-6 sm:p-8 shadow-xs space-y-5">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
               <div>
                 <h2 className="text-lg sm:text-xl font-bold font-serif text-ink">Recent Tenant Applications</h2>
                 <p className="text-xs text-ink-muted">Prospective tenants awaiting lease offer approval</p>
@@ -333,7 +333,7 @@ export default function OwnerHubPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-[#e5dfc5] dark:border-[#2a3f31] text-ink-muted uppercase tracking-wider text-[10px]">
+                  <tr className="border-b border-[var(--border)] text-ink-muted uppercase tracking-wider text-[10px]">
                     <th className="pb-3 font-bold">Applicant</th>
                     <th className="pb-3 font-bold">Residence</th>
                     <th className="pb-3 font-bold">Offer Rent</th>
@@ -342,9 +342,9 @@ export default function OwnerHubPage() {
                     <th className="pb-3 font-bold text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#e5dfc5]/60 dark:divide-[#2a3f31]/60">
+                <tbody className="divide-y divide-[var(--border)]/60">
                   {RECENT_APPLICATIONS.map((app) => (
-                    <tr key={app.id} className="hover:bg-paper/50 dark:hover:bg-[#1d2d22]/50 transition-colors">
+                    <tr key={app.id} className="hover:bg-paper/50 transition-colors">
                       <td className="py-3.5">
                         <div className="font-bold text-ink">{app.applicantName}</div>
                         <div className="text-[10px] text-ink-muted">{app.applicantRole}</div>
@@ -360,7 +360,7 @@ export default function OwnerHubPage() {
                       <td className="py-3.5 text-right">
                         <Link
                           href="/ai/agreement"
-                          className="inline-flex items-center gap-1 rounded-full bg-[#7ca982] text-white px-3 py-1 text-[11px] font-bold shadow-xs hover:bg-[#68946e] transition-colors"
+                          className="inline-flex items-center gap-1 rounded-full bg-[var(--primary-pista)] text-white px-3 py-1 text-[11px] font-bold shadow-xs hover:bg-[var(--primary-pista-hover)] transition-colors"
                         >
                           Draft Lease
                         </Link>
@@ -374,8 +374,8 @@ export default function OwnerHubPage() {
 
           {/* 6. Recent Tenant Inquiries */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-6 shadow-xs">
-              <div className="flex items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-4">
+            <div className="rounded-3xl border border-[var(--border)] bg-card p-6 shadow-xs">
+              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
                 <div>
                   <h3 className="text-base font-bold font-serif text-ink">Recent Inquiries</h3>
                   <p className="text-xs text-ink-muted">Direct questions from verified searchers</p>
@@ -387,7 +387,7 @@ export default function OwnerHubPage() {
 
               <div className="mt-4 space-y-3">
                 {RECENT_INQUIRIES.map((inq) => (
-                  <div key={inq.id} className="p-3.5 rounded-2xl bg-paper dark:bg-[#1d2d22] border border-[#e5dfc5] dark:border-[#2a3f31] text-xs space-y-1.5">
+                  <div key={inq.id} className="p-3.5 rounded-2xl bg-paper border border-[var(--border)] text-xs space-y-1.5">
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-ink">{inq.senderName}</span>
                       <span className="text-[10px] text-ink-muted">{inq.timeAgo}</span>
@@ -395,7 +395,7 @@ export default function OwnerHubPage() {
                     <p className="text-[11px] text-ink leading-relaxed">&ldquo;{inq.message}&rdquo;</p>
                     <div className="flex items-center justify-between pt-1 text-[10px]">
                       <span className="text-ink-muted">{inq.propertyTitle}</span>
-                      <button type="button" className="text-[#57875d] dark:text-[#a3caa6] font-bold hover:underline cursor-pointer">
+                      <button type="button" className="text-[var(--accent-forest)] font-bold hover:underline cursor-pointer">
                         Reply via Chat →
                       </button>
                     </div>
@@ -405,19 +405,19 @@ export default function OwnerHubPage() {
             </div>
 
             {/* 7. Maintenance & Occupancy Ledger */}
-            <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-6 shadow-xs">
-              <div className="flex items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-4">
+            <div className="rounded-3xl border border-[var(--border)] bg-card p-6 shadow-xs">
+              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
                 <div>
                   <h3 className="text-base font-bold font-serif text-ink">Maintenance & Condition Log</h3>
                   <p className="text-xs text-ink-muted">Live tenant repair tickets & dispute prevention</p>
                 </div>
-                <Link href="/rental/rent-navrang" className="text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline">
+                <Link href="/rental/rent-navrang" className="text-xs font-semibold text-[var(--accent-forest)] hover:underline">
                   Ledger →
                 </Link>
               </div>
 
               <div className="mt-4 space-y-3">
-                <div className="p-3.5 rounded-2xl bg-paper dark:bg-[#1d2d22] border border-[#e5dfc5] dark:border-[#2a3f31] text-xs">
+                <div className="p-3.5 rounded-2xl bg-paper border border-[var(--border)] text-xs">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-ink">Courtyard Villa 2B</span>
                     <span className="rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-bold px-2 py-0.5 text-[10px]">
@@ -429,7 +429,7 @@ export default function OwnerHubPage() {
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-paper dark:bg-[#1d2d22] border border-[#e5dfc5] dark:border-[#2a3f31] text-xs">
+                <div className="p-3.5 rounded-2xl bg-paper border border-[var(--border)] text-xs">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-ink">Scheduled Maintenance Payout</span>
                     <span className="font-bold font-serif text-ink">₹2,400</span>
@@ -459,14 +459,14 @@ export default function OwnerHubPage() {
               {METRO_BENCHMARKS.map((m) => (
                 <div
                   key={m.city}
-                  className="rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-4 shadow-xs"
+                  className="rounded-2xl border border-[var(--border)] bg-card p-4 shadow-xs"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-ink">{m.city}</span>
                     <span className="text-[9px] font-semibold text-emerald-600 dark:text-emerald-400">{m.yieldPct}</span>
                   </div>
                   <p className="mt-1 text-sm font-serif font-bold text-ink">{m.avgRent}</p>
-                  <div className="mt-2 pt-2 border-t border-[#e5dfc5]/60 dark:border-[#2a3f31]/60 flex items-center justify-between text-[9px] text-ink-muted">
+                  <div className="mt-2 pt-2 border-t border-[var(--border)]/60 flex items-center justify-between text-[9px] text-ink-muted">
                     <span>Demand:</span>
                     <span className="font-semibold text-ink">{m.demand}</span>
                   </div>

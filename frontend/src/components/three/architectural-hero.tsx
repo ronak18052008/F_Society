@@ -139,10 +139,10 @@ function HeroFallback({
         <div className="flex items-center gap-2.5">
           <span
             className={`h-2 w-2 rounded-full ${
-              isAssembling ? "bg-[#6E9271] animate-ping" : "bg-[#6E9271]"
+              isAssembling ? "bg-[var(--accent-forest)] animate-ping" : "bg-[var(--accent-forest)]"
             }`}
           />
-          <p className="text-[11px] font-semibold tracking-wider text-[#6E9271] uppercase">
+          <p className="text-[11px] font-semibold tracking-wider text-[var(--accent-forest)] uppercase">
             {label}
           </p>
         </div>

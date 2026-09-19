@@ -51,15 +51,15 @@ export default function RoommatesPage() {
         </div>
 
         {/* Navigation Banner to Smart Roommate Expenses */}
-        <div className="rounded-2xl border border-[#7ca982]/30 bg-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+        <div className="rounded-2xl border border-[var(--primary-pista)]/30 bg-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] text-xl">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--primary-pista)]/15 text-[var(--text-main)] text-xl">
               💰
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-sm font-bold text-ink">Smart Roommate Expense Engine</h3>
-                <span className="rounded-full bg-[#7ca982]/20 px-2 py-0.5 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6] uppercase tracking-wider">
+                <span className="rounded-full bg-[var(--primary-pista)]/20 px-2 py-0.5 text-[10px] font-bold text-[var(--text-main)] uppercase tracking-wider">
                   Feature 5
                 </span>
               </div>
@@ -68,7 +68,7 @@ export default function RoommatesPage() {
               </p>
             </div>
           </div>
-          <Button href="/tenant/expenses" size="sm" className="bg-[#7ca982] hover:bg-[#6b9a71] text-white shrink-0">
+          <Button href="/tenant/expenses" size="sm" className="bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white shrink-0">
             Open Expense Ledger →
           </Button>
         </div>
@@ -132,7 +132,7 @@ export default function RoommatesPage() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7ca982] to-[#57875d] text-white font-serif font-bold text-lg shadow-sm">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--primary-pista)] to-[var(--accent-forest)] text-white font-serif font-bold text-lg shadow-sm">
                         {person.displayName[0]}
                       </div>
                       <div>
@@ -144,7 +144,7 @@ export default function RoommatesPage() {
                         </p>
                       </div>
                     </div>
-                    <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-0.5 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                    <span className="rounded-full bg-[var(--primary-pista)]/15 px-2.5 py-0.5 text-[10px] font-bold text-[var(--text-main)] border border-[var(--primary-pista)]/30">
                       Verified
                     </span>
                   </div>
@@ -161,7 +161,7 @@ export default function RoommatesPage() {
                       overlap.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-[#7ca982]/30 bg-[#7ca982]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#1d3122] dark:text-[#a3caa6]"
+                          className="rounded-full border border-[var(--primary-pista)]/30 bg-[var(--primary-pista)]/10 px-2.5 py-0.5 text-[10px] font-bold text-[var(--text-main)]"
                         >
                           {tag}
                         </span>

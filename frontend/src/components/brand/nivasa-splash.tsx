@@ -75,7 +75,7 @@ export function NivasaSplash() {
     <aside
       aria-label="Nivasa startup presentation"
       className={cn(
-        "fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#faf7f0] transition-opacity duration-350 ease-out pointer-events-auto",
+        "fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[var(--bg-canvas)] transition-opacity duration-350 ease-out pointer-events-auto",
         stage === "fadeOut" && "opacity-0 pointer-events-none"
       )}
     >
@@ -89,7 +89,7 @@ export function NivasaSplash() {
               "opacity-100 scale-100 translate-y-0"
           )}
         >
-          <div className="relative flex items-center justify-center p-4 rounded-3xl bg-white/80 shadow-xl shadow-[#7ca982]/10 border border-[#e5dfc5]">
+          <div className="relative flex items-center justify-center p-4 rounded-3xl bg-white/80 shadow-xl shadow-[var(--primary-pista)]/10 border border-[var(--border)]">
             <NivasaIconMark size={72} />
           </div>
         </div>
@@ -102,18 +102,18 @@ export function NivasaSplash() {
             (stage === "brandIn" || stage === "fadeOut") && "opacity-100 translate-y-0"
           )}
         >
-          <h1 className="font-sans text-3xl sm:text-4xl font-black tracking-tight text-[#192734]">
+          <h1 className="font-sans text-3xl sm:text-4xl font-black tracking-tight text-[var(--text-main)]">
             Nivasã
           </h1>
-          <p className="mt-1.5 text-xs sm:text-sm font-medium text-[#5b6c7a] tracking-wide">
+          <p className="mt-1.5 text-xs sm:text-sm font-medium text-[var(--text-muted)] tracking-wide">
             Rent with clarity. Live with confidence.
           </p>
 
           {/* Minimalist sleek loading indicator */}
           <div className="mt-6 flex items-center gap-1.5">
-            <span className="h-1.5 w-6 rounded-full bg-[#7ca982] animate-pulse" />
-            <span className="h-1.5 w-1.5 rounded-full bg-[#96bd9b]" />
-            <span className="h-1.5 w-1.5 rounded-full bg-[#e5dfc5]" />
+            <span className="h-1.5 w-6 rounded-full bg-[var(--primary-pista)] animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--secondary-sage)]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--border)]" />
           </div>
         </div>
       </div>

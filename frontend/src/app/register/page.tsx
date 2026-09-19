@@ -95,25 +95,25 @@ function RegisterForm() {
 
   return (
     <div className="mx-auto max-w-md px-4 sm:px-6 py-12 sm:py-20">
-      <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-[#1a281f] p-7 sm:p-9 shadow-xl shadow-warm-300/30 dark:shadow-none">
+      <div className="rounded-3xl border border-[var(--border)] bg-[var(--bg-surface-elevated)] p-7 sm:p-9 shadow-xl">
         {/* Header */}
         <div className="text-center">
           <div className="flex justify-center mb-3">
             <NivasaLogo variant="mark" size="sm" />
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista-subtle)] px-3 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--border-subtle)]">
             Nivasa Registration
           </div>
-          <h1 className="mt-3 text-3xl font-serif font-bold tracking-tight text-ink dark:text-cream">
+          <h1 className="mt-3 text-3xl font-serif font-bold tracking-tight text-[var(--text-main)]">
             Create your Nivasa account
           </h1>
-          <p className="mt-1.5 text-xs text-ink-muted">
+          <p className="mt-1.5 text-xs text-[var(--text-muted)]">
             Join India&apos;s direct housing network with transparent pricing and zero brokerage.
           </p>
         </div>
 
         {error && (
-          <div className="mt-4 rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-950/40 p-3.5 text-xs text-rose-600 dark:text-rose-300 font-medium">
+          <div className="mt-4 rounded-xl border border-[var(--error)] bg-rose-50 p-3.5 text-xs text-[var(--error)] font-medium">
             {error}
           </div>
         )}
@@ -127,7 +127,7 @@ function RegisterForm() {
         >
           {/* Section 19: Role Selection "I am a: ○ Tenant ○ Owner" */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-ink-muted mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
               I am a:
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -137,21 +137,21 @@ function RegisterForm() {
                 className={cn(
                   "p-3 rounded-2xl border text-left transition-all cursor-pointer flex items-center gap-2.5",
                   role === "tenant"
-                    ? "border-[#7ca982] bg-[#7ca982]/15 text-[#1d3122] dark:text-[#f5f9f6] ring-1 ring-[#7ca982]"
-                    : "border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#142018] text-[#4e6853] hover:border-[#7ca982]/50"
+                    ? "border-[var(--primary-pista)] bg-[var(--primary-pista-subtle)] text-[var(--text-main)] ring-1 ring-[var(--primary-pista)]"
+                    : "border-[var(--border)] bg-[var(--bg-canvas)] text-[var(--text-muted)] hover:border-[var(--primary-pista)]"
                 )}
               >
                 <span
                   className={cn(
                     "flex h-4 w-4 rounded-full border items-center justify-center",
-                    role === "tenant" ? "border-[#7ca982] bg-[#7ca982]" : "border-[#7d9782]"
+                    role === "tenant" ? "border-[var(--primary-pista)] bg-[var(--primary-pista)]" : "border-[var(--border)]"
                   )}
                 >
                   {role === "tenant" && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                 </span>
                 <div>
                   <div className="text-xs font-bold font-serif">Tenant</div>
-                  <div className="text-[10px] text-ink-muted">Looking for a home</div>
+                  <div className="text-[10px] text-[var(--text-muted)]">Looking for a home</div>
                 </div>
               </button>
 
@@ -161,21 +161,21 @@ function RegisterForm() {
                 className={cn(
                   "p-3 rounded-2xl border text-left transition-all cursor-pointer flex items-center gap-2.5",
                   role === "owner"
-                    ? "border-amber-600 bg-amber-500/15 text-[#1d3122] dark:text-[#f5f9f6] ring-1 ring-amber-600"
-                    : "border-[#e5dfc5] dark:border-[#2a3f31] bg-[#faf7f0] dark:bg-[#142018] text-[#4e6853] hover:border-amber-600/50"
+                    ? "border-amber-600 bg-amber-500/15 text-[var(--text-main)] ring-1 ring-amber-600"
+                    : "border-[var(--border)] bg-[var(--bg-canvas)] text-[var(--text-muted)] hover:border-amber-600/50"
                 )}
               >
                 <span
                   className={cn(
                     "flex h-4 w-4 rounded-full border items-center justify-center",
-                    role === "owner" ? "border-amber-600 bg-amber-600" : "border-[#7d9782]"
+                    role === "owner" ? "border-amber-600 bg-amber-600" : "border-[var(--border)]"
                   )}
                 >
                   {role === "owner" && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                 </span>
                 <div>
                   <div className="text-xs font-bold font-serif">Owner</div>
-                  <div className="text-[10px] text-ink-muted">List residences</div>
+                  <div className="text-[10px] text-[var(--text-muted)]">List residences</div>
                 </div>
               </button>
             </div>
@@ -227,9 +227,9 @@ function RegisterForm() {
           </div>
         </form>
 
-        <div className="mt-6 text-center text-xs text-ink-muted">
+        <div className="mt-6 text-center text-xs text-[var(--text-muted)]">
           Already have an account?{" "}
-          <Link className="font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline" href="/login">
+          <Link className="font-semibold text-[var(--primary-pista)] hover:underline" href="/login">
             Sign in
           </Link>
         </div>
@@ -241,7 +241,7 @@ function RegisterForm() {
 export default function RegisterPage() {
   return (
     <SiteShell>
-      <Suspense fallback={<div className="py-20 text-center text-xs text-ink-muted">Loading registration...</div>}>
+      <Suspense fallback={<div className="py-20 text-center text-xs text-[var(--text-muted)]">Loading registration...</div>}>
         <RegisterForm />
       </Suspense>
     </SiteShell>

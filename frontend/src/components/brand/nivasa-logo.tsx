@@ -29,30 +29,30 @@ export function NivasaIconMark({ size = 36, className }: { size?: number; classN
     >
       <defs>
         <linearGradient id="nivasa-stem-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#1C2E3D" />
-          <stop offset="100%" stopColor="#14212C" />
+          <stop offset="0%" stopColor="var(--text-main)" />
+          <stop offset="100%" stopColor="var(--text-main)" />
         </linearGradient>
         <linearGradient id="nivasa-ribbon-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#1E392B" />
-          <stop offset="50%" stopColor="#3F6B4E" />
-          <stop offset="100%" stopColor="#7CA982" />
+          <stop offset="0%" stopColor="var(--accent-forest)" />
+          <stop offset="50%" stopColor="var(--secondary-sage)" />
+          <stop offset="100%" stopColor="var(--primary-pista)" />
         </linearGradient>
       </defs>
 
       {/* Chimney */}
-      <path d="M72 32V24H82V42L72 32Z" fill="#1C2E3D" />
+      <path d="M72 32V24H82V42L72 32Z" fill="var(--text-main)" />
 
       {/* Roof Gable */}
       <path
         d="M60 14L22 44L28 50L60 25L92 50L98 44L60 14Z"
-        fill="#1C2E3D"
+        fill="var(--text-main)"
       />
 
       {/* Four Window Panes in warm terracotta/tan */}
-      <rect x="52" y="36" width="7" height="7" rx="1.5" fill="#C9A37A" />
-      <rect x="61" y="36" width="7" height="7" rx="1.5" fill="#C9A37A" />
-      <rect x="52" y="45" width="7" height="7" rx="1.5" fill="#C9A37A" />
-      <rect x="61" y="45" width="7" height="7" rx="1.5" fill="#C9A37A" />
+      <rect x="52" y="36" width="7" height="7" rx="1.5" fill="var(--warning)" />
+      <rect x="61" y="36" width="7" height="7" rx="1.5" fill="var(--warning)" />
+      <rect x="52" y="45" width="7" height="7" rx="1.5" fill="var(--warning)" />
+      <rect x="61" y="45" width="7" height="7" rx="1.5" fill="var(--warning)" />
 
       {/* Left Vertical Stem of N (Navy) */}
       <path
@@ -103,7 +103,7 @@ export function NivasaLogo({
     >
       {/* Logo Mark: Vector or Image */}
       {variant === "image" ? (
-        <div className="relative overflow-hidden rounded-2xl border border-[#e5dfc5] dark:border-[#2a3f31] shadow-xs">
+        <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] shadow-xs">
           <Image
             src="/brand/nivasa-logo.jpg"
             alt="Nivasa Logo"
@@ -123,7 +123,7 @@ export function NivasaLogo({
           <div className="flex items-baseline gap-1">
             <span
               className={cn(
-                "font-sans font-extrabold text-[#192734] dark:text-[#f5f9f6]",
+                "font-sans font-extrabold text-[var(--text-main)]",
                 textSizes
               )}
             >
@@ -136,7 +136,7 @@ export function NivasaLogo({
               className={cn(
                 "font-sans text-ink-muted leading-tight",
                 size === "xs" || size === "sm" ? "text-[10px]" : "text-xs",
-                variant === "full" && "mt-0.5 text-xs text-[#5b6c7a] dark:text-[#a5b8aa]"
+                variant === "full" && "mt-0.5 text-xs text-[var(--text-muted)]"
               )}
             >
               Rent with clarity. Live with confidence.
@@ -151,7 +151,7 @@ export function NivasaLogo({
     return (
       <Link
         href={href}
-        className="group inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7ca982] rounded-2xl"
+        className="group inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-pista)] rounded-2xl"
         aria-label="Nivasa Homepage"
       >
         {content}

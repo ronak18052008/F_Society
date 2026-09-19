@@ -85,63 +85,63 @@ export default function TenantLoginPage() {
           <div className="lg:col-span-6 space-y-6">
             <div className="flex items-center gap-3">
               <NivasaLogo variant="mark" size="sm" />
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--primary-pista-subtle)] px-3 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--primary-pista-subtle)]">
                 <span>Tenant Portal</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[#7ca982]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary-pista)]" />
                 <span>TENANT</span>
               </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-ink tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[var(--text-main)] tracking-tight leading-tight">
               Tenant Sign In
             </h1>
 
-            <p className="text-sm sm:text-base text-ink-muted leading-relaxed font-medium">
+            <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed font-medium">
               Find verified homes, understand your rental costs, and manage your tenancy with Nivasa.
             </p>
 
             {/* Feature Highlights per Section 6 */}
             <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Verified residence discovery</span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Rental expense information</span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Digital condition passport</span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Roommate matching</span>
               </div>
 
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7ca982]/20 text-[#1d3122] dark:text-[#a3caa6] font-bold">
+              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-main)]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-pista-subtle)] text-[var(--text-main)] font-bold">
                   ✓
                 </span>
                 <span>Tenant-focused housing tools</span>
               </div>
             </div>
 
-            <div className="pt-3 border-t border-[#e5dfc5] dark:border-[#2a3f31]">
+            <div className="pt-3 border-t border-[var(--border)]">
               <Link
                 href="/login/owner"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--primary-pista)] hover:underline"
               >
                 <span>Are you a property owner? Sign in as Owner →</span>
               </Link>
@@ -150,24 +150,24 @@ export default function TenantLoginPage() {
 
           {/* Right Column: Tenant Sign-in Form Card */}
           <div className="lg:col-span-6">
-            <div className="rounded-3xl border border-[#e5dfc5] dark:border-[#2a3f31] bg-card dark:bg-card-dark p-7 sm:p-9 shadow-xl shadow-warm-300/20 dark:shadow-none">
-              <div className="flex items-center justify-between border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-4 mb-6">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--bg-surface-elevated)] p-7 sm:p-9 shadow-xl">
+              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4 mb-6">
                 <div>
-                  <h2 className="text-xl font-bold font-serif text-ink">Tenant Member Sign In</h2>
-                  <p className="text-xs text-ink-muted mt-0.5">Access your verified tenancy workspace</p>
+                  <h2 className="text-xl font-bold font-serif text-[var(--text-main)]">Tenant Member Sign In</h2>
+                  <p className="text-xs text-[var(--text-muted)] mt-0.5">Access your verified tenancy workspace</p>
                 </div>
-                <span className="rounded-full bg-[#7ca982]/15 px-2.5 py-1 text-[11px] font-bold text-[#1d3122] dark:text-[#a3caa6]">
+                <span className="rounded-full bg-[var(--primary-pista-subtle)] px-2.5 py-1 text-[11px] font-bold text-[var(--text-main)]">
                   TENANT
                 </span>
               </div>
 
               {/* 1-Click Demo Shortcut */}
-              <div className="mb-6 rounded-2xl border border-[#7ca982]/30 bg-[#7ca982]/10 p-3.5 text-center">
-                <p className="text-xs text-ink-muted mb-2">Instant demo testing without typing credentials:</p>
+              <div className="mb-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--primary-pista-subtle)] p-3.5 text-center">
+                <p className="text-xs text-[var(--text-muted)] mb-2">Instant demo testing without typing credentials:</p>
                 <button
                   type="button"
                   onClick={handleDemoSignIn}
-                  className="w-full rounded-xl bg-[#7ca982] hover:bg-[#6b9471] text-white py-2 px-3 text-xs font-semibold shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full rounded-xl bg-[var(--primary-pista)] hover:bg-[var(--primary-pista-hover)] text-white py-2 px-3 text-xs font-semibold shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -178,15 +178,15 @@ export default function TenantLoginPage() {
 
               <div className="relative my-4 flex items-center justify-center">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-[#e5dfc5] dark:border-[#2a3f31]" />
+                  <div className="w-full border-t border-[var(--border)]" />
                 </div>
-                <span className="relative bg-card dark:bg-card-dark px-3 text-[11px] font-semibold text-ink-muted uppercase">
+                <span className="relative bg-[var(--bg-surface-elevated)] px-3 text-[11px] font-semibold text-[var(--text-muted)] uppercase">
                   or enter credentials
                 </span>
               </div>
 
               {error && (
-                <div className="mb-4 rounded-xl border border-rose-200 bg-rose-50 dark:bg-rose-950/40 p-3 text-xs text-rose-600 dark:text-rose-300 font-medium">
+                <div className="mb-4 rounded-xl border border-[var(--error)] bg-rose-50 p-3 text-xs text-[var(--error)] font-medium">
                   {error}
                 </div>
               )}
@@ -220,7 +220,7 @@ export default function TenantLoginPage() {
                     required
                   />
                   <div className="mt-1.5 text-right">
-                    <Link href="/forgot-password" className="text-xs text-[#57875d] dark:text-[#a3caa6] font-semibold hover:underline">
+                    <Link href="/forgot-password" className="text-xs text-[var(--primary-pista)] font-semibold hover:underline">
                       Forgot password?
                     </Link>
                   </div>
@@ -233,9 +233,9 @@ export default function TenantLoginPage() {
                 </div>
               </form>
 
-              <div className="mt-6 pt-5 border-t border-[#e5dfc5] dark:border-[#2a3f31] text-center text-xs text-ink-muted">
+              <div className="mt-6 pt-5 border-t border-[var(--border)] text-center text-xs text-[var(--text-muted)]">
                 Don&apos;t have a tenant profile?{" "}
-                <Link className="font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline" href="/register">
+                <Link className="font-semibold text-[var(--primary-pista)] hover:underline" href="/register">
                   Create tenant account
                 </Link>
               </div>

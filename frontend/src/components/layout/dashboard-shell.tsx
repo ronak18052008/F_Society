@@ -39,20 +39,20 @@ export function DashboardShell({
   const items = role === "owner" ? ownerNav : tenantNav;
 
   return (
-    <div className="min-h-screen bg-paper text-ink transition-colors duration-300">
+    <div className="min-h-screen bg-[var(--bg-canvas)] text-[var(--text-main)] transition-colors duration-300">
       <Navbar />
       
       {/* Background ambient radial gradients */}
-      <div className="pointer-events-none fixed top-0 left-1/4 w-96 h-96 bg-[#6E9271]/10 blur-3xl -z-10" />
-      <div className="pointer-events-none fixed bottom-0 right-1/4 w-96 h-96 bg-[#8FA89B]/10 blur-3xl -z-10" />
+      <div className="pointer-events-none fixed top-0 left-1/4 w-96 h-96 bg-[var(--primary-pista)]/10 blur-3xl -z-10" />
+      <div className="pointer-events-none fixed bottom-0 right-1/4 w-96 h-96 bg-[var(--secondary-sage)]/10 blur-3xl -z-10" />
 
       <div className="wrap grid gap-8 py-6 sm:py-8 lg:grid-cols-[16rem_1fr] lg:gap-10 lg:py-10">
         {/* Sidebar Nav (Desktop) & Overflow Scroll (Mobile) */}
-        <aside className="border-b border-line pb-4 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
+        <aside className="border-b border-[var(--border)] pb-4 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
           <div className="flex items-center justify-between lg:block">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-2 w-2 rounded-full bg-[#6E9271] animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-wider text-[#6E9271] dark:text-[#A3B899]">
+              <span className="flex h-2 w-2 rounded-full bg-[var(--accent-forest)] animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-wider text-[var(--accent-forest)]">
                 {role} Command Center
               </span>
             </div>
@@ -69,10 +69,10 @@ export function DashboardShell({
                   aria-current={active ? "page" : undefined}
                   className={cn(
                     "group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all duration-200",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E9271]",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-pista)]",
                     active
-                      ? "bg-[#6E9271] text-white shadow-md shadow-[#6E9271]/20 font-semibold"
-                      : "text-ink-muted hover:bg-black/5 dark:hover:bg-white/5 hover:text-ink",
+                      ? "bg-[var(--accent-forest)] text-white shadow-md shadow-[var(--accent-forest)]/20 font-semibold"
+                      : "text-[var(--text-muted)] hover:bg-[var(--bg-surface-elevated)]/60 hover:text-[var(--text-main)]",
                   )}
                 >
                   <div className="flex items-center gap-3">
@@ -103,10 +103,10 @@ export function DashboardShell({
                   aria-current={active ? "page" : undefined}
                   className={cn(
                     "whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E9271]",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-pista)]",
                     active
-                      ? "bg-[#6E9271] text-white shadow-sm"
-                      : "border border-line bg-card/60 text-ink-muted hover:text-ink",
+                      ? "bg-[var(--accent-forest)] text-white shadow-sm"
+                      : "border border-[var(--border)] bg-[var(--bg-surface)]/60 text-[var(--text-muted)] hover:text-[var(--text-main)]",
                   )}
                 >
                   {item.label}
@@ -118,19 +118,19 @@ export function DashboardShell({
 
         {/* Main Content Area */}
         <section className="min-w-0">
-          <header className="mb-8 border-b border-line pb-6">
+          <header className="mb-8 border-b border-[var(--border)] pb-6">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-line bg-card/60 px-3 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-surface)]/60 px-3 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--text-faint)]">
                   <span>Nivasa Workspace</span>
-                  <span className="text-ink-muted/50">·</span>
-                  <span className="text-[#6E9271] dark:text-[#A3B899]">Live Telemetry</span>
+                  <span className="text-[var(--text-faint)]/50">·</span>
+                  <span className="text-[var(--accent-forest)]">Live Telemetry</span>
                 </div>
-                <h1 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink font-serif">
+                <h1 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-[var(--text-main)] font-serif">
                   {title}
                 </h1>
                 {subtitle && (
-                  <p className="mt-2 text-sm text-ink-muted max-w-2xl">{subtitle}</p>
+                  <p className="mt-2 text-sm text-[var(--text-muted)] max-w-2xl">{subtitle}</p>
                 )}
               </div>
               {actions && <div className="flex items-center gap-3">{actions}</div>}

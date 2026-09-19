@@ -15,7 +15,7 @@ export function FeatureTeasers() {
           <Reveal>
             <div>
               <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#6E9271]/15 px-3 py-1 text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--accent-forest)]/15 px-3 py-1 text-xs font-semibold text-[var(--accent-forest)] border border-[var(--accent-forest)]/30">
                   Cost Transparency
                 </span>
                 <span className="rounded-full bg-paper border border-line px-3 py-1 text-xs font-bold text-ink-muted">
@@ -50,7 +50,7 @@ export function FeatureTeasers() {
                 </div>
                 <div className="flex items-center justify-between pt-1 text-sm font-semibold">
                   <span className="text-ink">True Estimated Monthly Outflow</span>
-                  <span className="text-[#57875d] dark:text-[#a3caa6] font-serif font-bold font-tabular text-lg">₹34,600</span>
+                  <span className="text-[var(--accent-forest)] font-serif font-bold font-tabular text-lg">₹34,600</span>
                 </div>
               </div>
             </div>
@@ -61,7 +61,7 @@ export function FeatureTeasers() {
               </Button>
               <Link
                 href="/homes"
-                className="text-xs font-semibold text-ink-muted hover:text-[#7ca982] transition-colors"
+                className="text-xs font-semibold text-ink-muted hover:text-[var(--primary-pista)] transition-colors"
               >
                 Compare verified listings →
               </Link>
@@ -76,7 +76,7 @@ export function FeatureTeasers() {
           <Reveal delay={0.15}>
             <div>
               <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#96bd9b]/20 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#96bd9b]/30">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--secondary-sage)]/20 px-3 py-1 text-xs font-semibold text-[var(--text-main)] border border-[var(--secondary-sage)]/30">
                   Move-In Protection
                 </span>
                 <span className="rounded-full bg-paper border border-line px-3 py-1 text-xs font-bold text-ink-muted">
@@ -97,21 +97,21 @@ export function FeatureTeasers() {
               <div className="mt-8 rounded-2xl border border-line bg-paper p-5 space-y-3 text-xs">
                 <div className="flex items-center justify-between border-b border-line pb-2.5">
                   <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#6E9271] shadow-[0_0_8px_rgba(110,146,113,0.6)]" />
+                    <span className="h-2 w-2 rounded-full bg-[var(--accent-forest)] shadow-glow" />
                     <span className="font-semibold text-ink">Living Room & Balcony</span>
                   </div>
                   <span className="text-ink-muted">4 verified photos</span>
                 </div>
                 <div className="flex items-center justify-between border-b border-line pb-2.5">
                   <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#6E9271] shadow-[0_0_8px_rgba(110,146,113,0.6)]" />
+                    <span className="h-2 w-2 rounded-full bg-[var(--accent-forest)] shadow-glow" />
                     <span className="font-semibold text-ink">Master Bedroom & Bath</span>
                   </div>
                   <span className="text-ink-muted">6 verified photos</span>
                 </div>
                 <div className="flex items-center justify-between border-b border-line pb-2.5">
                   <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-[#6E9271] shadow-[0_0_8px_rgba(110,146,113,0.6)]" />
+                    <span className="h-2 w-2 rounded-full bg-[var(--accent-forest)] shadow-glow" />
                     <span className="font-semibold text-ink">Kitchen & Utility Fixtures</span>
                   </div>
                   <span className="text-ink-muted">3 verified photos</span>
@@ -128,7 +128,7 @@ export function FeatureTeasers() {
               </Button>
               <Link
                 href="/how-it-works"
-                className="text-xs font-semibold text-ink-muted hover:text-[#6E9271] transition-colors"
+                className="text-xs font-semibold text-ink-muted hover:text-[var(--accent-forest)] transition-colors"
               >
                 How protection works →
               </Link>
