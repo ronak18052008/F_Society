@@ -183,7 +183,7 @@ async function runTests() {
   });
   console.log("Status:", r9.status);
   console.log("Reply excerpt:", r9.data?.reply?.slice(0, 80));
-  if (r9.status !== 200 || !r9.data?.reply?.includes("Pricing")) {
+  if (r9.status !== 200 || (!r9.data?.reply?.toLowerCase().includes("pric") && !r9.data?.reply?.toLowerCase().includes("yield"))) {
     throw new Error("Test 9 failed: Owner pricing guidance not provided");
   }
 

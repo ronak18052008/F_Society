@@ -68,56 +68,36 @@ function LoginForm() {
 
     setLoading(true);
     try {
-      const supabase = createClient();
-      if (supabase) {
-        const { data, error: authError } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
 
-        if (authError) {
-          setError(authError.message);
-          setLoading(false);
-          return;
-        }
+      const data = await res.json();
 
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", data.user.id)
-          .single();
-
-        fetch("/api/notify/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, name: data.user.user_metadata?.name }),
-        }).catch(() => {});
-
-        const role = (profile?.role || data.user.user_metadata?.role || activeRole) as UserRole;
-        signIn(
-          makeUser({
-            name: data.user.user_metadata?.name || email.split("@")[0],
-            email,
-            role,
-          })
-        );
-        router.push(role === "owner" ? "/owner" : "/tenant");
+      if (!res.ok || !data.success) {
+        setError(data.error || "Invalid email or password.");
+        setLoading(false);
         return;
       }
 
-      // Local / Demo auth fallback
-      const detectedRole =
-        email.toLowerCase().includes("owner") || activeRole === "owner" ? "owner" : "tenant";
+      fetch("/api/notify/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.user.email, name: data.user.name }),
+      }).catch(() => {});
 
       signIn(
         makeUser({
-          name: email.split("@")[0],
-          email,
-          role: detectedRole,
+          name: data.user.name,
+          email: data.user.email,
+          role: data.user.role,
         })
       );
-      toast(`Signed in as ${detectedRole === "owner" ? "Owner" : "Tenant"}.`);
-      router.push(detectedRole === "owner" ? "/owner" : "/tenant");
+
+      toast(`Signed in as ${data.user.role === "owner" ? "Property Owner" : "Tenant Member"}.`);
+      router.push(data.redirectTo || (data.user.role === "owner" ? "/owner" : "/tenant"));
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred during sign in");
     } finally {
@@ -144,32 +124,14 @@ function LoginForm() {
           </p>
         </div>
 
-        {/* Section 3: Role Selection Tabs (Tenant | Owner) */}
-        <div className="mt-6 flex rounded-2xl bg-paper dark:bg-[#142018] p-1 border border-[#e5dfc5] dark:border-[#2a3f31]">
-          <button
-            type="button"
-            onClick={() => setActiveRole("tenant")}
-            className={cn(
-              "flex-1 rounded-xl py-2 text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5",
-              activeRole === "tenant"
-                ? "bg-white dark:bg-[#1f2e24] text-[#1d3122] dark:text-[#f5f9f6] shadow-xs"
-                : "text-ink-muted hover:text-ink"
-            )}
-          >
-            <span>Tenant</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveRole("owner")}
-            className={cn(
-              "flex-1 rounded-xl py-2 text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5",
-              activeRole === "owner"
-                ? "bg-white dark:bg-[#1f2e24] text-[#1d3122] dark:text-[#f5f9f6] shadow-xs"
-                : "text-ink-muted hover:text-ink"
-            )}
-          >
-            <span>Owner</span>
-          </button>
+        {/* Role-Based Automatic Detection Notice */}
+        <div className="mt-6 rounded-2xl bg-[#7ca982]/10 dark:bg-[#1d2d22] p-3 text-center border border-[#7ca982]/25">
+          <p className="text-xs font-bold text-[#1d3122] dark:text-[#f5f9f6]">
+            Role-Based Authentication
+          </p>
+          <p className="text-[11px] text-[#4e6853] dark:text-[#9bb3a0] mt-0.5">
+            Your destination portal is automatically determined by your account role upon login.
+          </p>
         </div>
 
         {/* Section 20: Pre-configured Development Demo Users */}

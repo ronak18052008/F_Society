@@ -251,20 +251,8 @@ export function NivasaProvider({ children }: { children: React.ReactNode }) {
       setPrivacy: (roommatePrivacy) => write({ ...getSnapshot(), roommatePrivacy }),
       setRoommatePrefs: (roommatePrefs) => write({ ...getSnapshot(), roommatePrefs }),
       setTenantReqs: (tenantReqs) => write({ ...getSnapshot(), tenantReqs }),
-      switchRole: (role) => {
-        const current = getSnapshot();
-        if (typeof document !== "undefined") {
-          document.cookie = `nivasa_auth=1; path=/; max-age=604800; SameSite=Lax`;
-          document.cookie = `nivasa_role=${role}; path=/; max-age=604800; SameSite=Lax`;
-        }
-        if (current.user) {
-          write({ ...current, user: { ...current.user, role } });
-          toast(`Workspace role updated to ${role === "owner" ? "Property Owner" : "Tenant Member"}`);
-        } else {
-          const demoUser = role === "owner" ? DEMO_OWNER : DEMO_TENANT;
-          write({ ...current, user: demoUser });
-          toast(`Signed in as demo ${role === "owner" ? "Property Owner" : "Tenant Member"}`);
-        }
+      switchRole: (_role) => {
+        toast("Role is bound to your registered account and cannot be switched directly.");
       },
       toast,
       dismissToast: (id) =>

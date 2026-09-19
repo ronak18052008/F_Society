@@ -45,41 +45,47 @@ function RegisterForm() {
 
     setLoading(true);
     try {
-      const supabase = createClient();
-
-      if (supabase) {
-        const { error: authError } = await supabase.auth.signUp({
-          email,
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
           password,
-          options: {
-            data: {
-              name,
-              role,
-            },
-          },
-        });
+          role,
+        }),
+      });
 
-        if (authError) {
-          setError(authError.message);
-          setLoading(false);
-          return;
-        }
+      const data = await response.json();
 
-        toast("Account created! Please sign in.");
-        router.push(`/login?role=${role}`);
+      if (!response.ok || !data.success) {
+        setError(data.error || "Failed to create account.");
+        setLoading(false);
         return;
       }
 
-      // Local / Demo persistence fallback
+      // Attempt Supabase sign-up in background if client configured
+      try {
+        const supabase = createClient();
+        if (supabase) {
+          await supabase.auth.signUp({
+            email,
+            password,
+            options: { data: { name, role } },
+          });
+        }
+      } catch (_) {}
+
       signIn(
         makeUser({
-          name,
-          email,
-          role,
+          name: data.user.name,
+          email: data.user.email,
+          role: data.user.role,
         })
       );
-      toast(`Welcome to Nivasa! Account registered as ${role === "owner" ? "Owner" : "Tenant"}.`);
-      router.push(role === "owner" ? "/owner" : "/tenant");
+
+      toast(`Account registered as ${role === "owner" ? "Property Owner" : "Tenant"}!`);
+      router.push(data.redirectTo || (role === "owner" ? "/owner" : "/tenant"));
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred during registration");
     } finally {

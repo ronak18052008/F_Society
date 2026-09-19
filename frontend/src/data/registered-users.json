@@ -1,0 +1,66 @@
+[
+  {
+    "id": "demo-tenant-id",
+    "name": "Ronak Marvaniya",
+    "email": "tenant@demo.nivasa",
+    "password": "password123",
+    "role": "tenant",
+    "createdAt": "2026-09-19T01:05:46.333Z"
+  },
+  {
+    "id": "demo-owner-id",
+    "name": "Rudra Joshi",
+    "email": "owner@demo.nivasa",
+    "password": "password123",
+    "role": "owner",
+    "createdAt": "2026-09-19T01:05:46.333Z"
+  },
+  {
+    "id": "demo-tenant-alt-id",
+    "name": "Ronak Marvaniya",
+    "email": "demo.tenant@nivasa.living",
+    "password": "password123",
+    "role": "tenant",
+    "createdAt": "2026-09-19T01:05:46.333Z"
+  },
+  {
+    "id": "demo-owner-alt-id",
+    "name": "Rudra Joshi",
+    "email": "demo.owner@nivasa.living",
+    "password": "password123",
+    "role": "owner",
+    "createdAt": "2026-09-19T01:05:46.333Z"
+  },
+  {
+    "id": "user-1789779946345-nxuzz",
+    "name": "Yug Owner Test",
+    "email": "verified_owner_1789779945325@test.com",
+    "password": "SecurePassword123!",
+    "role": "owner",
+    "createdAt": "2026-09-19T01:05:46.345Z"
+  },
+  {
+    "id": "user-1789779946404-b6uzq",
+    "name": "Yug Tenant Test",
+    "email": "verified_tenant_1789779945325@test.com",
+    "password": "SecurePassword123!",
+    "role": "tenant",
+    "createdAt": "2026-09-19T01:05:46.404Z"
+  },
+  {
+    "id": "user-1789780394370-3elg9",
+    "name": "Yug Owner Test",
+    "email": "verified_owner_1789780394254@test.com",
+    "password": "SecurePassword123!",
+    "role": "owner",
+    "createdAt": "2026-09-19T01:13:14.370Z"
+  },
+  {
+    "id": "user-1789780394419-7remn",
+    "name": "Yug Tenant Test",
+    "email": "verified_tenant_1789780394254@test.com",
+    "password": "SecurePassword123!",
+    "role": "tenant",
+    "createdAt": "2026-09-19T01:13:14.419Z"
+  }
+]
