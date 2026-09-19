@@ -36,13 +36,22 @@ interface RentalCopilotProps {
   onSelectConversation?: (id: string) => void;
 }
 
-const DEFAULT_SUGGESTED_PROMPTS = [
+const TENANT_SUGGESTED_PROMPTS = [
   "Find 2 BHK apartments in Mumbai under ₹45,000",
   "Compare properties in Bangalore side-by-side",
   "Is a 5-month security deposit normal? Check rental risk",
   "Looking for a verified roommate in Ahmedabad",
   "Water leakage in ceiling — is tenant or owner responsible?",
-  "How does NESTORA verify landlord ownership and title?",
+  "How does Nivasa verify landlord ownership and title?",
+];
+
+const OWNER_SUGGESTED_PROMPTS = [
+  "Help me create a high-converting property listing",
+  "How should I price my 2 BHK apartment?",
+  "Compare my property with similar rental listings",
+  "Draft a standard bilingual rental agreement",
+  "How can I respond to this tenant inquiry?",
+  "Explain maintenance responsibilities between owner and tenant",
 ];
 
 export function RentalCopilot({
@@ -52,7 +61,10 @@ export function RentalCopilot({
   onClose,
   onSelectConversation,
 }: RentalCopilotProps) {
-  const { savedIds, toggleSave } = useNivasa();
+  const { user, savedIds, toggleSave } = useNivasa();
+  const isOwner = user?.role === "owner";
+  const defaultPrompts = isOwner ? OWNER_SUGGESTED_PROMPTS : TENANT_SUGGESTED_PROMPTS;
+
   const [conversationId, setConversationId] = useState<string | undefined>(initialConversationId);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -79,19 +91,22 @@ export function RentalCopilot({
       loadConversationHistory(initialConversationId);
     } else if (messages.length === 0) {
       // Add welcome greeting
+      const welcomeContent = isOwner
+        ? `Hello${user?.name ? `, ${user.name}` : ""}! I am your **Nivasa AI Rental Copilot for Property Owners**. I can assist you with listing creation, rental pricing strategies, market yield benchmarks, drafting bilingual lease agreements, and managing tenant inquiries. How can I assist your property portfolio today?`
+        : `Hello${user?.name ? `, ${user.name}` : ""}! I am your **Nivasa AI Rental Copilot**. I can help you find verified residences, run side-by-side property comparisons, audit rental deposit risks, triage maintenance issues, and match compatible flatmates. How can I assist your rental search today?`;
+
       setMessages([
         {
           id: "welcome",
           role: "assistant",
-          content:
-            "Hello! I am your **NESTORA AI Rental Copilot**. I can help you find verified residences, run side-by-side property comparisons, audit rental deposit risks, triage maintenance issues, and match compatible flatmates. How can I assist your rental journey today?",
+          content: welcomeContent,
           intent: "GENERAL_HELP",
-          suggestedPrompts: DEFAULT_SUGGESTED_PROMPTS.slice(0, 4),
+          suggestedPrompts: defaultPrompts.slice(0, 4),
           createdAt: new Date().toISOString(),
         },
       ]);
     }
-  }, [initialConversationId]);
+  }, [initialConversationId, isOwner, user?.name]);
 
   const loadConversationHistory = async (id: string) => {
     try {
@@ -155,6 +170,7 @@ export function RentalCopilot({
           message: query,
           conversationId,
           propertyId: propertyContextId,
+          role: user?.role || "tenant",
         }),
       });
 
@@ -287,7 +303,7 @@ export function RentalCopilot({
           <div>
             <div className="flex items-center gap-2">
               <h2 className="font-serif font-bold text-base tracking-tight text-[#1d3122] dark:text-[#f5f9f6]">
-                NESTORA AI Copilot
+                Nivasa AI Copilot
               </h2>
               <span className="inline-flex items-center rounded-full bg-[#7ca982]/15 px-2 py-0.5 text-[10px] font-bold text-[#5a835f] dark:text-[#a8cca9] uppercase tracking-wider">
                 Active

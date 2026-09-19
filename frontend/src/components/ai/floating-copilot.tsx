@@ -63,7 +63,7 @@ export function FloatingCopilot() {
               <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
                 <span className="font-serif font-bold text-xs text-[#1d3122] dark:text-[#f5f9f6]">
-                  NESTORA AI Copilot
+                  Nivasa AI Copilot
                 </span>
               </div>
               <div className="flex items-center gap-1">

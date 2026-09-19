@@ -5,6 +5,7 @@ export interface CopilotRequest {
   message: string;
   conversationId?: string;
   propertyId?: string;
+  role?: "tenant" | "owner";
   history?: Array<{ role: "user" | "assistant"; content: string }>;
 }
 
@@ -18,10 +19,10 @@ export interface AICopilotProvider {
  * 100% deterministic, high-fidelity rental intelligence engine
  */
 export class MockCopilotProvider implements AICopilotProvider {
-  name = "NESTORA Intelligent Domain Engine (Offline Fallback)";
+  name = "Nivasa Intelligent Domain Engine (Offline Fallback)";
 
   async generateResponse(request: CopilotRequest): Promise<CopilotPayload> {
-    return executeDomainEngine(request.message, request.propertyId);
+    return executeDomainEngine(request.message, request.propertyId, request.role);
   }
 }
 
@@ -42,17 +43,35 @@ export class GeminiCopilotProvider implements AICopilotProvider {
   async generateResponse(request: CopilotRequest): Promise<CopilotPayload> {
     // Mask sensitive personal data before external transmission
     const sanitizedPrompt = maskSensitivePII(request.message);
+    const isOwner = request.role === "owner";
 
     try {
-      const systemInstruction = `You are NESTORA AI Rental Copilot, an expert residential tenancy AI for Indian metropolitan cities.
-You assist tenants and landlords with:
-1. PROPERTY_SEARCH: finding verified homes with transparent pricing and zero brokerage.
+      const systemInstruction = isOwner
+        ? `You are Nivasa AI Rental Copilot for Property Owners, an expert residential tenancy AI for Indian metropolitan cities.
+You assist landlords with:
+1. PROPERTY_SEARCH & PRICING: advice on creating high-converting listings, micro-market pricing, and rental yields.
+2. PROPERTY_COMPARISON: benchmarking landlord properties against neighboring market listings.
+3. RENTAL_RISK: screening prospective tenant credentials (KYC), setting legally compliant deposits (max 2 months under Model Tenancy Act), and mutual lock-in terms.
+4. TENANT_INQUIRIES: drafting polite, professional responses to prospective tenants regarding amenities and site visits.
+5. MAINTENANCE: triaging maintenance requests between landlord responsibilities (structural, roof, wiring) and tenant upkeep.
+6. VERIFICATION: drafting bilingual, state-compliant digital tenancy agreements and guiding Aadhaar e-Sign.
+7. GENERAL_HELP: navigating the Nivasa Owner Command Deck, property occupancy, and rental ledgers.
+
+Format your response as a valid JSON object matching this schema:
+{
+  "reply": "string (clear markdown formatting with helpful bullet points and bold highlights)",
+  "intent": "PROPERTY_SEARCH" | "PROPERTY_COMPARISON" | "RENTAL_RISK" | "ROOMMATE" | "MAINTENANCE" | "VERIFICATION" | "GENERAL_HELP",
+  "suggestedPrompts": ["string", "string", "string"]
+}`
+        : `You are Nivasa AI Rental Copilot, an expert residential tenancy AI for Indian metropolitan cities.
+You assist tenants with:
+1. PROPERTY_SEARCH: finding verified residences with transparent pricing and zero brokerage.
 2. PROPERTY_COMPARISON: side-by-side metric comparison (Rent, Deposit, Area, Value/sqft, Furnishing).
 3. RENTAL_RISK: evaluating security deposits (max 2-3 months by Model Tenancy Act), hidden maintenance costs, title verification.
 4. ROOMMATE: finding compatible flatmates based on lifestyle, food habits, work schedules.
 5. MAINTENANCE: triaging issues (urgent plumbing/electrical vs routine wear-and-tear) and dispute resolution.
 6. VERIFICATION: identity checks (Aadhaar, PAN) and property deed verification.
-7. GENERAL_HELP: navigating the NESTORA platform and rent agreements.
+7. GENERAL_HELP: navigating the Nivasa platform and rent agreements.
 
 Format your response as a valid JSON object matching this schema:
 {
@@ -70,7 +89,7 @@ Format your response as a valid JSON object matching this schema:
             contents: [
               {
                 role: "user",
-                parts: [{ text: `${systemInstruction}\n\nUser Message: "${sanitizedPrompt}"` }],
+                parts: [{ text: `${systemInstruction}\n\nUser Role: ${request.role || "tenant"}\nUser Message: "${sanitizedPrompt}"` }],
               },
             ],
             generationConfig: {
@@ -96,7 +115,7 @@ Format your response as a valid JSON object matching this schema:
       const parsed = JSON.parse(rawText);
 
       // Enhance Gemini's text with real domain objects from the engine
-      const domainEnrichment = await executeDomainEngine(request.message, request.propertyId);
+      const domainEnrichment = await executeDomainEngine(request.message, request.propertyId, request.role);
 
       return {
         reply: parsed.reply || domainEnrichment.reply,

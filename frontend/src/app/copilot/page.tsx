@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { SiteShell } from "@/components/layout/site-shell";
 import { RentalCopilot } from "@/components/ai/rental-copilot";
 import { cn } from "@/lib/cn";
 
@@ -46,15 +47,16 @@ export default function CopilotPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-[#faf7f0] dark:bg-[#142018] py-6 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        {/* Page Hero Header */}
-        <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-6">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-bold text-[#5a835f] dark:text-[#a8cca9] mb-2 border border-[#7ca982]/30">
-              <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
-              NESTORA Intelligent Copilot · Feature 1
-            </div>
+    <SiteShell>
+      <div className="min-h-[calc(100vh-80px)] bg-[#faf7f0] dark:bg-[#142018] py-6 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          {/* Page Hero Header */}
+          <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-[#e5dfc5] dark:border-[#2a3f31] pb-6">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-bold text-[#5a835f] dark:text-[#a8cca9] mb-2 border border-[#7ca982]/30">
+                <span className="h-2 w-2 rounded-full bg-[#7ca982]" />
+                Nivasa AI Rental Copilot · Active Intelligence
+              </div>
             <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#1d3122] dark:text-[#f5f9f6]">
               AI Rental Copilot
             </h1>
@@ -212,5 +214,6 @@ export default function CopilotPage() {
         </div>
       </div>
     </div>
-  );
+  </SiteShell>
+);
 }

@@ -129,7 +129,10 @@ export function classifyIntent(query: string, currentPropertyId?: string): Copil
     q.includes("passport") ||
     q.includes("ownership proof") ||
     q.includes("title deed") ||
-    q.includes("electricity bill")
+    q.includes("electricity bill") ||
+    q.includes("draft agreement") ||
+    q.includes("draft a rental agreement") ||
+    q.includes("lease drafter")
   ) {
     return "VERIFICATION";
   }
@@ -150,7 +153,10 @@ export function classifyIntent(query: string, currentPropertyId?: string): Copil
     q.includes("hyderabad") ||
     q.includes("delhi") ||
     q.includes("kolkata") ||
-    q.includes("budget")
+    q.includes("ahmedabad") ||
+    q.includes("budget") ||
+    q.includes("price my property") ||
+    q.includes("pricing")
   ) {
     return "PROPERTY_SEARCH";
   }
@@ -159,94 +165,166 @@ export function classifyIntent(query: string, currentPropertyId?: string): Copil
 }
 
 /**
- * Intelligent Rule-Based Engine providing complete domain analysis for all 7 intents
+ * Intelligent Domain Fallback Engine
+ * Generates verified, structured responses for all 7 intents with role awareness
  */
 export async function executeDomainEngine(
   query: string,
-  propertyId?: string
+  currentPropertyId?: string,
+  role?: "tenant" | "owner"
 ): Promise<CopilotPayload> {
-  const intent = classifyIntent(query, propertyId);
+  const intent = classifyIntent(query, currentPropertyId);
   const q = query.toLowerCase();
+  const isOwner = role === "owner";
 
-  // Fetch contextual property if propertyId provided
-  let contextProperty: Property | null = null;
-  if (propertyId) {
-    try {
-      contextProperty = await getPropertyById(propertyId);
-    } catch {
-      // Fallback
+  // ========================================================
+  // OWNER SPECIFIC FLOWS
+  // ========================================================
+  if (isOwner) {
+    // A. Listing Creation Guidance
+    if (q.includes("listing") || q.includes("post") || q.includes("create")) {
+      return {
+        intent: "GENERAL_HELP",
+        reply: `**Nivasa Landlord Guide: Creating a Verified Listing**\n\nTo maximize qualified tenant applications and minimize vacancies on Nivasa:\n\n1. **High-Resolution Photography**: Upload 8-12 well-lit photos showing natural daylight, kitchen cabinets, and bathroom fittings.\n2. **RentTruth™ Transparency**: Itemize base rent, society maintenance, and parking charges separately so tenants know the exact monthly outlay.\n3. **Deposit Moderation**: Keep security deposits within 2 months' rent (MTA compliant) to attract top-tier verified professionals faster.\n4. **Instant Title Verification**: Upload your latest electricity bill or property tax receipt for the green 'Verified Owner' badge.`,
+        suggestedPrompts: [
+          "Open Post Residence form",
+          "What is the average rent for a 2 BHK in my area?",
+          "How to respond to tenant inquiries effectively?",
+        ],
+        actionTriggers: [
+          {
+            type: "view_property",
+            label: "+ Post Residence Now",
+            href: "/owner/properties/new",
+          },
+        ],
+      };
+    }
+
+    // B. Pricing & Rental Yield Guidance
+    if (q.includes("price") || q.includes("pricing") || q.includes("yield") || q.includes("rate")) {
+      return {
+        intent: "PROPERTY_SEARCH",
+        reply: `**Nivasa Market Pricing Intelligence**:\n\nBased on Q3 2026 metro benchmarks:\n- **Ahmedabad (Navrangpura/Bodakdev)**: ₹18,000–₹34,000 for 2 BHK (Yield: 3.8%–4.5%)\n- **Bengaluru (Indiranagar/Whitefield)**: ₹32,000–₹55,000 for 2 BHK (Yield: 4.6%–5.2%)\n- **Mumbai (Bandra/Andheri)**: ₹65,000–₹1,15,000 for 2 BHK (Yield: 3.5%–4.2%)\n\n**Yield Optimization Tips**:\n- Fully furnished residences command a **18%–24% premium** with shorter days-on-market.\n- Clear demarcation of society maintenance prevents negotiation friction.`,
+        suggestedPrompts: [
+          "Compare my property with similar listings",
+          "Draft a rental agreement for my tenant",
+          "Review pending tenant applications",
+        ],
+        actionTriggers: [
+          {
+            type: "view_property",
+            label: "Open Owner Command Center",
+            href: "/owner",
+          },
+        ],
+      };
+    }
+
+    // C. Responding to Inquiries
+    if (q.includes("inquir") || q.includes("respond") || q.includes("message")) {
+      return {
+        intent: "GENERAL_HELP",
+        reply: `**Nivasa Tenant Communication Template**:\n\n*\"Hello! Thank you for your interest in our residence on Nivasa. The property is verified and available for move-in. The base rent is as listed with transparent RentTruth™ society maintenance breakdown. Would you like to schedule an in-person walkthrough this weekend or review our 3D digital habitat? Let us know your preferred move-in date and we will send the visit confirmation.\"*\n\n**Best Practices**:\n- Always ensure tenant has completed digital Aadhaar KYC before handing over keys.\n- Use Nivasa's mutual Condition Passport for move-in photo documentation.`,
+        suggestedPrompts: [
+          "View pending tenant inquiries",
+          "Draft a rental agreement",
+          "Check tenant KYC requirements",
+        ],
+        actionTriggers: [
+          {
+            type: "view_property",
+            label: "Review Tenant Inquiries",
+            href: "/owner/dashboard#inquiries",
+          },
+        ],
+      };
     }
   }
 
+  // ========================================================
   // 1. PROPERTY COMPARISON
+  // ========================================================
   if (intent === "PROPERTY_COMPARISON") {
-    let all = await getProperties({ pageSize: 24 });
-    if (!all || all.length === 0) all = demoProperties;
+    const fetchedP1 = currentPropertyId ? await getPropertyById(currentPropertyId) : null;
+    const p1 = fetchedP1 || demoProperties[0];
+    const p2 = demoProperties.find((p) => p.id !== p1.id && p.city === p1.city) || demoProperties[1];
 
-    const baseProp = contextProperty || all[0];
-    const cityProps = all.filter((p) => p.city.toLowerCase() === baseProp.city.toLowerCase());
-    const candidates = [baseProp, ...(cityProps.filter((p) => p.id !== baseProp.id).slice(0, 2))];
+    const properties = [
+      {
+        id: p1.id,
+        title: p1.title,
+        city: p1.city,
+        locality: p1.locality,
+        rent: p1.rent,
+        deposit: p1.deposit,
+        bhk: p1.bhk || p1.bedrooms || 1,
+        sizeSqft: p1.areaSqft || p1.sizeSqft || 800,
+        furnishing: p1.furnishing,
+        areaType: "Carpet Area",
+        trustScore: 94,
+        highlights: ["RentTruth Verified", "Zero Brokerage", "Day 0 Condition Log"],
+      },
+      {
+        id: p2.id,
+        title: p2.title,
+        city: p2.city,
+        locality: p2.locality,
+        rent: p2.rent,
+        deposit: p2.deposit,
+        bhk: p2.bhk || p2.bedrooms || 1,
+        sizeSqft: p2.areaSqft || p2.sizeSqft || 800,
+        furnishing: p2.furnishing,
+        areaType: "Carpet Area",
+        trustScore: 91,
+        highlights: ["Zero Brokerage", "Metro Commute Corridor", "Verified Owner Title"],
+      },
+    ];
 
-    const compItems = candidates.map((p, idx) => ({
-      id: p.id,
-      title: p.title,
-      city: p.city,
-      locality: p.locality,
-      rent: p.rent,
-      deposit: p.deposit || p.rent * 2,
-      bhk: p.bhk || p.bedrooms || 2,
-      sizeSqft: p.sizeSqft || p.areaSqft || 800,
-      furnishing: p.furnishingStatus || (p.furnishing ? p.furnishing.toUpperCase() : "Furnished"),
-      areaType: p.areaType || "Super Area",
-      trustScore: p.verification === "identity-checked" ? 96 : 84,
-      highlights: [
-        `${p.bhk || p.bedrooms} BHK in ${p.locality}`,
-        `₹${Math.round(p.rent / (p.sizeSqft || p.areaSqft || 800))}/sqft effective`,
-        p.furnishingStatus || "Semi-Furnished",
-      ],
-    }));
-
-    // Find best value
-    const sortedByValue = [...compItems].sort(
-      (a, b) => a.rent / a.sizeSqft - b.rent / b.sizeSqft
-    );
-    const bestValue = sortedByValue[0];
+    const p1Area = p1.areaSqft || p1.sizeSqft || 1;
+    const p2Area = p2.areaSqft || p2.sizeSqft || 1;
+    const bestValue = p1.rent / p1Area < p2.rent / p2Area ? p1 : p2;
+    const bestValueArea = bestValue.areaSqft || bestValue.sizeSqft || 1;
 
     return {
       intent: "PROPERTY_COMPARISON",
-      reply: `Here is a side-by-side comparative breakdown of residences in **${baseProp.city}**. **${bestValue.title}** offers the optimal rate per sqft at ₹${Math.round(bestValue.rent / bestValue.sizeSqft)}/sqft with verified credentials.`,
-      recommendations: candidates,
+      reply: `Here is a side-by-side metric comparison between **${p1.title}** and **${p2.title}**. Both feature verified landlord credentials, transparent zero-brokerage terms, and itemized RentTruth™ living costs.`,
       comparison: {
-        properties: compItems,
-        verdict: `${bestValue.title} in ${bestValue.locality} stands out as the most cost-efficient option with transparent deposit terms and verified landlord status.`,
+        properties,
+        verdict: `**${bestValue.title}** offers superior space efficiency at ₹${Math.round(bestValue.rent / bestValueArea)}/sqft with 100% verified ownership records.`,
         bestValueId: bestValue.id,
       },
       suggestedPrompts: [
         `Check rental risk for ${bestValue.title}`,
-        "What are typical security deposit standards in this area?",
-        "Find more furnished flats under ₹30,000",
+        "What are the typical society maintenance charges here?",
+        "Find verified roommates near this locality",
       ],
-      actionTriggers: candidates.map((c) => ({
-        type: "view_property",
-        label: `View ${c.locality}`,
-        href: `/property/${c.id}`,
-        propertyId: c.id,
-      })),
+      actionTriggers: [
+        {
+          type: "view_property",
+          label: `View ${p1.title}`,
+          href: `/property/${p1.id}`,
+          propertyId: p1.id,
+        },
+        {
+          type: "view_property",
+          label: `View ${p2.title}`,
+          href: `/property/${p2.id}`,
+          propertyId: p2.id,
+        },
+      ],
     };
   }
 
-  // 2. RENTAL RISK & SCAM AUDIT
+  // ========================================================
+  // 2. RENTAL RISK & AUDIT
+  // ========================================================
   if (intent === "RENTAL_RISK") {
-    let prop = contextProperty;
-    if (!prop) {
-      const all = await getProperties({ pageSize: 5 });
-      prop = all[0] || demoProperties[0];
-    }
-
-    const rent = prop.rent || 25000;
-    const deposit = prop.deposit || rent * 2.5;
-    const multiplier = Number((deposit / rent).toFixed(1));
-
+    const fetchedProp = currentPropertyId ? await getPropertyById(currentPropertyId) : null;
+    const prop = fetchedProp || demoProperties[0];
+    const rent = prop.rent;
+    const deposit = prop.deposit;
+    const multiplier = Math.round((deposit / rent) * 10) / 10;
     const isDepositHigh = multiplier > 3.0;
     const isVerified = prop.verification === "identity-checked";
 
@@ -260,7 +338,7 @@ export async function executeDomainEngine(
         title: "Landlord Ownership & Title KYC",
         status: isVerified ? "pass" : "warning",
         detail: isVerified
-          ? "Owner identity and utility bill cross-validation verified on NESTORA."
+          ? "Owner identity and utility bill cross-validation verified on Nivasa."
           : "Property documentation is pending deed confirmation. Always demand electricity bill inspection.",
       },
       {
@@ -311,7 +389,9 @@ export async function executeDomainEngine(
     };
   }
 
+  // ========================================================
   // 3. ROOMMATE ASSISTANCE
+  // ========================================================
   if (intent === "ROOMMATE") {
     const city = ["mumbai", "bangalore", "delhi", "chennai", "hyderabad", "ahmedabad"].find((c) =>
       q.includes(c)
@@ -325,7 +405,7 @@ export async function executeDomainEngine(
       roommates,
       suggestedPrompts: [
         "Filter roommates with vegetarian diet only",
-        "How does NESTORA protect roommate privacy?",
+        "How does Nivasa protect roommate privacy?",
         "Find 2 BHK apartments suitable for flat-sharing",
       ],
       actionTriggers: [
@@ -338,7 +418,9 @@ export async function executeDomainEngine(
     };
   }
 
+  // ========================================================
   // 4. MAINTENANCE ASSISTANCE
+  // ========================================================
   if (intent === "MAINTENANCE") {
     let category = "General Maintenance";
     let priority = "Routine (Resolution within 48-72h)";
@@ -368,18 +450,39 @@ export async function executeDomainEngine(
       actionTriggers: [
         {
           type: "view_property",
-          label: "Open Maintenance Dashboard",
-          href: "/tenant/dashboard",
+          label: isOwner ? "Open Maintenance Ledger" : "Open Maintenance Dashboard",
+          href: isOwner ? "/rental/rent-navrang" : "/tenant/dashboard",
         },
       ],
     };
   }
 
-  // 5. VERIFICATION ASSISTANCE
+  // ========================================================
+  // 5. VERIFICATION & AGREEMENT ASSISTANCE
+  // ========================================================
   if (intent === "VERIFICATION") {
+    if (isOwner || q.includes("agreement") || q.includes("draft") || q.includes("lease")) {
+      return {
+        intent: "VERIFICATION",
+        reply: `**Nivasa Autonomous Lease Drafter & Verification Protocol**:\n\n1. **Standardized Bilingual Format**: Conforms strictly to the Model Tenancy Act (MTA) with clear Hindi/English clauses.\n2. **Security Deposit Ceiling**: Restricted to a maximum of 2 months for residential premises.\n3. **Notice Period & Escalation**: Standardized 1-month notice and predictable annual rent escalations.\n4. **Digital Aadhaar e-Sign**: Fully paperless, legally binding digital execution.\n5. **Day 0 Condition Passport**: Tamper-proof move-in photographic record.`,
+        suggestedPrompts: [
+          "Open AI Lease Drafter",
+          "What documents does a landlord need to show?",
+          "Explain the Move-in Condition Passport",
+        ],
+        actionTriggers: [
+          {
+            type: "view_property",
+            label: "Draft Digital Lease Agreement",
+            href: "/ai/agreement",
+          },
+        ],
+      };
+    }
+
     return {
       intent: "VERIFICATION",
-      reply: `**NESTORA Multi-Point Verification Protocol**:\n\n1. **Tenant KYC**: Digital Aadhaar verification, PAN validation, and employer/college email authentication.\n2. **Landlord Title Check**: Ownership cross-referenced via municipal property tax records and latest electricity utility bills.\n3. **Property Condition Passport**: High-resolution room-by-room photo documentation at handover to safeguard 100% of your deposit.\n4. **Zero Brokerage Guarantee**: No middleman fees or hidden commissions.`,
+      reply: `**Nivasa Multi-Point Verification Protocol**:\n\n1. **Tenant KYC**: Digital Aadhaar verification, PAN validation, and employer/college email authentication.\n2. **Landlord Title Check**: Ownership cross-referenced via municipal property tax records and latest electricity utility bills.\n3. **Property Condition Passport**: High-resolution room-by-room photo documentation at handover to safeguard 100% of your deposit.\n4. **Zero Brokerage Guarantee**: No middleman fees or hidden commissions.`,
       suggestedPrompts: [
         "How do I complete my tenant verification?",
         "What documents does a landlord need to show?",
@@ -395,7 +498,9 @@ export async function executeDomainEngine(
     };
   }
 
-  // 6. PROPERTY SEARCH (Default fallback for search queries)
+  // ========================================================
+  // 6. PROPERTY SEARCH (Default search query flow)
+  // ========================================================
   if (intent === "PROPERTY_SEARCH") {
     // Filter by city if mentioned
     const cities = ["Mumbai", "Bangalore", "Chennai", "Hyderabad", "Delhi", "Kolkata", "Ahmedabad"];
@@ -446,15 +551,44 @@ export async function executeDomainEngine(
     };
   }
 
+  // ========================================================
   // 7. GENERAL_HELP
+  // ========================================================
+  if (isOwner) {
+    return {
+      intent: "GENERAL_HELP",
+      reply: `Welcome to **Nivasa AI Rental Copilot for Property Owners**! I can assist you with:\n\n- 📝 **Post Residence**: Create high-converting, zero-commission listings.\n- 📊 **Rental Yield & Pricing**: Optimize rent rates based on micro-market data.\n- ⚖️ **Market Comparison**: Benchmark your property with neighboring listings.\n- 📜 **AI Lease Drafter**: Generate legally binding, MTA-compliant agreements.\n- 💬 **Tenant Inquiries**: Draft polite responses to prospective tenants.\n- 🛠️ **Maintenance Management**: Triage tenant repair tickets and responsibility.`,
+      suggestedPrompts: [
+        "Help me create a property listing",
+        "How should I price my 2 BHK apartment?",
+        "Compare my property with similar listings",
+        "Draft a standard bilingual rental agreement",
+      ],
+      actionTriggers: [
+        {
+          type: "view_property",
+          label: "+ Post Residence",
+          href: "/owner/properties/new",
+        },
+      ],
+    };
+  }
+
   return {
     intent: "GENERAL_HELP",
-    reply: `Welcome to **NESTORA AI Rental Copilot**! I can assist you with:\n\n- 🔍 **Property Search**: Find verified 1/2/3 BHK flats across 6 metro corridors.\n- ⚖️ **Property Comparison**: Side-by-side matrices on rent, deposits, and value per sqft.\n- 🛡️ **RentTruth™ Risk Audit**: Detect unfair lease terms, deposit inflation, and scam indicators.\n- 🤝 **Roommate Match**: Find verified co-living partners with compatible lifestyles.\n- 🔧 **Maintenance Triage**: Classify repairs and understand legal obligations.\n- ✅ **Verification & Agreements**: Generate legally sound rental agreements and verify titles.`,
+    reply: `Welcome to **Nivasa AI Rental Copilot**! I can assist you with:\n\n- 🔍 **Property Search**: Find verified 1/2/3 BHK flats across 6 metro corridors.\n- ⚖️ **Property Comparison**: Side-by-side matrices on rent, deposits, and value per sqft.\n- 🛡️ **RentTruth™ Risk Audit**: Detect unfair lease terms, deposit inflation, and scam indicators.\n- 🤝 **Roommate Match**: Find verified co-living partners with compatible lifestyles.\n- 🔧 **Maintenance Triage**: Classify repairs and understand legal obligations.\n- ✅ **Verification & Agreements**: Generate legally sound rental agreements and verify titles.`,
     suggestedPrompts: [
       "Find 2 BHK flats in Mumbai under ₹45,000",
-      "How does NESTORA verify property owners?",
+      "How does Nivasa verify property owners?",
       "Compare properties in Bangalore",
       "Check rental risk on security deposits",
+    ],
+    actionTriggers: [
+      {
+        type: "view_property",
+        label: "Browse All Residences",
+        href: "/properties",
+      },
     ],
   };
 }
