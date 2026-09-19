@@ -62,5 +62,13 @@
     "password": "SecurePassword123!",
     "role": "tenant",
     "createdAt": "2026-09-19T01:13:14.419Z"
+  },
+  {
+    "id": "user-1789782254893-vl2yn",
+    "name": "Platform Admin",
+    "email": "ronakmarvaniya1805@gmail.com",
+    "password": "12345678",
+    "role": "owner",
+    "createdAt": "2026-09-19T01:44:14.893Z"
   }
 ]
