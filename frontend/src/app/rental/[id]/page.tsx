@@ -70,8 +70,8 @@ export default function RentalDashboardPage() {
       title="Tenancy Workspace"
       subtitle={`Collaborative digital ledger between ${workspaceData.tenantName} (Resident) and ${workspaceData.ownerName} (Host).`}
     >
-      {/* 3 Portal Action Cards */}
-      <div className="grid gap-5 sm:grid-cols-3">
+      {/* 4 Portal Action Cards */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Link
           href={`/rental/${id}/documents`}
           className="group relative rounded-2xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 shadow-xs hover:shadow-md hover:border-pista transition-all duration-200"
@@ -91,7 +91,7 @@ export default function RentalDashboardPage() {
         >
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pista/15 text-forest dark:text-pista mb-3 group-hover:scale-110 transition-transform">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
           </div>
           <p className="text-lg font-serif font-bold text-ink dark:text-cream group-hover:text-forest dark:group-hover:text-pista transition-colors">Payments & Ledger</p>
@@ -109,6 +109,17 @@ export default function RentalDashboardPage() {
           </div>
           <p className="text-lg font-serif font-bold text-ink dark:text-cream group-hover:text-forest dark:group-hover:text-pista transition-colors">Condition Passport</p>
           <p className="mt-1 text-xs text-ink-muted">Baseline inspection & handover log →</p>
+        </Link>
+
+        <Link
+          href="/tenant/expenses"
+          className="group relative rounded-2xl border border-warm-200/80 dark:border-forest/40 bg-card dark:bg-card-dark p-6 shadow-xs hover:shadow-md hover:border-pista transition-all duration-200"
+        >
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#7ca982]/15 text-[#1d3122] dark:text-[#a3caa6] mb-3 group-hover:scale-110 transition-transform">
+            <span className="text-xl">💰</span>
+          </div>
+          <p className="text-lg font-serif font-bold text-ink dark:text-cream group-hover:text-forest dark:group-hover:text-pista transition-colors">Roommate Splits</p>
+          <p className="mt-1 text-xs text-ink-muted">Smart bill split engine &amp; peer settlement →</p>
         </Link>
       </div>
 
