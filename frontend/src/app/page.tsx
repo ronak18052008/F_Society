@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <SiteShell>
       {/* ========================================================
-          1. NIVASA SPATIAL HERO WITH INTEGRATED 3D HABITAT
+          1. NIVASA SPATIAL HERO WITH DIRECT PRIMARY & SECONDARY CTAS
       ======================================================== */}
       <section className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24">
         {/* Ambient atmospheric glows */}
@@ -55,6 +55,31 @@ export default function HomePage() {
                 Direct tenancy without broker distortion. Experience verified residences,
                 transparent RentTruth™ itemized ledgers, digital Condition Passports, and autonomous AI lease audits.
               </p>
+            </Reveal>
+
+            {/* Primary & Secondary Hero CTAs */}
+            <Reveal delay={0.25}>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/properties"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#7ca982] hover:bg-[#68946e] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#7ca982]/25 hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                >
+                  <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <span>Find Your Home</span>
+                </Link>
+
+                <Link
+                  href="/owner/properties/new"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full border border-amber-600/40 bg-amber-500/10 hover:bg-amber-500/20 px-7 py-3.5 text-sm font-bold text-amber-900 dark:text-amber-200 hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-xs"
+                >
+                  <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span>List Your Property</span>
+                </Link>
+              </div>
             </Reveal>
           </div>
 
@@ -129,13 +154,16 @@ export default function HomePage() {
           {/* Quick Filter Tags */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-ink-muted">
             <span className="font-medium">Popular:</span>
-            <Link href="/homes?city=Ahmedabad" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
+            <Link href="/properties?city=Ahmedabad" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
               Ahmedabad
             </Link>
-            <Link href="/homes?city=Bengaluru" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
+            <Link href="/properties?city=Bengaluru" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
               Bengaluru
             </Link>
-            <Link href="/homes?verified=true" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
+            <Link href="/properties?city=Mumbai" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
+              Mumbai
+            </Link>
+            <Link href="/properties?verified=true" className="rounded-full border border-line bg-card/70 px-3 py-1 hover:border-[#7ca982]/50 hover:text-ink transition">
               RentTruth™ Verified Only
             </Link>
           </div>
@@ -180,78 +208,185 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          2. NIVASA ECOSYSTEM BENTO GRID
+          2. KEY PLATFORM BENEFITS (AI Match, Verified Listings, Secure Agreements, Direct Connect)
       ======================================================== */}
-      <section className="py-16 sm:py-24 bg-card/40 border-b border-line">
+      <section className="py-16 sm:py-24 bg-card/60 border-b border-line">
         <div className="wrap">
-          <div className="max-w-2xl">
+          <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#6E9271]/15 px-3.5 py-1 text-xs font-semibold text-[#6E9271] dark:text-[#A3B899] border border-[#6E9271]/30">
-                Architectural Clarity
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3.5 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                Core Innovations
               </div>
               <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-ink tracking-tight">
-                A shared record for a relationship that usually lives in chaos.
+                Designed for direct trust, not middleman friction.
               </h2>
               <p className="mt-4 text-ink-muted leading-relaxed">
-                Security deposits, maintenance emergencies, unexpected escalations, and move-out inspections
-                shouldn’t hinge on fragmented WhatsApp chats or selective memory.
+                Nivasa re-engineers Indian residential renting with four uncompromising pillars of platform integrity.
               </p>
             </Reveal>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Bento Card 1: RentTruth */}
-            <Reveal className="group relative rounded-3xl border border-line bg-card p-8 shadow-card hover:shadow-card-hover hover:border-[#6E9271]/50 transition-all duration-300">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#6E9271]/15 text-[#6E9271] group-hover:scale-110 transition-transform">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Pillar 1: AI Match */}
+            <Reveal delay={0.1} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[#7ca982] transition-all group">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#7ca982]/15 text-[#23452b] dark:text-[#a3caa6] group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="mt-6 text-xl font-serif font-bold text-ink">RentTruth™ Unbundled</h3>
-              <p className="mt-3 text-sm text-ink-muted leading-relaxed">
-                See true monthly outlay: base rent, society maintenance, water, parking, and clubhouse dues itemized separately before you schedule a visit.
+              <h3 className="mt-5 text-lg font-serif font-bold text-ink">AI Match</h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Smart neural matching that pairs your commute preferences, light orientation, and lifestyle habits with genuine homes.
               </p>
-              <div className="mt-6 pt-4 border-t border-line">
-                <span className="text-xs font-semibold text-[#6E9271] group-hover:underline">
-                  Explore cost transparency →
-                </span>
+            </Reveal>
+
+            {/* Pillar 2: Verified Listings */}
+            <Reveal delay={0.15} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[#7ca982] transition-all group">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="mt-5 text-lg font-serif font-bold text-ink">Verified Listings</h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Every property has verified ownership documents, physical spot checks, and 100% itemized RentTruth™ ledgers.
+              </p>
+            </Reveal>
+
+            {/* Pillar 3: Secure Rent Agreements */}
+            <Reveal delay={0.2} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[#7ca982] transition-all group">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <h3 className="mt-5 text-lg font-serif font-bold text-ink">Secure Agreements</h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Bilingual, legally compliant rental contracts with digital Aadhaar e-Sign and automated clause-by-clause audit.
+              </p>
+            </Reveal>
+
+            {/* Pillar 4: Direct Owner Connect */}
+            <Reveal delay={0.25} className="rounded-3xl border border-line bg-card p-6 shadow-xs hover:border-[#7ca982] transition-all group">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/15 text-amber-800 dark:text-amber-200 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="mt-5 text-lg font-serif font-bold text-ink">Direct Owner Connect</h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Connect directly with property owners without aggressive brokerage calls, fake listings, or hidden markup fees.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          3. DEDICATED ROLE SECTIONS: FOR TENANTS & FOR OWNERS
+      ======================================================== */}
+      <section className="py-20 bg-paper border-b border-line">
+        <div className="wrap">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {/* For Tenants Card */}
+            <Reveal className="rounded-3xl border border-[#7ca982]/30 bg-card p-8 sm:p-10 shadow-card flex flex-col justify-between">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                  For Tenants
+                </div>
+                <h3 className="mt-4 text-2xl sm:text-3xl font-serif font-bold text-ink">
+                  Rent without broker harassment or surprise fees.
+                </h3>
+                <p className="mt-3 text-sm text-ink-muted leading-relaxed">
+                  Everything you need to find, audit, and enjoy a home with full peace of mind.
+                </p>
+
+                <ul className="mt-6 space-y-3 text-xs text-ink">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span><strong>₹0 Brokerage Fees:</strong> Save ₹25,000–₹60,000 upfront on every move.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span><strong>RentTruth™ Itemized Outlay:</strong> Know the exact society maintenance, water, and parking costs upfront.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span><strong>Digital Condition Passport:</strong> Mutual move-in photo audit that dispute-proofs your security deposit.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span><strong>AI Lease Audit:</strong> Scan drafts automatically to flag unfair escalation and lock-in clauses.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#7ca982] font-bold text-sm">✓</span>
+                    <span><strong>Roommate Compatibility Matcher:</strong> Find verified flatmates matching your sleep and work rhythm.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-line flex items-center justify-between">
+                <Link
+                  href="/properties"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#7ca982] text-white px-5 py-2.5 text-xs font-bold shadow-xs hover:bg-[#68946e] transition-all"
+                >
+                  <span>Browse Homes</span>
+                  <span>→</span>
+                </Link>
+                <Link href="/login?intent=tenant" className="text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] hover:underline">
+                  Sign in as Tenant →
+                </Link>
               </div>
             </Reveal>
 
-            {/* Bento Card 2: Condition Passport */}
-            <Reveal delay={0.1} className="group relative rounded-3xl border border-line bg-card p-8 shadow-card hover:shadow-card-hover hover:border-[#7ca982]/50 transition-all duration-300">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#96bd9b]/20 text-[#1d3122] dark:text-[#a3caa6] group-hover:scale-110 transition-transform">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="mt-6 text-xl font-serif font-bold text-ink">Condition Passport</h3>
-              <p className="mt-3 text-sm text-ink-muted leading-relaxed">
-                Cryptographically signed move-in condition photos. Pre-existing wall scuffs, appliance status, and key handover verified mutually on day zero.
-              </p>
-              <div className="mt-6 pt-4 border-t border-line">
-                <span className="text-xs font-semibold text-[#57875d] dark:text-[#a3caa6] group-hover:underline">
-                  Protect security deposit →
-                </span>
-              </div>
-            </Reveal>
+            {/* For Owners Card */}
+            <Reveal delay={0.15} className="rounded-3xl border border-amber-500/30 bg-card p-8 sm:p-10 shadow-card flex flex-col justify-between">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-900 dark:text-amber-200 border border-amber-500/30">
+                  For Property Owners
+                </div>
+                <h3 className="mt-4 text-2xl sm:text-3xl font-serif font-bold text-ink">
+                  Quality tenants. Frictionless property stewardship.
+                </h3>
+                <p className="mt-3 text-sm text-ink-muted leading-relaxed">
+                  List your residential assets directly to verified working professionals and families.
+                </p>
 
-            {/* Bento Card 3: AI Lease Analysis */}
-            <Reveal delay={0.2} className="group relative rounded-3xl border border-line bg-card p-8 shadow-card hover:shadow-card-hover hover:border-[#6E9271]/50 transition-all duration-300">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#6E9271]/15 text-[#6E9271] group-hover:scale-110 transition-transform">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
+                <ul className="mt-6 space-y-3 text-xs text-ink">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold text-sm">✓</span>
+                    <span><strong>Pre-Screened KYC Verified Tenants:</strong> Identity and background-vetted profiles before site visits.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold text-sm">✓</span>
+                    <span><strong>Zero Listing Commissions:</strong> Keep 100% of your rental returns without broker cuts.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold text-sm">✓</span>
+                    <span><strong>AI Lease Drafter:</strong> Generate state-compliant digital tenancy agreements in under 5 minutes.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold text-sm">✓</span>
+                    <span><strong>Applications & Inquiries Deck:</strong> 1-click approvals and real-time prospective tenant inquiries.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold text-sm">✓</span>
+                    <span><strong>Maintenance & Yield Analytics:</strong> Track repair tickets and benchmark rental yield across metro corridors.</span>
+                  </li>
+                </ul>
               </div>
-              <h3 className="mt-6 text-xl font-serif font-bold text-ink">AI Lease Intelligence</h3>
-              <p className="mt-3 text-sm text-ink-muted leading-relaxed">
-                Gemini 2.5 scans rental agreements for predatory lock-ins, excessive rent escalation clauses, and ambiguous maintenance responsibilities.
-              </p>
-              <div className="mt-6 pt-4 border-t border-line">
-                <span className="text-xs font-semibold text-[#6E9271] group-hover:underline">
-                  Analyze agreement draft →
-                </span>
+
+              <div className="mt-8 pt-6 border-t border-line flex items-center justify-between">
+                <Link
+                  href="/owner/properties/new"
+                  className="inline-flex items-center gap-2 rounded-full bg-amber-700 text-white px-5 py-2.5 text-xs font-bold shadow-xs hover:bg-amber-800 transition-all"
+                >
+                  <span>+ List Your Property</span>
+                  <span>→</span>
+                </Link>
+                <Link href="/login?intent=owner" className="text-xs font-semibold text-amber-700 dark:text-amber-300 hover:underline">
+                  Sign in as Owner →
+                </Link>
               </div>
             </Reveal>
           </div>
@@ -259,22 +394,77 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          3. 8-STEP RENTAL LIFECYCLE SECTION
+          4. HOW NIVASA WORKS (4-STEP FLOW)
+      ======================================================== */}
+      <section className="py-20 bg-card border-b border-line">
+        <div className="wrap">
+          <div className="mx-auto max-w-2xl text-center">
+            <Reveal>
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#7ca982]/15 px-3 py-1 text-xs font-semibold text-[#1d3122] dark:text-[#a3caa6] border border-[#7ca982]/30">
+                Simple & Transparent
+              </div>
+              <h2 className="mt-3 text-3xl sm:text-4xl font-serif font-bold text-ink tracking-tight">
+                How Nivasa Works
+              </h2>
+              <p className="mt-3 text-sm text-ink-muted">
+                From discovery to key handover, an orderly 4-step digital journey.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Reveal delay={0.1} className="relative rounded-3xl border border-line bg-paper p-6 shadow-xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982] text-white text-xs font-bold">
+                1
+              </span>
+              <h3 className="mt-4 text-base font-bold font-serif text-ink">Discover & AI Match</h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Filter verified residences across top metro corridors. Use our AI Copilot to match your lifestyle and commute needs.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.2} className="relative rounded-3xl border border-line bg-paper p-6 shadow-xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982] text-white text-xs font-bold">
+                2
+              </span>
+              <h3 className="mt-4 text-base font-bold font-serif text-ink">Direct Connect & Visit</h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Directly chat with property owners. Schedule physical walk-throughs or interactive 3D virtual habitat tours.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.3} className="relative rounded-3xl border border-line bg-paper p-6 shadow-xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982] text-white text-xs font-bold">
+                3
+              </span>
+              <h3 className="mt-4 text-base font-bold font-serif text-ink">Smart Agreement & Passport</h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Sign digitally with Aadhaar e-Sign. Mutually record and freeze move-in condition photos to secure your deposit.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.4} className="relative rounded-3xl border border-line bg-paper p-6 shadow-xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7ca982] text-white text-xs font-bold">
+                4
+              </span>
+              <h3 className="mt-4 text-base font-bold font-serif text-ink">Move In & Shared Ledger</h3>
+              <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                Pay rent with itemized receipts, log maintenance tickets, and enjoy a dispute-proof, transparent tenancy.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          5. 8-STEP RENTAL LIFECYCLE & FEATURE TEASERS
       ======================================================== */}
       <LifecycleSection />
-
-      {/* ========================================================
-          4. FEATURE TEASERS: RENTTRUTH & CONDITION PASSPORT
-      ======================================================== */}
       <FeatureTeasers />
-
-      {/* ========================================================
-          5. EDITORIAL VIDEO / WALKTHROUGH THEATER
-      ======================================================== */}
       <EditorialVideo />
 
       {/* ========================================================
-          5.5 CITY DISCOVERY & METROPOLITAN HUBS
+          6. CITY DISCOVERY & METROPOLITAN HUBS
       ======================================================== */}
       <section className="border-t border-line bg-card">
         <div className="wrap">
@@ -283,7 +473,7 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          6. SELECTED HORIZON RESIDENCES
+          7. SELECTED HORIZON RESIDENCES
       ======================================================== */}
       <section className="py-20 bg-paper border-t border-line">
         <div className="wrap">
@@ -318,7 +508,7 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          7. INVITATION / ONBOARDING DOCK
+          8. INVITATION / ONBOARDING DOCK
       ======================================================== */}
       <section className="py-24 bg-gradient-to-b from-paper to-card border-t border-line">
         <div className="wrap">

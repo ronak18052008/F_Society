@@ -21,6 +21,7 @@ import {
   getWorkspaceMaintenance,
   getWorkspaceActivity,
 } from "@/lib/supabase/workspace";
+import { RoleGuard } from "@/components/auth/role-guard";
 import { MarketTrends } from "@/components/dashboard/market-trends";
 import type { ActivityEvent, MaintenanceRequest, PaymentRecord, Property } from "@/types";
 
@@ -84,10 +85,11 @@ export default function TenantDashboardPage() {
   const unpaid = workspacePayments.filter((item) => item.status !== "paid");
 
   return (
-    <DashboardShell
-      title={`Welcome back${user?.name ? `, ${user.name}` : ""}`}
-      subtitle="Your active tenancy workspace, financial ledger, and saved architectural residences."
-    >
+    <RoleGuard allowedRole="tenant">
+      <DashboardShell
+        title={`Welcome back${user?.name ? `, ${user.name}` : ""}`}
+        subtitle="Your active tenancy workspace, financial ledger, and saved architectural residences."
+      >
       {/* 3 Metric Stat Cards */}
       <div className="grid gap-4 sm:grid-cols-3">
         <Link
@@ -226,5 +228,6 @@ export default function TenantDashboardPage() {
         <MarketTrends />
       </div>
     </DashboardShell>
+  </RoleGuard>
   );
 }

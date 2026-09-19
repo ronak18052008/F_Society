@@ -163,9 +163,19 @@ export function NivasaProvider({ children }: { children: React.ReactNode }) {
         ) {
           return;
         }
+        if (typeof document !== "undefined") {
+          document.cookie = `nivasa_auth=1; path=/; max-age=604800; SameSite=Lax`;
+          document.cookie = `nivasa_role=${user.role}; path=/; max-age=604800; SameSite=Lax`;
+          document.cookie = `nivasa_user_name=${encodeURIComponent(user.name)}; path=/; max-age=604800; SameSite=Lax`;
+        }
         write({ ...getSnapshot(), user });
       },
       signOut: () => {
+        if (typeof document !== "undefined") {
+          document.cookie = `nivasa_auth=; path=/; max-age=0; SameSite=Lax`;
+          document.cookie = `nivasa_role=; path=/; max-age=0; SameSite=Lax`;
+          document.cookie = `nivasa_user_name=; path=/; max-age=0; SameSite=Lax`;
+        }
         if (getSnapshot().user === null) return;
         write({ ...getSnapshot(), user: null });
       },
@@ -243,6 +253,10 @@ export function NivasaProvider({ children }: { children: React.ReactNode }) {
       setTenantReqs: (tenantReqs) => write({ ...getSnapshot(), tenantReqs }),
       switchRole: (role) => {
         const current = getSnapshot();
+        if (typeof document !== "undefined") {
+          document.cookie = `nivasa_auth=1; path=/; max-age=604800; SameSite=Lax`;
+          document.cookie = `nivasa_role=${role}; path=/; max-age=604800; SameSite=Lax`;
+        }
         if (current.user) {
           write({ ...current, user: { ...current.user, role } });
           toast(`Workspace role updated to ${role === "owner" ? "Property Owner" : "Tenant Member"}`);
@@ -264,8 +278,8 @@ export function NivasaProvider({ children }: { children: React.ReactNode }) {
 
 export const DEMO_TENANT: SessionUser = {
   id: "demo-tenant",
-  name: "Demo Tenant",
-  email: "demo.tenant@nivasa.living",
+  name: "Ronak Marvaniya",
+  email: "tenant@demo.nivasa",
   role: "tenant",
   city: "Mumbai",
   phone: "+91 98201 54321",
@@ -274,8 +288,8 @@ export const DEMO_TENANT: SessionUser = {
 
 export const DEMO_OWNER: SessionUser = {
   id: "demo-owner",
-  name: "Demo Owner",
-  email: "demo.owner@nivasa.living",
+  name: "Mehta Properties (Owner)",
+  email: "owner@demo.nivasa",
   role: "owner",
   city: "Mumbai",
   phone: "+91 98210 98765",
