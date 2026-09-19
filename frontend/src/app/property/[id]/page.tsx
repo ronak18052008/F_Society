@@ -17,6 +17,7 @@ import { getPropertyById, getSimilarProperties } from "@/lib/supabase/properties
 import { useNivasa } from "@/store/nivasa-store";
 import type { Property } from "@/types";
 import { RentalRiskCard } from "@/components/risk/rental-risk-card";
+import { AuthenticityCard } from "@/components/authenticity/authenticity-card";
 
 export default function PropertyDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -256,6 +257,9 @@ export default function PropertyDetailPage() {
 
             {/* Feature 2: Rental Risk Engine Analysis Card */}
             <RentalRiskCard propertyId={property.id} property={property} />
+
+            {/* Feature 3: AI Scam / Fake Listing Detector Card */}
+            <AuthenticityCard propertyId={property.id} property={property} />
 
             {/* About the Residence */}
             <div>
