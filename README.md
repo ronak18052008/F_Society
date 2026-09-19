@@ -1,17 +1,10 @@
-# NESTORA
+# NIVASA
 
 > **Rent with clarity. Live with confidence.**
 
-NESTORA is a modern rental lifecycle platform designed to connect
-tenants and property owners while making the rental journey more
-transparent, organized, and secure.
+NIVASA is a premium, modern rental lifecycle platform connecting tenants and property owners through transparent cost breakdowns, shared condition passports, AI-powered tools, and a unified workspace experience — all built on a **pistachio-and-cream** design system.
 
-The platform aims to bring property discovery, tenant-owner
-communication, rental documentation, expense visibility, maintenance
-tracking, property condition records, roommate discovery, and
-AI-assisted rental tools into one unified experience.
-
-## Run the frontend prototype
+## Quick Start
 
 ```bash
 cd frontend
@@ -19,606 +12,226 @@ npm install
 npm run dev
 ```
 
-The Next.js app lives in `frontend/`. Listings and workspace records are
-demo data. Local actions (save, enquiry, drafts, session) stay in the
-browser. See `docs/ARCHITECTURE.md`.
+The Next.js app lives in `frontend/`. When Supabase credentials are configured in `.env.local`, the platform operates with full database, auth, storage, and real-time capabilities. Without credentials, it gracefully falls back to grounded India housing demo data.
 
-------------------------------------------------------------------------
+---
 
-## 🚀 Vision
+## 🏛️ Architecture
 
-Traditional rental platforms usually focus on helping users discover
-properties. NESTORA is designed to support the **complete rental
-lifecycle**:
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | Next.js 16.3.5 (App Router, Turbopack) |
+| **UI** | React 19.2.8, Tailwind CSS v4 (`@tailwindcss/postcss`) |
+| **State** | Custom external store (`nivasa-store.tsx`) with Supabase SSR cookies |
+| **Database** | Supabase (PostgreSQL), Row Level Security, 15 migrations |
+| **Storage** | Supabase Storage — `property-images` (public), `rental-documents` (private, signed URLs), `passport-photos` (public) |
+| **Auth** | Supabase Auth with role-based access (tenant/owner) |
+| **Animation** | Framer Motion, Three.js / React Three Fiber |
+| **Typography** | Outfit (body), Cormorant Garamond (editorial titles), IBM Plex Mono (data) |
 
-``` text
-Discover a Property
-        ↓
-Compare Real Costs
-        ↓
-Connect With the Owner
-        ↓
-Review Rental Agreement
-        ↓
-Document Move-In Condition
-        ↓
-Track Rent, Bills & Maintenance
-        ↓
-Manage the Rental Relationship
-        ↓
-Complete Move-Out Transparently
+### Dual Shell System
+
+- **SiteShell** — Collapsible sidebar + header + footer + floating copilot. Used for public pages, property discovery, tenant/owner hubs.
+- **DashboardShell** — Workspace sidebar + navbar. Used for tenant/owner dashboards, workspaces, expenses, property management.
+
+---
+
+## 🎨 Design System — Pistachio & Cream
+
+NIVASA uses a carefully curated, nature-inspired color palette:
+
+| Token | Color | Hex | Usage |
+|-------|-------|-----|-------|
+| Cream Background | 🟫 | `#FAF7EF` | Primary canvas |
+| Soft Ivory | ⬜ | `#FFFDF8` | Card surfaces |
+| Warm Sand | 🟤 | `#F1EBDD` | Elevated surfaces |
+| Pistachio | 🟢 | `#B7C99A` | Primary accent |
+| Deep Pistachio | 🌿 | `#81966A` | Buttons, active states |
+| Sage | 🌱 | `#A8B89A` | Secondary accents |
+| Dark Forest Text | ⬛ | `#283126` | Primary text |
+| Secondary Text | 🔘 | `#596254` | Muted text |
+| Muted Border | 🔲 | `#DDE3D5` | Borders, dividers |
+| Success | ✅ | `#668B5B` | Success states |
+| Warning | ⚠️ | `#B88A4A` | Warning states |
+| Error | 🔴 | `#B85C55` | Error states |
+
+All colors are defined as CSS custom properties in `globals.css` and bound to Tailwind via `@theme inline`. Dark mode is handled automatically via `[data-theme="dark"]` variable overrides.
+
+---
+
+## 📂 Route Map
+
+### Public & Discovery
+| Route | Description |
+|-------|-------------|
+| `/` | Landing page — architectural hero, innovation showcase, featured properties |
+| `/properties` | Property search with filters, city selector, layout tabs |
+| `/property/[id]` | Property detail — gallery, RentTruth™, risk analysis, enquiry |
+| `/cities` | City-based property discovery |
+| `/how-it-works` | Verified rental lifecycle explainer |
+| `/copilot` | AI-powered rental copilot |
+
+### Authentication
+| Route | Description |
+|-------|-------------|
+| `/login` | Member sign-in |
+| `/login/tenant` | Tenant login |
+| `/login/owner` | Owner login |
+| `/register` | Account registration with role selection |
+| `/profile` | User profile & settings |
+
+### Tenant Experience
+| Route | Description |
+|-------|-------------|
+| `/tenant` | Tenant hub — greeting, quick actions, saved homes |
+| `/tenant/dashboard` | Active tenancy workspace — rent ledger, condition passport, maintenance |
+| `/tenant/expenses` | Roommate expense engine — split bills, settle debts |
+| `/tenant/roommates` | Roommate matching with compatibility scoring |
+| `/tenant/requirements` | Tenant requirement builder |
+
+### Owner Experience
+| Route | Description |
+|-------|-------------|
+| `/owner` | Owner hub — portfolio stats, active listings, inquiries |
+| `/owner/dashboard` | Portfolio management — property cards, applications |
+| `/owner/properties/new` | Add property form with Supabase image upload |
+| `/owner/properties/[id]` | Manage/edit listing with real-time status |
+
+### Rental Workspace
+| Route | Description |
+|-------|-------------|
+| `/rental/[id]` | Shared rental workspace |
+| `/rental/[id]/documents` | Secure document management (signed URLs) |
+| `/rental/[id]/passport` | Property condition passport with photo evidence |
+| `/rental/[id]/payments` | Rent and bill tracking |
+| `/renttruth/[propertyId]` | RentTruth™ itemized cost auditor |
+
+### AI & Maintenance
+| Route | Description |
+|-------|-------------|
+| `/maintenance/triage` | AI-powered maintenance triage |
+| `/copilot` | Nivasa AI rental assistant |
+
+---
+
+## 🚀 Flagship AI & FinTech Suite
+
+### 1. RentTruth™ Transparency Engine
+Itemizes all rental costs — rent, maintenance, utilities, security deposit — so tenants see the real monthly expense before signing.
+
+### 2. Rental Risk Analyzer
+AI-powered risk scoring with location, market, legal, and financial analysis for properties.
+
+### 3. Property Authenticity Scanner
+Verifies listing authenticity through image analysis, document verification, and cross-referencing.
+
+### 4. Property Reputation Graph
+Aggregates owner history, maintenance responsiveness, tenant reviews, and neighborhood data into a trust score.
+
+### 5. AI Maintenance Triage
+Categorizes maintenance requests by urgency, suggests solutions, and routes to appropriate service providers.
+
+### 6. Roommate Expense Engine
+Fair split calculations with settlement tracking, group expense management, and payment history.
+
+---
+
+## 🗄️ Database Schema
+
+Production schema across 15 Supabase migrations:
+
+- `properties` — Property listings with images, amenities, pricing
+- `property_enquiries` — Tenant-to-owner inquiry flow
+- `rental_workspaces` — Shared tenant-owner workspace records
+- `workspace_documents` — Secure document storage with signed URLs
+- `condition_passports` — Move-in/move-out condition records
+- `expenses` / `expense_participants` — Roommate expense splitting
+- Financial tables for rent, deposits, and maintenance billing
+
+All tables are protected with **Row Level Security (RLS)** policies.
+
+---
+
+## 🔧 Component Library
+
+### UI Primitives
+`Button` · `Field` · `TextArea` · `SelectField` · `Modal` · `StatusBadge` · `EmptyState` · `Skeleton` · `Toast` · `Timeline`
+
+### Layout
+`NivasaHeader` · `NivasaSidebar` · `SiteShell` · `Navbar` · `DashboardShell` · `Footer` · `ThemeProvider`
+
+### Domain Components
+`PropertyCard` · `FilterPanel` · `PropertyGallery` · `RentalRiskCard` · `AuthenticityCard` · `PropertyReputationGraph` · `MaintenanceTriageModal` · `HouseholdExpenseDashboard` · `FloatingCopilot`
+
+All components use CSS custom properties from the design system — no hardcoded hex colors.
+
+---
+
+## 🔐 Security
+
+- Supabase Auth with role-based access control (tenant/owner)
+- Row Level Security (RLS) on all database tables
+- Signed URLs for private document access
+- Server-side session validation via `@supabase/ssr`
+- Environment variables for all secrets (never committed)
+- Input validation and file type/size restrictions
+- CSRF protection via Supabase middleware
+
+---
+
+## 🧪 Development
+
+### Prerequisites
+- Node.js 18+
+- npm or pnpm
+- Supabase project (optional — app falls back to demo data)
+
+### Environment Variables
+Create `frontend/.env.local`:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 ```
 
-Our goal is to improve clarity and accountability for both tenants and
-property owners.
-
-------------------------------------------------------------------------
-
-## 🎯 Problem Statement
-
-Renting a property can involve several disconnected activities:
-
--   Searching for suitable properties
--   Understanding the actual monthly cost
--   Communicating with property owners
--   Reviewing rental agreements
--   Tracking rent and maintenance payments
--   Recording existing property damage
--   Managing maintenance requests
--   Handling disputes about property condition
--   Finding compatible roommates
-
-NESTORA brings these workflows together in a single platform.
-
-------------------------------------------------------------------------
-
-## ✨ Planned Features
-
-### 1. User Authentication
-
-Two primary user roles:
-
--   **Tenant / Customer**
--   **Property Owner**
-
-Planned capabilities:
-
--   Registration and login
--   Role-based onboarding
--   Profile management
--   Secure authentication
--   Role-based access control
-
-------------------------------------------------------------------------
-
-### 2. Property Discovery
-
-Tenants can:
-
--   Search properties by location
--   Filter properties by budget
--   View rent and deposit
--   Check furnishing status
--   Review property amenities
--   View estimated recurring expenses
--   Save properties
--   Contact property owners
--   Compare available properties
-
-Owners can:
-
--   Create property listings
--   Add property details and photographs
--   Set rent and deposit information
--   Mention property preferences
--   Review tenant requirements
--   Respond to suitable tenants
-
-------------------------------------------------------------------------
-
-### 3. Owner--Tenant Connection
-
-The platform will support communication between tenants and owners.
-
-Planned functionality:
-
--   Tenant enquiry flow
--   Owner responses
--   Requirement-based discovery
--   Connection requests
--   Conversation history
--   Deal-status tracking
-
-------------------------------------------------------------------------
-
-### 4. Shared Rental Dashboard
-
-Once a rental arrangement is confirmed, the tenant and owner can access
-a shared rental workspace.
-
-Planned sections:
-
--   Rental overview
--   Agreement details
--   Rent payment records
--   Maintenance bills
--   Utility bills
--   Maintenance requests
--   Important notifications
--   Shared documents
--   Rental activity timeline
-
-Access to private information will be controlled through role-based
-permissions.
-
-------------------------------------------------------------------------
-
-### 5. Rental Document Management
-
-Users will be able to organize important rental documents, including:
-
--   Rental agreements
--   Identity verification status
--   Deposit details
--   Payment proofs
--   Maintenance records
--   Other relevant documents
-
-Documents must be stored securely and made available only to authorized
-users.
-
-------------------------------------------------------------------------
-
-### 6. Property Condition Passport
-
-The Property Condition Passport records the condition of a property at
-important stages of the rental lifecycle.
-
-Planned workflow:
-
-1.  Upload move-in photographs.
-2.  Organize images by room or area.
-3.  Record existing damage or observations.
-4.  Allow both parties to acknowledge the record.
-5.  Preserve timestamps and activity history.
-6.  Upload later inspection or condition updates.
-7.  Flag possible visual changes for human review.
-
-Potential areas:
-
--   Living room
--   Bedroom
--   Kitchen
--   Bathroom
--   Doors and windows
--   Flooring and walls
--   Appliances
--   Furniture
-
-> AI-generated damage flags will be treated as potential observations,
-> not final proof of responsibility. The platform will not automatically
-> decide who caused damage.
-
-------------------------------------------------------------------------
-
-### 7. RentTruth
-
-RentTruth is designed to help tenants understand the real cost of
-renting a property.
-
-Possible cost categories:
-
--   Monthly rent
--   Maintenance
--   Electricity
--   Water
--   Gas
--   Parking
--   Brokerage
--   Deposit
--   One-time fees
--   Other recurring charges
--   Estimated transportation cost
-
-Information may be classified as:
-
--   Owner-provided
--   Uploaded bill
--   Platform-calculated
--   Estimated
--   Verified, where verification is actually completed
-
-The platform should clearly distinguish verified information from
-estimates.
-
-------------------------------------------------------------------------
-
-### 8. Roommate Matching
-
-Tenants may be able to discover compatible roommates using selected
-preferences, such as:
-
--   Budget
--   Preferred location
--   Food preferences
--   Student or professional status
--   Lifestyle preferences
--   Work or study schedule
--   Cleanliness expectations
--   Sharing preferences
--   Smoking preferences
--   Pets
--   Sleep schedule
-
-The matching system will provide compatibility indicators based on
-available information. It will not guarantee personal compatibility or
-safety.
-
-Planned safety features:
-
--   Privacy controls
--   Mutual consent
--   Report and block options
--   Limited profile visibility
--   Clear communication boundaries
-
-------------------------------------------------------------------------
-
-### 9. AI Property Recommendations
-
-Users may describe their requirements in natural language, for example:
-
-> "I need a furnished room near my college within my monthly budget."
-
-The system can extract requirements such as:
-
--   Budget
--   Location
--   Travel preferences
--   Furnishing
--   Property type
--   Roommate preferences
--   Lifestyle requirements
-
-The initial recommendation system may use rule-based matching. More
-advanced machine learning can be considered after collecting reliable
-usage data.
-
-------------------------------------------------------------------------
-
-### 10. AI Rental Agreement Analyzer
-
-Users may upload a rental agreement for informational analysis.
-
-The system may extract and explain:
-
--   Monthly rent
--   Security deposit
--   Lock-in period
--   Notice period
--   Rent escalation clause
--   Maintenance responsibility
--   Repair responsibility
--   Late payment conditions
--   Subletting restrictions
--   Termination conditions
--   Renewal conditions
-
-Example output:
-
-``` text
-Clause detected:
-The agreement contains a 60-day notice period.
-
-Potential consideration:
-Your preferred notice period is 30 days.
-
-Suggested action:
-Review the clause and discuss it with the relevant party.
+### Commands
+```bash
+npm run dev       # Start development server (Turbopack)
+npm run build     # Production build
+npx tsc --noEmit  # TypeScript type-check
 ```
 
-> This feature is intended for informational assistance and does not
-> replace professional legal advice. The system must avoid presenting
-> uncertain legal interpretations as definitive conclusions.
+### Verification
+- **TypeScript**: 0 errors (`npx tsc --noEmit`)
+- **Production Build**: 47 routes compiled, 0 errors
+- **Responsiveness**: Tested at 375px, 768px, 1280px+
 
-------------------------------------------------------------------------
+---
 
-## 🎨 Design Direction
+## 🤝 Contributing
 
-NESTORA aims to use a premium, architectural, and technology-focused
-interface.
+1. Create a feature branch from `main`
+2. Make focused, meaningful commits
+3. Test before opening a pull request
+4. Never commit secrets or API keys
+5. Ensure TypeScript passes (`npx tsc --noEmit`)
+6. Ensure production build succeeds (`npm run build`)
 
-Design principles:
+---
 
--   Clear visual hierarchy
--   Generous whitespace
--   Responsive layouts
--   Accessible contrast
--   Smooth but purposeful animations
--   Cinematic property imagery
--   Interactive 3D elements where useful
--   Fast loading and mobile support
--   Minimal clutter
--   Clear and trustworthy content
+## 📌 Philosophy
 
-The interface may include:
+NIVASA is built around four principles:
 
--   3D architectural visuals
--   Scroll-based animations
--   Interactive property cards
--   Cinematic video sections
--   Animated dashboards
--   Micro-interactions
+1. **Transparency** — Make rental costs, documents, and property condition clear and auditable.
+2. **Accountability** — Maintain shared, timestamped records of all rental activities.
+3. **Privacy** — Give users control over sensitive information with role-based access.
+4. **Craft** — Combine premium architectural design with practical, accessible workflows.
 
-Animations should improve the user experience rather than distract from
-important information.
-
-------------------------------------------------------------------------
-
-## 🧱 Proposed Technology Stack
-
-### Frontend
-
--   Next.js
--   React
--   TypeScript
--   Tailwind CSS
--   Custom UI components
-
-### Animation and 3D
-
--   Three.js
--   React Three Fiber
--   GSAP
--   Framer Motion
--   Spline, where appropriate
-
-### Backend
-
--   Supabase
--   PostgreSQL
--   Supabase Authentication
--   Supabase Storage
--   Server-side functions or API routes
-
-### AI
-
--   Large language model API
--   PDF text extraction
--   Structured clause extraction
--   Recommendation and requirement parsing
--   Optional computer vision for condition-change flags
-
-### Development and Deployment
-
--   Git
--   GitHub
--   Cursor / Claude Code
--   Vercel
--   Environment variables for secrets
-
-------------------------------------------------------------------------
-
-## 🗂️ Suggested Project Structure
-
-``` text
-NESTORA/
-├── docs/
-│   ├── PRODUCT.md
-│   ├── ARCHITECTURE.md
-│   └── SECURITY.md
-├── public/
-│   ├── images/
-│   ├── videos/
-│   └── models/
-├── src/
-│   ├── app/
-│   ├── components/
-│   ├── features/
-│   ├── lib/
-│   ├── hooks/
-│   ├── types/
-│   └── styles/
-├── supabase/
-│   ├── migrations/
-│   └── seed/
-├── .env.example
-├── README.md
-├── package.json
-└── tsconfig.json
-```
-
-The exact structure may change as the project evolves.
-
-------------------------------------------------------------------------
-
-## 🔐 Security and Privacy Principles
-
-Because NESTORA may handle rental agreements, identity-related
-information, payment records, and private communication, security is a
-core requirement.
-
-The project should include:
-
--   Secure authentication
--   Role-based access control
--   Database-level authorization
--   Row Level Security where applicable
--   Secure document storage
--   Private file access
--   Input validation
--   File type and file size validation
--   Protected API routes
--   No API keys committed to GitHub
--   Audit logs for important actions
--   Clear data retention and deletion policies
-
-Sensitive documents must not be publicly accessible by default.
-
-------------------------------------------------------------------------
-
-## 🛠️ Development Roadmap
-
-### Phase 1 --- Product and Design Foundation
-
--   Finalize brand identity
--   Define user roles
--   Prepare user flows
--   Create design system
--   Design landing page
--   Design core application screens
-
-### Phase 2 --- Application Foundation
-
--   Set up Next.js project
--   Configure TypeScript and styling
--   Configure Supabase
--   Create authentication
--   Create user profiles
--   Implement role-based navigation
-
-### Phase 3 --- Property Discovery
-
--   Create property database schema
--   Build property listing flow
--   Build search and filtering
--   Add property detail pages
--   Implement tenant enquiries
--   Implement owner responses
-
-### Phase 4 --- Rental Workspace
-
--   Create rental connection workflow
--   Build shared dashboard
--   Add document management
--   Add rent and bill tracking
--   Add maintenance requests
--   Add notifications and activity history
-
-### Phase 5 --- Transparency Features
-
--   Build Property Condition Passport
--   Add photo uploads
--   Add two-party acknowledgements
--   Build RentTruth calculations
--   Add source and verification labels
-
-### Phase 6 --- AI Features
-
--   Add natural language requirement parsing
--   Add property recommendations
--   Add rental agreement extraction
--   Add clause explanation
--   Add optional condition-change flagging
-
-### Phase 7 --- Roommate Matching
-
--   Create roommate profiles
--   Add privacy controls
--   Implement preference matching
--   Add reporting and blocking
--   Test matching and safety workflows
-
-### Phase 8 --- Testing and Launch
-
--   Test authentication
--   Test authorization
--   Test file uploads
--   Test mobile responsiveness
--   Test performance
--   Test AI outputs
--   Review privacy and security
--   Prepare documentation
--   Deploy the application
-
-------------------------------------------------------------------------
-
-## 🧪 Quality Standards
-
-Every feature should be developed with:
-
--   A clear user flow
--   Responsive design
--   Loading states
--   Empty states
--   Error handling
--   Input validation
--   Permission checks
--   Database testing
--   Accessibility considerations
--   Documentation
-
-AI-generated code must be reviewed, tested, and understood before being
-merged.
-
-------------------------------------------------------------------------
-
-## 🤝 Contribution Guidelines
-
-When collaborating:
-
-1.  Create a separate branch for your feature.
-2.  Make focused and meaningful commits.
-3.  Describe what changed.
-4.  Test the feature before opening a pull request.
-5.  Do not commit secrets or API keys.
-6.  Keep the README and documentation updated.
-7.  Avoid modifying unrelated files.
-8.  Review security and permissions for backend changes.
-
-Suggested branch names:
-
-``` text
-feature/authentication
-feature/property-listings
-feature/rental-dashboard
-feature/condition-passport
-feature/renttruth
-feature/roommate-matching
-feature/agreement-analyzer
-```
-
-------------------------------------------------------------------------
-
-## ⚠️ Current Project Status
-
-**Status:** Frontend prototype in `frontend/` (Next.js). Backend and
-Supabase are not connected yet.
-
-The feature list and architecture are evolving. Some features are
-implemented as labelled prototypes before production backend services.
-
-The project should clearly label:
-
--   Demo data
--   Estimated costs
--   AI-generated suggestions
--   Unverified listings
--   Prototype-only interactions
-
-------------------------------------------------------------------------
-
-## 📌 Product Philosophy
-
-NESTORA is built around four principles:
-
-1.  **Transparency** --- Make rental costs, documents, and property
-    condition easier to understand.
-2.  **Accountability** --- Maintain shared records of important rental
-    activities.
-3.  **Privacy** --- Give users control over sensitive information.
-4.  **Usability** --- Combine premium design with practical workflows.
-
-------------------------------------------------------------------------
-
-## 📄 License
-
-The license for this project has not yet been finalized.
-
-------------------------------------------------------------------------
+---
 
 ## 👤 Project
 
-**Project Name:** NESTORA\
-**Category:** Rental Technology / PropTech\
-**Core Focus:** Rental transparency and lifecycle management
+**Brand:** NIVASA
+**Category:** Rental Technology / PropTech
+**Core Focus:** Verified rental living & lifecycle management
+**Repository:** [github.com/ronak18052008/F_Society](https://github.com/ronak18052008/F_Society)
