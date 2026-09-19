@@ -283,6 +283,223 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
+          FLAGSHIP AI & FINTECH INNOVATION SUITE
+      ======================================================== */}
+      <section className="py-20 bg-gradient-to-b from-card/30 via-card/70 to-card/30 border-b border-line relative overflow-hidden">
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-to-r from-[#7ca982]/10 via-[#557e5b]/5 to-indigo-500/5 blur-3xl rounded-full -z-10" />
+
+        <div className="wrap">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300 border border-emerald-500/30">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Next-Generation Rental Intelligence</span>
+              </div>
+              <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-ink tracking-tight">
+                6 Autonomous Engines Built for Complete Tenancy Trust.
+              </h2>
+              <p className="mt-4 text-ink-muted text-sm sm:text-base leading-relaxed">
+                From deterministic risk evaluation and scam detection to AI triage and split expense ledgers, Nivasa powers the entire tenancy lifecycle.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Card 1: Rental Risk Engine */}
+            <Reveal delay={0.05} className="rounded-3xl border border-line bg-card/80 p-6 shadow-card hover:border-[#7ca982] hover:shadow-xl transition-all group flex flex-col justify-between backdrop-blur-md">
+              <div>
+                <div className="flex items-center justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 text-[10px] font-bold text-emerald-800 dark:text-emerald-300">
+                    Risk Score: 0–100
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-serif font-bold text-ink">Rental Risk Engine</h3>
+                <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                  Deterministic multi-category scoring across financial, legal, physical, and market volatility with verified confidence factors.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Deposit Multiplier</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Title Clarity</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Fair Market Delta</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
+                <span className="text-[11px] text-ink-muted font-medium">Included on every listing</span>
+                <Link href="/properties" className="text-xs font-bold text-[#57875d] dark:text-[#a3caa6] hover:underline inline-flex items-center gap-1">
+                  Explore Homes →
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* Card 2: AI Scam / Fake Listing Detector */}
+            <Reveal delay={0.1} className="rounded-3xl border border-line bg-card/80 p-6 shadow-card hover:border-rose-400 hover:shadow-xl transition-all group flex flex-col justify-between backdrop-blur-md">
+              <div>
+                <div className="flex items-center justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-rose-500/15 text-rose-600 dark:text-rose-400 group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                  </div>
+                  <span className="rounded-full bg-rose-500/15 border border-rose-500/30 px-2.5 py-0.5 text-[10px] font-bold text-rose-800 dark:text-rose-300">
+                    Authenticity Shield
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-serif font-bold text-ink">AI Scam & Fraud Detector</h3>
+                <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                  Deep scan flagging price anomalies, duplicate listings, phishing contact patterns, and suspicious security deposit requirements.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Duplicate Detection</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Anomaly Alerts</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Phone Pattern Guard</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
+                <span className="text-[11px] text-ink-muted font-medium">Automatic Pre-Screen</span>
+                <Link href="/properties" className="text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline inline-flex items-center gap-1">
+                  View Verified →
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* Card 3: AI Maintenance Triage */}
+            <Reveal delay={0.15} className="rounded-3xl border border-line bg-card/80 p-6 shadow-card hover:border-amber-400 hover:shadow-xl transition-all group flex flex-col justify-between backdrop-blur-md">
+              <div>
+                <div className="flex items-center justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <span className="rounded-full bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 text-[10px] font-bold text-amber-800 dark:text-amber-300">
+                    Live Diagnostics
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-serif font-bold text-ink">AI Maintenance Triage</h3>
+                <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                  Real-time urgency classification (Emergency to Low), automated trade assignment, actionable troubleshooting, and localized cost estimation in INR.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Urgency Score</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Trade Matching</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">INR Estimates</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
+                <span className="text-[11px] text-ink-muted font-medium">Tenant & Owner Portal</span>
+                <Link href="/maintenance/triage" className="text-xs font-bold text-amber-700 dark:text-amber-300 hover:underline inline-flex items-center gap-1">
+                  Launch Triage →
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* Card 4: Smart Roommate Expense Engine */}
+            <Reveal delay={0.2} className="rounded-3xl border border-line bg-card/80 p-6 shadow-card hover:border-teal-400 hover:shadow-xl transition-all group flex flex-col justify-between backdrop-blur-md">
+              <div>
+                <div className="flex items-center justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-500/15 text-teal-600 dark:text-teal-400 group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <span className="rounded-full bg-teal-500/15 border border-teal-500/30 px-2.5 py-0.5 text-[10px] font-bold text-teal-800 dark:text-teal-300">
+                    Debt Simplification
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-serif font-bold text-ink">Roommate Expense Engine</h3>
+                <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                  Transparent household ledger supporting Rent, Utilities, Groceries, and Maintenance. Automated bilateral settlement algorithms eliminate roommate debt friction.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Equal & Custom Splits</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">UPI Settlement</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Monthly Ledgers</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
+                <span className="text-[11px] text-ink-muted font-medium">Zero awkwardness</span>
+                <Link href="/tenant/expenses" className="text-xs font-bold text-teal-700 dark:text-teal-300 hover:underline inline-flex items-center gap-1">
+                  Manage Expenses →
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* Card 5: Property Reputation Graph */}
+            <Reveal delay={0.25} className="rounded-3xl border border-line bg-card/80 p-6 shadow-card hover:border-indigo-400 hover:shadow-xl transition-all group flex flex-col justify-between backdrop-blur-md">
+              <div>
+                <div className="flex items-center justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <circle cx="6" cy="6" r="3" />
+                      <circle cx="18" cy="6" r="3" />
+                      <circle cx="18" cy="18" r="3" />
+                      <circle cx="6" cy="18" r="3" />
+                      <path d="M9 6h6M6 9v6m12-6v6m-9 3h6" />
+                    </svg>
+                  </div>
+                  <span className="rounded-full bg-indigo-500/15 border border-indigo-500/30 px-2.5 py-0.5 text-[10px] font-bold text-indigo-800 dark:text-indigo-300">
+                    Network Topology
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-serif font-bold text-ink">Property Reputation Graph</h3>
+                <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                  Interactive SVG topological graph linking 8 verified entities: landlord track record, physical inspections, verified reviews, and listing provenance.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Interactive Pan & Zoom</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Evidence Inspector</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">8 Node Entities</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
+                <span className="text-[11px] text-ink-muted font-medium">Zero-fabrication graph</span>
+                <Link href="/properties" className="text-xs font-bold text-indigo-700 dark:text-indigo-300 hover:underline inline-flex items-center gap-1">
+                  Inspect Graphs →
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* Card 6: AI Rental Copilot */}
+            <Reveal delay={0.3} className="rounded-3xl border border-line bg-card/80 p-6 shadow-card hover:border-violet-400 hover:shadow-xl transition-all group flex flex-col justify-between backdrop-blur-md">
+              <div>
+                <div className="flex items-center justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-600 dark:text-violet-400 group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <span className="rounded-full bg-violet-500/15 border border-violet-500/30 px-2.5 py-0.5 text-[10px] font-bold text-violet-800 dark:text-violet-300">
+                    Dual-Role Advisor
+                  </span>
+                </div>
+                <h3 className="mt-5 text-lg font-serif font-bold text-ink">AI Rental Copilot</h3>
+                <p className="mt-2 text-xs text-ink-muted leading-relaxed">
+                  Autonomous assistant strictly grounded in the authenticated user's role (Tenant vs Owner), Model Tenancy Act principles, and live platform listings.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Strict Role Context</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Legal Clause Advice</span>
+                  <span className="px-2 py-0.5 rounded-md bg-[#faf7f0] dark:bg-[#1d2d22] border border-line text-[10px] text-ink-muted">Streaming Responses</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
+                <span className="text-[11px] text-ink-muted font-medium">Available 24/7</span>
+                <Link href="/copilot" className="text-xs font-bold text-violet-700 dark:text-violet-300 hover:underline inline-flex items-center gap-1">
+                  Open Copilot →
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
           3. DEDICATED ROLE SECTIONS: FOR TENANTS & FOR OWNERS
       ======================================================== */}
       <section className="py-20 bg-paper border-b border-line">
